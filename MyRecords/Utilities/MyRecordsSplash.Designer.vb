@@ -112,7 +112,6 @@ Partial Class MyRecordsSplash
         'PictureBox1
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PictureBox1.Image = Global.MyNovel.My.Resources.Resources.Current_Blank_Book
         Me.PictureBox1.Location = New System.Drawing.Point(21, 16)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(200, 185)

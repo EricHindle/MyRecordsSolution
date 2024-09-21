@@ -76,11 +76,26 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmSingles.vb">
+    <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
+    <Compile Include="Domain\ModDataFunctions.vb" />
+    <Compile Include="Domain\Objects\RecordFormat.vb" />
+    <Compile Include="Domain\Objects\Genre.vb" />
+    <Compile Include="Domain\Objects\GlobalSetting.vb" />
+    <Compile Include="Domain\Objects\RecordLabel.vb" />
+    <Compile Include="Domain\Objects\Record.vb" />
+    <Compile Include="Domain\Objects\Track.vb" />
+    <Compile Include="Main\FrmSingles.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSingles.Designer.vb">
+    <Compile Include="Main\FrmSingles.Designer.vb">
       <DependentUpon>FrmSingles.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\ModCommon.vb" />
+    <Compile Include="Menu\FrmMenu.Designer.vb">
+      <DependentUpon>FrmMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\FrmMenu.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -99,11 +114,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RecordsDataSet.Designer.vb">
+    <Compile Include="Domain\RecordsDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FrmGlobalSettings.designer.vb">
+      <DependentUpon>FrmGlobalSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\FrmGlobalSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\ModGlobalSettings.vb" />
     <Compile Include="Utilities\MyRecordsSplash.Designer.vb">
       <DependentUpon>MyRecordsSplash.vb</DependentUpon>
     </Compile>
@@ -112,11 +134,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Main\FrmSingles.resx">
+      <DependentUpon>FrmSingles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\FrmMenu.resx">
+      <DependentUpon>FrmMenu.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\FrmGlobalSettings.resx">
+      <DependentUpon>FrmGlobalSettings.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\MyRecordsSplash.resx">
       <DependentUpon>MyRecordsSplash.vb</DependentUpon>
@@ -133,17 +164,18 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="RecordsDataSet.xsc">
+    <None Include="Domain\RecordsDataSet.xsc">
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
     </None>
-    <None Include="RecordsDataSet.xsd">
+    <None Include="Domain\RecordsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>RecordsDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="RecordsDataSet.xss">
+    <None Include="Domain\RecordsDataSet.xss">
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

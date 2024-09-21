@@ -24,7 +24,6 @@ Public Class FrmBackup
     Private optionsPath As String
     Private docPath As String
     Private imagePath As String
-    Private oBooklist As List(Of Book)
     Private isFormInitialised As Boolean
     Private tableCheckCount As Integer
     Private docCheckCount As Integer
@@ -410,7 +409,7 @@ Public Class FrmBackup
             .Append("-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10")
         Dim _command As New Global.System.Data.SqlClient.SqlCommand
         _command.Connection = New Global.System.Data.SqlClient.SqlConnection With {
-            .ConnectionString = Global.MyNovel.My.MySettings.Default.MyNovelConnectionString1
+            .ConnectionString = Global.MyRecords.My.MySettings.Default.RecordsConnectionString
         }
         _command.CommandText = _commandSQL.ToString
         _command.CommandType = Global.System.Data.CommandType.Text

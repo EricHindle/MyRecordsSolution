@@ -64,6 +64,126 @@ Namespace My
                 Return CType(Me("RecordsConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property BackupFormPos() As String
+            Get
+                Return CType(Me("BackupFormPos"),String)
+            End Get
+            Set
+                Me("BackupFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property RestoreFormPos() As String
+            Get
+                Return CType(Me("RestoreFormPos"),String)
+            End Get
+            Set
+                Me("RestoreFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property BackupPath() As String
+            Get
+                Return CType(Me("BackupPath"),String)
+            End Get
+            Set
+                Me("BackupPath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property AppendDbBackup() As String
+            Get
+                Return CType(Me("AppendDbBackup"),String)
+            End Get
+            Set
+                Me("AppendDbBackup") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property GlobalSettingsPos() As String
+            Get
+                Return CType(Me("GlobalSettingsPos"),String)
+            End Get
+            Set
+                Me("GlobalSettingsPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LogViewPos() As String
+            Get
+                Return CType(Me("LogViewPos"),String)
+            End Get
+            Set
+                Me("LogViewPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property LogZoomValue() As Integer
+            Get
+                Return CType(Me("LogZoomValue"),Integer)
+            End Get
+            Set
+                Me("LogZoomValue") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property LogZoomOn() As Boolean
+            Get
+                Return CType(Me("LogZoomOn"),Boolean)
+            End Get
+            Set
+                Me("LogZoomOn") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property callUpgrade() As Integer
+            Get
+                Return CType(Me("callUpgrade"),Integer)
+            End Get
+            Set
+                Me("callUpgrade") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:/MyRecords/Logs")>  _
+        Public Property LogFolder() As String
+            Get
+                Return CType(Me("LogFolder"),String)
+            End Get
+            Set
+                Me("LogFolder") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -28,13 +28,13 @@ Public Class RecordFormat
 #End Region
 #Region "constructors"
     Private Sub Initialise()
-        _formatId = -1
+        _formatId = String.Empty
         _formatId = String.Empty
     End Sub
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId As Integer, Pname As String)
+    Public Sub New(pId As String, Pname As String)
         _formatId = pId
         _formatName = Pname
     End Sub

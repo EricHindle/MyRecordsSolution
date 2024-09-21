@@ -3016,8 +3016,7 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "INSERT INTO MusicGenre"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (GenreName)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Gen"& _ 
-                "reName); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT GenreId, GenreName FROM MusicGenre WHERE (GenreId = SCOPE_IDEN"& _ 
-                "TITY())"
+                "reName); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT SCOPE_IDENTITY()"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GenreName", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "GenreName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
@@ -3187,7 +3186,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertGenre(ByVal GenreName As String) As Integer
+        Public Overloads Overridable Function InsertGenre(ByVal GenreName As String) As Object
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             If (GenreName Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("GenreName")
@@ -3199,15 +3198,20 @@ Namespace RecordsDataSetTableAdapters
                         <> Global.System.Data.ConnectionState.Open) Then
                 command.Connection.Open
             End If
-            Dim returnValue As Integer
+            Dim returnValue As Object
             Try 
-                returnValue = command.ExecuteNonQuery
+                returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
                     command.Connection.Close
                 End If
             End Try
-            Return returnValue
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4408,8 +4412,7 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "INSERT INTO RecordLabels"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (LabelName)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@L"& _ 
-                "abelName); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT LabelId, LabelName FROM RecordLabels WHERE (LabelId = SCOPE_"& _ 
-                "IDENTITY())"
+                "abelName); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT  SCOPE_IDENTITY()"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LabelName", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "LabelName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
@@ -4579,7 +4582,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertLabel(ByVal LabelName As String) As Integer
+        Public Overloads Overridable Function InsertLabel(ByVal LabelName As String) As Object
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             If (LabelName Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("LabelName")
@@ -4591,15 +4594,20 @@ Namespace RecordsDataSetTableAdapters
                         <> Global.System.Data.ConnectionState.Open) Then
                 command.Connection.Open
             End If
-            Dim returnValue As Integer
+            Dim returnValue As Object
             Try 
-                returnValue = command.ExecuteNonQuery
+                returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
                     command.Connection.Close
                 End If
             End Try
-            Return returnValue
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4823,9 +4831,8 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "INSERT INTO Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Format, Label, RecordNo, Size, Spe"& _ 
-                "ed)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Format,@Label,@RecordNo,@Size,@Speed); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, F"& _ 
-                "ormat, Label, RecordNo, Size, Speed FROM Records WHERE (RecordId = SCOPE_IDENTIT"& _ 
-                "Y())"
+                "ed)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Format,@Label,@RecordNo,@Size,@Speed); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT  SCOPE_IDEN"& _ 
+                "TITY()"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Label", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

@@ -89,6 +89,9 @@
     <Compile Include="Domain\Objects\RecordLabel.vb" />
     <Compile Include="Domain\Objects\Record.vb" />
     <Compile Include="Domain\Objects\Track.vb" />
+    <Compile Include="Domain\RecordsDataSet.vb">
+      <DependentUpon>RecordsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MaintForms\FrmRecordInput.vb">
       <SubType>Form</SubType>
     </Compile>

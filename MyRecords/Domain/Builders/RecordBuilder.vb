@@ -60,7 +60,7 @@ Public Class RecordBuilder
         _label = pLabel
         Return Me
     End Function
-    Public Function WithFormat(ByVal pFormatId As Integer) As RecordBuilder
+    Public Function WithFormat(ByVal pFormatId As String) As RecordBuilder
         _format = GetFormatbyId(pFormatId)
         Return Me
     End Function

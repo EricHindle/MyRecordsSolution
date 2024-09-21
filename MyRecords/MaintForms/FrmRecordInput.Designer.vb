@@ -134,11 +134,11 @@ Partial Class FrmRecordInput
         Me.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAdd.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAdd.ForeColor = System.Drawing.Color.Black
-        Me.BtnAdd.Location = New System.Drawing.Point(68, 464)
+        Me.BtnAdd.Location = New System.Drawing.Point(68, 403)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
         Me.BtnAdd.TabIndex = 5
-        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Text = "Save Record"
         Me.BtnAdd.UseVisualStyleBackColor = False
         '
         'BtnClose
@@ -151,7 +151,7 @@ Partial Class FrmRecordInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(843, 464)
+        Me.BtnClose.Location = New System.Drawing.Point(843, 403)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 78)
         Me.BtnClose.TabIndex = 8
@@ -411,11 +411,11 @@ Partial Class FrmRecordInput
         Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(344, 464)
+        Me.BtnNext.Location = New System.Drawing.Point(344, 403)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(78, 78)
         Me.BtnNext.TabIndex = 21
-        Me.BtnNext.Text = "Next"
+        Me.BtnNext.Text = "Next Record"
         Me.BtnNext.UseVisualStyleBackColor = False
         '
         'BtnAddTracks
@@ -426,17 +426,17 @@ Partial Class FrmRecordInput
         Me.BtnAddTracks.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAddTracks.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAddTracks.ForeColor = System.Drawing.Color.Black
-        Me.BtnAddTracks.Location = New System.Drawing.Point(206, 464)
+        Me.BtnAddTracks.Location = New System.Drawing.Point(206, 403)
         Me.BtnAddTracks.Name = "BtnAddTracks"
         Me.BtnAddTracks.Size = New System.Drawing.Size(78, 78)
         Me.BtnAddTracks.TabIndex = 22
-        Me.BtnAddTracks.Text = "Tracks"
+        Me.BtnAddTracks.Text = "Add Tracks"
         Me.BtnAddTracks.UseVisualStyleBackColor = False
         '
         'Status
         '
         Me.Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.Status.Location = New System.Drawing.Point(0, 545)
+        Me.Status.Location = New System.Drawing.Point(0, 484)
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(933, 22)
         Me.Status.TabIndex = 23
@@ -452,7 +452,7 @@ Partial Class FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(933, 567)
+        Me.ClientSize = New System.Drawing.Size(933, 506)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnAddTracks)
         Me.Controls.Add(Me.BtnNext)

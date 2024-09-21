@@ -9,6 +9,7 @@ Imports System.Data.Common
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
+Imports System.Security.Cryptography
 Imports HindlewareLib.Logging
 
 
@@ -122,6 +123,20 @@ Public Module ModDataFunctions
         Return If(ex Is Nothing, "", "Exception:  " & ex.Message & vbCrLf & If(ex.InnerException Is Nothing, "", ex.InnerException.Message))
     End Function
 #End Region
+#Region "Record"
+    Public Function InsertRecord(pRecord As Record) As Integer
+        LogUtil.Info("Inserting record " & pRecord.RecordNumber, MODULE_NAME)
+        Dim newId As Integer = -1
+        Try
+            With pRecord
+                newId = oRecordsTa.InsertRecord(.RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return newId
+    End Function
+#End Region
 #Region "Label"
     Public Function GetLabelbyId(pId As Integer) As RecordLabel
         LogUtil.Debug("Getting Label " & pId, MODULE_NAME)
@@ -136,7 +151,7 @@ Public Module ModDataFunctions
         End Try
         Return olabel
     End Function
-    Public Function GetFormatbyId(pId As Integer) As RecordFormat
+    Public Function GetFormatbyId(pId As String) As RecordFormat
         LogUtil.Debug("Getting format " & pId, MODULE_NAME)
         Dim oformat As New RecordFormat
         Try

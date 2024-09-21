@@ -29,7 +29,7 @@ Public Class RecordLabel
 #Region "constructors"
     Private Sub Initialise()
         _LabelId = -1
-        _LabelId = String.Empty
+        _labelName = String.Empty
     End Sub
     Public Sub New()
         Initialise()

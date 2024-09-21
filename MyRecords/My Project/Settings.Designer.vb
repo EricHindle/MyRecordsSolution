@@ -184,6 +184,18 @@ Namespace My
                 Me("LogFolder") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property RecordInputFormPos() As String
+            Get
+                Return CType(Me("RecordInputFormPos"),String)
+            End Get
+            Set
+                Me("RecordInputFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

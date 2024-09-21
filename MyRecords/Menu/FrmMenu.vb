@@ -24,7 +24,7 @@ Public Class FrmMenu
     End Sub
     Private Sub BtnInputRecords_Click(sender As Object, e As EventArgs) Handles BtnInputRecords.Click
         Hide()
-        Using _recordInput As New FrmSingles
+        Using _recordInput As New FrmRecordInput
             LogUtil.Info("Opening Record Input", MyBase.Name)
             _recordInput.ShowDialog()
         End Using

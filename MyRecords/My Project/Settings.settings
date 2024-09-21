@@ -40,5 +40,8 @@
     <Setting Name="LogFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:/MyRecords/Logs</Value>
     </Setting>
+    <Setting Name="RecordInputFormPos" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

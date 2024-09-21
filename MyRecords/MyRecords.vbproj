@@ -84,14 +84,14 @@
     <Compile Include="Domain\Objects\RecordLabel.vb" />
     <Compile Include="Domain\Objects\Record.vb" />
     <Compile Include="Domain\Objects\Track.vb" />
-    <Compile Include="Main\FrmSingles.vb">
+    <Compile Include="MaintForms\FrmRecordInput.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main\FrmSingles.Designer.vb">
-      <DependentUpon>FrmSingles.vb</DependentUpon>
+    <Compile Include="MaintForms\FrmRecordInput.Designer.vb">
+      <DependentUpon>FrmRecordInput.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main\ModCommon.vb" />
+    <Compile Include="MaintForms\ModCommon.vb" />
     <Compile Include="Menu\FrmMenu.Designer.vb">
       <DependentUpon>FrmMenu.vb</DependentUpon>
     </Compile>
@@ -134,8 +134,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Main\FrmSingles.resx">
-      <DependentUpon>FrmSingles.vb</DependentUpon>
+    <EmbeddedResource Include="MaintForms\FrmRecordInput.resx">
+      <DependentUpon>FrmRecordInput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\FrmMenu.resx">
       <DependentUpon>FrmMenu.vb</DependentUpon>

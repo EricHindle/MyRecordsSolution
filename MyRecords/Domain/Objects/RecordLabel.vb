@@ -1,4 +1,9 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar
+﻿' Hindleware
+' Copyright (c) 2024 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
 
 Public Class RecordLabel
 #Region "properties"
@@ -28,6 +33,10 @@ Public Class RecordLabel
     End Sub
     Public Sub New()
         Initialise()
+    End Sub
+    Public Sub New(pId As Integer, Pname As String)
+        _labelId = pId
+        _labelName = Pname
     End Sub
 #End Region
 End Class

@@ -1,4 +1,11 @@
-﻿Public Class Genre
+﻿' Hindleware
+' Copyright (c) 2024 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Public Class Genre
 #Region "properties"
     Private _genreId As Integer
     Private _genreName As String
@@ -26,6 +33,10 @@
     End Sub
     Public Sub New()
         Initialise()
+    End Sub
+    Public Sub New(pId As Integer, Pname As String)
+        _genreId = pId
+        _genreName = Pname
     End Sub
 #End Region
 End Class

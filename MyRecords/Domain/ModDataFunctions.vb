@@ -1,11 +1,12 @@
 ﻿' Hindleware
-' Copyright (c) 2023-24 Eric Hindle
+' Copyright (c) 2024 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
 
 Imports System.Data.Common
+Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
 Imports HindlewareLib.Logging
@@ -19,12 +20,31 @@ Public Module ModDataFunctions
 #End Region
 #Region "enum"
     Public Enum Tables
+        Records
+        Tracks
+        RecordLabels
+        RecordFormat
+        MusicGenre
         Settings
     End Enum
 #End Region
 #Region "dataset"
     Private ReadOnly oSettingsTa As New RecordsDataSetTableAdapters.settingsTableAdapter
     Private ReadOnly oSettingsTable As New RecordsDataSet.settingsDataTable
+    Private ReadOnly oRecordsTa As New RecordsDataSetTableAdapters.RecordsTableAdapter
+    Private ReadOnly oRecordsTable As New RecordsDataSet.RecordsDataTable
+
+    Private ReadOnly oRecordLabelsTa As New RecordsDataSetTableAdapters.RecordLabelsTableAdapter
+    Private ReadOnly oRecordLabelsTable As New RecordsDataSet.RecordLabelsDataTable
+
+    Private ReadOnly oRecordFormatTa As New RecordsDataSetTableAdapters.RecordFormatTableAdapter
+    Private ReadOnly oRecordFormatTable As New RecordsDataSet.RecordFormatDataTable
+
+    Private ReadOnly oMusicGenreTa As New RecordsDataSetTableAdapters.MusicGenreTableAdapter
+    Private ReadOnly oMusicGenreTable As New RecordsDataSet.MusicGenreDataTable
+
+    Private ReadOnly oTracksTa As New RecordsDataSetTableAdapters.TracksTableAdapter
+    Private ReadOnly oTracksTable As New RecordsDataSet.TracksDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -100,6 +120,73 @@ Public Module ModDataFunctions
     End Function
     Private Function GetMessage(ex As Exception) As String
         Return If(ex Is Nothing, "", "Exception:  " & ex.Message & vbCrLf & If(ex.InnerException Is Nothing, "", ex.InnerException.Message))
+    End Function
+#End Region
+#Region "Label"
+    Public Function GetLabelbyId(pId As Integer) As RecordLabel
+        LogUtil.Debug("Getting Label " & pId, MODULE_NAME)
+        Dim olabel As New RecordLabel
+        Try
+            oRecordLabelsTa.FillById(oRecordLabelsTable, pId)
+            If oRecordLabelsTable.Rows.Count > 0 Then
+                olabel = RecordLabelBuilder.ARecordLabel.StartingWith(oRecordLabelsTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return olabel
+    End Function
+    Public Function GetFormatbyId(pId As Integer) As RecordFormat
+        LogUtil.Debug("Getting format " & pId, MODULE_NAME)
+        Dim oformat As New RecordFormat
+        Try
+            oRecordFormatTa.FillById(oRecordFormatTable, pId)
+            If oRecordFormatTable.Rows.Count > 0 Then
+                oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return oformat
+    End Function
+#End Region
+#Region "Genre"
+    Public Function GetGenrebyId(pId As Integer) As Genre
+        LogUtil.Debug("Getting Genre " & pId, MODULE_NAME)
+        Dim olabel As New Genre
+        Try
+            oMusicGenreTa.FillById(oMusicGenreTable, pId)
+            If oMusicGenreTable.Rows.Count > 0 Then
+                olabel = GenreBuilder.AGenre.StartingWith(oMusicGenreTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return olabel
+    End Function
+
+#End Region
+#Region "GetTable"
+    Public Function GetRecordsTable() As RecordsDataSet.RecordsDataTable
+        LogUtil.Info("Getting records table", MODULE_NAME)
+        Return oRecordsTa.GetData()
+    End Function
+
+    Public Function GetTracksTable() As RecordsDataSet.TracksDataTable
+        LogUtil.Info("Getting tracks table", MODULE_NAME)
+        Return oTracksTa.GetData()
+    End Function
+    Public Function GetMusicGenreTable() As RecordsDataSet.MusicGenreDataTable
+        LogUtil.Info("Getting music genre table", MODULE_NAME)
+        Return oMusicGenreTa.GetData()
+    End Function
+    Public Function GetRecordFormatTable() As RecordsDataSet.RecordFormatDataTable
+        LogUtil.Info("Getting record format table", MODULE_NAME)
+        Return oRecordFormatTa.GetData()
+    End Function
+    Public Function GetRecordLabelsTable() As RecordsDataSet.RecordLabelsDataTable
+        LogUtil.Info("Getting record format table", MODULE_NAME)
+        Return oRecordLabelsTa.GetData()
     End Function
 #End Region
 

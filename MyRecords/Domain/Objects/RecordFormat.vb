@@ -1,4 +1,11 @@
-﻿Public Class RecordFormat
+﻿' Hindleware
+' Copyright (c) 2024 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Public Class RecordFormat
 #Region "properties"
     Private _formatId As String
     Private _formatName As String
@@ -26,6 +33,10 @@
     End Sub
     Public Sub New()
         Initialise()
+    End Sub
+    Public Sub New(pId As Integer, Pname As String)
+        _formatId = pId
+        _formatName = Pname
     End Sub
 #End Region
 End Class

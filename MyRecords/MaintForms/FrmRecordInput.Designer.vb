@@ -45,21 +45,21 @@ Partial Class FrmRecordInput
         Me.Rb12 = New System.Windows.Forms.RadioButton()
         Me.Rb7 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RbNoSpeed = New System.Windows.Forms.RadioButton()
         Me.Rb78 = New System.Windows.Forms.RadioButton()
         Me.Rb33 = New System.Windows.Forms.RadioButton()
         Me.Rb45 = New System.Windows.Forms.RadioButton()
-        Me.RbNoSpeed = New System.Windows.Forms.RadioButton()
         Me.DgvTracks = New System.Windows.Forms.DataGridView()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.BtnNext = New System.Windows.Forms.Button()
-        Me.BtnAddTracks = New System.Windows.Forms.Button()
-        Me.Status = New System.Windows.Forms.StatusStrip()
-        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.trkTrack = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkYear = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkGenre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.BtnNext = New System.Windows.Forms.Button()
+        Me.BtnAddTracks = New System.Windows.Forms.Button()
+        Me.Status = New System.Windows.Forms.StatusStrip()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordLabelsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,12 +103,12 @@ Partial Class FrmRecordInput
         'CbRecordFormat
         '
         Me.CbRecordFormat.DataSource = Me.RecordFormatBindingSource
-        Me.CbRecordFormat.DisplayMember = "FormatName"
+        Me.CbRecordFormat.DisplayMember = "FormatId"
         Me.CbRecordFormat.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbRecordFormat.FormattingEnabled = True
         Me.CbRecordFormat.Location = New System.Drawing.Point(70, 82)
         Me.CbRecordFormat.Name = "CbRecordFormat"
-        Me.CbRecordFormat.Size = New System.Drawing.Size(196, 27)
+        Me.CbRecordFormat.Size = New System.Drawing.Size(65, 27)
         Me.CbRecordFormat.TabIndex = 3
         Me.CbRecordFormat.ValueMember = "FormatId"
         '
@@ -296,6 +296,18 @@ Partial Class FrmRecordInput
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Speed"
         '
+        'RbNoSpeed
+        '
+        Me.RbNoSpeed.AutoSize = True
+        Me.RbNoSpeed.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RbNoSpeed.Location = New System.Drawing.Point(202, 23)
+        Me.RbNoSpeed.Name = "RbNoSpeed"
+        Me.RbNoSpeed.Size = New System.Drawing.Size(50, 23)
+        Me.RbNoSpeed.TabIndex = 3
+        Me.RbNoSpeed.TabStop = True
+        Me.RbNoSpeed.Text = "n/a"
+        Me.RbNoSpeed.UseVisualStyleBackColor = True
+        '
         'Rb78
         '
         Me.Rb78.AutoSize = True
@@ -332,18 +344,6 @@ Partial Class FrmRecordInput
         Me.Rb45.Text = "45"
         Me.Rb45.UseVisualStyleBackColor = True
         '
-        'RbNoSpeed
-        '
-        Me.RbNoSpeed.AutoSize = True
-        Me.RbNoSpeed.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbNoSpeed.Location = New System.Drawing.Point(202, 23)
-        Me.RbNoSpeed.Name = "RbNoSpeed"
-        Me.RbNoSpeed.Size = New System.Drawing.Size(50, 23)
-        Me.RbNoSpeed.TabIndex = 3
-        Me.RbNoSpeed.TabStop = True
-        Me.RbNoSpeed.Text = "n/a"
-        Me.RbNoSpeed.UseVisualStyleBackColor = True
-        '
         'DgvTracks
         '
         Me.DgvTracks.AllowUserToAddRows = False
@@ -357,6 +357,42 @@ Partial Class FrmRecordInput
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.Size = New System.Drawing.Size(481, 174)
         Me.DgvTracks.TabIndex = 18
+        '
+        'trkTrack
+        '
+        Me.trkTrack.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkTrack.HeaderText = "Track"
+        Me.trkTrack.Name = "trkTrack"
+        Me.trkTrack.ReadOnly = True
+        Me.trkTrack.Width = 60
+        '
+        'trkArtist
+        '
+        Me.trkArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkArtist.HeaderText = "Artist"
+        Me.trkArtist.Name = "trkArtist"
+        Me.trkArtist.ReadOnly = True
+        '
+        'trkYear
+        '
+        Me.trkYear.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkYear.HeaderText = "Year"
+        Me.trkYear.Name = "trkYear"
+        Me.trkYear.ReadOnly = True
+        Me.trkYear.Width = 60
+        '
+        'trkTitle
+        '
+        Me.trkTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.trkTitle.HeaderText = "Title"
+        Me.trkTitle.Name = "trkTitle"
+        Me.trkTitle.ReadOnly = True
+        '
+        'trkGenre
+        '
+        Me.trkGenre.HeaderText = "Genre"
+        Me.trkGenre.Name = "trkGenre"
+        Me.trkGenre.ReadOnly = True
         '
         'Panel1
         '
@@ -411,42 +447,6 @@ Partial Class FrmRecordInput
         Me.LblStatus.Name = "LblStatus"
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.LblStatus.Size = New System.Drawing.Size(6, 17)
-        '
-        'trkTrack
-        '
-        Me.trkTrack.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkTrack.HeaderText = "Track"
-        Me.trkTrack.Name = "trkTrack"
-        Me.trkTrack.ReadOnly = True
-        Me.trkTrack.Width = 60
-        '
-        'trkArtist
-        '
-        Me.trkArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkArtist.HeaderText = "Artist"
-        Me.trkArtist.Name = "trkArtist"
-        Me.trkArtist.ReadOnly = True
-        '
-        'trkYear
-        '
-        Me.trkYear.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkYear.HeaderText = "Year"
-        Me.trkYear.Name = "trkYear"
-        Me.trkYear.ReadOnly = True
-        Me.trkYear.Width = 60
-        '
-        'trkTitle
-        '
-        Me.trkTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.trkTitle.HeaderText = "Title"
-        Me.trkTitle.Name = "trkTitle"
-        Me.trkTitle.ReadOnly = True
-        '
-        'trkGenre
-        '
-        Me.trkGenre.HeaderText = "Genre"
-        Me.trkGenre.Name = "trkGenre"
-        Me.trkGenre.ReadOnly = True
         '
         'FrmRecordInput
         '

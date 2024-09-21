@@ -1,12 +1,11 @@
 ﻿' Hindleware
-' Copyright (c) 2019-2023 Eric Hindle
+' Copyright (c) 2024 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
 
 Imports HindlewareLib.Logging
-Imports MyRecords.RecordsDataSetTableAdapters
 
 Public Class FrmMenu
 #Region "form control handlers"
@@ -68,6 +67,7 @@ Public Class FrmMenu
                 End Select
             End If
         Next
+        InitialiseData()
         Dim _runtime As List(Of String) = {My.Application.Info.Title & " version " & My.Application.Info.Version.ToString,
                                             "Computer name : " & My.Computer.Name,
                                             "Data connection: ",
@@ -79,9 +79,23 @@ Public Class FrmMenu
         Next
     End Sub
 
+    Private Sub BtnBackup_Click(sender As Object, e As EventArgs) Handles BtnBackup.Click
+        Hide()
+        Using _backup As New FrmBackup
+            LogUtil.Info("Opening Backup", MyBase.Name)
+            _backup.ShowDialog()
+        End Using
+        Show()
+    End Sub
 
-
-
+    Private Sub BtnRestore_Click(sender As Object, e As EventArgs) Handles BtnRestore.Click
+        Hide()
+        Using _restore As New FrmRestore
+            LogUtil.Info("Opening Restore", MyBase.Name)
+            _restore.ShowDialog()
+        End Using
+        Show()
+    End Sub
 
 #End Region
 End Class

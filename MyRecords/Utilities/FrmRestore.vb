@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2023 Eric Hindle
+' Copyright (c) 2024 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -10,15 +10,6 @@ Imports HindlewareLib.Logging
 
 Public Class FrmRestore
 #Region "properties"
-    Private _currentBook As Book
-    Public Property CurrentBook() As Book
-        Get
-            Return _currentBook
-        End Get
-        Set(ByVal value As Book)
-            _currentBook = value
-        End Set
-    End Property
 #End Region
 #Region "variables"
     Private backupPath As String

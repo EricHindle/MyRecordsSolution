@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2023 Eric Hindle
+' Copyright (c) 2024 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -8,7 +8,6 @@
 Imports System.Globalization
 Imports System.IO
 Imports System.Reflection
-Imports HindlewareLib.DiaryControl
 Imports HindlewareLib.Logging
 
 Public Module ModCommon

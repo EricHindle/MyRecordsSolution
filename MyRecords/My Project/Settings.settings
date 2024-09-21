@@ -19,8 +19,8 @@
     <Setting Name="BackupPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="AppendDbBackup" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="AppendDbBackup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="GlobalSettingsPos" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -42,6 +42,12 @@
     </Setting>
     <Setting Name="RecordInputFormPos" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BackupAddDate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BackUpDb" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

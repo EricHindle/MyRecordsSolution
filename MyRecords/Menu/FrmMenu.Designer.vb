@@ -29,7 +29,9 @@ Partial Class FrmMenu
         Me.Version = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.BtnImages = New System.Windows.Forms.Button()
+        Me.BtnOptions = New System.Windows.Forms.Button()
+        Me.BtnBackup = New System.Windows.Forms.Button()
+        Me.BtnRestore = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -106,16 +108,38 @@ Partial Class FrmMenu
         Me.PictureBox1.TabIndex = 25
         Me.PictureBox1.TabStop = False
         '
-        'BtnImages
+        'BtnOptions
         '
-        Me.BtnImages.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnImages.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnImages.Location = New System.Drawing.Point(189, 246)
-        Me.BtnImages.Name = "BtnImages"
-        Me.BtnImages.Size = New System.Drawing.Size(151, 49)
-        Me.BtnImages.TabIndex = 1
-        Me.BtnImages.Text = "Images"
-        Me.BtnImages.UseVisualStyleBackColor = True
+        Me.BtnOptions.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnOptions.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnOptions.Location = New System.Drawing.Point(15, 399)
+        Me.BtnOptions.Name = "BtnOptions"
+        Me.BtnOptions.Size = New System.Drawing.Size(151, 49)
+        Me.BtnOptions.TabIndex = 1
+        Me.BtnOptions.Text = "Options"
+        Me.BtnOptions.UseVisualStyleBackColor = True
+        '
+        'BtnBackup
+        '
+        Me.BtnBackup.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBackup.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnBackup.Location = New System.Drawing.Point(15, 454)
+        Me.BtnBackup.Name = "BtnBackup"
+        Me.BtnBackup.Size = New System.Drawing.Size(151, 49)
+        Me.BtnBackup.TabIndex = 27
+        Me.BtnBackup.Text = "Backup"
+        Me.BtnBackup.UseVisualStyleBackColor = True
+        '
+        'BtnRestore
+        '
+        Me.BtnRestore.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnRestore.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnRestore.Location = New System.Drawing.Point(189, 454)
+        Me.BtnRestore.Name = "BtnRestore"
+        Me.BtnRestore.Size = New System.Drawing.Size(151, 49)
+        Me.BtnRestore.TabIndex = 28
+        Me.BtnRestore.Text = "Restore"
+        Me.BtnRestore.UseVisualStyleBackColor = True
         '
         'FrmMenu
         '
@@ -124,12 +148,14 @@ Partial Class FrmMenu
         Me.BackColor = System.Drawing.Color.AliceBlue
         Me.ClientSize = New System.Drawing.Size(352, 596)
         Me.ControlBox = False
+        Me.Controls.Add(Me.BtnRestore)
+        Me.Controls.Add(Me.BtnBackup)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Version)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnSearch)
-        Me.Controls.Add(Me.BtnImages)
+        Me.Controls.Add(Me.BtnOptions)
         Me.Controls.Add(Me.BtnInputRecords)
         Me.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -148,5 +174,7 @@ Partial Class FrmMenu
     Friend WithEvents Version As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents BtnImages As Button
+    Friend WithEvents BtnOptions As Button
+    Friend WithEvents BtnBackup As Button
+    Friend WithEvents BtnRestore As Button
 End Class

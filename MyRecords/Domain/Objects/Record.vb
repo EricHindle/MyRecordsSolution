@@ -1,7 +1,9 @@
-﻿Imports System.ComponentModel
-Imports System.Reflection.Emit
-Imports System.Security.Cryptography
-Imports System.Security.Policy
+﻿' Hindleware
+' Copyright (c) 2024 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
 
 Public Class Record
 #Region "properties"
@@ -73,7 +75,7 @@ Public Class Record
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId, pLabel, pFormat, pNumber, pSize, pSpeed)
+    Public Sub New(pId As Integer, pLabel As RecordLabel, pFormat As RecordFormat, pNumber As Integer, pSize As Integer, pSpeed As String)
         _recordId = pId
         _label = pLabel
         _format = pFormat

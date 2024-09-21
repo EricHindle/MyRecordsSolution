@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2023 Eric Hindle
+' Copyright (c) 2024 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle

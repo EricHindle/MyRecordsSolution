@@ -1,4 +1,11 @@
-﻿Imports HindlewareLib.Logging
+﻿' Hindleware
+' Copyright (c) 2024 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Imports HindlewareLib.Logging
 
 Public Class FrmRecordInput
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -17,7 +24,7 @@ Public Class FrmRecordInput
         CbRecordLabel.SelectedIndex = -1
         TxtRecNumber.Text = String.Empty
         Rb7.Checked = True
-        Rb12.Checked = True
+        Rb45.Checked = True
         DgvTracks.Rows.Clear()
         BtnAddTracks.Enabled = False
     End Sub
@@ -53,5 +60,13 @@ Public Class FrmRecordInput
 
     Private Sub BtnAddTracks_Click(sender As Object, e As EventArgs) Handles BtnAddTracks.Click
 
+    End Sub
+
+    Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
+        TxtRecNumber.Text = String.Empty
+        LblRecordId.Text = "-1"
+        DgvTracks.Rows.Clear()
+        BtnAddTracks.Enabled = False
+        CbRecordLabel.SelectedIndex = -1
     End Sub
 End Class

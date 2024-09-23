@@ -50,25 +50,36 @@ Partial Class FrmRecordInput
         Me.Rb33 = New System.Windows.Forms.RadioButton()
         Me.Rb45 = New System.Windows.Forms.RadioButton()
         Me.DgvTracks = New System.Windows.Forms.DataGridView()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.BtnNext = New System.Windows.Forms.Button()
-        Me.BtnAddTracks = New System.Windows.Forms.Button()
-        Me.Status = New System.Windows.Forms.StatusStrip()
-        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.trkSide = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkTrack = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkYear = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.trkGenre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnNext = New System.Windows.Forms.Button()
+        Me.BtnAddTracks = New System.Windows.Forms.Button()
+        Me.Status = New System.Windows.Forms.StatusStrip()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.DgvRecords = New System.Windows.Forms.DataGridView()
+        Me.recId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recFormat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recSize = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recSpeed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordLabelsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvTracks, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         Me.Status.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        CType(Me.DgvRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -353,65 +364,13 @@ Partial Class FrmRecordInput
         Me.DgvTracks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.trkSide, Me.trkTrack, Me.trkArtist, Me.trkYear, Me.trkTitle, Me.trkGenre})
         Me.DgvTracks.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvTracks.Location = New System.Drawing.Point(0, 0)
+        Me.DgvTracks.MultiSelect = False
         Me.DgvTracks.Name = "DgvTracks"
         Me.DgvTracks.ReadOnly = True
         Me.DgvTracks.RowHeadersVisible = False
-        Me.DgvTracks.Size = New System.Drawing.Size(481, 174)
+        Me.DgvTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvTracks.Size = New System.Drawing.Size(514, 186)
         Me.DgvTracks.TabIndex = 18
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.DgvTracks)
-        Me.Panel1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel1.Location = New System.Drawing.Point(440, 53)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(481, 174)
-        Me.Panel1.TabIndex = 20
-        '
-        'BtnNext
-        '
-        Me.BtnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnNext.BackColor = System.Drawing.Color.White
-        Me.BtnNext.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(344, 403)
-        Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(78, 78)
-        Me.BtnNext.TabIndex = 21
-        Me.BtnNext.Text = "Next Record"
-        Me.BtnNext.UseVisualStyleBackColor = False
-        '
-        'BtnAddTracks
-        '
-        Me.BtnAddTracks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnAddTracks.BackColor = System.Drawing.Color.White
-        Me.BtnAddTracks.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.BtnAddTracks.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnAddTracks.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnAddTracks.ForeColor = System.Drawing.Color.Black
-        Me.BtnAddTracks.Location = New System.Drawing.Point(206, 403)
-        Me.BtnAddTracks.Name = "BtnAddTracks"
-        Me.BtnAddTracks.Size = New System.Drawing.Size(78, 78)
-        Me.BtnAddTracks.TabIndex = 22
-        Me.BtnAddTracks.Text = "Add Tracks"
-        Me.BtnAddTracks.UseVisualStyleBackColor = False
-        '
-        'Status
-        '
-        Me.Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.Status.Location = New System.Drawing.Point(0, 484)
-        Me.Status.Name = "Status"
-        Me.Status.Size = New System.Drawing.Size(933, 22)
-        Me.Status.TabIndex = 23
-        Me.Status.Text = "StatusStrip1"
-        '
-        'LblStatus
-        '
-        Me.LblStatus.Name = "LblStatus"
-        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
-        Me.LblStatus.Size = New System.Drawing.Size(6, 17)
         '
         'trkSide
         '
@@ -457,15 +416,144 @@ Partial Class FrmRecordInput
         Me.trkGenre.Name = "trkGenre"
         Me.trkGenre.ReadOnly = True
         '
+        'BtnNext
+        '
+        Me.BtnNext.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnNext.BackColor = System.Drawing.Color.White
+        Me.BtnNext.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNext.ForeColor = System.Drawing.Color.Black
+        Me.BtnNext.Location = New System.Drawing.Point(292, 403)
+        Me.BtnNext.Name = "BtnNext"
+        Me.BtnNext.Size = New System.Drawing.Size(78, 78)
+        Me.BtnNext.TabIndex = 21
+        Me.BtnNext.Text = "Next Record"
+        Me.BtnNext.UseVisualStyleBackColor = False
+        '
+        'BtnAddTracks
+        '
+        Me.BtnAddTracks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnAddTracks.BackColor = System.Drawing.Color.White
+        Me.BtnAddTracks.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.BtnAddTracks.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnAddTracks.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnAddTracks.ForeColor = System.Drawing.Color.Black
+        Me.BtnAddTracks.Location = New System.Drawing.Point(180, 403)
+        Me.BtnAddTracks.Name = "BtnAddTracks"
+        Me.BtnAddTracks.Size = New System.Drawing.Size(78, 78)
+        Me.BtnAddTracks.TabIndex = 22
+        Me.BtnAddTracks.Text = "Add Tracks"
+        Me.BtnAddTracks.UseVisualStyleBackColor = False
+        '
+        'Status
+        '
+        Me.Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
+        Me.Status.Location = New System.Drawing.Point(0, 484)
+        Me.Status.Name = "Status"
+        Me.Status.Size = New System.Drawing.Size(933, 22)
+        Me.Status.TabIndex = 23
+        Me.Status.Text = "StatusStrip1"
+        '
+        'LblStatus
+        '
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(6, 17)
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.Location = New System.Drawing.Point(407, 19)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.DgvRecords)
+        Me.SplitContainer1.Panel1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.DgvTracks)
+        Me.SplitContainer1.Panel2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SplitContainer1.Size = New System.Drawing.Size(514, 378)
+        Me.SplitContainer1.SplitterDistance = 188
+        Me.SplitContainer1.TabIndex = 24
+        '
+        'DgvRecords
+        '
+        Me.DgvRecords.AllowUserToAddRows = False
+        Me.DgvRecords.AllowUserToDeleteRows = False
+        Me.DgvRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recFormat, Me.recLabel, Me.recNumber, Me.recSize, Me.recSpeed})
+        Me.DgvRecords.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvRecords.Location = New System.Drawing.Point(0, 0)
+        Me.DgvRecords.MultiSelect = False
+        Me.DgvRecords.Name = "DgvRecords"
+        Me.DgvRecords.ReadOnly = True
+        Me.DgvRecords.RowHeadersVisible = False
+        Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvRecords.Size = New System.Drawing.Size(514, 188)
+        Me.DgvRecords.TabIndex = 0
+        '
+        'recId
+        '
+        Me.recId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recId.HeaderText = "Id"
+        Me.recId.Name = "recId"
+        Me.recId.ReadOnly = True
+        Me.recId.Width = 40
+        '
+        'recFormat
+        '
+        Me.recFormat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recFormat.HeaderText = "Format"
+        Me.recFormat.Name = "recFormat"
+        Me.recFormat.ReadOnly = True
+        Me.recFormat.Width = 50
+        '
+        'recLabel
+        '
+        Me.recLabel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.recLabel.HeaderText = "Label"
+        Me.recLabel.Name = "recLabel"
+        Me.recLabel.ReadOnly = True
+        '
+        'recNumber
+        '
+        Me.recNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recNumber.HeaderText = "Number"
+        Me.recNumber.Name = "recNumber"
+        Me.recNumber.ReadOnly = True
+        '
+        'recSize
+        '
+        Me.recSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recSize.HeaderText = "Size"
+        Me.recSize.Name = "recSize"
+        Me.recSize.ReadOnly = True
+        Me.recSize.Width = 50
+        '
+        'recSpeed
+        '
+        Me.recSpeed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recSpeed.HeaderText = "Speed"
+        Me.recSpeed.Name = "recSpeed"
+        Me.recSpeed.ReadOnly = True
+        Me.recSpeed.Width = 50
+        '
         'FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 506)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnAddTracks)
         Me.Controls.Add(Me.BtnNext)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.TxtRecNumber)
@@ -492,9 +580,13 @@ Partial Class FrmRecordInput
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.DgvTracks, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
         Me.Status.ResumeLayout(False)
         Me.Status.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.DgvRecords, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -527,7 +619,6 @@ Partial Class FrmRecordInput
     Friend WithEvents Rb45 As RadioButton
     Friend WithEvents RbNoSpeed As RadioButton
     Friend WithEvents DgvTracks As DataGridView
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents BtnNext As Button
     Friend WithEvents BtnAddTracks As Button
     Friend WithEvents Status As StatusStrip
@@ -538,4 +629,12 @@ Partial Class FrmRecordInput
     Friend WithEvents trkYear As DataGridViewTextBoxColumn
     Friend WithEvents trkTitle As DataGridViewTextBoxColumn
     Friend WithEvents trkGenre As DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents DgvRecords As DataGridView
+    Friend WithEvents recId As DataGridViewTextBoxColumn
+    Friend WithEvents recFormat As DataGridViewTextBoxColumn
+    Friend WithEvents recLabel As DataGridViewTextBoxColumn
+    Friend WithEvents recNumber As DataGridViewTextBoxColumn
+    Friend WithEvents recSize As DataGridViewTextBoxColumn
+    Friend WithEvents recSpeed As DataGridViewTextBoxColumn
 End Class

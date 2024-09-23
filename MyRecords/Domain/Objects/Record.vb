@@ -75,7 +75,7 @@ Public Class Record
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId As Integer, pLabel As RecordLabel, pFormat As RecordFormat, pNumber As Integer, pSize As Integer, pSpeed As String)
+    Public Sub New(pId As Integer, pLabel As RecordLabel, pFormat As RecordFormat, pNumber As String, pSize As Integer, pSpeed As String)
         _recordId = pId
         _label = pLabel
         _format = pFormat

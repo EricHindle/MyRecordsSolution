@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar
 Imports HindlewareLib.Logging
 
 Public Class FrmRecordInput
@@ -26,6 +27,25 @@ Public Class FrmRecordInput
         Rb45.Checked = True
         DgvTracks.Rows.Clear()
         BtnAddTracks.Enabled = False
+        LoadRecords
+    End Sub
+
+    Private Sub LoadRecords()
+        DgvRecords.Rows.Clear()
+        Dim _records As List(Of Record) = GetAllRecords()
+        For Each _record As Record In _records
+            AddRecordToTable(_record)
+        Next
+    End Sub
+
+    Private Sub AddRecordToTable(pRecord As Record)
+        Dim _row As DataGridViewRow = DgvRecords.Rows(DgvRecords.Rows.Add())
+        _row.Cells(recId.Name).Value = pRecord.RecordId
+        _row.Cells(recFormat.Name).Value = pRecord.RecordFormat.FormatName
+        _row.Cells(recLabel.Name).Value = pRecord.Label.LabelName
+        _row.Cells(recNumber.Name).Value = pRecord.RecordNumber
+        _row.Cells(recSize.Name).Value = pRecord.Size
+        _row.Cells(recSpeed.Name).Value = pRecord.Speed
     End Sub
 
     Private Sub LoadFormatList()
@@ -55,6 +75,7 @@ Public Class FrmRecordInput
             BtnAddTracks.Enabled = True
             BtnAdd.Enabled = False
             ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+            LoadRecords()
         End If
     End Sub
     Private Function IsValidRecord() As Boolean
@@ -84,12 +105,12 @@ Public Class FrmRecordInput
             _trackInput.Record = CurrentRecord
             _trackInput.ShowDialog()
         End Using
-        LoadTracks
+        LoadTracks(CurrentRecord.RecordId)
     End Sub
 
-    Private Sub LoadTracks()
+    Private Sub LoadTracks(pRecordId)
         DgvTracks.Rows.Clear()
-        Dim _tracks As List(Of Track) = GetTracksForRecord(CurrentRecord.RecordId)
+        Dim _tracks As List(Of Track) = GetTracksForRecord(pRecordId)
         For Each _track As Track In _tracks
             AddTrackToTable(_track)
         Next
@@ -115,12 +136,22 @@ Public Class FrmRecordInput
         BtnAddTracks.Enabled = False
     End Sub
     Private Function BuildRecordFromForm() As Record
+        Dim _formatId As String = CbRecordFormat.SelectedValue
+        Dim _labelId As Integer = CbRecordLabel.SelectedValue
+
         Return RecordBuilder.ARecord.StartingWithNothing _
-            .WithFormat(CbRecordFormat.SelectedValue) _
-            .WithLabel(CInt(CbRecordLabel.SelectedValue)) _
+            .WithFormat(_formatId) _
+            .WithLabel(_labelId) _
             .WithRecordNumber(TxtRecNumber.Text) _
             .WithSize(If(Rb7.Checked, 7, If(Rb12.Checked, 12, -1))) _
             .WithSpeed(If(Rb45.Checked, "45", If(Rb33.Checked, "33", If(Rb78.Checked, "78", "n/a")))) _
             .Build
     End Function
+
+    Private Sub DgvRecords_SelectionChanged(sender As Object, e As EventArgs) Handles DgvRecords.SelectionChanged
+        If DgvRecords.SelectedRows.Count = 1 Then
+            Dim _row As DataGridViewRow = DgvRecords.SelectedRows(0)
+            LoadTracks(_row.Cells(recId.Name).Value)
+        End If
+    End Sub
 End Class

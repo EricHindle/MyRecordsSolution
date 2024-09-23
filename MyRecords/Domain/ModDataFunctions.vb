@@ -9,6 +9,7 @@ Imports System.Data.Common
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
+Imports System.Security.Cryptography
 Imports HindlewareLib.Logging
 
 
@@ -126,6 +127,20 @@ Public Module ModDataFunctions
     End Function
 #End Region
 #Region "Record"
+    Public Function GetAllRecords() As List(Of Record)
+        LogUtil.Info("Getting Records", MODULE_NAME)
+        Dim _list As New List(Of Record)
+        Try
+            oRecordsTa.Fill(oRecordsTable)
+            For Each oRow As RecordsDataSet.RecordsRow In oRecordsTable.Rows
+                _list.Add(RecordBuilder.ARecord.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
+    End Function
+
     Public Function InsertRecord(pRecord As Record) As Integer
         LogUtil.Info("Inserting record " & pRecord.RecordNumber, MODULE_NAME)
         Dim newId As Integer = -1

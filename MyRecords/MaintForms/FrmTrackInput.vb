@@ -5,6 +5,7 @@
 ' Author Eric Hindle
 '
 
+Imports System.Data.SqlClient
 Imports HindlewareLib.Logging
 
 Public Class FrmTrackInput
@@ -62,11 +63,17 @@ Public Class FrmTrackInput
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
             CurrentTrack = BuildTrackFromForm()
-            InsertTrack(CurrentTrack)
-            LblRecordId.Text = CStr(_currentRecord.RecordId)
-            BtnNextTrack.Enabled = True
-            BtnSaveTrack.Enabled = False
-            ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+            Dim response As Integer = InsertTrack(CurrentTrack)
+            If response = 1 Then
+                LblRecordId.Text = CStr(_currentRecord.RecordId)
+                BtnNextTrack.Enabled = True
+                BtnSaveTrack.Enabled = False
+                ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+            Else
+                ShowStatus("Error saving track", LblStatus, MyBase.Name, False, TraceEventType.Error, , ,, True)
+            End If
+
+
         End If
     End Sub
 
@@ -114,6 +121,15 @@ Public Class FrmTrackInput
     End Function
 
     Private Sub BtnNextTrack_Click(sender As Object, e As EventArgs) Handles BtnNextTrack.Click
+        ClearTrack
+    End Sub
 
+    Private Sub ClearTrack()
+        RbB.Checked = True
+        NudTrackNo.Value = 1
+        TxtTitle.Text = String.Empty
+        TxtYear.Text = String.Empty
+        BtnNextTrack.Enabled = False
+        BtnSaveTrack.Enabled = True
     End Sub
 End Class

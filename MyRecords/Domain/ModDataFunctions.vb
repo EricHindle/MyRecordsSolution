@@ -140,7 +140,20 @@ Public Module ModDataFunctions
         End Try
         Return _list
     End Function
-
+    Public Function GetRecordFromId(pId As Integer) As Record
+        LogUtil.Info("Getting Record " & CStr(pId), MODULE_NAME)
+        Dim _rec As New Record
+        Try
+            oRecordsTa.FillbyId(oRecordsTable, pId)
+            If oRecordsTable.Rows.Count > 0 Then
+                Dim oRow As RecordsDataSet.RecordsRow = oRecordsTable.Rows(0)
+                _rec = RecordBuilder.ARecord.StartingWith(oRow).Build
+            End If
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _rec
+    End Function
     Public Function InsertRecord(pRecord As Record) As Integer
         LogUtil.Info("Inserting record " & pRecord.RecordNumber, MODULE_NAME)
         Dim newId As Integer = -1

@@ -10,32 +10,43 @@ Imports HindlewareLib.Logging
 
 Public Class FrmRecordInput
     Private CurrentRecord As New Record
+    Private isLoading As Boolean
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Add Records", MyBase.Name)
-        GetFormPos(Me, My.Settings.RecordInputFormPos)
+        If GetFormPos(Me, My.Settings.RecordInputFormPos) Then
+            LoadSplitterDistances()
+        End If
         InitialiseForm()
     End Sub
 
+    Private Sub LoadSplitterDistances()
+        Try
+            If My.Settings.RecSplitDist1 > 0 Then
+                SplitContainer1.SplitterDistance = My.Settings.RecSplitDist1
+            End If
+        Catch ex As Exception
+            DisplayException(ex, "Settings",, MyBase.Name)
+        End Try
+    End Sub
+
     Private Sub InitialiseForm()
-        LblRecordId.Text = -1
         LoadFormatList()
         LoadLabelList()
-        CbRecordFormat.SelectedIndex = -1
-        CbRecordLabel.SelectedIndex = -1
-        TxtRecNumber.Text = String.Empty
-        Rb7.Checked = True
-        Rb45.Checked = True
+        ClearForm()
         DgvTracks.Rows.Clear()
         BtnAddTracks.Enabled = False
-        LoadRecords
+        LoadRecords()
     End Sub
 
     Private Sub LoadRecords()
+        isLoading = True
         DgvRecords.Rows.Clear()
         Dim _records As List(Of Record) = GetAllRecords()
         For Each _record As Record In _records
             AddRecordToTable(_record)
         Next
+        DgvRecords.ClearSelection()
+        isLoading = False
     End Sub
 
     Private Sub AddRecordToTable(pRecord As Record)
@@ -62,9 +73,12 @@ Public Class FrmRecordInput
     Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
         My.Settings.RecordInputFormPos = SetFormPos(Me)
+        SaveSplitterDistances()
         My.Settings.Save()
     End Sub
-
+    Private Sub SaveSplitterDistances()
+        My.Settings.RecSplitDist1 = SplitContainer1.SplitterDistance
+    End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If Not IsValidRecord Then
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
@@ -149,9 +163,64 @@ Public Class FrmRecordInput
     End Function
 
     Private Sub DgvRecords_SelectionChanged(sender As Object, e As EventArgs) Handles DgvRecords.SelectionChanged
-        If DgvRecords.SelectedRows.Count = 1 Then
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
+            ClearForm()
             Dim _row As DataGridViewRow = DgvRecords.SelectedRows(0)
+            LoadFormFromDgv(_row)
             LoadTracks(_row.Cells(recId.Name).Value)
         End If
+    End Sub
+
+    Private Sub LoadFormFromDgv(pRow As DataGridViewRow)
+        CurrentRecord = GetRecordFromId(pRow.Cells(recId.Name).Value)
+        LblRecordId.Text = CurrentRecord.RecordId
+        CbRecordFormat.SelectedIndex = FindFormat(CurrentRecord.RecordFormat)
+        CbRecordLabel.SelectedIndex = FindLabel(CurrentRecord.Label)
+        TxtRecNumber.Text = CurrentRecord.RecordNumber
+        CheckSize(CurrentRecord.Size)
+        CheckSpeed(CurrentRecord.Speed)
+        BtnAdd.Enabled = False
+        BtnAddTracks.Enabled = True
+    End Sub
+
+    Private Function FindLabel(label As RecordLabel) As Integer
+        Return CbRecordLabel.FindString(label.LabelName)
+    End Function
+
+    Private Function FindFormat(recordFormat As RecordFormat) As Integer
+        Return CbRecordFormat.FindString(recordFormat.FormatId)
+    End Function
+
+    Private Sub CheckSpeed(speed As String)
+        Select Case speed
+            Case "45 "
+                Rb45.Checked = True
+            Case "33 "
+                Rb33.Checked = True
+            Case "78 "
+                Rb78.Checked = True
+            Case Else
+                RbNoSpeed.Checked = True
+        End Select
+    End Sub
+
+    Private Sub CheckSize(size As Integer)
+        Select Case size
+            Case 7
+                Rb7.Checked = True
+            Case 12
+                Rb12.Checked = True
+            Case 0
+                RbNoSize.Checked = True
+        End Select
+    End Sub
+
+    Private Sub ClearForm()
+        LblRecordId.Text = -1
+        CbRecordFormat.SelectedIndex = -1
+        CbRecordLabel.SelectedIndex = -1
+        TxtRecNumber.Text = String.Empty
+        Rb7.Checked = True
+        Rb45.Checked = True
     End Sub
 End Class

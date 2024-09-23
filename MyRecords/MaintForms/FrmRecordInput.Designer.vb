@@ -369,7 +369,7 @@ Partial Class FrmRecordInput
         Me.DgvTracks.ReadOnly = True
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvTracks.Size = New System.Drawing.Size(514, 186)
+        Me.DgvTracks.Size = New System.Drawing.Size(510, 131)
         Me.DgvTracks.TabIndex = 18
         '
         'trkSide
@@ -466,6 +466,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.SplitContainer1.Location = New System.Drawing.Point(407, 19)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -480,7 +481,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer1.Panel2.Controls.Add(Me.DgvTracks)
         Me.SplitContainer1.Panel2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SplitContainer1.Size = New System.Drawing.Size(514, 378)
-        Me.SplitContainer1.SplitterDistance = 188
+        Me.SplitContainer1.SplitterDistance = 239
         Me.SplitContainer1.TabIndex = 24
         '
         'DgvRecords
@@ -496,7 +497,7 @@ Partial Class FrmRecordInput
         Me.DgvRecords.ReadOnly = True
         Me.DgvRecords.RowHeadersVisible = False
         Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvRecords.Size = New System.Drawing.Size(514, 188)
+        Me.DgvRecords.Size = New System.Drawing.Size(510, 235)
         Me.DgvRecords.TabIndex = 0
         '
         'recId

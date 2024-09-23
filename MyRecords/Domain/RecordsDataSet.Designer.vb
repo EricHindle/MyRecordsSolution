@@ -37,6 +37,8 @@ Partial Public Class RecordsDataSet
     
     Private tableTracks As TracksDataTable
     
+    Private tablevRecordTracks As vRecordTracksDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -83,6 +85,9 @@ Partial Public Class RecordsDataSet
             End If
             If (Not (ds.Tables("Tracks")) Is Nothing) Then
                 MyBase.Tables.Add(New TracksDataTable(ds.Tables("Tracks")))
+            End If
+            If (Not (ds.Tables("vRecordTracks")) Is Nothing) Then
+                MyBase.Tables.Add(New vRecordTracksDataTable(ds.Tables("vRecordTracks")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -158,6 +163,16 @@ Partial Public Class RecordsDataSet
     Public ReadOnly Property Tracks() As TracksDataTable
         Get
             Return Me.tableTracks
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property vRecordTracks() As vRecordTracksDataTable
+        Get
+            Return Me.tablevRecordTracks
         End Get
     End Property
     
@@ -246,6 +261,9 @@ Partial Public Class RecordsDataSet
             If (Not (ds.Tables("Tracks")) Is Nothing) Then
                 MyBase.Tables.Add(New TracksDataTable(ds.Tables("Tracks")))
             End If
+            If (Not (ds.Tables("vRecordTracks")) Is Nothing) Then
+                MyBase.Tables.Add(New vRecordTracksDataTable(ds.Tables("vRecordTracks")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -314,6 +332,12 @@ Partial Public Class RecordsDataSet
                 Me.tableTracks.InitVars
             End If
         End If
+        Me.tablevRecordTracks = CType(MyBase.Tables("vRecordTracks"),vRecordTracksDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablevRecordTracks) Is Nothing) Then
+                Me.tablevRecordTracks.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -336,6 +360,8 @@ Partial Public Class RecordsDataSet
         MyBase.Tables.Add(Me.tableRecords)
         Me.tableTracks = New TracksDataTable()
         MyBase.Tables.Add(Me.tableTracks)
+        Me.tablevRecordTracks = New vRecordTracksDataTable()
+        MyBase.Tables.Add(Me.tablevRecordTracks)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -371,6 +397,12 @@ Partial Public Class RecordsDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Private Function ShouldSerializeTracks() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Private Function ShouldSerializevRecordTracks() As Boolean
         Return false
     End Function
     
@@ -449,6 +481,9 @@ Partial Public Class RecordsDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub TracksRowChangeEventHandler(ByVal sender As Object, ByVal e As TracksRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Delegate Sub vRecordTracksRowChangeEventHandler(ByVal sender As Object, ByVal e As vRecordTracksRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1941,6 +1976,8 @@ Partial Public Class RecordsDataSet
         
         Private columnRecordId As Global.System.Data.DataColumn
         
+        Private columnSide As Global.System.Data.DataColumn
+        
         Private columnTrack As Global.System.Data.DataColumn
         
         Private columnArtist As Global.System.Data.DataColumn
@@ -1991,6 +2028,14 @@ Partial Public Class RecordsDataSet
         Public ReadOnly Property RecordIdColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnRecordId
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SideColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSide
             End Get
         End Property
         
@@ -2071,9 +2116,9 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Track As String, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As TracksRow
+        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As TracksRow
             Dim rowTracksRow As TracksRow = CType(Me.NewRow,TracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Track, Artist, Title, Year, Genre}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Side, Track, Artist, Title, Year, Genre}
             rowTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTracksRow)
             Return rowTracksRow
@@ -2081,8 +2126,8 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function FindByRecordIdTrack(ByVal RecordId As Integer, ByVal Track As String) As TracksRow
-            Return CType(Me.Rows.Find(New Object() {RecordId, Track}),TracksRow)
+        Public Function FindByRecordIdSideTrack(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer) As TracksRow
+            Return CType(Me.Rows.Find(New Object() {RecordId, Side, Track}),TracksRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2103,6 +2148,7 @@ Partial Public Class RecordsDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnRecordId = MyBase.Columns("RecordId")
+            Me.columnSide = MyBase.Columns("Side")
             Me.columnTrack = MyBase.Columns("Track")
             Me.columnArtist = MyBase.Columns("Artist")
             Me.columnTitle = MyBase.Columns("Title")
@@ -2115,7 +2161,9 @@ Partial Public Class RecordsDataSet
         Private Sub InitClass()
             Me.columnRecordId = New Global.System.Data.DataColumn("RecordId", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRecordId)
-            Me.columnTrack = New Global.System.Data.DataColumn("Track", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnSide = New Global.System.Data.DataColumn("Side", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSide)
+            Me.columnTrack = New Global.System.Data.DataColumn("Track", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTrack)
             Me.columnArtist = New Global.System.Data.DataColumn("Artist", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArtist)
@@ -2125,10 +2173,11 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnYear)
             Me.columnGenre = New Global.System.Data.DataColumn("Genre", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGenre)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnRecordId, Me.columnTrack}, true))
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnRecordId, Me.columnSide, Me.columnTrack}, true))
             Me.columnRecordId.AllowDBNull = false
+            Me.columnSide.AllowDBNull = false
+            Me.columnSide.MaxLength = 2
             Me.columnTrack.AllowDBNull = false
-            Me.columnTrack.MaxLength = 3
             Me.columnArtist.AllowDBNull = false
             Me.columnArtist.MaxLength = 150
             Me.columnTitle.AllowDBNull = false
@@ -2221,6 +2270,421 @@ Partial Public Class RecordsDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "TracksDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class vRecordTracksDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vRecordTracksRow)
+        
+        Private columnRecordId As Global.System.Data.DataColumn
+        
+        Private columnFormat As Global.System.Data.DataColumn
+        
+        Private columnRecordNo As Global.System.Data.DataColumn
+        
+        Private columnSize As Global.System.Data.DataColumn
+        
+        Private columnSpeed As Global.System.Data.DataColumn
+        
+        Private columnSide As Global.System.Data.DataColumn
+        
+        Private columnTrack As Global.System.Data.DataColumn
+        
+        Private columnArtist As Global.System.Data.DataColumn
+        
+        Private columnTitle As Global.System.Data.DataColumn
+        
+        Private columnYear As Global.System.Data.DataColumn
+        
+        Private columnLabelName As Global.System.Data.DataColumn
+        
+        Private columnGenreName As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "vRecordTracks"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property RecordIdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRecordId
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property FormatColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFormat
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property RecordNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRecordNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SizeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSize
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SpeedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSpeed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SideColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSide
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TrackColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTrack
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ArtistColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnArtist
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TitleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTitle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property YearColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnYear
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property LabelNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLabelName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property GenreNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGenreName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vRecordTracksRow
+            Get
+                Return CType(Me.Rows(index),vRecordTracksRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event vRecordTracksRowChanging As vRecordTracksRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event vRecordTracksRowChanged As vRecordTracksRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event vRecordTracksRowDeleting As vRecordTracksRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Event vRecordTracksRowDeleted As vRecordTracksRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Sub AddvRecordTracksRow(ByVal row As vRecordTracksRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overloads Function AddvRecordTracksRow(ByVal RecordId As Integer, ByVal Format As String, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Side As String, ByVal Track As Integer, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal LabelName As String, ByVal GenreName As String) As vRecordTracksRow
+            Dim rowvRecordTracksRow As vRecordTracksRow = CType(Me.NewRow,vRecordTracksRow)
+            Dim columnValuesArray() As Object = New Object() {RecordId, Format, RecordNo, Size, Speed, Side, Track, Artist, Title, Year, LabelName, GenreName}
+            rowvRecordTracksRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvRecordTracksRow)
+            Return rowvRecordTracksRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As vRecordTracksDataTable = CType(MyBase.Clone,vRecordTracksDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New vRecordTracksDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnRecordId = MyBase.Columns("RecordId")
+            Me.columnFormat = MyBase.Columns("Format")
+            Me.columnRecordNo = MyBase.Columns("RecordNo")
+            Me.columnSize = MyBase.Columns("Size")
+            Me.columnSpeed = MyBase.Columns("Speed")
+            Me.columnSide = MyBase.Columns("Side")
+            Me.columnTrack = MyBase.Columns("Track")
+            Me.columnArtist = MyBase.Columns("Artist")
+            Me.columnTitle = MyBase.Columns("Title")
+            Me.columnYear = MyBase.Columns("Year")
+            Me.columnLabelName = MyBase.Columns("LabelName")
+            Me.columnGenreName = MyBase.Columns("GenreName")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnRecordId = New Global.System.Data.DataColumn("RecordId", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecordId)
+            Me.columnFormat = New Global.System.Data.DataColumn("Format", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFormat)
+            Me.columnRecordNo = New Global.System.Data.DataColumn("RecordNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecordNo)
+            Me.columnSize = New Global.System.Data.DataColumn("Size", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSize)
+            Me.columnSpeed = New Global.System.Data.DataColumn("Speed", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSpeed)
+            Me.columnSide = New Global.System.Data.DataColumn("Side", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSide)
+            Me.columnTrack = New Global.System.Data.DataColumn("Track", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTrack)
+            Me.columnArtist = New Global.System.Data.DataColumn("Artist", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnArtist)
+            Me.columnTitle = New Global.System.Data.DataColumn("Title", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTitle)
+            Me.columnYear = New Global.System.Data.DataColumn("Year", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnYear)
+            Me.columnLabelName = New Global.System.Data.DataColumn("LabelName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLabelName)
+            Me.columnGenreName = New Global.System.Data.DataColumn("GenreName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGenreName)
+            Me.columnRecordId.AllowDBNull = false
+            Me.columnFormat.AllowDBNull = false
+            Me.columnFormat.MaxLength = 3
+            Me.columnRecordNo.AllowDBNull = false
+            Me.columnRecordNo.MaxLength = 10
+            Me.columnSize.AllowDBNull = false
+            Me.columnSpeed.AllowDBNull = false
+            Me.columnSpeed.MaxLength = 3
+            Me.columnSide.AllowDBNull = false
+            Me.columnSide.MaxLength = 2
+            Me.columnTrack.AllowDBNull = false
+            Me.columnArtist.AllowDBNull = false
+            Me.columnArtist.MaxLength = 150
+            Me.columnTitle.AllowDBNull = false
+            Me.columnTitle.MaxLength = 250
+            Me.columnYear.AllowDBNull = false
+            Me.columnLabelName.AllowDBNull = false
+            Me.columnLabelName.MaxLength = 50
+            Me.columnGenreName.AllowDBNull = false
+            Me.columnGenreName.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function NewvRecordTracksRow() As vRecordTracksRow
+            Return CType(Me.NewRow,vRecordTracksRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New vRecordTracksRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(vRecordTracksRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.vRecordTracksRowChangedEvent) Is Nothing) Then
+                RaiseEvent vRecordTracksRowChanged(Me, New vRecordTracksRowChangeEvent(CType(e.Row,vRecordTracksRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.vRecordTracksRowChangingEvent) Is Nothing) Then
+                RaiseEvent vRecordTracksRowChanging(Me, New vRecordTracksRowChangeEvent(CType(e.Row,vRecordTracksRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.vRecordTracksRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vRecordTracksRowDeleted(Me, New vRecordTracksRowChangeEvent(CType(e.Row,vRecordTracksRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.vRecordTracksRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vRecordTracksRowDeleting(Me, New vRecordTracksRowChangeEvent(CType(e.Row,vRecordTracksRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub RemovevRecordTracksRow(ByVal row As vRecordTracksRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As RecordsDataSet = New RecordsDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "vRecordTracksDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -2564,9 +3028,20 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Track() As String
+        Public Property Side() As String
             Get
-                Return CType(Me(Me.tableTracks.TrackColumn),String)
+                Return CType(Me(Me.tableTracks.SideColumn),String)
+            End Get
+            Set
+                Me(Me.tableTracks.SideColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Track() As Integer
+            Get
+                Return CType(Me(Me.tableTracks.TrackColumn),Integer)
             End Get
             Set
                 Me(Me.tableTracks.TrackColumn) = value
@@ -2614,6 +3089,154 @@ Partial Public Class RecordsDataSet
             End Get
             Set
                 Me(Me.tableTracks.GenreColumn) = value
+            End Set
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class vRecordTracksRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablevRecordTracks As vRecordTracksDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablevRecordTracks = CType(Me.Table,vRecordTracksDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property RecordId() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.RecordIdColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.RecordIdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Format() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.FormatColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.FormatColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property RecordNo() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.RecordNoColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.RecordNoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Size() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.SizeColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.SizeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Speed() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.SpeedColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.SpeedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Side() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.SideColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.SideColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Track() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.TrackColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.TrackColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Artist() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.ArtistColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.ArtistColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Title() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.TitleColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.TitleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Year() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.YearColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.YearColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property LabelName() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.LabelNameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.LabelNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property GenreName() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.GenreNameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.GenreNameColumn) = value
             End Set
         End Property
     End Class
@@ -2820,6 +3443,42 @@ Partial Public Class RecordsDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property Row() As TracksRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+    Public Class vRecordTracksRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As vRecordTracksRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New(ByVal row As vRecordTracksRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property Row() As vRecordTracksRow
             Get
                 Return Me.eventRow
             End Get
@@ -5226,6 +5885,7 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "Tracks"
             tableMapping.ColumnMappings.Add("RecordId", "RecordId")
+            tableMapping.ColumnMappings.Add("Side", "Side")
             tableMapping.ColumnMappings.Add("Track", "Track")
             tableMapping.ColumnMappings.Add("Artist", "Artist")
             tableMapping.ColumnMappings.Add("Title", "Title")
@@ -5234,46 +5894,52 @@ Namespace RecordsDataSetTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tracks] WHERE (([RecordId] = @Original_RecordId) AND ([Track] "& _ 
-                "= @Original_Track) AND ([Artist] = @Original_Artist) AND ([Title] = @Original_Ti"& _ 
-                "tle) AND ([Year] = @Original_Year) AND ([Genre] = @Original_Genre))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tracks] WHERE (([RecordId] = @Original_RecordId) AND ([Side] ="& _ 
+                " @Original_Side) AND ([Track] = @Original_Track) AND ([Artist] = @Original_Artis"& _ 
+                "t) AND ([Title] = @Original_Title) AND ([Year] = @Original_Year) AND ([Genre] = "& _ 
+                "@Original_Genre))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Artist", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Artist", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tracks] ([RecordId], [Track], [Artist], [Title], [Year], [Genr"& _ 
-                "e]) VALUES (@RecordId, @Track, @Artist, @Title, @Year, @Genre);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId"& _ 
-                ", Track, Artist, Title, Year, Genre FROM Tracks WHERE (RecordId = @RecordId) AND"& _ 
-                " (Track = @Track)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tracks] ([RecordId], [Side], [Track], [Artist], [Title], [Year"& _ 
+                "], [Genre]) VALUES (@RecordId, @Side, @Track, @Artist, @Title, @Year, @Genre);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "SELECT RecordId, Side, Track, Artist, Title, Year, Genre FROM Tracks WHERE (Reco"& _ 
+                "rdId = @RecordId) AND (Side = @Side) AND (Track = @Track)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Artist", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Artist", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tracks] SET [RecordId] = @RecordId, [Track] = @Track, [Artist] = @A"& _ 
-                "rtist, [Title] = @Title, [Year] = @Year, [Genre] = @Genre WHERE (([RecordId] = @"& _ 
-                "Original_RecordId) AND ([Track] = @Original_Track) AND ([Artist] = @Original_Art"& _ 
-                "ist) AND ([Title] = @Original_Title) AND ([Year] = @Original_Year) AND ([Genre] "& _ 
-                "= @Original_Genre));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Track, Artist, Title, Year, Genre FROM Tr"& _ 
-                "acks WHERE (RecordId = @RecordId) AND (Track = @Track)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tracks] SET [RecordId] = @RecordId, [Side] = @Side, [Track] = @Trac"& _ 
+                "k, [Artist] = @Artist, [Title] = @Title, [Year] = @Year, [Genre] = @Genre WHERE "& _ 
+                "(([RecordId] = @Original_RecordId) AND ([Side] = @Original_Side) AND ([Track] = "& _ 
+                "@Original_Track) AND ([Artist] = @Original_Artist) AND ([Title] = @Original_Titl"& _ 
+                "e) AND ([Year] = @Original_Year) AND ([Genre] = @Original_Genre));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Recor"& _ 
+                "dId, Side, Track, Artist, Title, Year, Genre FROM Tracks WHERE (RecordId = @Reco"& _ 
+                "rdId) AND (Side = @Side) AND (Track = @Track)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Artist", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Artist", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Artist", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Artist", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -5293,17 +5959,18 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT RecordId, Track, Artist, Title, Year, Genre FROM dbo.Tracks"
+            Me._commandCollection(0).CommandText = "SELECT RecordId, Side, Track, Artist, Title, Year, Genre FROM dbo.Tracks"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "INSERT INTO Tracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (RecordId, Track, Artist, Title, Yea"& _ 
-                "r, Genre)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@RecordId,@Track,@Artist,@Title,@Year,@Genre); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELEC"& _ 
-                "T RecordId, Track, Artist, Title, Year, Genre FROM Tracks WHERE (RecordId = @Rec"& _ 
-                "ordId) AND (Track = @Track)"
+            Me._commandCollection(1).CommandText = "INSERT INTO Tracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (RecordId, Side, Track, Artist, Titl"& _ 
+                "e, Year, Genre)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@RecordId,@Side,@Track,@Artist,@Title,@Year,@Gen"& _ 
+                "re); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Side, Track, Artist, Title, Year, Genre FROM Tracks WHER"& _ 
+                "E (RecordId = @RecordId) AND (Side = @Side) AND (Track = @Track)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Artist", Global.System.Data.SqlDbType.NVarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "Artist", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -5370,25 +6037,26 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Track As String, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_RecordId,Integer)
-            If (Original_Track Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Track")
+            If (Original_Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Side")
             Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Track,String)
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_Side,String)
             End If
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Track,Integer)
             If (Original_Artist Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Artist")
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Artist,String)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_Artist,String)
             End If
             If (Original_Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Title")
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_Title,String)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Title,String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Year,Integer)
-            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Genre,Integer)
+            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Year,Integer)
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Genre,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5408,25 +6076,26 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal RecordId As Integer, ByVal Track As String, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As Integer
+        Public Overloads Overridable Function Insert(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(RecordId,Integer)
-            If (Track Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Track")
+            If (Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Side")
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Track,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(Side,String)
             End If
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(Track,Integer)
             If (Artist Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Artist")
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Artist,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Artist,String)
             End If
             If (Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Title")
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Title,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(Title,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(Year,Integer)
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Genre,Integer)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Year,Integer)
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(Genre,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5446,43 +6115,45 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal RecordId As Integer, ByVal Track As String, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal Original_RecordId As Integer, ByVal Original_Track As String, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
+        Public Overloads Overridable Function Update(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(RecordId,Integer)
-            If (Track Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Track")
+            If (Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Side")
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Track,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(Side,String)
             End If
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Track,Integer)
             If (Artist Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Artist")
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Artist,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Artist,String)
             End If
             If (Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Title")
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Title,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Title,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Year,Integer)
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Genre,Integer)
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_RecordId,Integer)
-            If (Original_Track Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_Track")
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Year,Integer)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Genre,Integer)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_RecordId,Integer)
+            If (Original_Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_Side")
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Track,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Side,String)
             End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Track,Integer)
             If (Original_Artist Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Artist")
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Artist,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Artist,String)
             End If
             If (Original_Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Title")
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Title,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Title,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Year,Integer)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Genre,Integer)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Year,Integer)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Genre,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5502,34 +6173,35 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal Original_RecordId As Integer, ByVal Original_Track As String, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
-            Return Me.Update(Original_RecordId, Original_Track, Artist, Title, Year, Genre, Original_RecordId, Original_Track, Original_Artist, Original_Title, Original_Year, Original_Genre)
+        Public Overloads Overridable Function Update(ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Artist As String, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer) As Integer
+            Return Me.Update(Original_RecordId, Original_Side, Original_Track, Artist, Title, Year, Genre, Original_RecordId, Original_Side, Original_Track, Original_Artist, Original_Title, Original_Year, Original_Genre)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertTrack(ByVal RecordId As Integer, ByVal Track As String, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As Integer
+        Public Overloads Overridable Function InsertTrack(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Artist As String, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
             command.Parameters(0).Value = CType(RecordId,Integer)
-            If (Track Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Track")
+            If (Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Side")
             Else
-                command.Parameters(1).Value = CType(Track,String)
+                command.Parameters(1).Value = CType(Side,String)
             End If
+            command.Parameters(2).Value = CType(Track,Integer)
             If (Artist Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Artist")
             Else
-                command.Parameters(2).Value = CType(Artist,String)
+                command.Parameters(3).Value = CType(Artist,String)
             End If
             If (Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Title")
             Else
-                command.Parameters(3).Value = CType(Title,String)
+                command.Parameters(4).Value = CType(Title,String)
             End If
-            command.Parameters(4).Value = CType(Year,Integer)
-            command.Parameters(5).Value = CType(Genre,Integer)
+            command.Parameters(5).Value = CType(Year,Integer)
+            command.Parameters(6).Value = CType(Genre,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5565,6 +6237,212 @@ Namespace RecordsDataSetTableAdapters
                     command.Connection.Close
                 End If
             End Try
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class vRecordTracksTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "vRecordTracks"
+            tableMapping.ColumnMappings.Add("RecordId", "RecordId")
+            tableMapping.ColumnMappings.Add("Format", "Format")
+            tableMapping.ColumnMappings.Add("RecordNo", "RecordNo")
+            tableMapping.ColumnMappings.Add("Size", "Size")
+            tableMapping.ColumnMappings.Add("Speed", "Speed")
+            tableMapping.ColumnMappings.Add("Side", "Side")
+            tableMapping.ColumnMappings.Add("Track", "Track")
+            tableMapping.ColumnMappings.Add("Artist", "Artist")
+            tableMapping.ColumnMappings.Add("Title", "Title")
+            tableMapping.ColumnMappings.Add("Year", "Year")
+            tableMapping.ColumnMappings.Add("LabelName", "LabelName")
+            tableMapping.ColumnMappings.Add("GenreName", "GenreName")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.MyRecords.My.MySettings.Default.RecordsConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Artist, Title, Year,"& _ 
+                " LabelName, GenreName FROM dbo.vRecordTracks"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        RecordId, Format, RecordNo, Size, Speed, Side, Track, Artist, Title"& _ 
+                ", Year, LabelName, GenreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vRecordTracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Recor"& _ 
+                "dId = @RecordId)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As RecordsDataSet.vRecordTracksDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As RecordsDataSet.vRecordTracksDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As RecordsDataSet.vRecordTracksDataTable = New RecordsDataSet.vRecordTracksDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByRecord(ByVal dataTable As RecordsDataSet.vRecordTracksDataTable, ByVal RecordId As Integer) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(RecordId,Integer)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
     End Class

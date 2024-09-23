@@ -8,13 +8,11 @@
 Imports HindlewareLib.Logging
 
 Public Class FrmRecordInput
-    Private CurrentRecord As Record
+    Private CurrentRecord As New Record
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Add Records", MyBase.Name)
         GetFormPos(Me, My.Settings.RecordInputFormPos)
         InitialiseForm()
-
-        KeyPreview = True
     End Sub
 
     Private Sub InitialiseForm()
@@ -48,13 +46,30 @@ Public Class FrmRecordInput
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        CurrentRecord = BuildRecordFromForm()
-        CurrentRecord.RecordId = InsertRecord(CurrentRecord)
-        LblRecordId.Text = CStr(CurrentRecord.RecordId)
-        BtnAddTracks.Enabled = True
-        BtnAdd.Enabled = False
+        If Not IsValidRecord Then
+            ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
+        Else
+            CurrentRecord = BuildRecordFromForm()
+            CurrentRecord.RecordId = InsertRecord(CurrentRecord)
+            LblRecordId.Text = CStr(CurrentRecord.RecordId)
+            BtnAddTracks.Enabled = True
+            BtnAdd.Enabled = False
+            ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+        End If
     End Sub
-
+    Private Function IsValidRecord() As Boolean
+        Dim isOK As Boolean = True
+        If String.IsNullOrWhiteSpace(TxtRecNumber.Text) Then
+            isOK = False
+        End If
+        If CbRecordFormat.SelectedIndex < 0 Then
+            isOK = False
+        End If
+        If CbRecordLabel.SelectedIndex < 0 Then
+            isOK = False
+        End If
+        Return isOK
+    End Function
     Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
 
     End Sub
@@ -69,6 +84,25 @@ Public Class FrmRecordInput
             _trackInput.Record = CurrentRecord
             _trackInput.ShowDialog()
         End Using
+        LoadTracks
+    End Sub
+
+    Private Sub LoadTracks()
+        DgvTracks.Rows.Clear()
+        Dim _tracks As List(Of Track) = GetTracksForRecord(CurrentRecord.RecordId)
+        For Each _track As Track In _tracks
+            AddTrackToTable(_track)
+        Next
+    End Sub
+
+    Private Sub AddTrackToTable(pTrack As Track)
+        Dim _row As DataGridViewRow = DgvTracks.Rows(DgvTracks.Rows.Add())
+        _row.Cells(trkSide.Name).Value = pTrack.Side
+        _row.Cells(trkTrack.Name).Value = pTrack.Track
+        _row.Cells(trkArtist.Name).Value = pTrack.Artist
+        _row.Cells(trkTitle.Name).Value = pTrack.Title
+        _row.Cells(trkYear.Name).Value = pTrack.Year
+        _row.Cells(trkGenre.Name).Value = pTrack.Genre.GenreName
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
@@ -77,6 +111,8 @@ Public Class FrmRecordInput
         DgvTracks.Rows.Clear()
         BtnAddTracks.Enabled = False
         CbRecordLabel.SelectedIndex = -1
+        BtnAdd.Enabled = True
+        BtnAddTracks.Enabled = False
     End Sub
     Private Function BuildRecordFromForm() As Record
         Return RecordBuilder.ARecord.StartingWithNothing _

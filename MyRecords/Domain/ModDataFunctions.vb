@@ -9,7 +9,6 @@ Imports System.Data.Common
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
-Imports System.Security.Cryptography
 Imports HindlewareLib.Logging
 
 
@@ -46,6 +45,9 @@ Public Module ModDataFunctions
 
     Private ReadOnly oTracksTa As New RecordsDataSetTableAdapters.TracksTableAdapter
     Private ReadOnly oTracksTable As New RecordsDataSet.TracksDataTable
+
+    Private ReadOnly oRecordTracksViewTa As New RecordsDataSetTableAdapters.vRecordTracksTableAdapter
+    Private ReadOnly oRecordTracksViewTable As New RecordsDataSet.vRecordTracksDataTable
 #End Region
 #Region "variables"
     Public tableList As New List(Of String)
@@ -137,6 +139,33 @@ Public Module ModDataFunctions
         Return newId
     End Function
 #End Region
+#Region "Track"
+    Public Function InsertTrack(pTrack As Track) As Integer
+        LogUtil.Info("Inserting Track " & pTrack.RecordId & "-" & CStr(pTrack.Track), MODULE_NAME)
+        Dim response As Integer = -1
+        Try
+            With pTrack
+                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Artist, .Title, .Year, .Genre.GenreId)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
+    Public Function GetTracksForRecord(pId As Integer) As List(Of Track)
+        LogUtil.Info("Getting Tracks for " & pId, MODULE_NAME)
+        Dim _list As New List(Of Track)
+        Try
+            oRecordTracksViewTa.FillByRecord(oRecordTracksViewTable, pId)
+            For Each oRow As RecordsDataSet.vRecordTracksRow In oRecordTracksViewTable.Rows
+                _list.Add(TrackBuilder.ATrack.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
+    End Function
+#End Region
 #Region "Label"
     Public Function GetLabelbyId(pId As Integer) As RecordLabel
         LogUtil.Debug("Getting Label " & pId, MODULE_NAME)
@@ -166,7 +195,7 @@ Public Module ModDataFunctions
     End Function
 #End Region
 #Region "Genre"
-    Public Function GetGenrebyId(pId As Integer) As Genre
+    Public Function GetGenreFromId(pId As Integer) As Genre
         LogUtil.Debug("Getting Genre " & pId, MODULE_NAME)
         Dim olabel As New Genre
         Try

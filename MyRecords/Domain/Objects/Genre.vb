@@ -29,7 +29,7 @@ Public Class Genre
 #Region "constructors"
     Private Sub Initialise()
         _genreId = -1
-        _genreId = String.Empty
+        _genreName = String.Empty
     End Sub
     Public Sub New()
         Initialise()

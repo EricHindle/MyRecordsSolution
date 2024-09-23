@@ -13,6 +13,15 @@ Public Class Track
     Private _title As String
     Private _year As Integer
     Private _genre As Genre
+    Private _side As String
+    Public Property Side() As String
+        Get
+            Return _side
+        End Get
+        Set(ByVal value As String)
+            _side = value
+        End Set
+    End Property
     Public Property Genre() As Genre
         Get
             Return _genre
@@ -45,11 +54,11 @@ Public Class Track
             _artist = value
         End Set
     End Property
-    Public Property Track() As String
+    Public Property Track() As Integer
         Get
             Return _track
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             _track = value
         End Set
     End Property
@@ -65,7 +74,8 @@ Public Class Track
 #Region "constructors"
     Private Sub Initialise()
         _recordId = -1
-        _track = String.Empty
+        _track = -1
+        _side = String.Empty
         _artist = String.Empty
         _title = String.Empty
         _year = -1
@@ -74,8 +84,9 @@ Public Class Track
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId As Integer, pTrack As String, pArtist As String, pTitle As String, pYear As Integer, pGenre As Genre)
+    Public Sub New(pId As Integer, pSide As String, pTrack As Integer, pArtist As String, pTitle As String, pYear As Integer, pGenre As Genre)
         _recordId = pId
+        _side = pSide
         _track = pTrack
         _artist = pArtist
         _title = pTitle

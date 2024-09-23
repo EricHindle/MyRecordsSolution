@@ -19,9 +19,9 @@ Public Class RecordBuilder
         _recordId = -1
         _label = New RecordLabel
         _format = New RecordFormat
-        _recordNumber = ""
+        _recordNumber = String.Empty
         _size = 0
-        _speed = ""
+        _speed = String.Empty
         Return Me
     End Function
     Public Function StartingWith(pRow As RecordsDataSet.RecordsRow) As RecordBuilder
@@ -68,7 +68,7 @@ Public Class RecordBuilder
         _format = pFormat
         Return Me
     End Function
-    Public Function WithRecordNumber(ByVal pRecordNumber As Integer) As RecordBuilder
+    Public Function WithRecordNumber(ByVal pRecordNumber As String) As RecordBuilder
         _recordNumber = pRecordNumber
         Return Me
     End Function

@@ -50,16 +50,17 @@ Partial Class FrmRecordInput
         Me.Rb33 = New System.Windows.Forms.RadioButton()
         Me.Rb45 = New System.Windows.Forms.RadioButton()
         Me.DgvTracks = New System.Windows.Forms.DataGridView()
-        Me.trkTrack = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trkArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trkYear = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trkTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trkGenre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.BtnNext = New System.Windows.Forms.Button()
         Me.BtnAddTracks = New System.Windows.Forms.Button()
         Me.Status = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.trkSide = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trkTrack = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trkArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trkYear = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trkTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.trkGenre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordLabelsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -349,7 +350,7 @@ Partial Class FrmRecordInput
         Me.DgvTracks.AllowUserToAddRows = False
         Me.DgvTracks.AllowUserToDeleteRows = False
         Me.DgvTracks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvTracks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.trkTrack, Me.trkArtist, Me.trkYear, Me.trkTitle, Me.trkGenre})
+        Me.DgvTracks.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.trkSide, Me.trkTrack, Me.trkArtist, Me.trkYear, Me.trkTitle, Me.trkGenre})
         Me.DgvTracks.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvTracks.Location = New System.Drawing.Point(0, 0)
         Me.DgvTracks.Name = "DgvTracks"
@@ -357,42 +358,6 @@ Partial Class FrmRecordInput
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.Size = New System.Drawing.Size(481, 174)
         Me.DgvTracks.TabIndex = 18
-        '
-        'trkTrack
-        '
-        Me.trkTrack.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkTrack.HeaderText = "Track"
-        Me.trkTrack.Name = "trkTrack"
-        Me.trkTrack.ReadOnly = True
-        Me.trkTrack.Width = 60
-        '
-        'trkArtist
-        '
-        Me.trkArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkArtist.HeaderText = "Artist"
-        Me.trkArtist.Name = "trkArtist"
-        Me.trkArtist.ReadOnly = True
-        '
-        'trkYear
-        '
-        Me.trkYear.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.trkYear.HeaderText = "Year"
-        Me.trkYear.Name = "trkYear"
-        Me.trkYear.ReadOnly = True
-        Me.trkYear.Width = 60
-        '
-        'trkTitle
-        '
-        Me.trkTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.trkTitle.HeaderText = "Title"
-        Me.trkTitle.Name = "trkTitle"
-        Me.trkTitle.ReadOnly = True
-        '
-        'trkGenre
-        '
-        Me.trkGenre.HeaderText = "Genre"
-        Me.trkGenre.Name = "trkGenre"
-        Me.trkGenre.ReadOnly = True
         '
         'Panel1
         '
@@ -447,6 +412,50 @@ Partial Class FrmRecordInput
         Me.LblStatus.Name = "LblStatus"
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.LblStatus.Size = New System.Drawing.Size(6, 17)
+        '
+        'trkSide
+        '
+        Me.trkSide.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkSide.HeaderText = "Side"
+        Me.trkSide.Name = "trkSide"
+        Me.trkSide.ReadOnly = True
+        Me.trkSide.Width = 40
+        '
+        'trkTrack
+        '
+        Me.trkTrack.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkTrack.HeaderText = "Track"
+        Me.trkTrack.Name = "trkTrack"
+        Me.trkTrack.ReadOnly = True
+        Me.trkTrack.Width = 50
+        '
+        'trkArtist
+        '
+        Me.trkArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkArtist.HeaderText = "Artist"
+        Me.trkArtist.Name = "trkArtist"
+        Me.trkArtist.ReadOnly = True
+        '
+        'trkYear
+        '
+        Me.trkYear.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.trkYear.HeaderText = "Year"
+        Me.trkYear.Name = "trkYear"
+        Me.trkYear.ReadOnly = True
+        Me.trkYear.Width = 60
+        '
+        'trkTitle
+        '
+        Me.trkTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.trkTitle.HeaderText = "Title"
+        Me.trkTitle.Name = "trkTitle"
+        Me.trkTitle.ReadOnly = True
+        '
+        'trkGenre
+        '
+        Me.trkGenre.HeaderText = "Genre"
+        Me.trkGenre.Name = "trkGenre"
+        Me.trkGenre.ReadOnly = True
         '
         'FrmRecordInput
         '
@@ -521,11 +530,12 @@ Partial Class FrmRecordInput
     Friend WithEvents Panel1 As Panel
     Friend WithEvents BtnNext As Button
     Friend WithEvents BtnAddTracks As Button
+    Friend WithEvents Status As StatusStrip
+    Friend WithEvents LblStatus As ToolStripStatusLabel
+    Friend WithEvents trkSide As DataGridViewTextBoxColumn
     Friend WithEvents trkTrack As DataGridViewTextBoxColumn
     Friend WithEvents trkArtist As DataGridViewTextBoxColumn
     Friend WithEvents trkYear As DataGridViewTextBoxColumn
     Friend WithEvents trkTitle As DataGridViewTextBoxColumn
     Friend WithEvents trkGenre As DataGridViewTextBoxColumn
-    Friend WithEvents Status As StatusStrip
-    Friend WithEvents LblStatus As ToolStripStatusLabel
 End Class

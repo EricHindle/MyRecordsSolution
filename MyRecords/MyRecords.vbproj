@@ -99,6 +99,12 @@
       <DependentUpon>FrmRecordInput.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MaintForms\FrmTrackInput.Designer.vb">
+      <DependentUpon>FrmTrackInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MaintForms\FrmTrackInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MaintForms\ModCommon.vb" />
     <Compile Include="Menu\FrmMenu.Designer.vb">
       <DependentUpon>FrmMenu.vb</DependentUpon>
@@ -156,6 +162,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MaintForms\FrmRecordInput.resx">
       <DependentUpon>FrmRecordInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaintForms\FrmTrackInput.resx">
+      <DependentUpon>FrmTrackInput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu\FrmMenu.resx">
       <DependentUpon>FrmMenu.vb</DependentUpon>

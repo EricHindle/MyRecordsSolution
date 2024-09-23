@@ -76,6 +76,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Builders\ArtistBuilder.vb" />
     <Compile Include="Domain\Builders\GenreBuilder.vb" />
     <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
     <Compile Include="Domain\Builders\RecordBuilder.vb" />
@@ -83,6 +84,7 @@
     <Compile Include="Domain\Builders\RecordLabelBuilder.vb" />
     <Compile Include="Domain\Builders\TrackBuilder.vb" />
     <Compile Include="Domain\ModDataFunctions.vb" />
+    <Compile Include="Domain\Objects\Artist.vb" />
     <Compile Include="Domain\Objects\RecordFormat.vb" />
     <Compile Include="Domain\Objects\Genre.vb" />
     <Compile Include="Domain\Objects\GlobalSetting.vb" />
@@ -91,6 +93,12 @@
     <Compile Include="Domain\Objects\Track.vb" />
     <Compile Include="Domain\RecordsDataSet.vb">
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MaintForms\FrmArtistMaint.Designer.vb">
+      <DependentUpon>FrmArtistMaint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MaintForms\FrmArtistMaint.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MaintForms\FrmFormatMaint.Designer.vb">
       <DependentUpon>FrmFormatMaint.vb</DependentUpon>
@@ -172,6 +180,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MaintForms\FrmArtistMaint.resx">
+      <DependentUpon>FrmArtistMaint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaintForms\FrmFormatMaint.resx">
       <DependentUpon>FrmFormatMaint.vb</DependentUpon>
     </EmbeddedResource>

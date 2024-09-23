@@ -9,6 +9,9 @@ Partial Class RecordsDataSet
 End Class
 
 Namespace RecordsDataSetTableAdapters
+    Partial Public Class ArtistsTableAdapter
+    End Class
+
     Partial Public Class RecordsTableAdapter
     End Class
 End Namespace

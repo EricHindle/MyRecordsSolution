@@ -43,7 +43,6 @@ Partial Class FrmTrackInput
         Me.RbA = New System.Windows.Forms.RadioButton()
         Me.NudTrackNo = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TxtArtist = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TxtTitle = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -59,11 +58,16 @@ Partial Class FrmTrackInput
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSaveTrack = New System.Windows.Forms.Button()
         Me.BtnAddGenre = New System.Windows.Forms.Button()
+        Me.BtnTracks = New System.Windows.Forms.Button()
+        Me.CbArtists = New System.Windows.Forms.ComboBox()
+        Me.ArtistsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ArtistsTableAdapter = New MyRecords.RecordsDataSetTableAdapters.ArtistsTableAdapter()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.MusicGenreBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LblRecordId
@@ -205,14 +209,6 @@ Partial Class FrmTrackInput
         Me.Label2.TabIndex = 14
         Me.Label2.Text = "Artist"
         '
-        'TxtArtist
-        '
-        Me.TxtArtist.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtArtist.Location = New System.Drawing.Point(32, 180)
-        Me.TxtArtist.Name = "TxtArtist"
-        Me.TxtArtist.Size = New System.Drawing.Size(335, 27)
-        Me.TxtArtist.TabIndex = 2
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -224,6 +220,8 @@ Partial Class FrmTrackInput
         '
         'TxtTitle
         '
+        Me.TxtTitle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTitle.Location = New System.Drawing.Point(32, 242)
         Me.TxtTitle.Name = "TxtTitle"
@@ -259,9 +257,9 @@ Partial Class FrmTrackInput
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 522)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 513)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(401, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(395, 22)
         Me.StatusStrip1.TabIndex = 18
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -273,6 +271,8 @@ Partial Class FrmTrackInput
         '
         'CbGenre
         '
+        Me.CbGenre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CbGenre.DataSource = Me.MusicGenreBindingSource
         Me.CbGenre.DisplayMember = "GenreName"
         Me.CbGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -305,7 +305,7 @@ Partial Class FrmTrackInput
         Me.BtnNextTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNextTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNextTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnNextTrack.Location = New System.Drawing.Point(160, 432)
+        Me.BtnNextTrack.Location = New System.Drawing.Point(160, 423)
         Me.BtnNextTrack.Name = "BtnNextTrack"
         Me.BtnNextTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnNextTrack.TabIndex = 7
@@ -322,7 +322,7 @@ Partial Class FrmTrackInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(304, 432)
+        Me.BtnClose.Location = New System.Drawing.Point(304, 423)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 78)
         Me.BtnClose.TabIndex = 8
@@ -337,7 +337,7 @@ Partial Class FrmTrackInput
         Me.BtnSaveTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSaveTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSaveTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnSaveTrack.Location = New System.Drawing.Point(33, 432)
+        Me.BtnSaveTrack.Location = New System.Drawing.Point(33, 423)
         Me.BtnSaveTrack.Name = "BtnSaveTrack"
         Me.BtnSaveTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnSaveTrack.TabIndex = 6
@@ -346,23 +346,64 @@ Partial Class FrmTrackInput
         '
         'BtnAddGenre
         '
+        Me.BtnAddGenre.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnAddGenre.BackColor = System.Drawing.Color.White
         Me.BtnAddGenre.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.BtnAddGenre.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.BtnAddGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAddGenre.ForeColor = System.Drawing.Color.Black
-        Me.BtnAddGenre.Location = New System.Drawing.Point(239, 362)
+        Me.BtnAddGenre.Location = New System.Drawing.Point(239, 363)
         Me.BtnAddGenre.Name = "BtnAddGenre"
         Me.BtnAddGenre.Size = New System.Drawing.Size(65, 32)
         Me.BtnAddGenre.TabIndex = 19
         Me.BtnAddGenre.Text = "Add"
         Me.BtnAddGenre.UseVisualStyleBackColor = False
         '
+        'BtnTracks
+        '
+        Me.BtnTracks.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnTracks.BackColor = System.Drawing.Color.White
+        Me.BtnTracks.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.BtnTracks.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.BtnTracks.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnTracks.ForeColor = System.Drawing.Color.Black
+        Me.BtnTracks.Location = New System.Drawing.Point(317, 177)
+        Me.BtnTracks.Name = "BtnTracks"
+        Me.BtnTracks.Size = New System.Drawing.Size(65, 32)
+        Me.BtnTracks.TabIndex = 20
+        Me.BtnTracks.Text = "Add"
+        Me.BtnTracks.UseVisualStyleBackColor = False
+        '
+        'CbArtists
+        '
+        Me.CbArtists.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CbArtists.DataSource = Me.ArtistsBindingSource
+        Me.CbArtists.DisplayMember = "ArtistName"
+        Me.CbArtists.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbArtists.FormattingEnabled = True
+        Me.CbArtists.Location = New System.Drawing.Point(32, 180)
+        Me.CbArtists.Name = "CbArtists"
+        Me.CbArtists.Size = New System.Drawing.Size(269, 27)
+        Me.CbArtists.TabIndex = 21
+        Me.CbArtists.ValueMember = "ArtistId"
+        '
+        'ArtistsBindingSource
+        '
+        Me.ArtistsBindingSource.DataMember = "Artists"
+        Me.ArtistsBindingSource.DataSource = Me.RecordsDataSet
+        '
+        'ArtistsTableAdapter
+        '
+        Me.ArtistsTableAdapter.ClearBeforeFill = True
+        '
         'FrmTrackInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(401, 544)
+        Me.ClientSize = New System.Drawing.Size(395, 535)
+        Me.Controls.Add(Me.CbArtists)
+        Me.Controls.Add(Me.BtnTracks)
         Me.Controls.Add(Me.BtnAddGenre)
         Me.Controls.Add(Me.BtnNextTrack)
         Me.Controls.Add(Me.BtnClose)
@@ -374,7 +415,6 @@ Partial Class FrmTrackInput
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.TxtTitle)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TxtArtist)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.NudTrackNo)
         Me.Controls.Add(Me.GroupBox1)
@@ -394,6 +434,7 @@ Partial Class FrmTrackInput
         Me.StatusStrip1.PerformLayout()
         CType(Me.MusicGenreBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -412,7 +453,6 @@ Partial Class FrmTrackInput
     Friend WithEvents RbA As RadioButton
     Friend WithEvents NudTrackNo As NumericUpDown
     Friend WithEvents Label2 As Label
-    Friend WithEvents TxtArtist As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtTitle As TextBox
     Friend WithEvents Label6 As Label
@@ -428,4 +468,8 @@ Partial Class FrmTrackInput
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnSaveTrack As Button
     Friend WithEvents BtnAddGenre As Button
+    Friend WithEvents BtnTracks As Button
+    Friend WithEvents CbArtists As ComboBox
+    Friend WithEvents ArtistsBindingSource As BindingSource
+    Friend WithEvents ArtistsTableAdapter As RecordsDataSetTableAdapters.ArtistsTableAdapter
 End Class

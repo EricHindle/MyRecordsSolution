@@ -61,9 +61,11 @@ Public Class FrmRecordInput
 
     Private Sub LoadFormatList()
         Me.RecordFormatTableAdapter.Fill(Me.RecordsDataSet.RecordFormat)
+        CbRecordFormat.SelectedIndex = -1
     End Sub
     Private Sub LoadLabelList()
         Me.RecordLabelsTableAdapter.Fill(Me.RecordsDataSet.RecordLabels)
+        CbRecordLabel.SelectedIndex = -1
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -140,7 +142,7 @@ Public Class FrmRecordInput
         Dim _row As DataGridViewRow = DgvTracks.Rows(DgvTracks.Rows.Add())
         _row.Cells(trkSide.Name).Value = pTrack.Side
         _row.Cells(trkTrack.Name).Value = pTrack.Track
-        _row.Cells(trkArtist.Name).Value = pTrack.Artist
+        _row.Cells(trkArtist.Name).Value = pTrack.Artist.ArtistName
         _row.Cells(trkTitle.Name).Value = pTrack.Title
         _row.Cells(trkYear.Name).Value = pTrack.Year
         _row.Cells(trkGenre.Name).Value = pTrack.Genre.GenreName

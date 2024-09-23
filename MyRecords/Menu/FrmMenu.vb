@@ -109,5 +109,11 @@ Public Class FrmMenu
         End Using
     End Sub
 
+    Private Sub BtnArtists_Click(sender As Object, e As EventArgs) Handles BtnArtists.Click
+        Using _artist As New FrmArtistMaint
+            _artist.ShowDialog()
+        End Using
+    End Sub
+
 #End Region
 End Class

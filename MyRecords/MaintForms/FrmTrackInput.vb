@@ -33,19 +33,26 @@ Public Class FrmTrackInput
     Private Sub InitialiseForm()
         LblRecordId.Text = -1
         LoadGenreList()
+        LoadArtistList()
         LblRecordId.Text = _currentRecord.RecordId
         LblRecordNo.Text = _currentRecord.RecordNumber
         RbA.Checked = True
         NudTrackNo.Value = 1
-        TxtArtist.Text = String.Empty
         TxtTitle.Text = String.Empty
         TxtYear.Text = String.Empty
         CbGenre.SelectedIndex = -1
+        CbArtists.SelectedIndex = -1
         BtnNextTrack.Enabled = False
+    End Sub
+
+    Private Sub LoadArtistList()
+        Me.ArtistsTableAdapter.Fill(Me.RecordsDataSet.Artists)
+        CbArtists.SelectedIndex = -1
     End Sub
 
     Private Sub LoadGenreList()
         Me.MusicGenreTableAdapter.Fill(Me.RecordsDataSet.MusicGenre)
+        CbGenre.SelectedIndex = -1
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -78,14 +85,22 @@ Public Class FrmTrackInput
     End Sub
 
     Private Function BuildTrackFromForm() As Track
+        Dim _artist As New Artist
+        If CbArtists.SelectedIndex > -1 Then
+            _artist = ArtistBuilder.AnArtist.StartingWith(CType(CbArtists.SelectedItem.row, RecordsDataSet.ArtistsRow)).Build
+        End If
+        Dim _genre As New Genre
+        If CbGenre.SelectedIndex > -1 Then
+            _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, RecordsDataSet.MusicGenreRow)).Build
+        End If
         Return TrackBuilder.ATrack.StartingWithNothing _
             .WithId(_currentRecord.RecordId) _
             .WithSide(GetSideFromForm) _
             .WithTrack(NudTrackNo.Value) _
-            .WithArtist(TxtArtist.Text) _
+            .WithArtist(_artist) _
             .WithTitle(TxtTitle.Text) _
             .WithYear(TxtYear.Text) _
-            .WithGenre(GetGenreFromId(CInt(CbGenre.SelectedValue))).Build
+            .WithGenre(_genre).Build
     End Function
 
     Private Function GetSideFromForm() As String
@@ -108,28 +123,37 @@ Public Class FrmTrackInput
 
     Private Function IsValidTrack() As Boolean
         Dim isOK As Boolean = True
-        If String.IsNullOrWhiteSpace(TxtArtist.Text) Then
-            isOK = False
-        End If
+        'If String.IsNullOrWhiteSpace(TxtArtist.Text) Then
+        '    isOK = False
+        'End If
         If String.IsNullOrWhiteSpace(TxtTitle.Text) Then
             isOK = False
         End If
         If CbGenre.SelectedIndex < 0 Then
             isOK = False
         End If
+        If CbArtists.SelectedIndex < 0 Then
+            isOK = False
+        End If
         Return isOK
     End Function
 
     Private Sub BtnNextTrack_Click(sender As Object, e As EventArgs) Handles BtnNextTrack.Click
-        ClearTrack
+        ClearTrack()
     End Sub
 
     Private Sub ClearTrack()
         RbB.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
-        TxtYear.Text = String.Empty
         BtnNextTrack.Enabled = False
         BtnSaveTrack.Enabled = True
+    End Sub
+
+    Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
+        Using _artist As New FrmArtistMaint
+            _artist.ShowDialog()
+        End Using
+        LoadArtistList()
     End Sub
 End Class

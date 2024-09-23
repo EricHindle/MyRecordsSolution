@@ -268,6 +268,18 @@ Namespace My
                 Me("LabelFormPos") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ArtistFormPos() As String
+            Get
+                Return CType(Me("ArtistFormPos"),String)
+            End Get
+            Set
+                Me("ArtistFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

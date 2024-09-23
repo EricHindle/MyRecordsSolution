@@ -47,6 +47,9 @@ Public Module ModDataFunctions
     Private ReadOnly oTracksTa As New RecordsDataSetTableAdapters.TracksTableAdapter
     Private ReadOnly oTracksTable As New RecordsDataSet.TracksDataTable
 
+    Private ReadOnly oArtistsTa As New RecordsDataSetTableAdapters.ArtistsTableAdapter
+    Private ReadOnly oArtistsTable As New RecordsDataSet.ArtistsDataTable
+
     Private ReadOnly oRecordTracksViewTa As New RecordsDataSetTableAdapters.vRecordTracksTableAdapter
     Private ReadOnly oRecordTracksViewTable As New RecordsDataSet.vRecordTracksDataTable
 #End Region
@@ -90,6 +93,12 @@ Public Module ModDataFunctions
                         oSettingsTa.TruncateSettings()
                         oSettingsTa.Update(oSettingsTable)
                         rowCount = oSettingsTa.GetData.Rows.Count
+                    End If
+                Case "Tracks"
+                    If RecreateTable(oTracksTable, datapath, isSuppressMessage) Then
+                        oTracksTa.TruncateTracks()
+                        oTracksTa.Update(oTracksTable)
+                        rowCount = oTracksTa.GetData.Rows.Count
                     End If
             End Select
         Catch ex As Exception
@@ -173,7 +182,7 @@ Public Module ModDataFunctions
         Dim response As Integer = -1
         Try
             With pTrack
-                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Artist, .Title, .Year, .Genre.GenreId)
+                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Title, .Year, .Genre.GenreId, .Artist.ArtistId)
             End With
         Catch ex As SqlException
             DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
@@ -194,6 +203,63 @@ Public Module ModDataFunctions
         Return _list
     End Function
 #End Region
+#Region "Artist"
+    Public Function GetArtistFromId(pId As Integer) As Artist
+        LogUtil.Debug("Getting artist " & pId, MODULE_NAME)
+        Dim oArtist As New Artist
+        Try
+            oArtistsTa.FillById(oArtistsTable, pId)
+            If oArtistsTable.Rows.Count > 0 Then
+                oArtist = ArtistBuilder.AnArtist.StartingWith(oArtistsTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return oArtist
+    End Function
+    Public Function InsertArtist(pArtist As Artist) As Integer
+        LogUtil.Info("Inserting artist " & CStr(pArtist.ArtistName), MODULE_NAME)
+        Dim response As Integer = -1
+        Try
+            With pArtist
+                If GetArtistFromId(pArtist.ArtistId).ArtistId < 0 Then
+                    response = oArtistsTa.InsertArtist(.ArtistName)
+                End If
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
+    Public Function UpdateArtist(pArtist As Artist) As Integer
+        LogUtil.Info("Updating artist " & pArtist.ArtistName, MODULE_NAME)
+        Dim _response As Integer = -1
+        Try
+            With pArtist
+                _response = oArtistsTa.UpdateArtist(.ArtistName, pArtist.ArtistId)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _response
+    End Function
+    Public Function GetAllArtists() As List(Of Artist)
+        LogUtil.Info("Getting artists", MODULE_NAME)
+        Dim _list As New List(Of Artist)
+        Try
+            oArtistsTa.Fill(oArtistsTable)
+            For Each oRow As RecordsDataSet.ArtistsRow In oArtistsTable.Rows
+                _list.Add(ArtistBuilder.AnArtist.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
+
+    End Function
+
+#End Region
+
 #Region "Label"
     Public Function GetLabelbyId(pId As Integer) As RecordLabel
         LogUtil.Debug("Getting Label " & pId, MODULE_NAME)

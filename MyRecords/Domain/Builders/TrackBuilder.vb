@@ -9,7 +9,7 @@ Public Class TrackBuilder
     Private _recordId As Integer
     Private _side As String
     Private _track As String
-    Private _artist As String
+    Private _artist As Artist
     Private _title As String
     Private _year As Integer
     Private _genre As Genre
@@ -20,7 +20,7 @@ Public Class TrackBuilder
         _recordId = -1
         _side = String.Empty
         _track = -1
-        _artist = String.Empty
+        _artist = New Artist
         _title = String.Empty
         _year = -1
         _genre = New Genre
@@ -32,7 +32,7 @@ Public Class TrackBuilder
             _recordId = pRow.RecordId
             _track = pRow.Track
             _side = pRow.Side
-            _artist = pRow.Artist
+            _artist = GetArtistFromId(pRow.ArtistId)
             _title = pRow.Title
             _year = pRow.Year
             _genre = GetGenreFromId(pRow.Genre)
@@ -53,10 +53,10 @@ Public Class TrackBuilder
         _recordId = pTrack.RecordId
         _side = pTrack.Side
         _track = pTrack.Track
-        _artist = pTrack.Artist
+        _artist = GetArtistFromId(pTrack.ArtistId)
         _title = pTrack.Title
         _year = pTrack.Year
-        _genre = New Genre(0, pTrack.GenreName)
+        _genre = GetGenreFromId(pTrack.GenreId)
         Return Me
     End Function
 
@@ -72,8 +72,12 @@ Public Class TrackBuilder
         _track = pTrack
         Return Me
     End Function
-    Public Function WithArtist(ByVal pArtist As String) As TrackBuilder
+    Public Function WithArtist(ByVal pArtist As Artist) As TrackBuilder
         _artist = pArtist
+        Return Me
+    End Function
+    Public Function WithArtist(ByVal pArtist As Integer) As TrackBuilder
+        _artist = GetArtistFromId(pArtist)
         Return Me
     End Function
     Public Function WithTitle(ByVal pTitle As String) As TrackBuilder
@@ -86,6 +90,10 @@ Public Class TrackBuilder
     End Function
     Public Function WithGenre(ByVal pGenre As Genre) As TrackBuilder
         _genre = pGenre
+        Return Me
+    End Function
+    Public Function WithGenre(ByVal pGenre As Integer) As TrackBuilder
+        _genre = GetGenreFromId(pGenre)
         Return Me
     End Function
     Public Function Build() As Track

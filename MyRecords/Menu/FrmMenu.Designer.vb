@@ -33,6 +33,7 @@ Partial Class FrmMenu
         Me.BtnRestore = New System.Windows.Forms.Button()
         Me.BtnFormats = New System.Windows.Forms.Button()
         Me.BtnLabels = New System.Windows.Forms.Button()
+        Me.BtnArtists = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -164,6 +165,17 @@ Partial Class FrmMenu
         Me.BtnLabels.Text = "Record Labels"
         Me.BtnLabels.UseVisualStyleBackColor = True
         '
+        'BtnArtists
+        '
+        Me.BtnArtists.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnArtists.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnArtists.Location = New System.Drawing.Point(189, 246)
+        Me.BtnArtists.Name = "BtnArtists"
+        Me.BtnArtists.Size = New System.Drawing.Size(151, 49)
+        Me.BtnArtists.TabIndex = 31
+        Me.BtnArtists.Text = "Artists"
+        Me.BtnArtists.UseVisualStyleBackColor = True
+        '
         'FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -171,6 +183,7 @@ Partial Class FrmMenu
         Me.BackColor = System.Drawing.Color.AliceBlue
         Me.ClientSize = New System.Drawing.Size(352, 596)
         Me.ControlBox = False
+        Me.Controls.Add(Me.BtnArtists)
         Me.Controls.Add(Me.BtnLabels)
         Me.Controls.Add(Me.BtnFormats)
         Me.Controls.Add(Me.BtnRestore)
@@ -203,4 +216,5 @@ Partial Class FrmMenu
     Friend WithEvents BtnRestore As Button
     Friend WithEvents BtnFormats As Button
     Friend WithEvents BtnLabels As Button
+    Friend WithEvents BtnArtists As Button
 End Class

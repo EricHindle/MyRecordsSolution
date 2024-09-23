@@ -29,7 +29,7 @@ Public Class RecordFormatBuilder
         _formatName = pRecordFormat.FormatName
         Return Me
     End Function
-    Public Function WithId(ByVal pFormatId As Integer) As RecordFormatBuilder
+    Public Function WithId(ByVal pFormatId As String) As RecordFormatBuilder
         _formatId = pFormatId
         Return Me
     End Function

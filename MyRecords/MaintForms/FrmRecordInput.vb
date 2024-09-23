@@ -106,11 +106,17 @@ Public Class FrmRecordInput
         Return isOK
     End Function
     Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
-
+        Using _format As New frmFormatMaint
+            _format.showdialog
+        End Using
+        LoadFormatList()
     End Sub
 
     Private Sub BtnAddLabel_Click(sender As Object, e As EventArgs) Handles BtnAddLabel.Click
-
+        Using _label As New FrmLabelMaint
+            _label.ShowDialog()
+        End Using
+        LoadLabelList()
     End Sub
 
     Private Sub BtnAddTracks_Click(sender As Object, e As EventArgs) Handles BtnAddTracks.Click
@@ -157,11 +163,36 @@ Public Class FrmRecordInput
             .WithFormat(_formatId) _
             .WithLabel(_labelId) _
             .WithRecordNumber(TxtRecNumber.Text) _
-            .WithSize(If(Rb7.Checked, 7, If(Rb12.Checked, 12, -1))) _
-            .WithSpeed(If(Rb45.Checked, "45", If(Rb33.Checked, "33", If(Rb78.Checked, "78", "n/a")))) _
+            .WithSize(GetSizeFromForm()) _
+            .WithSpeed(GetSpeedFromForm()) _
             .Build
     End Function
-
+    Private Function GetSizeFromForm() As Integer
+        Dim _size As Integer
+        Select Case True
+            Case Rb7.Checked
+                _size = 7
+            Case Rb12.Checked
+                _size = 12
+            Case Else
+                _size = -1
+        End Select
+        Return _size
+    End Function
+    Private Function GetSpeedFromForm() As String
+        Dim _speed As String
+        Select Case True
+            Case Rb45.Checked
+                _speed = "45"
+            Case Rb33.Checked
+                _speed = "33"
+            Case Rb78.Checked
+                _speed = "78"
+            Case Else
+                _speed = "n/a"
+        End Select
+        Return _speed
+    End Function
     Private Sub DgvRecords_SelectionChanged(sender As Object, e As EventArgs) Handles DgvRecords.SelectionChanged
         If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
             ClearForm()

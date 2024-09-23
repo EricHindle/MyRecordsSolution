@@ -29,7 +29,7 @@ Public Class RecordFormat
 #Region "constructors"
     Private Sub Initialise()
         _formatId = String.Empty
-        _formatId = String.Empty
+        _formatName = String.Empty
     End Sub
     Public Sub New()
         Initialise()

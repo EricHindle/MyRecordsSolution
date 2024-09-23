@@ -244,6 +244,30 @@ Namespace My
                 Me("RecSplitDist1") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property FormatFormPos() As String
+            Get
+                Return CType(Me("FormatFormPos"),String)
+            End Get
+            Set
+                Me("FormatFormPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LabelFormPos() As String
+            Get
+                Return CType(Me("LabelFormPos"),String)
+            End Get
+            Set
+                Me("LabelFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

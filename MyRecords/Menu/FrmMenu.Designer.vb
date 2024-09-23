@@ -22,7 +22,6 @@ Partial Class FrmMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
         Me.BtnInputRecords = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
@@ -32,6 +31,8 @@ Partial Class FrmMenu
         Me.BtnOptions = New System.Windows.Forms.Button()
         Me.BtnBackup = New System.Windows.Forms.Button()
         Me.BtnRestore = New System.Windows.Forms.Button()
+        Me.BtnFormats = New System.Windows.Forms.Button()
+        Me.BtnLabels = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -141,6 +142,28 @@ Partial Class FrmMenu
         Me.BtnRestore.Text = "Restore"
         Me.BtnRestore.UseVisualStyleBackColor = True
         '
+        'BtnFormats
+        '
+        Me.BtnFormats.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnFormats.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnFormats.Location = New System.Drawing.Point(15, 301)
+        Me.BtnFormats.Name = "BtnFormats"
+        Me.BtnFormats.Size = New System.Drawing.Size(151, 49)
+        Me.BtnFormats.TabIndex = 29
+        Me.BtnFormats.Text = "Record Formats"
+        Me.BtnFormats.UseVisualStyleBackColor = True
+        '
+        'BtnLabels
+        '
+        Me.BtnLabels.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnLabels.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnLabels.Location = New System.Drawing.Point(189, 301)
+        Me.BtnLabels.Name = "BtnLabels"
+        Me.BtnLabels.Size = New System.Drawing.Size(151, 49)
+        Me.BtnLabels.TabIndex = 30
+        Me.BtnLabels.Text = "Record Labels"
+        Me.BtnLabels.UseVisualStyleBackColor = True
+        '
         'FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -148,6 +171,8 @@ Partial Class FrmMenu
         Me.BackColor = System.Drawing.Color.AliceBlue
         Me.ClientSize = New System.Drawing.Size(352, 596)
         Me.ControlBox = False
+        Me.Controls.Add(Me.BtnLabels)
+        Me.Controls.Add(Me.BtnFormats)
         Me.Controls.Add(Me.BtnRestore)
         Me.Controls.Add(Me.BtnBackup)
         Me.Controls.Add(Me.Label1)
@@ -159,7 +184,6 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.BtnInputRecords)
         Me.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "FrmMenu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -177,4 +201,6 @@ Partial Class FrmMenu
     Friend WithEvents BtnOptions As Button
     Friend WithEvents BtnBackup As Button
     Friend WithEvents BtnRestore As Button
+    Friend WithEvents BtnFormats As Button
+    Friend WithEvents BtnLabels As Button
 End Class

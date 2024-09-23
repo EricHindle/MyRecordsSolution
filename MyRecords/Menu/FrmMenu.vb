@@ -97,5 +97,17 @@ Public Class FrmMenu
         Show()
     End Sub
 
+    Private Sub BtnFormats_Click(sender As Object, e As EventArgs) Handles BtnFormats.Click
+        Using _format As New FrmFormatMaint
+            _format.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub BtnLabels_Click(sender As Object, e As EventArgs) Handles BtnLabels.Click
+        Using _label As New FrmLabelMaint
+            _label.ShowDialog()
+        End Using
+    End Sub
+
 #End Region
 End Class

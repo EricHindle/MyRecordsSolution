@@ -208,19 +208,47 @@ Public Module ModDataFunctions
         End Try
         Return olabel
     End Function
-    Public Function GetFormatbyId(pId As String) As RecordFormat
-        LogUtil.Debug("Getting format " & pId, MODULE_NAME)
-        Dim oformat As New RecordFormat
+    Public Function InsertLabel(pLabel As RecordLabel) As Integer
+        LogUtil.Info("Inserting Label " & CStr(pLabel.LabelId), MODULE_NAME)
+        Dim response As Integer = -1
         Try
-            oRecordFormatTa.FillById(oRecordFormatTable, pId)
-            If oRecordFormatTable.Rows.Count > 0 Then
-                oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
-            End If
+            With pLabel
+                If GetLabelbyId(pLabel.LabelId).LabelId < 0 Then
+                    response = oRecordLabelsTa.InsertLabel(.LabelName)
+                End If
+            End With
         Catch ex As SqlException
             DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
         End Try
-        Return oformat
+        Return response
     End Function
+    Public Function UpdateLabel(pLabel As RecordLabel) As Integer
+        LogUtil.Info("Updating Label " & pLabel.LabelName, MODULE_NAME)
+        Dim _response As Integer = -1
+        Try
+            With pLabel
+                _response = oRecordLabelsTa.UpdateLabel(.LabelName, pLabel.LabelId)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _response
+    End Function
+    Public Function GetAllLabels() As List(Of RecordLabel)
+        LogUtil.Info("Getting Labels", MODULE_NAME)
+        Dim _list As New List(Of RecordLabel)
+        Try
+            oRecordLabelsTa.Fill(oRecordLabelsTable)
+            For Each oRow As RecordsDataSet.RecordLabelsRow In oRecordLabelsTable.Rows
+                _list.Add(RecordLabelBuilder.ARecordLabel.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
+
+    End Function
+
 #End Region
 #Region "Genre"
     Public Function GetGenreFromId(pId As Integer) As Genre
@@ -235,6 +263,62 @@ Public Module ModDataFunctions
             DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
         End Try
         Return olabel
+    End Function
+
+#End Region
+#Region "Format"
+    Public Function InsertFormat(pFormat As RecordFormat) As Integer
+        LogUtil.Info("Inserting Format " & pFormat.FormatId, MODULE_NAME)
+        Dim response As Integer = -1
+        Try
+            With pFormat
+                If String.IsNullOrEmpty(GetFormatbyId(pFormat.FormatId).FormatId) Then
+                    response = oRecordFormatTa.InsertFormat(.FormatId, .FormatName)
+                End If
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
+    Public Function UpdateFormat(pFormat As RecordFormat) As Integer
+        LogUtil.Info("Updating format " & pFormat.FormatName, MODULE_NAME)
+        Dim _response As Integer = -1
+        Try
+            With pFormat
+                _response = oRecordFormatTa.UpdateFormat(.FormatName, pFormat.FormatId)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _response
+    End Function
+    Public Function GetAllFormats() As List(Of RecordFormat)
+        LogUtil.Info("Getting Formats", MODULE_NAME)
+        Dim _list As New List(Of RecordFormat)
+        Try
+            oRecordFormatTa.Fill(oRecordFormatTable)
+            For Each oRow As RecordsDataSet.RecordFormatRow In oRecordFormatTable.Rows
+                _list.Add(RecordFormatBuilder.ARecordFormat.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
+
+    End Function
+    Public Function GetFormatbyId(pId As String) As RecordFormat
+        LogUtil.Debug("Getting format " & pId, MODULE_NAME)
+        Dim oformat As New RecordFormat
+        Try
+            oRecordFormatTa.FillById(oRecordFormatTable, pId)
+            If oRecordFormatTable.Rows.Count > 0 Then
+                oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return oformat
     End Function
 
 #End Region

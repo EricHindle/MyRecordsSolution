@@ -28,7 +28,7 @@ Public Class RecordLabel
 #End Region
 #Region "constructors"
     Private Sub Initialise()
-        _LabelId = -1
+        _labelId = -1
         _labelName = String.Empty
     End Sub
     Public Sub New()
@@ -38,5 +38,8 @@ Public Class RecordLabel
         _labelId = pId
         _labelName = Pname
     End Sub
+    Public Function IsExists() As Boolean
+        Return _labelId > -1
+    End Function
 #End Region
 End Class

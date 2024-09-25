@@ -5,7 +5,6 @@
 ' Author Eric Hindle
 '
 
-Imports System.Data.SqlClient
 Imports HindlewareLib.Logging
 
 Public Class FrmTrackInput
@@ -36,6 +35,10 @@ Public Class FrmTrackInput
         LoadArtistList()
         LblRecordId.Text = _currentRecord.RecordId
         LblRecordNo.Text = _currentRecord.RecordNumber
+        ClearTrackForm()
+    End Sub
+
+    Private Sub ClearTrackForm()
         RbA.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
@@ -155,5 +158,12 @@ Public Class FrmTrackInput
             _artist.ShowDialog()
         End Using
         LoadArtistList()
+    End Sub
+
+    Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click
+        Using _genre As New FrmGenreMaint
+            _genre.ShowDialog()
+        End Using
+        LoadGenreList()
     End Sub
 End Class

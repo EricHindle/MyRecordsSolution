@@ -29,6 +29,7 @@ Partial Class FrmLabelMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmLabelMaint))
         Me.TxtLabel = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -212,6 +213,7 @@ Partial Class FrmLabelMaint
         Me.Controls.Add(Me.BtnNew)
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnClose)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmLabelMaint"
         Me.Text = "Record Label"
         CType(Me.DgvLabel, System.ComponentModel.ISupportInitialize).EndInit()

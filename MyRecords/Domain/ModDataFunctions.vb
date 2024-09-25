@@ -9,7 +9,6 @@ Imports System.Data.Common
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
-Imports System.Security.Cryptography
 Imports HindlewareLib.Logging
 
 
@@ -23,6 +22,7 @@ Public Module ModDataFunctions
     Public Enum Tables
         Records
         Tracks
+        Artists
         RecordLabels
         RecordFormat
         MusicGenre
@@ -100,6 +100,48 @@ Public Module ModDataFunctions
                         oTracksTa.Update(oTracksTable)
                         rowCount = oTracksTa.GetData.Rows.Count
                     End If
+                Case "Records"
+                    If RecreateTable(oRecordsTable, datapath, isSuppressMessage) Then
+                        oRecordsTa.TruncateRecords()
+                        For Each _row As RecordsDataSet.RecordsRow In oRecordsTable.Rows
+                            Dim _record As Record = RecordBuilder.ARecord.StartingWith(_row).Build
+                            InsertRecord(_record, _record.RecordId)
+                        Next
+                        rowCount = oRecordsTa.GetData.Rows.Count
+                    End If
+                Case "RecordFormat"
+                    If RecreateTable(oRecordFormatTable, datapath, isSuppressMessage) Then
+                        oRecordFormatTa.TruncateRecordFormat()
+                        oRecordFormatTa.Update(oRecordFormatTable)
+                        rowCount = oRecordFormatTa.GetData.Rows.Count
+                    End If
+                Case "RecordLabels"
+                    If RecreateTable(oRecordLabelsTable, datapath, isSuppressMessage) Then
+                        oRecordLabelsTa.TruncateRecordLabels()
+                        For Each _row As RecordsDataSet.RecordLabelsRow In oRecordsTable.Rows
+                            Dim _recordLabel As RecordLabel = RecordLabelBuilder.ARecordLabel.StartingWith(_row).Build
+                            InsertLabel(_recordLabel, _recordLabel.LabelId)
+                        Next
+                        rowCount = oRecordLabelsTa.GetData.Rows.Count
+                    End If
+                Case "Artists"
+                    If RecreateTable(oArtistsTable, datapath, isSuppressMessage) Then
+                        oArtistsTa.TruncateArtists()
+                        For Each _row As RecordsDataSet.ArtistsRow In oArtistsTable.Rows
+                            Dim _Artist As Artist = ArtistBuilder.AnArtist.StartingWith(_row).Build
+                            InsertArtist(_Artist, _Artist.ArtistId)
+                        Next
+                        rowCount = oArtistsTa.GetData.Rows.Count
+                    End If
+                Case "Genres"
+                    If RecreateTable(oMusicGenreTable, datapath, isSuppressMessage) Then
+                        oMusicGenreTa.TruncateMusicGenre()
+                        For Each _row As RecordsDataSet.MusicGenreRow In oMusicGenreTable.Rows
+                            Dim _Genre As Genre = GenreBuilder.AGenre.StartingWith(_row).Build
+                            InsertGenre(_Genre, _Genre.GenreId)
+                        Next
+                        rowCount = oMusicGenreTa.GetData.Rows.Count
+                    End If
             End Select
         Catch ex As Exception
             MsgBox(GetMessage(ex), MsgBoxStyle.Exclamation, "Error")
@@ -136,6 +178,10 @@ Public Module ModDataFunctions
     End Function
 #End Region
 #Region "Record"
+    Public Function GetRecordsTable() As RecordsDataSet.RecordsDataTable
+        LogUtil.Info("Getting records table", MODULE_NAME)
+        Return oRecordsTa.GetData()
+    End Function
     Public Function GetAllRecords() As List(Of Record)
         LogUtil.Info("Getting Records", MODULE_NAME)
         Dim _list As New List(Of Record)
@@ -164,11 +210,18 @@ Public Module ModDataFunctions
         Return _rec
     End Function
     Public Function InsertRecord(pRecord As Record) As Integer
+        Return InsertRecord(pRecord, -1)
+    End Function
+    Public Function InsertRecord(pRecord As Record, pId As Integer) As Integer
         LogUtil.Info("Inserting record " & pRecord.RecordNumber, MODULE_NAME)
         Dim newId As Integer = -1
         Try
             With pRecord
-                newId = oRecordsTa.InsertRecord(.RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+                If pId < 0 Then
+                    newId = oRecordsTa.InsertRecord(.RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+                Else
+                    newId = oRecordsTa.InsertRecordWithId(.RecordId, .RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+                End If
             End With
         Catch ex As SqlException
             DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
@@ -177,6 +230,10 @@ Public Module ModDataFunctions
     End Function
 #End Region
 #Region "Track"
+    Public Function GetTracksTable() As RecordsDataSet.TracksDataTable
+        LogUtil.Info("Getting tracks table", MODULE_NAME)
+        Return oTracksTa.GetData()
+    End Function
     Public Function InsertTrack(pTrack As Track) As Integer
         LogUtil.Info("Inserting Track " & pTrack.RecordId & "-" & CStr(pTrack.Track), MODULE_NAME)
         Dim response As Integer = -1
@@ -204,6 +261,10 @@ Public Module ModDataFunctions
     End Function
 #End Region
 #Region "Artist"
+    Public Function GetArtistsTable() As RecordsDataSet.ArtistsDataTable
+        LogUtil.Info("Getting artists table", MODULE_NAME)
+        Return oArtistsTa.GetData()
+    End Function
     Public Function GetArtistFromId(pId As Integer) As Artist
         LogUtil.Debug("Getting artist " & pId, MODULE_NAME)
         Dim oArtist As New Artist
@@ -217,13 +278,34 @@ Public Module ModDataFunctions
         End Try
         Return oArtist
     End Function
+    Public Function GetArtistFromName(pName As String) As Artist
+        LogUtil.Debug("Getting artist " & pName, MODULE_NAME)
+        Dim oArtist As New Artist
+        Try
+            oArtistsTa.FillByName(oArtistsTable, pName)
+            If oArtistsTable.Rows.Count > 0 Then
+                oArtist = ArtistBuilder.AnArtist.StartingWith(oArtistsTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return oArtist
+    End Function
     Public Function InsertArtist(pArtist As Artist) As Integer
+        Return InsertArtist(pArtist, -1)
+    End Function
+    Public Function InsertArtist(pArtist As Artist, pId As Integer) As Integer
+
         LogUtil.Info("Inserting artist " & CStr(pArtist.ArtistName), MODULE_NAME)
         Dim response As Integer = -1
         Try
             With pArtist
                 If GetArtistFromId(pArtist.ArtistId).ArtistId < 0 Then
-                    response = oArtistsTa.InsertArtist(.ArtistName)
+                    If pId < 0 Then
+                        response = oArtistsTa.InsertArtist(.ArtistName)
+                    Else
+                        response = oArtistsTa.InsertArtistWithId(.ArtistId, .ArtistName)
+                    End If
                 End If
             End With
         Catch ex As SqlException
@@ -259,8 +341,11 @@ Public Module ModDataFunctions
     End Function
 
 #End Region
-
 #Region "Label"
+    Public Function GetRecordLabelsTable() As RecordsDataSet.RecordLabelsDataTable
+        LogUtil.Info("Getting record format table", MODULE_NAME)
+        Return oRecordLabelsTa.GetData()
+    End Function
     Public Function GetLabelbyId(pId As Integer) As RecordLabel
         LogUtil.Debug("Getting Label " & pId, MODULE_NAME)
         Dim olabel As New RecordLabel
@@ -274,13 +359,34 @@ Public Module ModDataFunctions
         End Try
         Return olabel
     End Function
+    Public Function GetLabelFromName(pName As String) As RecordLabel
+        LogUtil.Debug("Getting Label " & pName, MODULE_NAME)
+        Dim olabel As New RecordLabel
+        Try
+            oRecordLabelsTa.FillByName(oRecordLabelsTable, pName)
+            If oRecordLabelsTable.Rows.Count > 0 Then
+                olabel = RecordLabelBuilder.ARecordLabel.StartingWith(oRecordLabelsTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return olabel
+    End Function
     Public Function InsertLabel(pLabel As RecordLabel) As Integer
+        Return InsertLabel(pLabel, -1)
+    End Function
+    Public Function InsertLabel(pLabel As RecordLabel, pId As Integer) As Integer
+
         LogUtil.Info("Inserting Label " & CStr(pLabel.LabelId), MODULE_NAME)
         Dim response As Integer = -1
         Try
             With pLabel
                 If GetLabelbyId(pLabel.LabelId).LabelId < 0 Then
-                    response = oRecordLabelsTa.InsertLabel(.LabelName)
+                    If pId < 0 Then
+                        response = oRecordLabelsTa.InsertLabel(.LabelName)
+                    Else
+                        response = oRecordLabelsTa.InsertLabelWithId(.LabelId, .LabelName)
+                    End If
                 End If
             End With
         Catch ex As SqlException
@@ -317,6 +423,10 @@ Public Module ModDataFunctions
 
 #End Region
 #Region "Genre"
+    Public Function GetMusicGenreTable() As RecordsDataSet.MusicGenreDataTable
+        LogUtil.Info("Getting music genre table", MODULE_NAME)
+        Return oMusicGenreTa.GetData()
+    End Function
     Public Function GetGenreFromId(pId As Integer) As Genre
         LogUtil.Debug("Getting Genre " & pId, MODULE_NAME)
         Dim olabel As New Genre
@@ -330,9 +440,72 @@ Public Module ModDataFunctions
         End Try
         Return olabel
     End Function
+    Public Function GetGenreFromName(pName As String) As Genre
+        LogUtil.Debug("Getting Genre " & pName, MODULE_NAME)
+        Dim olabel As New Genre
+        Try
+            oMusicGenreTa.FillByName(oMusicGenreTable, pName)
+            If oMusicGenreTable.Rows.Count > 0 Then
+                olabel = GenreBuilder.AGenre.StartingWith(oMusicGenreTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return olabel
+    End Function
+    Public Function InsertGenre(pGenre As Genre) As Integer
+        Return InsertGenre(pGenre, -1)
+    End Function
+    Public Function InsertGenre(pGenre As Genre, pId As Integer) As Integer
+        LogUtil.Info("Inserting Genre " & CStr(pGenre.GenreId), MODULE_NAME)
+        Dim response As Integer = -1
+        Try
+            With pGenre
+                If GetGenreFromId(pGenre.GenreId).GenreId < 0 Then
+                    If pId < 0 Then
+                        response = oMusicGenreTa.InsertGenre(.GenreName)
+                    Else
+                        response = oMusicGenreTa.InsertGenreWithId(.GenreId, .GenreName)
+                    End If
+                End If
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
+    Public Function UpdateGenre(pGenre As Genre) As Integer
+        LogUtil.Info("Updating Genre " & pGenre.GenreName, MODULE_NAME)
+        Dim _response As Integer = -1
+        Try
+            With pGenre
+                _response = oMusicGenreTa.UpdateGenre(.GenreName, pGenre.GenreId)
+            End With
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _response
+    End Function
+    Public Function GetAllGenres() As List(Of Genre)
+        LogUtil.Info("Getting Genres", MODULE_NAME)
+        Dim _list As New List(Of Genre)
+        Try
+            oMusicGenreTa.Fill(oMusicGenreTable)
+            For Each oRow As RecordsDataSet.MusicGenreRow In oMusicGenreTable.Rows
+                _list.Add(GenreBuilder.AGenre.StartingWith(oRow).Build)
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _list
 
+    End Function
 #End Region
 #Region "Format"
+    Public Function GetRecordFormatTable() As RecordsDataSet.RecordFormatDataTable
+        LogUtil.Info("Getting record format table", MODULE_NAME)
+        Return oRecordFormatTa.GetData()
+    End Function
     Public Function InsertFormat(pFormat As RecordFormat) As Integer
         LogUtil.Info("Inserting Format " & pFormat.FormatId, MODULE_NAME)
         Dim response As Integer = -1
@@ -386,32 +559,21 @@ Public Module ModDataFunctions
         End Try
         Return oformat
     End Function
+    Public Function GetFormatFromName(pName As String) As RecordFormat
+        LogUtil.Debug("Getting format " & pName, MODULE_NAME)
+        Dim oformat As New RecordFormat
+        Try
+            oRecordFormatTa.FillByName(oRecordFormatTable, pName)
+            If oRecordFormatTable.Rows.Count > 0 Then
+                oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
+            End If
+        Catch ex As SqlException
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return oformat
+    End Function
 
 #End Region
-#Region "GetTable"
-    Public Function GetRecordsTable() As RecordsDataSet.RecordsDataTable
-        LogUtil.Info("Getting records table", MODULE_NAME)
-        Return oRecordsTa.GetData()
-    End Function
-
-    Public Function GetTracksTable() As RecordsDataSet.TracksDataTable
-        LogUtil.Info("Getting tracks table", MODULE_NAME)
-        Return oTracksTa.GetData()
-    End Function
-    Public Function GetMusicGenreTable() As RecordsDataSet.MusicGenreDataTable
-        LogUtil.Info("Getting music genre table", MODULE_NAME)
-        Return oMusicGenreTa.GetData()
-    End Function
-    Public Function GetRecordFormatTable() As RecordsDataSet.RecordFormatDataTable
-        LogUtil.Info("Getting record format table", MODULE_NAME)
-        Return oRecordFormatTa.GetData()
-    End Function
-    Public Function GetRecordLabelsTable() As RecordsDataSet.RecordLabelsDataTable
-        LogUtil.Info("Getting record format table", MODULE_NAME)
-        Return oRecordLabelsTa.GetData()
-    End Function
-#End Region
-
 #Region "settings"
     Public Function GetSettingsTable() As RecordsDataSet.settingsDataTable
         LogUtil.Info("Getting storyarc table", MODULE_NAME)

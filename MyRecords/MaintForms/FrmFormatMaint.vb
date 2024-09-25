@@ -84,9 +84,14 @@ Public Class FrmFormatMaint
     End Sub
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
-        If isValidFormat Then
-            InsertNewFormat()
-            LoadFormatList()
+        If isValidFormat() Then
+            If GetFormatFromName(TxtFormat.Text).IsExists Then
+                ShowStatus("Looks like the Format already exists", LblStatus, MyBase.Name, False,,, True,, True)
+            Else
+                InsertNewFormat()
+                LoadFormatList()
+                ClearForm()
+            End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)
         End If

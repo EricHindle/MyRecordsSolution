@@ -38,5 +38,8 @@ Public Class Artist
         _artistId = pId
         _artistName = pName
     End Sub
+    Public Function IsExists() As Boolean
+        Return _artistId > -1
+    End Function
 #End Region
 End Class

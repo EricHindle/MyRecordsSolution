@@ -112,6 +112,7 @@ Partial Class MyRecordsSplash
         'PictureBox1
         '
         Me.PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.PictureBox1.Image = Global.MyRecords.My.Resources.Resources.disc_100
         Me.PictureBox1.Location = New System.Drawing.Point(21, 16)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(200, 185)
@@ -119,7 +120,7 @@ Partial Class MyRecordsSplash
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
-        'MyNovelSplash
+        'MyRecordsSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -130,7 +131,7 @@ Partial Class MyRecordsSplash
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "MyNovelSplash"
+        Me.Name = "MyRecordsSplash"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.MainLayoutPanel.ResumeLayout(False)

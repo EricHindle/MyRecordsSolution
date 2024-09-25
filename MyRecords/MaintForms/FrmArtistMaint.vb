@@ -65,8 +65,8 @@ Public Class FrmArtistMaint
     End Sub
     Private Sub AddArtistRow(oArtist As Artist)
         Dim oRow As DataGridViewRow = DgvArtist.Rows(DgvArtist.Rows.Add())
-        oRow.Cells(labname.Name).Value = oArtist.ArtistName
-        oRow.Cells(LabId.Name).Value = oArtist.ArtistId
+        oRow.Cells(artName.Name).Value = oArtist.ArtistName
+        oRow.Cells(artId.Name).Value = oArtist.ArtistId
     End Sub
     Private Sub LoadArtistForm(pArtist As Artist)
         With pArtist
@@ -77,8 +77,8 @@ Public Class FrmArtistMaint
 
     Private Sub LoadArtistForm(pRow As DataGridViewRow)
         With pRow
-            LblArtistId.Text = .Cells(LabId.Name).Value
-            TxtArtist.Text = .Cells(labname.Name).Value
+            LblArtistId.Text = .Cells(artId.Name).Value
+            TxtArtist.Text = .Cells(artName.Name).Value
             CurrentArtist = ArtistBuilder.AnArtist.StartingWithNothing.WithId(LblArtistId.Text).WithArtistName(TxtArtist.Text).Build
             BtnUpdate.Enabled = True
 
@@ -87,9 +87,13 @@ Public Class FrmArtistMaint
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If isValidArtist() Then
-            InsertNewArtist()
-            LoadArtistList()
-            ClearForm()
+            If GetArtistFromName(TxtArtist.Text).IsExists Then
+                ShowStatus("Looks like the Artist already exists", LblStatus, MyBase.Name, False, ,, True,, True)
+            Else
+                InsertNewArtist()
+                LoadArtistList()
+                ClearForm()
+            End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)
         End If

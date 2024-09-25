@@ -29,6 +29,7 @@ Partial Class FrmFormatMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFormatMaint))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.BtnClear = New System.Windows.Forms.Button()
@@ -36,11 +37,11 @@ Partial Class FrmFormatMaint
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.DgvFormat = New System.Windows.Forms.DataGridView()
+        Me.fmtId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fmtname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TxtFormat = New System.Windows.Forms.TextBox()
-        Me.fmtId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fmtname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TxtFormatId = New System.Windows.Forms.TextBox()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.DgvFormat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +140,20 @@ Partial Class FrmFormatMaint
         Me.DgvFormat.Size = New System.Drawing.Size(188, 217)
         Me.DgvFormat.TabIndex = 18
         '
+        'fmtId
+        '
+        Me.fmtId.HeaderText = "Id"
+        Me.fmtId.Name = "fmtId"
+        Me.fmtId.ReadOnly = True
+        Me.fmtId.Visible = False
+        '
+        'fmtname
+        '
+        Me.fmtname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.fmtname.HeaderText = "Format"
+        Me.fmtname.Name = "fmtname"
+        Me.fmtname.ReadOnly = True
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -172,20 +187,6 @@ Partial Class FrmFormatMaint
         Me.TxtFormat.Size = New System.Drawing.Size(264, 27)
         Me.TxtFormat.TabIndex = 22
         '
-        'fmtId
-        '
-        Me.fmtId.HeaderText = "Id"
-        Me.fmtId.Name = "fmtId"
-        Me.fmtId.ReadOnly = True
-        Me.fmtId.Visible = False
-        '
-        'fmtname
-        '
-        Me.fmtname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.fmtname.HeaderText = "Format"
-        Me.fmtname.Name = "fmtname"
-        Me.fmtname.ReadOnly = True
-        '
         'TxtFormatId
         '
         Me.TxtFormatId.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -210,6 +211,7 @@ Partial Class FrmFormatMaint
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.StatusStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmFormatMaint"
         Me.Text = "Record Format"
         Me.StatusStrip1.ResumeLayout(False)

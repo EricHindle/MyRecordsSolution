@@ -34,6 +34,8 @@ Partial Class FrmMenu
         Me.BtnFormats = New System.Windows.Forms.Button()
         Me.BtnLabels = New System.Windows.Forms.Button()
         Me.BtnArtists = New System.Windows.Forms.Button()
+        Me.BtnGenres = New System.Windows.Forms.Button()
+        Me.BtnViewLog = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,7 +66,7 @@ Partial Class FrmMenu
         Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnClose.Location = New System.Drawing.Point(189, 509)
+        Me.BtnClose.Location = New System.Drawing.Point(189, 523)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(151, 49)
         Me.BtnClose.TabIndex = 9
@@ -102,10 +104,11 @@ Partial Class FrmMenu
         'PictureBox1
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PictureBox1.Image = Global.MyRecords.My.Resources.Resources.disc_100
         Me.PictureBox1.Location = New System.Drawing.Point(15, 15)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 133)
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 100)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 25
         Me.PictureBox1.TabStop = False
@@ -114,7 +117,7 @@ Partial Class FrmMenu
         '
         Me.BtnOptions.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnOptions.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnOptions.Location = New System.Drawing.Point(15, 399)
+        Me.BtnOptions.Location = New System.Drawing.Point(15, 413)
         Me.BtnOptions.Name = "BtnOptions"
         Me.BtnOptions.Size = New System.Drawing.Size(151, 49)
         Me.BtnOptions.TabIndex = 1
@@ -125,7 +128,7 @@ Partial Class FrmMenu
         '
         Me.BtnBackup.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBackup.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnBackup.Location = New System.Drawing.Point(15, 454)
+        Me.BtnBackup.Location = New System.Drawing.Point(15, 468)
         Me.BtnBackup.Name = "BtnBackup"
         Me.BtnBackup.Size = New System.Drawing.Size(151, 49)
         Me.BtnBackup.TabIndex = 27
@@ -136,7 +139,7 @@ Partial Class FrmMenu
         '
         Me.BtnRestore.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnRestore.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnRestore.Location = New System.Drawing.Point(189, 454)
+        Me.BtnRestore.Location = New System.Drawing.Point(189, 468)
         Me.BtnRestore.Name = "BtnRestore"
         Me.BtnRestore.Size = New System.Drawing.Size(151, 49)
         Me.BtnRestore.TabIndex = 28
@@ -176,6 +179,28 @@ Partial Class FrmMenu
         Me.BtnArtists.Text = "Artists"
         Me.BtnArtists.UseVisualStyleBackColor = True
         '
+        'BtnGenres
+        '
+        Me.BtnGenres.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnGenres.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnGenres.Location = New System.Drawing.Point(15, 356)
+        Me.BtnGenres.Name = "BtnGenres"
+        Me.BtnGenres.Size = New System.Drawing.Size(151, 49)
+        Me.BtnGenres.TabIndex = 32
+        Me.BtnGenres.Text = "Music Genres"
+        Me.BtnGenres.UseVisualStyleBackColor = True
+        '
+        'BtnViewLog
+        '
+        Me.BtnViewLog.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnViewLog.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnViewLog.Location = New System.Drawing.Point(189, 413)
+        Me.BtnViewLog.Name = "BtnViewLog"
+        Me.BtnViewLog.Size = New System.Drawing.Size(151, 49)
+        Me.BtnViewLog.TabIndex = 33
+        Me.BtnViewLog.Text = "View Log"
+        Me.BtnViewLog.UseVisualStyleBackColor = True
+        '
         'FrmMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -183,6 +208,8 @@ Partial Class FrmMenu
         Me.BackColor = System.Drawing.Color.AliceBlue
         Me.ClientSize = New System.Drawing.Size(352, 596)
         Me.ControlBox = False
+        Me.Controls.Add(Me.BtnViewLog)
+        Me.Controls.Add(Me.BtnGenres)
         Me.Controls.Add(Me.BtnArtists)
         Me.Controls.Add(Me.BtnLabels)
         Me.Controls.Add(Me.BtnFormats)
@@ -217,4 +244,6 @@ Partial Class FrmMenu
     Friend WithEvents BtnFormats As Button
     Friend WithEvents BtnLabels As Button
     Friend WithEvents BtnArtists As Button
+    Friend WithEvents BtnGenres As Button
+    Friend WithEvents BtnViewLog As Button
 End Class

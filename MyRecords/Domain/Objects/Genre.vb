@@ -38,5 +38,8 @@ Public Class Genre
         _genreId = pId
         _genreName = Pname
     End Sub
+    Public Function IsExists() As Boolean
+        Return _genreId > -1
+    End Function
 #End Region
 End Class

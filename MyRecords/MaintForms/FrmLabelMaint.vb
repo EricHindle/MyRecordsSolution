@@ -87,8 +87,13 @@ Public Class FrmLabelMaint
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If isValidLabel() Then
-            InsertNewLabel()
+            If GetLabelFromName(TxtLabel.Text).IsExists Then
+                ShowStatus("Looks like the Label already exists", LblStatus, MyBase.Name, False,,, True,, True)
+            Else
+                InsertNewLabel()
             LoadLabelList()
+                ClearForm()
+            End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)
         End If

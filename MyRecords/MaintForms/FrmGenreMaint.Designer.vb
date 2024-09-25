@@ -6,7 +6,7 @@
 '
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmArtistMaint
+Partial Class FrmGenreMaint
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -29,81 +29,30 @@ Partial Class FrmArtistMaint
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmArtistMaint))
-        Me.TxtArtist = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DgvArtist = New System.Windows.Forms.DataGridView()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmGenreMaint))
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.LblArtistId = New System.Windows.Forms.Label()
+        Me.LblGenreId = New System.Windows.Forms.Label()
+        Me.TxtGenre = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DgvGenre = New System.Windows.Forms.DataGridView()
         Me.BtnClear = New System.Windows.Forms.Button()
         Me.BtnNew = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
-        Me.artId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.artName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.DgvArtist, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.genId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.genname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.DgvGenre, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'TxtArtist
-        '
-        Me.TxtArtist.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtArtist.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtArtist.Location = New System.Drawing.Point(234, 92)
-        Me.TxtArtist.MaxLength = 50
-        Me.TxtArtist.Name = "TxtArtist"
-        Me.TxtArtist.Size = New System.Drawing.Size(248, 27)
-        Me.TxtArtist.TabIndex = 41
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(231, 72)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 17)
-        Me.Label2.TabIndex = 40
-        Me.Label2.Text = "Artist Name"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(231, 15)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 17)
-        Me.Label1.TabIndex = 39
-        Me.Label1.Text = "Artist Id"
-        '
-        'DgvArtist
-        '
-        Me.DgvArtist.AllowUserToAddRows = False
-        Me.DgvArtist.AllowUserToDeleteRows = False
-        Me.DgvArtist.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.DgvArtist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvArtist.ColumnHeadersVisible = False
-        Me.DgvArtist.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.artId, Me.artName})
-        Me.DgvArtist.Location = New System.Drawing.Point(12, 6)
-        Me.DgvArtist.MultiSelect = False
-        Me.DgvArtist.Name = "DgvArtist"
-        Me.DgvArtist.ReadOnly = True
-        Me.DgvArtist.RowHeadersVisible = False
-        Me.DgvArtist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvArtist.Size = New System.Drawing.Size(188, 233)
-        Me.DgvArtist.TabIndex = 38
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 327)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 316)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(494, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(507, 22)
         Me.StatusStrip1.TabIndex = 43
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -113,16 +62,67 @@ Partial Class FrmArtistMaint
         Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
         Me.LblStatus.Size = New System.Drawing.Size(6, 17)
         '
-        'LblArtistId
+        'LblGenreId
         '
-        Me.LblArtistId.AutoSize = True
-        Me.LblArtistId.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblArtistId.Location = New System.Drawing.Point(301, 14)
-        Me.LblArtistId.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LblArtistId.Name = "LblArtistId"
-        Me.LblArtistId.Size = New System.Drawing.Size(21, 18)
-        Me.LblArtistId.TabIndex = 42
-        Me.LblArtistId.Text = "-1"
+        Me.LblGenreId.AutoSize = True
+        Me.LblGenreId.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblGenreId.Location = New System.Drawing.Point(301, 14)
+        Me.LblGenreId.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LblGenreId.Name = "LblGenreId"
+        Me.LblGenreId.Size = New System.Drawing.Size(21, 18)
+        Me.LblGenreId.TabIndex = 42
+        Me.LblGenreId.Text = "-1"
+        '
+        'TxtGenre
+        '
+        Me.TxtGenre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtGenre.Location = New System.Drawing.Point(234, 92)
+        Me.TxtGenre.MaxLength = 50
+        Me.TxtGenre.Name = "TxtGenre"
+        Me.TxtGenre.Size = New System.Drawing.Size(264, 27)
+        Me.TxtGenre.TabIndex = 41
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(231, 72)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(83, 17)
+        Me.Label2.TabIndex = 40
+        Me.Label2.Text = "Genre Name"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(231, 15)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(60, 17)
+        Me.Label1.TabIndex = 39
+        Me.Label1.Text = "Genre Id"
+        '
+        'DgvGenre
+        '
+        Me.DgvGenre.AllowUserToAddRows = False
+        Me.DgvGenre.AllowUserToDeleteRows = False
+        Me.DgvGenre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DgvGenre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvGenre.ColumnHeadersVisible = False
+        Me.DgvGenre.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.genId, Me.genname})
+        Me.DgvGenre.Location = New System.Drawing.Point(12, 6)
+        Me.DgvGenre.MultiSelect = False
+        Me.DgvGenre.Name = "DgvGenre"
+        Me.DgvGenre.ReadOnly = True
+        Me.DgvGenre.RowHeadersVisible = False
+        Me.DgvGenre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvGenre.Size = New System.Drawing.Size(188, 212)
+        Me.DgvGenre.TabIndex = 38
         '
         'BtnClear
         '
@@ -131,7 +131,7 @@ Partial Class FrmArtistMaint
         Me.BtnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClear.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClear.ForeColor = System.Drawing.Color.Black
-        Me.BtnClear.Location = New System.Drawing.Point(432, 15)
+        Me.BtnClear.Location = New System.Drawing.Point(448, 15)
         Me.BtnClear.Name = "BtnClear"
         Me.BtnClear.Size = New System.Drawing.Size(50, 48)
         Me.BtnClear.TabIndex = 37
@@ -146,7 +146,7 @@ Partial Class FrmArtistMaint
         Me.BtnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNew.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNew.ForeColor = System.Drawing.Color.Black
-        Me.BtnNew.Location = New System.Drawing.Point(12, 245)
+        Me.BtnNew.Location = New System.Drawing.Point(12, 237)
         Me.BtnNew.Name = "BtnNew"
         Me.BtnNew.Size = New System.Drawing.Size(71, 65)
         Me.BtnNew.TabIndex = 35
@@ -161,7 +161,7 @@ Partial Class FrmArtistMaint
         Me.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdate.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnUpdate.ForeColor = System.Drawing.Color.Black
-        Me.BtnUpdate.Location = New System.Drawing.Point(129, 245)
+        Me.BtnUpdate.Location = New System.Drawing.Point(129, 237)
         Me.BtnUpdate.Name = "BtnUpdate"
         Me.BtnUpdate.Size = New System.Drawing.Size(71, 65)
         Me.BtnUpdate.TabIndex = 36
@@ -177,64 +177,64 @@ Partial Class FrmArtistMaint
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.Black
-        Me.BtnClose.Location = New System.Drawing.Point(411, 245)
+        Me.BtnClose.Location = New System.Drawing.Point(424, 237)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(71, 65)
         Me.BtnClose.TabIndex = 34
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = False
         '
-        'artId
+        'genId
         '
-        Me.artId.HeaderText = "Id"
-        Me.artId.Name = "artId"
-        Me.artId.ReadOnly = True
-        Me.artId.Visible = False
+        Me.genId.HeaderText = "Id"
+        Me.genId.Name = "genId"
+        Me.genId.ReadOnly = True
+        Me.genId.Visible = False
         '
-        'artName
+        'genname
         '
-        Me.artName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.artName.HeaderText = "Artist"
-        Me.artName.Name = "artName"
-        Me.artName.ReadOnly = True
+        Me.genname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.genname.HeaderText = "Genre"
+        Me.genname.Name = "genname"
+        Me.genname.ReadOnly = True
         '
-        'FrmArtistMaint
+        'FrmGenreMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(494, 349)
-        Me.Controls.Add(Me.TxtArtist)
+        Me.ClientSize = New System.Drawing.Size(507, 338)
+        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.LblGenreId)
+        Me.Controls.Add(Me.TxtGenre)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DgvArtist)
-        Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.LblArtistId)
+        Me.Controls.Add(Me.DgvGenre)
         Me.Controls.Add(Me.BtnClear)
         Me.Controls.Add(Me.BtnNew)
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnClose)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "FrmArtistMaint"
-        Me.Text = "Artists"
-        CType(Me.DgvArtist, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Name = "FrmGenreMaint"
+        Me.Text = "FrmGenreMaint"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.DgvGenre, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents TxtArtist As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents DgvArtist As DataGridView
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents LblStatus As ToolStripStatusLabel
-    Friend WithEvents LblArtistId As Label
+    Friend WithEvents LblGenreId As Label
+    Friend WithEvents TxtGenre As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents DgvGenre As DataGridView
     Friend WithEvents BtnClear As Button
     Friend WithEvents BtnNew As Button
     Friend WithEvents BtnUpdate As Button
     Friend WithEvents BtnClose As Button
-    Friend WithEvents artId As DataGridViewTextBoxColumn
-    Friend WithEvents artName As DataGridViewTextBoxColumn
+    Friend WithEvents genId As DataGridViewTextBoxColumn
+    Friend WithEvents genname As DataGridViewTextBoxColumn
 End Class

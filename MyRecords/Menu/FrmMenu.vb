@@ -115,5 +115,15 @@ Public Class FrmMenu
         End Using
     End Sub
 
+    Private Sub BtnGenres_Click(sender As Object, e As EventArgs) Handles BtnGenres.Click
+        Using _genre As New FrmGenreMaint
+            _genre.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub BtnViewLog_Click(sender As Object, e As EventArgs) Handles BtnViewLog.Click
+        ShowLog()
+    End Sub
+
 #End Region
 End Class

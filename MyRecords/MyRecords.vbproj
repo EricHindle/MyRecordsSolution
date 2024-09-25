@@ -47,6 +47,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MyRecords.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HindlewareLib">
       <HintPath>..\..\HindlewareLib\bin\Release\HindlewareLib.dll</HintPath>
@@ -76,6 +79,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Domain\Builders\ArtistBuilder.vb" />
     <Compile Include="Domain\Builders\GenreBuilder.vb" />
     <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
@@ -104,6 +108,12 @@
       <DependentUpon>FrmFormatMaint.vb</DependentUpon>
     </Compile>
     <Compile Include="MaintForms\FrmFormatMaint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaintForms\FrmGenreMaint.Designer.vb">
+      <DependentUpon>FrmGenreMaint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MaintForms\FrmGenreMaint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MaintForms\FrmLabelMaint.Designer.vb">
@@ -186,6 +196,9 @@
     <EmbeddedResource Include="MaintForms\FrmFormatMaint.resx">
       <DependentUpon>FrmFormatMaint.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MaintForms\FrmGenreMaint.resx">
+      <DependentUpon>FrmGenreMaint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaintForms\FrmLabelMaint.resx">
       <DependentUpon>FrmLabelMaint.vb</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +253,12 @@
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\disc_100.png" />
+    <Content Include="MyRecords.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

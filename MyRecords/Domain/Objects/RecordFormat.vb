@@ -38,5 +38,9 @@ Public Class RecordFormat
         _formatId = pId
         _formatName = Pname
     End Sub
+    Public Function IsExists() As Boolean
+        Return Not String.IsNullOrEmpty(_formatId)
+    End Function
+
 #End Region
 End Class

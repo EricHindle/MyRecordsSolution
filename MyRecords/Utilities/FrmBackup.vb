@@ -282,6 +282,9 @@ Public Class FrmBackup
                     Case Tables.Settings.ToString
                         _itemList.Add(BackupTable(GetSettingsTable))
                         _isTableSaved = True
+                    Case Tables.Artists.ToString
+                        _itemList.Add(BackupTable(GetartistsTable))
+                        _isTableSaved = True
                 End Select
                 If _isTableSaved Then
                     oNode.Checked = False

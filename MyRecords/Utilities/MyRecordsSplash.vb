@@ -14,6 +14,5 @@ Public NotInheritable Class MyRecordsSplash
         End If
         Version.Text = System.String.Format(Version.Text, My.Application.Info.Version.Major, My.Application.Info.Version.Minor, My.Application.Info.Version.Build, My.Application.Info.Version.Revision)
         Copyright.Text = My.Application.Info.Copyright
-        SendToBack()
     End Sub
 End Class

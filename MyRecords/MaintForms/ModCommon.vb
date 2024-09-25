@@ -141,7 +141,6 @@ Public Module ModCommon
 
 #End Region
 #Region "subroutines"
-
     Public Sub LogSettings(pSection As SettingSection, psub As String)
         Select Case pSection
             Case SettingSection.MainSplitterDist

@@ -120,7 +120,7 @@ Partial Class FrmRecordInput
         Me.Label1.Location = New System.Drawing.Point(3, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 17)
-        Me.Label1.TabIndex = 0
+        Me.Label1.TabIndex = 6
         Me.Label1.Text = "Record Id"
         '
         'LblRecordId
@@ -130,7 +130,7 @@ Partial Class FrmRecordInput
         Me.LblRecordId.Location = New System.Drawing.Point(77, 15)
         Me.LblRecordId.Name = "LblRecordId"
         Me.LblRecordId.Size = New System.Drawing.Size(21, 17)
-        Me.LblRecordId.TabIndex = 1
+        Me.LblRecordId.TabIndex = 7
         Me.LblRecordId.Text = "-1"
         '
         'Label2
@@ -140,7 +140,7 @@ Partial Class FrmRecordInput
         Me.Label2.Location = New System.Drawing.Point(19, 46)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 17)
-        Me.Label2.TabIndex = 2
+        Me.Label2.TabIndex = 9
         Me.Label2.Text = "Format"
         '
         'CbRecordFormat
@@ -152,7 +152,7 @@ Partial Class FrmRecordInput
         Me.CbRecordFormat.Location = New System.Drawing.Point(24, 66)
         Me.CbRecordFormat.Name = "CbRecordFormat"
         Me.CbRecordFormat.Size = New System.Drawing.Size(196, 27)
-        Me.CbRecordFormat.TabIndex = 3
+        Me.CbRecordFormat.TabIndex = 0
         Me.CbRecordFormat.ValueMember = "FormatId"
         '
         'RecordFormatBindingSource
@@ -194,7 +194,7 @@ Partial Class FrmRecordInput
         Me.BtnAdd.Location = New System.Drawing.Point(22, 354)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
-        Me.BtnAdd.TabIndex = 5
+        Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Save Record"
         Me.BtnAdd.UseVisualStyleBackColor = False
         '
@@ -208,10 +208,10 @@ Partial Class FrmRecordInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(1088, 463)
+        Me.BtnClose.Location = New System.Drawing.Point(1088, 461)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 34)
-        Me.BtnClose.TabIndex = 8
+        Me.BtnClose.TabIndex = 2
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = False
         '
@@ -222,7 +222,7 @@ Partial Class FrmRecordInput
         Me.Label3.Location = New System.Drawing.Point(19, 102)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(87, 17)
-        Me.Label3.TabIndex = 9
+        Me.Label3.TabIndex = 10
         Me.Label3.Text = "Record Label"
         '
         'CbRecordLabel
@@ -234,7 +234,7 @@ Partial Class FrmRecordInput
         Me.CbRecordLabel.Location = New System.Drawing.Point(22, 122)
         Me.CbRecordLabel.Name = "CbRecordLabel"
         Me.CbRecordLabel.Size = New System.Drawing.Size(198, 27)
-        Me.CbRecordLabel.TabIndex = 10
+        Me.CbRecordLabel.TabIndex = 1
         Me.CbRecordLabel.ValueMember = "LabelId"
         '
         'RecordLabelsBindingSource
@@ -260,7 +260,7 @@ Partial Class FrmRecordInput
         Me.BtnAddFormat.Location = New System.Drawing.Point(226, 65)
         Me.BtnAddFormat.Name = "BtnAddFormat"
         Me.BtnAddFormat.Size = New System.Drawing.Size(65, 32)
-        Me.BtnAddFormat.TabIndex = 11
+        Me.BtnAddFormat.TabIndex = 4
         Me.BtnAddFormat.Text = "Add"
         Me.BtnAddFormat.UseVisualStyleBackColor = False
         '
@@ -274,7 +274,7 @@ Partial Class FrmRecordInput
         Me.BtnAddLabel.Location = New System.Drawing.Point(226, 118)
         Me.BtnAddLabel.Name = "BtnAddLabel"
         Me.BtnAddLabel.Size = New System.Drawing.Size(65, 32)
-        Me.BtnAddLabel.TabIndex = 12
+        Me.BtnAddLabel.TabIndex = 5
         Me.BtnAddLabel.Text = "Add"
         Me.BtnAddLabel.UseVisualStyleBackColor = False
         '
@@ -285,7 +285,7 @@ Partial Class FrmRecordInput
         Me.Label4.Location = New System.Drawing.Point(19, 164)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(105, 17)
-        Me.Label4.TabIndex = 13
+        Me.Label4.TabIndex = 11
         Me.Label4.Text = "Record Number"
         '
         'TxtRecNumber
@@ -294,7 +294,7 @@ Partial Class FrmRecordInput
         Me.TxtRecNumber.Location = New System.Drawing.Point(22, 184)
         Me.TxtRecNumber.Name = "TxtRecNumber"
         Me.TxtRecNumber.Size = New System.Drawing.Size(153, 27)
-        Me.TxtRecNumber.TabIndex = 14
+        Me.TxtRecNumber.TabIndex = 2
         '
         'GroupBox1
         '
@@ -304,7 +304,7 @@ Partial Class FrmRecordInput
         Me.GroupBox1.Location = New System.Drawing.Point(22, 227)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(200, 57)
-        Me.GroupBox1.TabIndex = 16
+        Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Size"
         '
@@ -353,7 +353,7 @@ Partial Class FrmRecordInput
         Me.GroupBox2.Location = New System.Drawing.Point(22, 290)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(272, 53)
-        Me.GroupBox2.TabIndex = 17
+        Me.GroupBox2.TabIndex = 13
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Speed"
         '
@@ -419,7 +419,7 @@ Partial Class FrmRecordInput
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvTracks.Size = New System.Drawing.Size(498, 147)
-        Me.DgvTracks.TabIndex = 18
+        Me.DgvTracks.TabIndex = 0
         '
         'trkSide
         '
@@ -473,10 +473,10 @@ Partial Class FrmRecordInput
         Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(216, 354)
+        Me.BtnNext.Location = New System.Drawing.Point(461, 461)
         Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(78, 78)
-        Me.BtnNext.TabIndex = 21
+        Me.BtnNext.Size = New System.Drawing.Size(245, 34)
+        Me.BtnNext.TabIndex = 1
         Me.BtnNext.Text = "Next Record"
         Me.BtnNext.UseVisualStyleBackColor = False
         '
@@ -486,7 +486,7 @@ Partial Class FrmRecordInput
         Me.Status.Location = New System.Drawing.Point(0, 500)
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(1173, 22)
-        Me.Status.TabIndex = 23
+        Me.Status.TabIndex = 3
         Me.Status.Text = "StatusStrip1"
         '
         'LblStatus
@@ -516,7 +516,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer1.Panel2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SplitContainer1.Size = New System.Drawing.Size(502, 421)
         Me.SplitContainer1.SplitterDistance = 266
-        Me.SplitContainer1.TabIndex = 24
+        Me.SplitContainer1.TabIndex = 8
         '
         'DgvRecords
         '
@@ -586,7 +586,6 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.LblRecordId)
-        Me.SplitContainer2.Panel1.Controls.Add(Me.BtnNext)
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label2)
         Me.SplitContainer2.Panel1.Controls.Add(Me.GroupBox2)
         Me.SplitContainer2.Panel1.Controls.Add(Me.BtnAdd)
@@ -617,7 +616,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel2.Controls.Add(Me.Label9)
         Me.SplitContainer2.Size = New System.Drawing.Size(1154, 443)
         Me.SplitContainer2.SplitterDistance = 809
-        Me.SplitContainer2.TabIndex = 25
+        Me.SplitContainer2.TabIndex = 0
         '
         'BtnSaveTrack
         '
@@ -630,7 +629,7 @@ Partial Class FrmRecordInput
         Me.BtnSaveTrack.Location = New System.Drawing.Point(12, 354)
         Me.BtnSaveTrack.Name = "BtnSaveTrack"
         Me.BtnSaveTrack.Size = New System.Drawing.Size(78, 78)
-        Me.BtnSaveTrack.TabIndex = 35
+        Me.BtnSaveTrack.TabIndex = 6
         Me.BtnSaveTrack.Text = "Save Track"
         Me.BtnSaveTrack.UseVisualStyleBackColor = False
         '
@@ -645,7 +644,7 @@ Partial Class FrmRecordInput
         Me.CbArtists.Location = New System.Drawing.Point(12, 140)
         Me.CbArtists.Name = "CbArtists"
         Me.CbArtists.Size = New System.Drawing.Size(235, 27)
-        Me.CbArtists.TabIndex = 34
+        Me.CbArtists.TabIndex = 2
         Me.CbArtists.ValueMember = "ArtistId"
         '
         'BtnTracks
@@ -659,7 +658,7 @@ Partial Class FrmRecordInput
         Me.BtnTracks.Location = New System.Drawing.Point(253, 136)
         Me.BtnTracks.Name = "BtnTracks"
         Me.BtnTracks.Size = New System.Drawing.Size(65, 32)
-        Me.BtnTracks.TabIndex = 33
+        Me.BtnTracks.TabIndex = 7
         Me.BtnTracks.Text = "Add"
         Me.BtnTracks.UseVisualStyleBackColor = False
         '
@@ -674,7 +673,7 @@ Partial Class FrmRecordInput
         Me.BtnAddGenre.Location = New System.Drawing.Point(202, 308)
         Me.BtnAddGenre.Name = "BtnAddGenre"
         Me.BtnAddGenre.Size = New System.Drawing.Size(65, 32)
-        Me.BtnAddGenre.TabIndex = 32
+        Me.BtnAddGenre.TabIndex = 8
         Me.BtnAddGenre.Text = "Add"
         Me.BtnAddGenre.UseVisualStyleBackColor = False
         '
@@ -689,7 +688,7 @@ Partial Class FrmRecordInput
         Me.CbGenre.Location = New System.Drawing.Point(12, 309)
         Me.CbGenre.Name = "CbGenre"
         Me.CbGenre.Size = New System.Drawing.Size(184, 27)
-        Me.CbGenre.TabIndex = 26
+        Me.CbGenre.TabIndex = 5
         Me.CbGenre.ValueMember = "GenreId"
         '
         'Label7
@@ -698,7 +697,7 @@ Partial Class FrmRecordInput
         Me.Label7.Location = New System.Drawing.Point(9, 285)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(44, 17)
-        Me.Label7.TabIndex = 31
+        Me.Label7.TabIndex = 13
         Me.Label7.Text = "Genre"
         '
         'TxtYear
@@ -707,7 +706,7 @@ Partial Class FrmRecordInput
         Me.TxtYear.Location = New System.Drawing.Point(12, 250)
         Me.TxtYear.Name = "TxtYear"
         Me.TxtYear.Size = New System.Drawing.Size(75, 27)
-        Me.TxtYear.TabIndex = 25
+        Me.TxtYear.TabIndex = 4
         '
         'Label6
         '
@@ -715,7 +714,7 @@ Partial Class FrmRecordInput
         Me.Label6.Location = New System.Drawing.Point(9, 227)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(35, 17)
-        Me.Label6.TabIndex = 30
+        Me.Label6.TabIndex = 12
         Me.Label6.Text = "Year"
         '
         'TxtTitle
@@ -726,7 +725,7 @@ Partial Class FrmRecordInput
         Me.TxtTitle.Location = New System.Drawing.Point(12, 190)
         Me.TxtTitle.Name = "TxtTitle"
         Me.TxtTitle.Size = New System.Drawing.Size(301, 27)
-        Me.TxtTitle.TabIndex = 24
+        Me.TxtTitle.TabIndex = 3
         '
         'Label5
         '
@@ -734,7 +733,7 @@ Partial Class FrmRecordInput
         Me.Label5.Location = New System.Drawing.Point(9, 170)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(32, 17)
-        Me.Label5.TabIndex = 29
+        Me.Label5.TabIndex = 10
         Me.Label5.Text = "Title"
         '
         'Label8
@@ -743,7 +742,7 @@ Partial Class FrmRecordInput
         Me.Label8.Location = New System.Drawing.Point(9, 118)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(39, 17)
-        Me.Label8.TabIndex = 28
+        Me.Label8.TabIndex = 9
         Me.Label8.Text = "Artist"
         '
         'NudTrackNo
@@ -753,7 +752,7 @@ Partial Class FrmRecordInput
         Me.NudTrackNo.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.NudTrackNo.Name = "NudTrackNo"
         Me.NudTrackNo.Size = New System.Drawing.Size(64, 27)
-        Me.NudTrackNo.TabIndex = 23
+        Me.NudTrackNo.TabIndex = 1
         Me.NudTrackNo.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'GroupBox3
@@ -766,7 +765,7 @@ Partial Class FrmRecordInput
         Me.GroupBox3.Location = New System.Drawing.Point(12, 19)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(145, 91)
-        Me.GroupBox3.TabIndex = 22
+        Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Side"
         '
@@ -830,7 +829,7 @@ Partial Class FrmRecordInput
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(56, 17)
-        Me.Label9.TabIndex = 27
+        Me.Label9.TabIndex = 11
         Me.Label9.Text = "Track #"
         '
         'FrmRecordInput
@@ -841,6 +840,7 @@ Partial Class FrmRecordInput
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnClose)
+        Me.Controls.Add(Me.BtnNext)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)

@@ -140,9 +140,11 @@ Public Class FrmRecordInput
 
     Private Sub BtnAddLabel_Click(sender As Object, e As EventArgs) Handles BtnAddLabel.Click
         Using _label As New FrmLabelMaint
+            _label.IsSaveAndExit = True
             _label.ShowDialog()
+            LoadLabelList()
+            CbRecordLabel.SelectedValue = _label.RecordLabel.LabelId
         End Using
-        LoadLabelList()
     End Sub
 
     Private Sub BtnAddTracks_Click(sender As Object, e As EventArgs)
@@ -185,7 +187,6 @@ Public Class FrmRecordInput
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         DgvTracks.Rows.Clear()
-        SplitContainer2.Panel2Collapsed = True
         ClearTrackForm()
         LoadRecords()
         FindRecordInList(CurrentRecord.RecordId)
@@ -194,6 +195,7 @@ Public Class FrmRecordInput
         LblRecordId.Text = "-1"
         TxtRecNumber.Text = String.Empty
         BtnAdd.Enabled = True
+        SplitContainer2.Panel2Collapsed = True
     End Sub
     Private Sub ClearTrackForm()
         RbA.Checked = True
@@ -340,9 +342,11 @@ Public Class FrmRecordInput
 
     Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
         Using _artist As New FrmArtistMaint
+            _artist.IsSaveAndExit = True
             _artist.ShowDialog()
+            LoadArtistList()
+            CbArtists.SelectedValue = _artist.Artist.ArtistId
         End Using
-        LoadArtistList()
     End Sub
 
     Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click

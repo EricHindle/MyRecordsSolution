@@ -111,6 +111,7 @@ Public Class FrmMenu
 
     Private Sub BtnArtists_Click(sender As Object, e As EventArgs) Handles BtnArtists.Click
         Using _artist As New FrmArtistMaint
+            _artist.IsSaveAndExit = False
             _artist.ShowDialog()
         End Using
     End Sub

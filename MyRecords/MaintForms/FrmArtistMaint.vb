@@ -10,6 +10,25 @@ Imports HindlewareLib.Logging
 Public Class FrmArtistMaint
     Private CurrentArtist As Artist
     Private isLoading As Boolean
+    Private _isSaveAndExit As Boolean
+    Private _artist As New Artist
+    Public Property Artist() As Artist
+        Get
+            Return _artist
+        End Get
+        Set(ByVal value As Artist)
+            _artist = value
+        End Set
+    End Property
+    Public Property IsSaveAndExit() As Boolean
+        Get
+            Return _isSaveAndExit
+        End Get
+        Set(ByVal value As Boolean)
+            _isSaveAndExit = value
+        End Set
+    End Property
+
     Private Sub FrmArtistMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Artist maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.ArtistFormPos)
@@ -17,6 +36,7 @@ Public Class FrmArtistMaint
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        _artist = New Artist
         Close()
     End Sub
 
@@ -26,15 +46,14 @@ Public Class FrmArtistMaint
         My.Settings.Save()
     End Sub
 
-
     Private Sub InsertNewArtist()
         If Not String.IsNullOrWhiteSpace(TxtArtist.Text) Then
             ShowStatus("Adding new Artist", LblStatus, MyBase.Name)
-            Dim oArtist As Artist = ArtistBuilder.AnArtist.StartingWithNothing _
+            Artist = ArtistBuilder.AnArtist.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithArtistName(TxtArtist.Text) _
                                                     .Build
-            oArtist.ArtistId = InsertArtist(oArtist)
+            Artist.ArtistId = InsertArtist(Artist)
             ShowStatus("Added Artist", LblStatus, MyBase.Name)
         Else
             ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
@@ -91,8 +110,12 @@ Public Class FrmArtistMaint
                 ShowStatus("Looks like the Artist already exists", LblStatus, MyBase.Name, False, ,, True,, True)
             Else
                 InsertNewArtist()
-                LoadArtistList()
-                ClearForm()
+                If IsSaveAndExit Then
+                    Close()
+                Else
+                    LoadArtistList()
+                    ClearForm()
+                End If
             End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)

@@ -10,6 +10,24 @@ Imports HindlewareLib.Logging
 Public Class FrmLabelMaint
     Private CurrentLabel As RecordLabel
     Private isLoading As Boolean
+    Private _isSaveAndExit As Boolean
+    Private _label As New RecordLabel
+    Public Property RecordLabel() As RecordLabel
+        Get
+            Return _label
+        End Get
+        Set(ByVal value As RecordLabel)
+            _label = value
+        End Set
+    End Property
+    Public Property IsSaveAndExit() As Boolean
+        Get
+            Return _isSaveAndExit
+        End Get
+        Set(ByVal value As Boolean)
+            _isSaveAndExit = value
+        End Set
+    End Property
     Private Sub FrmLabelMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Label maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.LabelFormPos)
@@ -17,6 +35,7 @@ Public Class FrmLabelMaint
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        If IsSaveAndExit Then _label = New RecordLabel
         Close()
     End Sub
 
@@ -30,11 +49,11 @@ Public Class FrmLabelMaint
     Private Sub InsertNewLabel()
         If Not String.IsNullOrWhiteSpace(TxtLabel.Text) Then
             ShowStatus("Adding new Label", LblStatus, MyBase.Name)
-            Dim oLabel As RecordLabel = RecordLabelBuilder.ARecordLabel.StartingWithNothing _
+            _label = RecordLabelBuilder.ARecordLabel.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithLabelName(TxtLabel.Text) _
                                                     .Build
-            oLabel.LabelId = InsertLabel(oLabel)
+            _label.LabelId = InsertLabel(_label)
             ShowStatus("Added Label", LblStatus, MyBase.Name)
         Else
             ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
@@ -91,8 +110,12 @@ Public Class FrmLabelMaint
                 ShowStatus("Looks like the Label already exists", LblStatus, MyBase.Name, False,,, True,, True)
             Else
                 InsertNewLabel()
-            LoadLabelList()
-                ClearForm()
+                If IsSaveAndExit Then
+                    Close()
+                Else
+                    LoadLabelList()
+                    ClearForm()
+                End If
             End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)

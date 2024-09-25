@@ -206,6 +206,8 @@ Public Class FrmRecordInput
         LblRecordId.Text = "-1"
         TxtRecNumber.Text = String.Empty
         NudCopies.Value = 1
+        Rb45.Checked = True
+        Rb7.Checked = True
         BtnAdd.Enabled = True
         SplitContainer2.Panel2Collapsed = True
     End Sub

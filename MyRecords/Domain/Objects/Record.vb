@@ -13,6 +13,15 @@ Public Class Record
     Private _recordNumber As String
     Private _size As Integer
     Private _speed As String
+    Private _copies As Integer
+    Public Property Copies() As Integer
+        Get
+            Return _copies
+        End Get
+        Set(ByVal value As Integer)
+            _copies = value
+        End Set
+    End Property
     Public Property Speed() As String
         Get
             Return _speed
@@ -71,17 +80,19 @@ Public Class Record
         _recordNumber = ""
         _size = 0
         _speed = ""
+        _copies = 0
     End Sub
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId As Integer, pLabel As RecordLabel, pFormat As RecordFormat, pNumber As String, pSize As Integer, pSpeed As String)
+    Public Sub New(pId As Integer, pLabel As RecordLabel, pFormat As RecordFormat, pNumber As String, pSize As Integer, pSpeed As String, pCopies As Integer)
         _recordId = pId
         _label = pLabel
         _format = pFormat
         _recordNumber = pNumber
         _size = pSize
         _speed = pSpeed
+        _copies = pCopies
     End Sub
 #End Region
 End Class

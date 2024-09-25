@@ -103,10 +103,6 @@ Public Module ModDataFunctions
                 Case "Records"
                     If RecreateTable(oRecordsTable, datapath, isSuppressMessage) Then
                         oRecordsTa.TruncateRecords()
-                        For Each _row As RecordsDataSet.RecordsRow In oRecordsTable.Rows
-                            Dim _record As Record = RecordBuilder.ARecord.StartingWith(_row).Build
-                            InsertRecord(_record, _record.RecordId)
-                        Next
                         rowCount = oRecordsTa.GetData.Rows.Count
                     End If
                 Case "RecordFormat"
@@ -218,15 +214,27 @@ Public Module ModDataFunctions
         Try
             With pRecord
                 If pId < 0 Then
-                    newId = oRecordsTa.InsertRecord(.RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+                    newId = oRecordsTa.InsertRecord(.RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed, .Copies)
                 Else
-                    newId = oRecordsTa.InsertRecordWithId(.RecordId, .RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed)
+                    newId = oRecordsTa.InsertRecordWithId(.RecordId, .RecordFormat.FormatId, .Label.LabelId, .RecordNumber, .Size, .Speed, .Copies)
                 End If
             End With
         Catch ex As SqlException
             DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
         End Try
         Return newId
+    End Function
+    Public Function UpdateRecordCopies(pRecord As Record) As Integer
+        LogUtil.Info("Inserting record copies for" & pRecord.RecordNumber, MODULE_NAME)
+        Dim response As Integer = 0
+        Try
+            With pRecord
+                response = oRecordsTa.UpdateRecordCopies(pRecord.Copies, pRecord.RecordId)
+            End With
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
     End Function
 #End Region
 #Region "Track"

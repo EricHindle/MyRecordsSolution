@@ -10,6 +10,24 @@ Imports HindlewareLib.Logging
 Public Class FrmGenreMaint
     Private CurrentGenre As Genre
     Private isLoading As Boolean
+    Private _isSaveAndExit As Boolean
+    Private _genre As New Genre
+    Public Property Genre() As Genre
+        Get
+            Return _genre
+        End Get
+        Set(ByVal value As Genre)
+            _genre = value
+        End Set
+    End Property
+    Public Property IsSaveAndExit() As Boolean
+        Get
+            Return _isSaveAndExit
+        End Get
+        Set(ByVal value As Boolean)
+            _isSaveAndExit = value
+        End Set
+    End Property
     Private Sub FrmGenreMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Genre maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.GenreFormPos)
@@ -17,6 +35,7 @@ Public Class FrmGenreMaint
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        _genre = New Genre
         Close()
     End Sub
 
@@ -30,11 +49,11 @@ Public Class FrmGenreMaint
     Private Sub InsertNewGenre()
         If Not String.IsNullOrWhiteSpace(TxtGenre.Text) Then
             ShowStatus("Adding new Genre", LblStatus, MyBase.Name)
-            Dim oGenre As Genre = GenreBuilder.AGenre.StartingWithNothing _
+            Genre = GenreBuilder.AGenre.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithGenreName(TxtGenre.Text) _
                                                     .Build
-            oGenre.GenreId = InsertGenre(oGenre)
+            Genre.GenreId = InsertGenre(Genre)
             ShowStatus("Added Genre", LblStatus, MyBase.Name)
         Else
             ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
@@ -91,8 +110,12 @@ Public Class FrmGenreMaint
                 ShowStatus("Looks like the Genre already exists", LblStatus, MyBase.Name, False,,, True,, True)
             Else
                 InsertNewGenre()
-                LoadGenreList()
-                ClearForm()
+                If IsSaveAndExit Then
+                    Close()
+                Else
+                    LoadGenreList()
+                    ClearForm()
+                End If
             End If
         Else
             ShowStatus("Invalid Values", LblStatus,, False)

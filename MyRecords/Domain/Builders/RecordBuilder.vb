@@ -12,6 +12,7 @@ Public Class RecordBuilder
     Private _recordNumber As String
     Private _size As Integer
     Private _speed As String
+    Private _copies As Integer
     Public Shared Function ARecord() As RecordBuilder
         Return New RecordBuilder
     End Function
@@ -22,6 +23,7 @@ Public Class RecordBuilder
         _recordNumber = String.Empty
         _size = 0
         _speed = String.Empty
+        _copies = 0
         Return Me
     End Function
     Public Function StartingWith(pRow As RecordsDataSet.RecordsRow) As RecordBuilder
@@ -33,6 +35,20 @@ Public Class RecordBuilder
             _recordNumber = pRow.RecordNo
             _size = pRow.Size
             _speed = pRow.Speed
+            _copies = pRow.Copies
+        End If
+        Return Me
+    End Function
+    Public Function StartingWith(pRow As RecordsDataSet.vRecordTracksRow) As RecordBuilder
+        StartingWithNothing()
+        If pRow IsNot Nothing Then
+            _recordId = pRow.RecordId
+            _label = GetLabelbyId(pRow.LabelId)
+            _format = GetFormatbyId(pRow.Format)
+            _recordNumber = pRow.RecordNo
+            _size = pRow.Size
+            _speed = pRow.Speed
+            _copies = pRow.Copies
         End If
         Return Me
     End Function
@@ -45,6 +61,7 @@ Public Class RecordBuilder
             _recordNumber = pRecord.RecordNumber
             _size = pRecord.Size
             _speed = pRecord.Speed
+            _copies = pRecord.Copies
         End If
         Return Me
     End Function
@@ -80,8 +97,12 @@ Public Class RecordBuilder
         _speed = pSpeed
         Return Me
     End Function
+    Public Function WithCopies(ByVal pCopies As Integer) As RecordBuilder
+        _copies = pCopies
+        Return Me
+    End Function
     Public Function Build() As Record
-        Return New Record(_recordId, _label, _format, _recordNumber, _size, _speed)
+        Return New Record(_recordId, _label, _format, _recordNumber, _size, _speed, _copies)
     End Function
 
 End Class

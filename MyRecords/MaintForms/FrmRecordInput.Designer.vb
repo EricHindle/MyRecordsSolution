@@ -72,6 +72,8 @@ Partial Class FrmRecordInput
         Me.recNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.NudCopies = New System.Windows.Forms.NumericUpDown()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.BtnSaveTrack = New System.Windows.Forms.Button()
         Me.CbArtists = New System.Windows.Forms.ComboBox()
         Me.BtnTracks = New System.Windows.Forms.Button()
@@ -109,6 +111,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
+        CType(Me.NudCopies, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
@@ -194,7 +197,7 @@ Partial Class FrmRecordInput
         Me.BtnAdd.Location = New System.Drawing.Point(22, 354)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
-        Me.BtnAdd.TabIndex = 3
+        Me.BtnAdd.TabIndex = 4
         Me.BtnAdd.Text = "Save Record"
         Me.BtnAdd.UseVisualStyleBackColor = False
         '
@@ -583,6 +586,8 @@ Partial Class FrmRecordInput
         '
         'SplitContainer2.Panel1
         '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.NudCopies)
+        Me.SplitContainer2.Panel1.Controls.Add(Me.Label10)
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.LblRecordId)
@@ -617,6 +622,25 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Size = New System.Drawing.Size(1154, 443)
         Me.SplitContainer2.SplitterDistance = 809
         Me.SplitContainer2.TabIndex = 0
+        '
+        'NudCopies
+        '
+        Me.NudCopies.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NudCopies.Location = New System.Drawing.Point(212, 184)
+        Me.NudCopies.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NudCopies.Name = "NudCopies"
+        Me.NudCopies.Size = New System.Drawing.Size(45, 27)
+        Me.NudCopies.TabIndex = 3
+        Me.NudCopies.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(209, 164)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(48, 17)
+        Me.Label10.TabIndex = 14
+        Me.Label10.Text = "Copies"
         '
         'BtnSaveTrack
         '
@@ -869,6 +893,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel2.PerformLayout()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
+        CType(Me.NudCopies, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
@@ -944,4 +969,6 @@ Partial Class FrmRecordInput
     Friend WithEvents RbA As RadioButton
     Friend WithEvents Label9 As Label
     Friend WithEvents BtnSaveTrack As Button
+    Friend WithEvents NudCopies As NumericUpDown
+    Friend WithEvents Label10 As Label
 End Class

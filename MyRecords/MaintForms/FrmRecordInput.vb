@@ -39,7 +39,6 @@ Public Class FrmRecordInput
         LoadArtistList()
         ClearForm()
         DgvTracks.Rows.Clear()
-        'BtnAddTracks.Enabled = False
         LoadRecords()
     End Sub
 
@@ -99,26 +98,38 @@ Public Class FrmRecordInput
         My.Settings.RecSplitDist1 = SplitContainer1.SplitterDistance
     End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        If Not IsValidRecord() Then
+        Dim IsExists As Boolean = False
+        If Not IsValidRecord(IsExists) Then
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
             CurrentRecord = BuildRecordFromForm()
-            CurrentRecord.RecordId = InsertRecord(CurrentRecord)
-            LblRecordId.Text = CStr(CurrentRecord.RecordId)
-            SplitContainer2.Panel2Collapsed = False
-            BtnAdd.Enabled = False
-            ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+            If IsExists Then
+                CurrentRecord.RecordId = CInt(LblRecordId.Text)
+                UpdateRecordCopies(CurrentRecord)
+                ShowStatus("Record Updated", LblStatus, MyBase.Name, False)
+            Else
+                CurrentRecord.RecordId = InsertRecord(CurrentRecord)
+                LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                SplitContainer2.Panel2Collapsed = False
+                BtnAdd.Enabled = False
+                ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+            End If
             LoadRecords()
         End If
     End Sub
-    Private Function IsValidRecord() As Boolean
+    Private Function IsValidRecord(ByRef IsExists As Boolean) As Boolean
         Dim isOK As Boolean = True
         If String.IsNullOrWhiteSpace(TxtRecNumber.Text) Then
             isOK = False
         Else
             Dim recordList As System.Data.EnumerableRowCollection(Of RecordsDataSet.vRecordTracksRow) = FindExistingRecordByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
             If recordList.Count > 0 Then
-                If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept anyway?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.No Then
+                If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
+                    Dim oRow As RecordsDataSet.vRecordTracksRow = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
+                    LblRecordId.Text = oRow.RecordId
+                    NudCopies.Value = oRow.Copies + 1
+                    IsExists = True
+                Else
                     isOK = False
                 End If
             End If
@@ -194,6 +205,7 @@ Public Class FrmRecordInput
         CbRecordLabel.SelectedIndex = -1
         LblRecordId.Text = "-1"
         TxtRecNumber.Text = String.Empty
+        NudCopies.Value = 1
         BtnAdd.Enabled = True
         SplitContainer2.Panel2Collapsed = True
     End Sub
@@ -215,6 +227,7 @@ Public Class FrmRecordInput
             .WithRecordNumber(TxtRecNumber.Text) _
             .WithSize(GetSizeFromForm()) _
             .WithSpeed(GetSpeedFromForm()) _
+            .WithCopies(NudCopies.Value) _
             .Build
     End Function
     Private Function GetSizeFromForm() As Integer
@@ -259,10 +272,10 @@ Public Class FrmRecordInput
         CbRecordFormat.SelectedValue = CurrentRecord.RecordFormat.FormatId
         CbRecordLabel.SelectedValue = CurrentRecord.Label.LabelId
         TxtRecNumber.Text = CurrentRecord.RecordNumber
+        NudCopies.Value = CurrentRecord.Copies
         CheckSize(CurrentRecord.Size)
         CheckSpeed(CurrentRecord.Speed)
         BtnAdd.Enabled = False
-        'BtnAddTracks.Enabled = True
     End Sub
 
     Private Sub CheckSpeed(speed As String)
@@ -294,6 +307,7 @@ Public Class FrmRecordInput
         CbRecordFormat.SelectedIndex = -1
         CbRecordLabel.SelectedIndex = -1
         TxtRecNumber.Text = String.Empty
+        NudCopies.Value = 1
         Rb7.Checked = True
         Rb45.Checked = True
         ClearTrackForm()
@@ -351,9 +365,11 @@ Public Class FrmRecordInput
 
     Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click
         Using _genre As New FrmGenreMaint
+            _genre.IsSaveAndExit = True
             _genre.ShowDialog()
+            LoadGenreList()
+            CbGenre.SelectedValue = _genre.Genre.GenreId
         End Using
-        LoadGenreList()
     End Sub
     Private Function BuildTrackFromForm() As Track
         Dim _artist As New Artist
@@ -408,6 +424,5 @@ Public Class FrmRecordInput
         End If
         Return isOK
     End Function
-
 
 End Class

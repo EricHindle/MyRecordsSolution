@@ -1683,6 +1683,8 @@ Partial Public Class RecordsDataSet
         
         Private columnSpeed As Global.System.Data.DataColumn
         
+        Private columnCopies As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -1767,6 +1769,14 @@ Partial Public Class RecordsDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CopiesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCopies
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1803,9 +1813,9 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddRecordsRow(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String) As RecordsRow
+        Public Overloads Function AddRecordsRow(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer) As RecordsRow
             Dim rowRecordsRow As RecordsRow = CType(Me.NewRow,RecordsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Format, Label, RecordNo, Size, Speed}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Format, Label, RecordNo, Size, Speed, Copies}
             rowRecordsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowRecordsRow)
             Return rowRecordsRow
@@ -1840,6 +1850,7 @@ Partial Public Class RecordsDataSet
             Me.columnRecordNo = MyBase.Columns("RecordNo")
             Me.columnSize = MyBase.Columns("Size")
             Me.columnSpeed = MyBase.Columns("Speed")
+            Me.columnCopies = MyBase.Columns("Copies")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1857,6 +1868,8 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnSize)
             Me.columnSpeed = New Global.System.Data.DataColumn("Speed", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSpeed)
+            Me.columnCopies = New Global.System.Data.DataColumn("Copies", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCopies)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnRecordId}, true))
             Me.columnRecordId.AutoIncrement = true
             Me.columnRecordId.AutoIncrementSeed = -1
@@ -1872,6 +1885,7 @@ Partial Public Class RecordsDataSet
             Me.columnSize.AllowDBNull = false
             Me.columnSpeed.AllowDBNull = false
             Me.columnSpeed.MaxLength = 3
+            Me.columnCopies.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2385,6 +2399,8 @@ Partial Public Class RecordsDataSet
         
         Private columnLabelId As Global.System.Data.DataColumn
         
+        Private columnCopies As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -2541,6 +2557,14 @@ Partial Public Class RecordsDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property CopiesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCopies
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2577,9 +2601,25 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddvRecordTracksRow(ByVal RecordId As Integer, ByVal Format As String, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal LabelName As String, ByVal GenreName As String, ByVal ArtistId As Integer, ByVal ArtistName As String, ByVal GenreId As Integer, ByVal LabelId As Integer) As vRecordTracksRow
+        Public Overloads Function AddvRecordTracksRow( _
+                    ByVal RecordId As Integer,  _
+                    ByVal Format As String,  _
+                    ByVal RecordNo As String,  _
+                    ByVal Size As Integer,  _
+                    ByVal Speed As String,  _
+                    ByVal Side As String,  _
+                    ByVal Track As Integer,  _
+                    ByVal Title As String,  _
+                    ByVal Year As Integer,  _
+                    ByVal LabelName As String,  _
+                    ByVal GenreName As String,  _
+                    ByVal ArtistId As Integer,  _
+                    ByVal ArtistName As String,  _
+                    ByVal GenreId As Integer,  _
+                    ByVal LabelId As Integer,  _
+                    ByVal Copies As Integer) As vRecordTracksRow
             Dim rowvRecordTracksRow As vRecordTracksRow = CType(Me.NewRow,vRecordTracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies}
             rowvRecordTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvRecordTracksRow)
             Return rowvRecordTracksRow
@@ -2617,6 +2657,7 @@ Partial Public Class RecordsDataSet
             Me.columnArtistName = MyBase.Columns("ArtistName")
             Me.columnGenreId = MyBase.Columns("GenreId")
             Me.columnLabelId = MyBase.Columns("LabelId")
+            Me.columnCopies = MyBase.Columns("Copies")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2652,6 +2693,8 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnGenreId)
             Me.columnLabelId = New Global.System.Data.DataColumn("LabelId", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLabelId)
+            Me.columnCopies = New Global.System.Data.DataColumn("Copies", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCopies)
             Me.columnRecordId.AllowDBNull = false
             Me.columnFormat.AllowDBNull = false
             Me.columnFormat.MaxLength = 3
@@ -2672,6 +2715,7 @@ Partial Public Class RecordsDataSet
             Me.columnGenreName.MaxLength = 50
             Me.columnArtistId.AllowDBNull = false
             Me.columnArtistName.MaxLength = 150
+            Me.columnCopies.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3351,6 +3395,17 @@ Partial Public Class RecordsDataSet
                 Me(Me.tableRecords.SpeedColumn) = value
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Copies() As Integer
+            Get
+                Return CType(Me(Me.tableRecords.CopiesColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableRecords.CopiesColumn) = value
+            End Set
+        End Property
     End Class
     
     '''<summary>
@@ -3635,6 +3690,17 @@ Partial Public Class RecordsDataSet
             End Get
             Set
                 Me(Me.tablevRecordTracks.LabelIdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property Copies() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.CopiesColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.CopiesColumn) = value
             End Set
         End Property
         
@@ -6196,50 +6262,58 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("RecordNo", "RecordNo")
             tableMapping.ColumnMappings.Add("Size", "Size")
             tableMapping.ColumnMappings.Add("Speed", "Speed")
+            tableMapping.ColumnMappings.Add("Copies", "Copies")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Records] WHERE (([RecordId] = @Original_RecordId) AND ([Format"& _ 
-                "] = @Original_Format) AND ([Label] = @Original_Label) AND ([RecordNo] = @Origina"& _ 
-                "l_RecordNo) AND ([Size] = @Original_Size) AND ([Speed] = @Original_Speed))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Records] WHERE (([RecordId] = @Original_RecordId) AND ([Format] = @O"& _ 
+                "riginal_Format) AND ([Label] = @Original_Label) AND ([RecordNo] = @Original_Reco"& _ 
+                "rdNo) AND ([Size] = @Original_Size) AND ([Speed] = @Original_Speed) AND ([Copies"& _ 
+                "] = @Original_Copies))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Format", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Format", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Label", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordNo", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordNo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Size", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Speed", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Speed", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Copies", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Records] ([Format], [Label], [RecordNo], [Size], [Speed]) VALU"& _ 
-                "ES (@Format, @Label, @RecordNo, @Size, @Speed);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label,"& _ 
-                " RecordNo, Size, Speed FROM Records WHERE (RecordId = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [Records] ([Format], [Label], [RecordNo], [Size], [Speed], [Copies]) "& _ 
+                "VALUES (@Format, @Label, @RecordNo, @Size, @Speed, @Copies);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, F"& _ 
+                "ormat, Label, RecordNo, Size, Speed, Copies FROM Records WHERE (RecordId = SCOPE"& _ 
+                "_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Label", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Size", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Records] SET [Format] = @Format, [Label] = @Label, [RecordNo] = @Re"& _ 
-                "cordNo, [Size] = @Size, [Speed] = @Speed WHERE (([RecordId] = @Original_RecordId"& _ 
-                ") AND ([Format] = @Original_Format) AND ([Label] = @Original_Label) AND ([Record"& _ 
-                "No] = @Original_RecordNo) AND ([Size] = @Original_Size) AND ([Speed] = @Original"& _ 
-                "_Speed));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, RecordNo, Size, Speed FROM Records WH"& _ 
-                "ERE (RecordId = @RecordId)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [Records] SET [Format] = @Format, [Label] = @Label, [RecordNo] = @RecordNo"& _ 
+                ", [Size] = @Size, [Speed] = @Speed, [Copies] = @Copies WHERE (([RecordId] = @Ori"& _ 
+                "ginal_RecordId) AND ([Format] = @Original_Format) AND ([Label] = @Original_Label"& _ 
+                ") AND ([RecordNo] = @Original_RecordNo) AND ([Size] = @Original_Size) AND ([Spee"& _ 
+                "d] = @Original_Speed) AND ([Copies] = @Original_Copies));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Form"& _ 
+                "at, Label, RecordNo, Size, Speed, Copies FROM Records WHERE (RecordId = @RecordI"& _ 
+                "d)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Label", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Size", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Format", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Format", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Label", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordNo", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordNo", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Size", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Speed", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Speed", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Copies", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -6253,34 +6327,35 @@ Namespace RecordsDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT RecordId, Format, Label, RecordNo, Size, Speed FROM dbo.Records"
+            Me._commandCollection(0).CommandText = "SELECT RecordId, Format, Label, RecordNo, Size, Speed, Copies FROM Records"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Format, Label, RecordId, RecordNo, Size, Speed FROM Records WHERE (RecordI"& _ 
-                "d = @Id)"
+            Me._commandCollection(1).CommandText = "SELECT Format, Label, RecordId, RecordNo, Size, Speed, Copies FROM Records WHERE "& _ 
+                "(RecordId = @Id)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "INSERT INTO Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Format, Label, RecordNo, Size, Spe"& _ 
-                "ed)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Format,@Label,@RecordNo,@Size,@Speed); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT  SCOPE_IDEN"& _ 
-                "TITY()"
+                "ed, Copies)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Format,@Label,@RecordNo,@Size,@Speed, @Copies); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"S"& _ 
+                "ELECT  SCOPE_IDENTITY()"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Label", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Size", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
             Me._commandCollection(3).CommandText = "SET IDENTITY_INSERT Records ON;"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INSERT INTO Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (R"& _ 
-                "ecordId, Format, Label, RecordNo, Size, Speed)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Id,@Format,@Labe"& _ 
-                "l,@RecordNo,@Size,@Speed); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, RecordNo, Size, Spe"& _ 
-                "ed FROM Records WHERE (RecordId = SCOPE_IDENTITY())"
+                "ecordId, Format, Label, RecordNo, Size, Speed, Copies)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@Id,@Form"& _ 
+                "at,@Label,@RecordNo,@Size,@Speed,@Copies); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, Rec"& _ 
+                "ordNo, Size, Speed,Copies FROM Records WHERE (RecordId = SCOPE_IDENTITY())"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Id", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -6288,10 +6363,19 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NVarChar, 10, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Size", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "TRUNCATE TABLE Records"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "UPDATE       Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Copies = @Copies"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (RecordId"& _ 
+                " = @RecordId); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, RecordNo, Size, Speed, Copies F"& _ 
+                "ROM Records WHERE (RecordId = @RecordId)"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6364,7 +6448,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String, ByVal Original_Copies As Integer) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_RecordId,Integer)
             If (Original_Format Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Format")
@@ -6383,6 +6467,7 @@ Namespace RecordsDataSetTableAdapters
             Else
                 Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Speed,String)
             End If
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Copies,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6402,7 +6487,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer) As Integer
             If (Format Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Format")
             Else
@@ -6420,6 +6505,7 @@ Namespace RecordsDataSetTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(Speed,String)
             End If
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(Copies,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6439,7 +6525,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String, ByVal RecordId As Integer) As Integer
+        Public Overloads Overridable Function Update(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer, ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String, ByVal Original_Copies As Integer, ByVal RecordId As Integer) As Integer
             If (Format Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Format")
             Else
@@ -6457,25 +6543,27 @@ Namespace RecordsDataSetTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Speed,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_RecordId,Integer)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Copies,Integer)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_RecordId,Integer)
             If (Original_Format Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Format")
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_Format,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Format,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_Label,Integer)
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Label,Integer)
             If (Original_RecordNo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_RecordNo")
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_RecordNo,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_RecordNo,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Size,Integer)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Size,Integer)
             If (Original_Speed Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Speed")
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Speed,String)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Speed,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(RecordId,Integer)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Copies,Integer)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(RecordId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6495,15 +6583,15 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String) As Integer
-            Return Me.Update(Format, Label, RecordNo, Size, Speed, Original_RecordId, Original_Format, Original_Label, Original_RecordNo, Original_Size, Original_Speed, Original_RecordId)
+        Public Overloads Overridable Function Update(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer, ByVal Original_RecordId As Integer, ByVal Original_Format As String, ByVal Original_Label As Integer, ByVal Original_RecordNo As String, ByVal Original_Size As Integer, ByVal Original_Speed As String, ByVal Original_Copies As Integer) As Integer
+            Return Me.Update(Format, Label, RecordNo, Size, Speed, Copies, Original_RecordId, Original_Format, Original_Label, Original_RecordNo, Original_Size, Original_Speed, Original_Copies, Original_RecordId)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertRecord(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String) As Object
+        Public Overloads Overridable Function InsertRecord(ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer) As Object
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             If (Format Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Format")
@@ -6522,6 +6610,7 @@ Namespace RecordsDataSetTableAdapters
             Else
                 command.Parameters(4).Value = CType(Speed,String)
             End If
+            command.Parameters(5).Value = CType(Copies,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6547,7 +6636,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertRecordWithId(ByVal Id As Integer, ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String) As Integer
+        Public Overloads Overridable Function InsertRecordWithId(ByVal Id As Integer, ByVal Format As String, ByVal Label As Integer, ByVal RecordNo As String, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
             command.Parameters(0).Value = CType(Id,Integer)
             If (Format Is Nothing) Then
@@ -6567,6 +6656,7 @@ Namespace RecordsDataSetTableAdapters
             Else
                 command.Parameters(5).Value = CType(Speed,String)
             End If
+            command.Parameters(6).Value = CType(Copies,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -6589,6 +6679,30 @@ Namespace RecordsDataSetTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function TruncateRecords() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateRecordCopies(ByVal Copies As Integer, ByVal RecordId As Integer) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            command.Parameters(0).Value = CType(Copies,Integer)
+            command.Parameters(1).Value = CType(RecordId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7211,6 +7325,7 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("ArtistName", "ArtistName")
             tableMapping.ColumnMappings.Add("GenreId", "GenreId")
             tableMapping.ColumnMappings.Add("LabelId", "LabelId")
+            tableMapping.ColumnMappings.Add("Copies", "Copies")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -7228,13 +7343,14 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelNa"& _ 
-                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId FROM vRecordTracks"
+                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks"& _ 
+                ""
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelNa"& _ 
-                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId FROM vRecordTracks WHERE ("& _ 
-                "RecordId = @RecordId)"
+                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks"& _ 
+                " WHERE (RecordId = @RecordId)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

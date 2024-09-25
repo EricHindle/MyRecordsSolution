@@ -105,7 +105,7 @@ Public Class FrmArtistMaint
     End Sub
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
-        If isValidArtist() Then
+        If IsValidArtist() Then
             If GetArtistFromName(TxtArtist.Text).IsExists Then
                 ShowStatus("Looks like the Artist already exists", LblStatus, MyBase.Name, False, ,, True,, True)
             Else
@@ -122,7 +122,7 @@ Public Class FrmArtistMaint
         End If
     End Sub
 
-    Private Function isValidArtist() As Boolean
+    Private Function IsValidArtist() As Boolean
         Dim isValid As Boolean = True
         If String.IsNullOrEmpty(TxtArtist.Text) Then
             isValid = False

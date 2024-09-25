@@ -105,7 +105,7 @@ Public Class FrmLabelMaint
     End Sub
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
-        If isValidLabel() Then
+        If IsValidLabel() Then
             If GetLabelFromName(TxtLabel.Text).IsExists Then
                 ShowStatus("Looks like the Label already exists", LblStatus, MyBase.Name, False,,, True,, True)
             Else
@@ -122,7 +122,7 @@ Public Class FrmLabelMaint
         End If
     End Sub
 
-    Private Function isValidLabel() As Boolean
+    Private Function IsValidLabel() As Boolean
         Dim isValid As Boolean = True
         If String.IsNullOrEmpty(TxtLabel.Text) Then
             isValid = False

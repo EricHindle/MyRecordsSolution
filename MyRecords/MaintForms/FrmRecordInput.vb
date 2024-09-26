@@ -282,11 +282,11 @@ Public Class FrmRecordInput
 
     Private Sub CheckSpeed(speed As String)
         Select Case speed
-            Case "45 "
+            Case "45"
                 Rb45.Checked = True
-            Case "33 "
+            Case "33"
                 Rb33.Checked = True
-            Case "78 "
+            Case "78"
                 Rb78.Checked = True
             Case Else
                 RbNoSpeed.Checked = True

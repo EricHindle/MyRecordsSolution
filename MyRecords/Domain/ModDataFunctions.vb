@@ -103,6 +103,11 @@ Public Module ModDataFunctions
                 Case "Records"
                     If RecreateTable(oRecordsTable, datapath, isSuppressMessage) Then
                         oRecordsTa.TruncateRecords()
+                        For Each _row As RecordsDataSet.RecordsRow In oRecordsTable.Rows
+                            Dim _record As Record = RecordBuilder.ARecord.StartingWith(_row).Build
+                            InsertRecord(_record, _record.RecordId)
+                        Next
+
                         rowCount = oRecordsTa.GetData.Rows.Count
                     End If
                 Case "RecordFormat"
@@ -114,7 +119,7 @@ Public Module ModDataFunctions
                 Case "RecordLabels"
                     If RecreateTable(oRecordLabelsTable, datapath, isSuppressMessage) Then
                         oRecordLabelsTa.TruncateRecordLabels()
-                        For Each _row As RecordsDataSet.RecordLabelsRow In oRecordsTable.Rows
+                        For Each _row As RecordsDataSet.RecordLabelsRow In oRecordLabelsTable.Rows
                             Dim _recordLabel As RecordLabel = RecordLabelBuilder.ARecordLabel.StartingWith(_row).Build
                             InsertLabel(_recordLabel, _recordLabel.LabelId)
                         Next

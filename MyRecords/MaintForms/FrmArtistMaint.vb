@@ -158,4 +158,11 @@ Public Class FrmArtistMaint
         End If
     End Sub
 
+    Private Sub TxtArtist_DragEnter(sender As Object, e As DragEventArgs) Handles TxtArtist.DragEnter
+        TextBox_DragEnter(sender, e)
+    End Sub
+
+    Private Sub TxtArtist_DragDrop(sender As Object, e As DragEventArgs) Handles TxtArtist.DragDrop
+        TextBox_DragDrop(sender, e)
+    End Sub
 End Class

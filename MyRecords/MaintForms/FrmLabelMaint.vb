@@ -158,4 +158,11 @@ Public Class FrmLabelMaint
         End If
     End Sub
 
+    Private Sub TxtLabel_DragDrop(sender As Object, e As DragEventArgs) Handles TxtLabel.DragDrop
+        TextBox_DragDrop(sender, e)
+    End Sub
+
+    Private Sub TxtLabel_DragEnter(sender As Object, e As DragEventArgs) Handles TxtLabel.DragEnter
+        TextBox_DragEnter(sender, e)
+    End Sub
 End Class

@@ -34,6 +34,8 @@ Partial Class FrmArtistMaint
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DgvArtist = New System.Windows.Forms.DataGridView()
+        Me.artId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.artName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.LblArtistId = New System.Windows.Forms.Label()
@@ -41,14 +43,13 @@ Partial Class FrmArtistMaint
         Me.BtnNew = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
-        Me.artId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.artName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DgvArtist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TxtArtist
         '
+        Me.TxtArtist.AllowDrop = True
         Me.TxtArtist.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtArtist.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -97,6 +98,20 @@ Partial Class FrmArtistMaint
         Me.DgvArtist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvArtist.Size = New System.Drawing.Size(188, 233)
         Me.DgvArtist.TabIndex = 38
+        '
+        'artId
+        '
+        Me.artId.HeaderText = "Id"
+        Me.artId.Name = "artId"
+        Me.artId.ReadOnly = True
+        Me.artId.Visible = False
+        '
+        'artName
+        '
+        Me.artName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.artName.HeaderText = "Artist"
+        Me.artName.Name = "artName"
+        Me.artName.ReadOnly = True
         '
         'StatusStrip1
         '
@@ -183,20 +198,6 @@ Partial Class FrmArtistMaint
         Me.BtnClose.TabIndex = 34
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = False
-        '
-        'artId
-        '
-        Me.artId.HeaderText = "Id"
-        Me.artId.Name = "artId"
-        Me.artId.ReadOnly = True
-        Me.artId.Visible = False
-        '
-        'artName
-        '
-        Me.artName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.artName.HeaderText = "Artist"
-        Me.artName.Name = "artName"
-        Me.artName.ReadOnly = True
         '
         'FrmArtistMaint
         '

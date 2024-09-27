@@ -446,29 +446,11 @@ Public Class FrmRecordInput
     End Function
 
     Private Sub TxtTitle_DragEnter(sender As Object, e As DragEventArgs) Handles TxtTitle.DragEnter
-        If e.Data.GetDataPresent(DataFormats.StringFormat) Then
-            e.Effect = DragDropEffects.Copy
-        Else
-            If e.Data.GetDataPresent(DataFormats.Text) Then
-                e.Effect = DragDropEffects.Copy
-            Else
-                e.Effect = DragDropEffects.None
-            End If
-        End If
+        TextBox_DragEnter(sender, e)
     End Sub
 
     Private Sub TxtTitle_DragDrop(sender As Object, e As DragEventArgs) Handles TxtTitle.DragDrop
-        If e.Data.GetDataPresent(DataFormats.StringFormat) Then
-            Dim oBox As TextBox = CType(sender, TextBox)
-            Dim item As String = e.Data.GetData(DataFormats.StringFormat)
-            Dim textlen As Integer = oBox.TextLength
-            Dim startpos As Integer = oBox.SelectionStart
-            If textlen = 0 Then
-                oBox.Text = item.Trim
-            Else
-                oBox.SelectedText = item
-            End If
-        End If
+        TextBox_DragDrop(sender, e)
     End Sub
 
 End Class

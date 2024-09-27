@@ -272,6 +272,19 @@ Public Module ModDataFunctions
         End Try
         Return _list
     End Function
+    Public Function GetTrackForKey(pRecordId As Integer, pSide As String, pTrackNo As Integer) As Track
+        Dim _track As New Track
+        Try
+            oTracksTa.FillByKey(oTracksTable, pRecordId, pSide, pTrackNo)
+            If oTracksTable.Rows.Count > 0 Then
+                Dim _row As RecordsDataSet.TracksRow = oTracksTable.Rows(0)
+                _track = TrackBuilder.ATrack.StartingWith(_row).Build
+            End If
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _track
+    End Function
 #End Region
 #Region "Artist"
     Public Function GetArtistsTable() As RecordsDataSet.ArtistsDataTable

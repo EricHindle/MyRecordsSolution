@@ -339,17 +339,29 @@ Public Class FrmRecordInput
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
             CurrentTrack = BuildTrackFromForm()
-            Dim response As Integer = InsertTrack(CurrentTrack)
-            If response = 1 Then
-                LblRecordId.Text = CStr(CurrentRecord.RecordId)
-                ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+            If Not IsTrackExists(CurrentTrack) Then
+                Dim response As Integer = InsertTrack(CurrentTrack)
+                If response = 1 Then
+                    LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                    ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+                Else
+                    ShowStatus("Error saving track", LblStatus, MyBase.Name, False, TraceEventType.Error, , ,, True)
+                End If
+                ClearTrack()
             Else
-                ShowStatus("Error saving track", LblStatus, MyBase.Name, False, TraceEventType.Error, , ,, True)
+                ShowStatus("Track already exists", LblStatus, MyBase.Name, False,,,,, True)
             End If
-            ClearTrack()
-
         End If
     End Sub
+
+    Private Function IsTrackExists(pTrack As Track) As Boolean
+        Dim _track As Track
+        With pTrack
+            _track = GetTrackForKey(.RecordId, .Side, .Track)
+        End With
+        Return _track.isExists
+    End Function
+
     Private Sub ClearTrack()
         RbB.Checked = True
         NudTrackNo.Value = 1
@@ -412,9 +424,6 @@ Public Class FrmRecordInput
 
     Private Function IsValidTrack() As Boolean
         Dim isOK As Boolean = True
-        'If String.IsNullOrWhiteSpace(TxtArtist.Text) Then
-        '    isOK = False
-        'End If
         If String.IsNullOrWhiteSpace(TxtTitle.Text) Then
             isOK = False
         End If

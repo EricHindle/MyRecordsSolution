@@ -93,5 +93,8 @@ Public Class Track
         _year = pYear
         _genre = pGenre
     End Sub
+    Public Function IsExists() As Boolean
+        Return _recordId > -1
+    End Function
 #End Region
 End Class

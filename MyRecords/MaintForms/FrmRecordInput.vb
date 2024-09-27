@@ -335,6 +335,7 @@ Public Class FrmRecordInput
         Return rtnVal
     End Function
     Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
+        TrimValues
         If Not IsValidTrack() Then
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
@@ -354,12 +355,17 @@ Public Class FrmRecordInput
         End If
     End Sub
 
+    Private Sub TrimValues()
+        TxtTitle.Text = TxtTitle.Text.Replace(vbTab, "").Trim
+        TxtYear.Text = TxtYear.Text.Replace(vbTab, "").Trim
+    End Sub
+
     Private Function IsTrackExists(pTrack As Track) As Boolean
         Dim _track As Track
         With pTrack
             _track = GetTrackForKey(.RecordId, .Side, .Track)
         End With
-        Return _track.isExists
+        Return _track.IsExists
     End Function
 
     Private Sub ClearTrack()
@@ -433,7 +439,36 @@ Public Class FrmRecordInput
         If CbArtists.SelectedIndex < 0 Then
             isOK = False
         End If
+        If Not IsNumeric(TxtYear.Text) Or String.IsNullOrWhiteSpace(TxtYear.Text) Then
+            isOK = False
+        End If
         Return isOK
     End Function
+
+    Private Sub TxtTitle_DragEnter(sender As Object, e As DragEventArgs) Handles TxtTitle.DragEnter
+        If e.Data.GetDataPresent(DataFormats.StringFormat) Then
+            e.Effect = DragDropEffects.Copy
+        Else
+            If e.Data.GetDataPresent(DataFormats.Text) Then
+                e.Effect = DragDropEffects.Copy
+            Else
+                e.Effect = DragDropEffects.None
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtTitle_DragDrop(sender As Object, e As DragEventArgs) Handles TxtTitle.DragDrop
+        If e.Data.GetDataPresent(DataFormats.StringFormat) Then
+            Dim oBox As TextBox = CType(sender, TextBox)
+            Dim item As String = e.Data.GetData(DataFormats.StringFormat)
+            Dim textlen As Integer = oBox.TextLength
+            Dim startpos As Integer = oBox.SelectionStart
+            If textlen = 0 Then
+                oBox.Text = item.Trim
+            Else
+                oBox.SelectedText = item
+            End If
+        End If
+    End Sub
 
 End Class

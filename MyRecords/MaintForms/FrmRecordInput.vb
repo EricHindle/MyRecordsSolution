@@ -58,10 +58,12 @@ Public Class FrmRecordInput
         _row.Cells(recId.Name).Value = pRecord.RecordId
         _row.Cells(recFormat.Name).Value = pRecord.RecordFormat.FormatName
         _row.Cells(recLabel.Name).Value = pRecord.Label.LabelName
+        _row.Cells(recLabelId.Name).Value = pRecord.Label.LabelId
         _row.Cells(recNumber.Name).Value = pRecord.RecordNumber
         Dim _tracks As List(Of Track) = GetTracksForRecord(pRecord.RecordId)
         If _tracks.Count > 0 Then
             _row.Cells(recArtist.Name).Value = _tracks(0).Artist.ArtistName
+            _row.Cells(recArtistId.Name).Value = _tracks(0).Artist.ArtistId
         End If
     End Sub
 
@@ -124,6 +126,15 @@ Public Class FrmRecordInput
         Else
             Dim recordList As System.Data.EnumerableRowCollection(Of RecordsDataSet.vRecordTracksRow) = FindExistingRecordByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
             If recordList.Count > 0 Then
+                Dim _record As RecordsDataSet.vRecordTracksRow = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
+                DgvRecords.ClearSelection()
+                For Each oRow As DataGridViewRow In DgvRecords.Rows
+                    If oRow.Cells(recLabelId.Name).Value = _record.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_record.RecordNo) Then
+                        oRow.Selected = True
+                        DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
+                        Exit For
+                    End If
+                Next
                 If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
                     Dim oRow As RecordsDataSet.vRecordTracksRow = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
                     LblRecordId.Text = oRow.RecordId

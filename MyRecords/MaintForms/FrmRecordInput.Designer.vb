@@ -66,11 +66,6 @@ Partial Class FrmRecordInput
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.DgvRecords = New System.Windows.Forms.DataGridView()
-        Me.recId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.recFormat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.recLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.recNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.recArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.NudCopies = New System.Windows.Forms.NumericUpDown()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -93,6 +88,13 @@ Partial Class FrmRecordInput
         Me.RbAA = New System.Windows.Forms.RadioButton()
         Me.RbA = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.recId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recFormat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recLabelId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recArtistId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -526,7 +528,7 @@ Partial Class FrmRecordInput
         Me.DgvRecords.AllowUserToAddRows = False
         Me.DgvRecords.AllowUserToDeleteRows = False
         Me.DgvRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recFormat, Me.recLabel, Me.recNumber, Me.recArtist})
+        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recFormat, Me.recLabel, Me.recNumber, Me.recArtist, Me.recLabelId, Me.recArtistId})
         Me.DgvRecords.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvRecords.Location = New System.Drawing.Point(0, 0)
         Me.DgvRecords.MultiSelect = False
@@ -536,44 +538,6 @@ Partial Class FrmRecordInput
         Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvRecords.Size = New System.Drawing.Size(498, 262)
         Me.DgvRecords.TabIndex = 0
-        '
-        'recId
-        '
-        Me.recId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.recId.HeaderText = "Id"
-        Me.recId.Name = "recId"
-        Me.recId.ReadOnly = True
-        Me.recId.Width = 40
-        '
-        'recFormat
-        '
-        Me.recFormat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.recFormat.HeaderText = "Format"
-        Me.recFormat.Name = "recFormat"
-        Me.recFormat.ReadOnly = True
-        Me.recFormat.Width = 50
-        '
-        'recLabel
-        '
-        Me.recLabel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.recLabel.HeaderText = "Label"
-        Me.recLabel.Name = "recLabel"
-        Me.recLabel.ReadOnly = True
-        Me.recLabel.Width = 150
-        '
-        'recNumber
-        '
-        Me.recNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.recNumber.HeaderText = "Number"
-        Me.recNumber.Name = "recNumber"
-        Me.recNumber.ReadOnly = True
-        '
-        'recArtist
-        '
-        Me.recArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.recArtist.HeaderText = "Artist"
-        Me.recArtist.Name = "recArtist"
-        Me.recArtist.ReadOnly = True
         '
         'SplitContainer2
         '
@@ -857,6 +821,58 @@ Partial Class FrmRecordInput
         Me.Label9.TabIndex = 11
         Me.Label9.Text = "Track #"
         '
+        'recId
+        '
+        Me.recId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recId.HeaderText = "Id"
+        Me.recId.Name = "recId"
+        Me.recId.ReadOnly = True
+        Me.recId.Width = 40
+        '
+        'recFormat
+        '
+        Me.recFormat.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recFormat.HeaderText = "Format"
+        Me.recFormat.Name = "recFormat"
+        Me.recFormat.ReadOnly = True
+        Me.recFormat.Width = 50
+        '
+        'recLabel
+        '
+        Me.recLabel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recLabel.HeaderText = "Label"
+        Me.recLabel.Name = "recLabel"
+        Me.recLabel.ReadOnly = True
+        Me.recLabel.Width = 150
+        '
+        'recNumber
+        '
+        Me.recNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recNumber.HeaderText = "Number"
+        Me.recNumber.Name = "recNumber"
+        Me.recNumber.ReadOnly = True
+        '
+        'recArtist
+        '
+        Me.recArtist.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.recArtist.HeaderText = "Artist"
+        Me.recArtist.Name = "recArtist"
+        Me.recArtist.ReadOnly = True
+        '
+        'recLabelId
+        '
+        Me.recLabelId.HeaderText = "Lbl Id"
+        Me.recLabelId.Name = "recLabelId"
+        Me.recLabelId.ReadOnly = True
+        Me.recLabelId.Visible = False
+        '
+        'recArtistId
+        '
+        Me.recArtistId.HeaderText = "Art Id"
+        Me.recArtistId.Name = "recArtistId"
+        Me.recArtistId.ReadOnly = True
+        Me.recArtistId.Visible = False
+        '
         'FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -945,11 +961,6 @@ Partial Class FrmRecordInput
     Friend WithEvents trkGenre As DataGridViewTextBoxColumn
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents DgvRecords As DataGridView
-    Friend WithEvents recId As DataGridViewTextBoxColumn
-    Friend WithEvents recFormat As DataGridViewTextBoxColumn
-    Friend WithEvents recLabel As DataGridViewTextBoxColumn
-    Friend WithEvents recNumber As DataGridViewTextBoxColumn
-    Friend WithEvents recArtist As DataGridViewTextBoxColumn
     Friend WithEvents SplitContainer2 As SplitContainer
     Friend WithEvents CbArtists As ComboBox
     Friend WithEvents BtnTracks As Button
@@ -972,4 +983,11 @@ Partial Class FrmRecordInput
     Friend WithEvents BtnSaveTrack As Button
     Friend WithEvents NudCopies As NumericUpDown
     Friend WithEvents Label10 As Label
+    Friend WithEvents recId As DataGridViewTextBoxColumn
+    Friend WithEvents recFormat As DataGridViewTextBoxColumn
+    Friend WithEvents recLabel As DataGridViewTextBoxColumn
+    Friend WithEvents recNumber As DataGridViewTextBoxColumn
+    Friend WithEvents recArtist As DataGridViewTextBoxColumn
+    Friend WithEvents recLabelId As DataGridViewTextBoxColumn
+    Friend WithEvents recArtistId As DataGridViewTextBoxColumn
 End Class

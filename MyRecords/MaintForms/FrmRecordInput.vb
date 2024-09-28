@@ -113,16 +113,13 @@ Public Class FrmRecordInput
                 BtnAdd.Enabled = False
                 ShowStatus("Record Added", LblStatus, MyBase.Name, False)
             Else
-                SplitContainer2.Panel2Collapsed = True
-                BtnAdd.Enabled = True
                 If IsIncrementCopies(_duplicateRecord) Then
-                    CurrentRecord.RecordId = _duplicateRecord.RecordId
-                    CurrentRecord.Copies = NudCopies.Value
-                    LblRecordId.Text = CStr(CurrentRecord.RecordId)
                     UpdateRecordCopies(CurrentRecord)
-                    LoadRecords()
+                    NextRecord()
                     ShowStatus("Record Updated", LblStatus, MyBase.Name, False)
                 Else
+                    SplitContainer2.Panel2Collapsed = True
+                    BtnAdd.Enabled = True
                     ShowStatus("Record rejected", LblStatus, MyBase.Name, False)
                 End If
             End If
@@ -222,21 +219,25 @@ Public Class FrmRecordInput
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
         If Not isTrackChanged OrElse MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
-            DgvTracks.Rows.Clear()
-            ClearTrackForm()
-            LoadRecords()
-            FindRecordInList(CurrentRecord.RecordId)
-            CurrentRecord = New Record
-            CbRecordLabel.SelectedIndex = -1
-            LblRecordId.Text = "-1"
-            TxtRecNumber.Text = String.Empty
-            NudCopies.Value = 1
-            Rb45.Checked = True
-            Rb7.Checked = True
-            BtnAdd.Enabled = True
-            SplitContainer2.Panel2Collapsed = True
+            NextRecord()
         End If
     End Sub
+    Private Sub NextRecord()
+        DgvTracks.Rows.Clear()
+        ClearTrackForm()
+        LoadRecords()
+        FindRecordInList(CurrentRecord.RecordId)
+        CurrentRecord = New Record
+        CbRecordLabel.SelectedIndex = -1
+        LblRecordId.Text = "-1"
+        TxtRecNumber.Text = String.Empty
+        NudCopies.Value = 1
+        Rb45.Checked = True
+        Rb7.Checked = True
+        BtnAdd.Enabled = True
+        SplitContainer2.Panel2Collapsed = True
+    End Sub
+
     Private Sub ClearTrackForm()
         RbA.Checked = True
         NudTrackNo.Value = 1

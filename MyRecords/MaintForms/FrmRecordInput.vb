@@ -100,51 +100,38 @@ Public Class FrmRecordInput
         My.Settings.RecSplitDist1 = SplitContainer1.SplitterDistance
     End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        Dim IsExists As Boolean = False
-        If Not IsValidRecord(IsExists) Then
+        If Not IsValidRecord() Then
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
             TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
             CurrentRecord = BuildRecordFromForm()
-            If IsExists Then
-                CurrentRecord.RecordId = CInt(LblRecordId.Text)
-                UpdateRecordCopies(CurrentRecord)
-                ShowStatus("Record Updated", LblStatus, MyBase.Name, False)
-            Else
+            Dim _duplicateRecord As RecordsDataSet.vRecordTracksRow = GetDuplicateRecord()
+            If _duplicateRecord Is Nothing Then
                 CurrentRecord.RecordId = InsertRecord(CurrentRecord)
                 LblRecordId.Text = CStr(CurrentRecord.RecordId)
                 SplitContainer2.Panel2Collapsed = False
                 BtnAdd.Enabled = False
                 ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+            Else
+                SplitContainer2.Panel2Collapsed = True
+                BtnAdd.Enabled = True
+                If IsIncrementCopies(_duplicateRecord) Then
+                    CurrentRecord.RecordId = _duplicateRecord.RecordId
+                    CurrentRecord.Copies = NudCopies.Value
+                    LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                    UpdateRecordCopies(CurrentRecord)
+                    LoadRecords()
+                    ShowStatus("Record Updated", LblStatus, MyBase.Name, False)
+                Else
+                    ShowStatus("Record rejected", LblStatus, MyBase.Name, False)
+                End If
             End If
-            LoadRecords()
         End If
     End Sub
-    Private Function IsValidRecord(ByRef IsExists As Boolean) As Boolean
+    Private Function IsValidRecord() As Boolean
         Dim isOK As Boolean = True
         If String.IsNullOrWhiteSpace(TxtRecNumber.Text) Then
             isOK = False
-        Else
-            Dim recordList As System.Data.EnumerableRowCollection(Of RecordsDataSet.vRecordTracksRow) = FindExistingRecordByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
-            If recordList.Count > 0 Then
-                Dim _record As RecordsDataSet.vRecordTracksRow = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
-                DgvRecords.ClearSelection()
-                For Each oRow As DataGridViewRow In DgvRecords.Rows
-                    If oRow.Cells(recLabelId.Name).Value = _record.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_record.RecordNo) Then
-                        oRow.Selected = True
-                        DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
-                        Exit For
-                    End If
-                Next
-                If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
-                    Dim oRow As RecordsDataSet.vRecordTracksRow = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
-                    LblRecordId.Text = oRow.RecordId
-                    NudCopies.Value = oRow.Copies + 1
-                    IsExists = True
-                Else
-                    isOK = False
-                End If
-            End If
         End If
         If CbRecordFormat.SelectedIndex < 0 Then
             isOK = False
@@ -153,6 +140,31 @@ Public Class FrmRecordInput
             isOK = False
         End If
         Return isOK
+    End Function
+    Private Function GetDuplicateRecord() As RecordsDataSet.vRecordTracksRow
+        Dim _duplicate As RecordsDataSet.vRecordTracksRow = Nothing
+        Dim recordList As System.Data.EnumerableRowCollection(Of RecordsDataSet.vRecordTracksRow) = FindExistingRecordByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
+        If recordList.Count > 0 Then
+            _duplicate = TryCast(recordList(0), RecordsDataSet.vRecordTracksRow)
+            DgvRecords.ClearSelection()
+            For Each oRow As DataGridViewRow In DgvRecords.Rows
+                If oRow.Cells(recLabelId.Name).Value = _duplicate.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_duplicate.RecordNo) Then
+                    oRow.Selected = True
+                    DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
+                    Exit For
+                End If
+            Next
+        End If
+        Return _duplicate
+    End Function
+    Private Function IsIncrementCopies(_duplicate As RecordsDataSet.vRecordTracksRow) As Boolean
+        Dim isAddCopy As Boolean = False
+        If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
+            '          LblRecordId.Text = _duplicate.RecordId
+            NudCopies.Value = _duplicate.Copies + 1
+            isAddCopy = True
+        End If
+        Return isAddCopy
     End Function
     Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
         Using _format As New FrmFormatMaint

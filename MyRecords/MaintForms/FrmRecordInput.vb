@@ -209,22 +209,20 @@ Public Class FrmRecordInput
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
-        If isTrackChanged Then
-            If MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
-                DgvTracks.Rows.Clear()
-                ClearTrackForm()
-                LoadRecords()
-                FindRecordInList(CurrentRecord.RecordId)
-                CurrentRecord = New Record
-                CbRecordLabel.SelectedIndex = -1
-                LblRecordId.Text = "-1"
-                TxtRecNumber.Text = String.Empty
-                NudCopies.Value = 1
-                Rb45.Checked = True
-                Rb7.Checked = True
-                BtnAdd.Enabled = True
-                SplitContainer2.Panel2Collapsed = True
-            End If
+        If Not isTrackChanged OrElse MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
+            DgvTracks.Rows.Clear()
+            ClearTrackForm()
+            LoadRecords()
+            FindRecordInList(CurrentRecord.RecordId)
+            CurrentRecord = New Record
+            CbRecordLabel.SelectedIndex = -1
+            LblRecordId.Text = "-1"
+            TxtRecNumber.Text = String.Empty
+            NudCopies.Value = 1
+            Rb45.Checked = True
+            Rb7.Checked = True
+            BtnAdd.Enabled = True
+            SplitContainer2.Panel2Collapsed = True
         End If
     End Sub
     Private Sub ClearTrackForm()
@@ -295,6 +293,7 @@ Public Class FrmRecordInput
         CheckSize(CurrentRecord.Size)
         CheckSpeed(CurrentRecord.Speed)
         BtnAdd.Enabled = False
+        isTrackChanged = False
     End Sub
 
     Private Sub CheckSpeed(speed As String)

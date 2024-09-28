@@ -11,7 +11,7 @@ Imports HindlewareLib.Logging
 Public Class FrmRecordInput
     Private CurrentRecord As New Record
     Private CurrentTrack As New Track
-
+    Private isTrackChanged As Boolean
     Private isLoading As Boolean
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Add Records", MyBase.Name)
@@ -104,6 +104,7 @@ Public Class FrmRecordInput
         If Not IsValidRecord(IsExists) Then
             ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
         Else
+            TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
             CurrentRecord = BuildRecordFromForm()
             If IsExists Then
                 CurrentRecord.RecordId = CInt(LblRecordId.Text)
@@ -208,19 +209,23 @@ Public Class FrmRecordInput
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
-        DgvTracks.Rows.Clear()
-        ClearTrackForm()
-        LoadRecords()
-        FindRecordInList(CurrentRecord.RecordId)
-        CurrentRecord = New Record
-        CbRecordLabel.SelectedIndex = -1
-        LblRecordId.Text = "-1"
-        TxtRecNumber.Text = String.Empty
-        NudCopies.Value = 1
-        Rb45.Checked = True
-        Rb7.Checked = True
-        BtnAdd.Enabled = True
-        SplitContainer2.Panel2Collapsed = True
+        If isTrackChanged Then
+            If MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
+                DgvTracks.Rows.Clear()
+                ClearTrackForm()
+                LoadRecords()
+                FindRecordInList(CurrentRecord.RecordId)
+                CurrentRecord = New Record
+                CbRecordLabel.SelectedIndex = -1
+                LblRecordId.Text = "-1"
+                TxtRecNumber.Text = String.Empty
+                NudCopies.Value = 1
+                Rb45.Checked = True
+                Rb7.Checked = True
+                BtnAdd.Enabled = True
+                SplitContainer2.Panel2Collapsed = True
+            End If
+        End If
     End Sub
     Private Sub ClearTrackForm()
         RbA.Checked = True
@@ -229,6 +234,7 @@ Public Class FrmRecordInput
         TxtYear.Text = String.Empty
         CbGenre.SelectedIndex = -1
         CbArtists.SelectedIndex = -1
+        isTrackChanged = False
     End Sub
     Private Function BuildRecordFromForm() As Record
         Dim _formatId As String = CbRecordFormat.SelectedValue
@@ -338,8 +344,8 @@ Public Class FrmRecordInput
     End Function
     Private Function RecNoChars(pRecNo As String) As String
         Dim rtnVal As String = String.Empty
-        For Each _char As Char In pRecNo.ToLower
-            If Regex.IsMatch(CStr(_char), "[a-z0-9]") Then
+        For Each _char As Char In pRecNo.ToUpper
+            If Regex.IsMatch(CStr(_char), "[A-Z0-9]") Then
                 rtnVal &= _char
             End If
         Next
@@ -383,6 +389,7 @@ Public Class FrmRecordInput
         RbB.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
+        isTrackChanged = False
     End Sub
 
     Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
@@ -462,6 +469,18 @@ Public Class FrmRecordInput
 
     Private Sub TxtTitle_DragDrop(sender As Object, e As DragEventArgs) Handles TxtTitle.DragDrop
         TextBox_DragDrop(sender, e)
+    End Sub
+
+    Private Sub RbA_CheckedChanged(sender As Object, e As EventArgs) Handles RbA.CheckedChanged,
+                                                                             RbAA.CheckedChanged,
+                                                                             RbB.CheckedChanged,
+                                                                             Rb1.CheckedChanged,
+                                                                             Rb2.CheckedChanged,
+                                                                             NudCopies.ValueChanged,
+                                                                             CbArtists.SelectedIndexChanged,
+                                                                             CbGenre.SelectedIndexChanged,
+                                                                             TxtYear.TextChanged
+        isTrackChanged = True
     End Sub
 
 End Class

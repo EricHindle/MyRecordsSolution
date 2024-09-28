@@ -2373,8 +2373,6 @@ Partial Public Class RecordsDataSet
         
         Private columnFormat As Global.System.Data.DataColumn
         
-        Private columnRecordNo As Global.System.Data.DataColumn
-        
         Private columnSize As Global.System.Data.DataColumn
         
         Private columnSpeed As Global.System.Data.DataColumn
@@ -2400,6 +2398,8 @@ Partial Public Class RecordsDataSet
         Private columnLabelId As Global.System.Data.DataColumn
         
         Private columnCopies As Global.System.Data.DataColumn
+        
+        Private columnRecordNo As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -2449,14 +2449,6 @@ Partial Public Class RecordsDataSet
         Public ReadOnly Property FormatColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFormat
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property RecordNoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnRecordNo
             End Get
         End Property
         
@@ -2565,6 +2557,14 @@ Partial Public Class RecordsDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property RecordNoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRecordNo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2604,7 +2604,6 @@ Partial Public Class RecordsDataSet
         Public Overloads Function AddvRecordTracksRow( _
                     ByVal RecordId As Integer,  _
                     ByVal Format As String,  _
-                    ByVal RecordNo As String,  _
                     ByVal Size As Integer,  _
                     ByVal Speed As String,  _
                     ByVal Side As String,  _
@@ -2617,9 +2616,10 @@ Partial Public Class RecordsDataSet
                     ByVal ArtistName As String,  _
                     ByVal GenreId As Integer,  _
                     ByVal LabelId As Integer,  _
-                    ByVal Copies As Integer) As vRecordTracksRow
+                    ByVal Copies As Integer,  _
+                    ByVal RecordNo As String) As vRecordTracksRow
             Dim rowvRecordTracksRow As vRecordTracksRow = CType(Me.NewRow,vRecordTracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo}
             rowvRecordTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvRecordTracksRow)
             Return rowvRecordTracksRow
@@ -2644,7 +2644,6 @@ Partial Public Class RecordsDataSet
         Friend Sub InitVars()
             Me.columnRecordId = MyBase.Columns("RecordId")
             Me.columnFormat = MyBase.Columns("Format")
-            Me.columnRecordNo = MyBase.Columns("RecordNo")
             Me.columnSize = MyBase.Columns("Size")
             Me.columnSpeed = MyBase.Columns("Speed")
             Me.columnSide = MyBase.Columns("Side")
@@ -2658,6 +2657,7 @@ Partial Public Class RecordsDataSet
             Me.columnGenreId = MyBase.Columns("GenreId")
             Me.columnLabelId = MyBase.Columns("LabelId")
             Me.columnCopies = MyBase.Columns("Copies")
+            Me.columnRecordNo = MyBase.Columns("RecordNo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2667,8 +2667,6 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnRecordId)
             Me.columnFormat = New Global.System.Data.DataColumn("Format", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFormat)
-            Me.columnRecordNo = New Global.System.Data.DataColumn("RecordNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRecordNo)
             Me.columnSize = New Global.System.Data.DataColumn("Size", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSize)
             Me.columnSpeed = New Global.System.Data.DataColumn("Speed", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2695,11 +2693,11 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnLabelId)
             Me.columnCopies = New Global.System.Data.DataColumn("Copies", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCopies)
+            Me.columnRecordNo = New Global.System.Data.DataColumn("RecordNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecordNo)
             Me.columnRecordId.AllowDBNull = false
             Me.columnFormat.AllowDBNull = false
             Me.columnFormat.MaxLength = 3
-            Me.columnRecordNo.AllowDBNull = false
-            Me.columnRecordNo.MaxLength = 10
             Me.columnSize.AllowDBNull = false
             Me.columnSpeed.AllowDBNull = false
             Me.columnSpeed.MaxLength = 3
@@ -2716,6 +2714,8 @@ Partial Public Class RecordsDataSet
             Me.columnArtistId.AllowDBNull = false
             Me.columnArtistName.MaxLength = 150
             Me.columnCopies.AllowDBNull = false
+            Me.columnRecordNo.AllowDBNull = false
+            Me.columnRecordNo.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3540,17 +3540,6 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property RecordNo() As String
-            Get
-                Return CType(Me(Me.tablevRecordTracks.RecordNoColumn),String)
-            End Get
-            Set
-                Me(Me.tablevRecordTracks.RecordNoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property Size() As Integer
             Get
                 Return CType(Me(Me.tablevRecordTracks.SizeColumn),Integer)
@@ -3701,6 +3690,17 @@ Partial Public Class RecordsDataSet
             End Get
             Set
                 Me(Me.tablevRecordTracks.CopiesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property RecordNo() As String
+            Get
+                Return CType(Me(Me.tablevRecordTracks.RecordNoColumn),String)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.RecordNoColumn) = value
             End Set
         End Property
         
@@ -7342,7 +7342,6 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.DataSetTable = "vRecordTracks"
             tableMapping.ColumnMappings.Add("RecordId", "RecordId")
             tableMapping.ColumnMappings.Add("Format", "Format")
-            tableMapping.ColumnMappings.Add("RecordNo", "RecordNo")
             tableMapping.ColumnMappings.Add("Size", "Size")
             tableMapping.ColumnMappings.Add("Speed", "Speed")
             tableMapping.ColumnMappings.Add("Side", "Side")
@@ -7356,6 +7355,7 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("GenreId", "GenreId")
             tableMapping.ColumnMappings.Add("LabelId", "LabelId")
             tableMapping.ColumnMappings.Add("Copies", "Copies")
+            tableMapping.ColumnMappings.Add("RecordNo", "RecordNo")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -7372,14 +7372,14 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelNa"& _ 
-                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks"& _ 
+            Me._commandCollection(0).CommandText = "SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreN"& _ 
+                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks"& _ 
                 ""
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelNa"& _ 
-                "me, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks"& _ 
+            Me._commandCollection(1).CommandText = "SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreN"& _ 
+                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks"& _ 
                 " WHERE (RecordId = @RecordId)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

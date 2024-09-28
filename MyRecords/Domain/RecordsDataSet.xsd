@@ -694,7 +694,7 @@ SELECT RecordId, Side, Track, Title, Year, Genre, ArtistId FROM Tracks WHERE (Re
               <Mapping SourceColumn="ArtistId" DataSetColumn="ArtistId" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="Records.dbo.Tracks" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByKey" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByKey" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillByKey">
+              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="Records.dbo.Tracks" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByKey" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByKey" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByKey">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        RecordId, Side, Track, Title, Year, Genre, ArtistId
@@ -708,7 +708,7 @@ WHERE        (RecordId = @RecordId) AND (Side = @Side) AND (Track = @Track)</Com
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertTrack" Modifier="Public" Name="InsertTrack" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertTrack">
+              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertTrack" Modifier="Public" Name="InsertTrack" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertTrack">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO Tracks
@@ -726,7 +726,7 @@ VALUES        (@RecordId,@Side,@Track,@Title,@Year,@Genre,@ArtistId)</CommandTex
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTracks" Modifier="Public" Name="TruncateTracks" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="TruncateTracks">
+              <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TruncateTracks" Modifier="Public" Name="TruncateTracks" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="TruncateTracks">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>TRUNCATE TABLE Tracks</CommandText>
@@ -741,7 +741,7 @@ VALUES        (@RecordId,@Side,@Track,@Title,@Year,@Genre,@ArtistId)</CommandTex
               <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="Records.dbo.vRecordTracks" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks</CommandText>
+                    <CommandText>SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -750,7 +750,6 @@ VALUES        (@RecordId,@Side,@Track,@Title,@Year,@Genre,@ArtistId)</CommandTex
             <Mappings>
               <Mapping SourceColumn="RecordId" DataSetColumn="RecordId" />
               <Mapping SourceColumn="Format" DataSetColumn="Format" />
-              <Mapping SourceColumn="RecordNo" DataSetColumn="RecordNo" />
               <Mapping SourceColumn="Size" DataSetColumn="Size" />
               <Mapping SourceColumn="Speed" DataSetColumn="Speed" />
               <Mapping SourceColumn="Side" DataSetColumn="Side" />
@@ -764,12 +763,13 @@ VALUES        (@RecordId,@Side,@Track,@Title,@Year,@Genre,@ArtistId)</CommandTex
               <Mapping SourceColumn="GenreId" DataSetColumn="GenreId" />
               <Mapping SourceColumn="LabelId" DataSetColumn="LabelId" />
               <Mapping SourceColumn="Copies" DataSetColumn="Copies" />
+              <Mapping SourceColumn="RecordNo" DataSetColumn="RecordNo" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="RecordsConnectionString (MySettings)" DbObjectName="Records.dbo.vRecordTracks" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByRecord" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByRecord" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByRecord">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT RecordId, Format, RecordNo, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies FROM vRecordTracks WHERE (RecordId = @RecordId)</CommandText>
+                    <CommandText>SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks WHERE (RecordId = @RecordId)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="RecordId" ColumnName="RecordId" DataSourceName="Records.dbo.vRecordTracks" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@RecordId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="RecordId" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -1011,7 +1011,7 @@ SELECT ArtistId, ArtistName FROM Artists WHERE (ArtistId = @ArtistId)</CommandTe
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Copies" msprop:Generator_ColumnPropNameInTable="CopiesColumn" msprop:Generator_ColumnPropNameInRow="Copies" msprop:Generator_UserColumnName="Copies" msprop:Generator_ColumnVarNameInTable="columnCopies" type="xs:int" />
-              <xs:element name="RecordNo" msprop:Generator_UserColumnName="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_ColumnVarNameInTable="columnRecordNo">
+              <xs:element name="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_UserColumnName="RecordNo" msprop:Generator_ColumnVarNameInTable="columnRecordNo">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -1054,13 +1054,6 @@ SELECT ArtistId, ArtistName FROM Artists WHERE (ArtistId = @ArtistId)</CommandTe
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_UserColumnName="RecordNo" msprop:Generator_ColumnVarNameInTable="columnRecordNo">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1113,6 +1106,13 @@ SELECT ArtistId, ArtistName FROM Artists WHERE (ArtistId = @ArtistId)</CommandTe
               <xs:element name="GenreId" msprop:Generator_ColumnPropNameInTable="GenreIdColumn" msprop:Generator_ColumnPropNameInRow="GenreId" msprop:Generator_UserColumnName="GenreId" msprop:Generator_ColumnVarNameInTable="columnGenreId" type="xs:int" minOccurs="0" />
               <xs:element name="LabelId" msprop:Generator_ColumnPropNameInTable="LabelIdColumn" msprop:Generator_ColumnPropNameInRow="LabelId" msprop:Generator_UserColumnName="LabelId" msprop:Generator_ColumnVarNameInTable="columnLabelId" type="xs:int" minOccurs="0" />
               <xs:element name="Copies" msprop:Generator_ColumnPropNameInTable="CopiesColumn" msprop:Generator_ColumnPropNameInRow="Copies" msprop:Generator_UserColumnName="Copies" msprop:Generator_ColumnVarNameInTable="columnCopies" type="xs:int" />
+              <xs:element name="RecordNo" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnVarNameInTable="columnRecordNo" msprop:Generator_UserColumnName="RecordNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

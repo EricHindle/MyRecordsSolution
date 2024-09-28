@@ -478,9 +478,9 @@ Partial Class FrmRecordInput
         Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(461, 461)
+        Me.BtnNext.Location = New System.Drawing.Point(212, 354)
         Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(245, 34)
+        Me.BtnNext.Size = New System.Drawing.Size(78, 78)
         Me.BtnNext.TabIndex = 1
         Me.BtnNext.Text = "Next Record"
         Me.BtnNext.UseVisualStyleBackColor = False
@@ -605,6 +605,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel1.Controls.Add(Me.NudCopies)
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label10)
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer2.Panel1.Controls.Add(Me.BtnNext)
         Me.SplitContainer2.Panel1.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer2.Panel1.Controls.Add(Me.LblRecordId)
         Me.SplitContainer2.Panel1.Controls.Add(Me.Label2)
@@ -881,7 +882,6 @@ Partial Class FrmRecordInput
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnClose)
-        Me.Controls.Add(Me.BtnNext)
         Me.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)

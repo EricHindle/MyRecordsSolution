@@ -94,5 +94,8 @@ Public Class Record
         _speed = pSpeed
         _copies = pCopies
     End Sub
+    Public Function IsExists() As Boolean
+        Return _recordId > -1
+    End Function
 #End Region
 End Class

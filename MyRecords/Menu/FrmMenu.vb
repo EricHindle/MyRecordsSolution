@@ -126,5 +126,11 @@ Public Class FrmMenu
         ShowLog()
     End Sub
 
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
+        Using _search As New FrmSearch
+            _search.showdialog
+        End Using
+    End Sub
+
 #End Region
 End Class

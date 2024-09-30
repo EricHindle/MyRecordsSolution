@@ -272,6 +272,30 @@ Public Module ModDataFunctions
         End Try
         Return _list
     End Function
+    Public Function GetTracksForSearch(pArtistName As String, pLabelId As Integer, pRecordNumber As String, pTitle As String, pYear As Integer, pGenreId As Integer) As List(Of FullRecord)
+        Dim _results As New List(Of FullRecord)
+        Dim oRecordTracksSearchTable As New RecordsDataSet.vRecordTracksDataTable
+        Try
+            oRecordTracksViewTa.FillBySearchValues(oRecordTracksSearchTable, AddPct(pTitle),
+                                                   AddPct(pArtistName),
+                                                   pGenreId,
+                                                   pLabelId,
+                                                   AddPct(pRecordNumber),
+                                                   pYear)
+            For Each oRow As RecordsDataSet.vRecordTracksRow In oRecordTrackssearchTable.Rows
+                Dim _result As FullRecord = FullRecordBuilder.AFullRecord.StartingWith(oRow.RecordId, oRow.Side, oRow.Track).Build
+                If _result.IsExists Then
+                    _results.Add(_result)
+                End If
+            Next
+        Catch ex As Exception
+            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return _results
+    End Function
+    Private Function AddPct(pString) As String
+        Return "%" & pString & "%"
+    End Function
     Public Function GetTrackForKey(pRecordId As Integer, pSide As String, pTrackNo As Integer) As Track
         Dim _track As New Track
         Try

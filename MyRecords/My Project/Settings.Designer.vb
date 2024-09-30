@@ -292,6 +292,18 @@ Namespace My
                 Me("GenreFormPos") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property SearchFormPos() As String
+            Get
+                Return CType(Me("SearchFormPos"),String)
+            End Get
+            Set
+                Me("SearchFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

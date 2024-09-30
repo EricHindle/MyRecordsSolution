@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Domain\Builders\ArtistBuilder.vb" />
+    <Compile Include="Domain\Builders\FullRecordBuilder.vb" />
     <Compile Include="Domain\Builders\GenreBuilder.vb" />
     <Compile Include="Domain\Builders\GlobalSettingBuilder.vb" />
     <Compile Include="Domain\Builders\RecordBuilder.vb" />
@@ -94,6 +95,7 @@
     <Compile Include="Domain\Objects\GlobalSetting.vb" />
     <Compile Include="Domain\Objects\RecordLabel.vb" />
     <Compile Include="Domain\Objects\Record.vb" />
+    <Compile Include="Domain\Objects\FullRecord.vb" />
     <Compile Include="Domain\Objects\Track.vb" />
     <Compile Include="Domain\RecordsDataSet.vb">
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
@@ -163,6 +165,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RecordsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Search\FrmSearch.Designer.vb">
+      <DependentUpon>FrmSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Search\FrmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\FrmBackup.Designer.vb">
       <DependentUpon>FrmBackup.vb</DependentUpon>
     </Compile>
@@ -216,6 +224,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search\FrmSearch.resx">
+      <DependentUpon>FrmSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\FrmBackup.resx">
       <DependentUpon>FrmBackup.vb</DependentUpon>

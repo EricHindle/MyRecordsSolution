@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -48,28 +48,28 @@ Public Class FrmLabelMaint
 
     Private Sub InsertNewLabel()
         If Not String.IsNullOrWhiteSpace(TxtLabel.Text) Then
-            ShowStatus("Adding new Label", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Adding new Label", LblStatus, MyBase.Name)
             _label = RecordLabelBuilder.ARecordLabel.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithLabelName(TxtLabel.Text) _
                                                     .Build
             _label.LabelId = InsertLabel(_label)
-            ShowStatus("Added Label", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Added Label", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not added.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub UpdateLabelDetails()
         If Not String.IsNullOrWhiteSpace(TxtLabel.Text) Then
-            ShowStatus("Updating Label", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updating Label", LblStatus, MyBase.Name)
             Dim oLabel As RecordLabel = RecordLabelBuilder.ARecordLabel.StartingWithNothing _
                                                     .WithId(CurrentLabel.LabelId) _
                                                     .WithLabelName(TxtLabel.Text) _
                                                     .Build
             UpdateLabel(oLabel)
-            ShowStatus("Updated Label", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updated Label", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not changed.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not changed.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub LoadLabelList()
@@ -107,7 +107,7 @@ Public Class FrmLabelMaint
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If IsValidLabel() Then
             If GetLabelFromName(TxtLabel.Text).IsExists Then
-                ShowStatus("Looks like the Label already exists", LblStatus, MyBase.Name, False,,, True,, True)
+                LogUtil.DisplayStatus("Looks like the Label already exists", LblStatus, MyBase.Name, True)
             Else
                 InsertNewLabel()
                 If IsSaveAndExit Then
@@ -118,7 +118,7 @@ Public Class FrmLabelMaint
                 End If
             End If
         Else
-            ShowStatus("Invalid Values", LblStatus,, False)
+            LogUtil.ShowStatus("Invalid Values", LblStatus)
         End If
     End Sub
 

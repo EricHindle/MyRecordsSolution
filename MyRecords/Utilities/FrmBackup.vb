@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -168,23 +168,23 @@ Public Class FrmBackup
                 My.Computer.FileSystem.CreateDirectory(_path)
             End If
         Catch ex As ArgumentException
-            DisplayException(ex, "File creation", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "File creation", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 2, 4)
             isOK = False
         Catch ex As PathTooLongException
-            DisplayException(ex, "File creation", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "File creation", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 2, 4)
             isOK = False
         Catch ex As NotSupportedException
-            DisplayException(ex, "File creation", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "File creation", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 2, 4)
             isOK = False
         Catch ex As IOException
-            DisplayException(ex, "File creation", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "File creation", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 2, 4)
             isOK = False
         Catch ex As UnauthorizedAccessException
-            DisplayException(ex, "File creation", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "File creation", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 2, 4)
             isOK = False
         End Try
@@ -205,12 +205,13 @@ Public Class FrmBackup
             .Append(",  NAME = N'") _
             .Append(_dbName) _
             .Append("-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10")
-        Dim _command As New Global.System.Data.SqlClient.SqlCommand
-        _command.Connection = New Global.System.Data.SqlClient.SqlConnection With {
-            .ConnectionString = Global.MyRecords.My.MySettings.Default.RecordsConnectionString
+        Dim _command As New Global.System.Data.SqlClient.SqlCommand With {
+            .Connection = New Global.System.Data.SqlClient.SqlConnection With {
+                .ConnectionString = Global.MyRecords.My.MySettings.Default.RecordsConnectionString
+            },
+            .CommandText = _commandSQL.ToString,
+            .CommandType = Global.System.Data.CommandType.Text
         }
-        _command.CommandText = _commandSQL.ToString
-        _command.CommandType = Global.System.Data.CommandType.Text
         Dim previousConnectionState As Global.System.Data.ConnectionState = _command.Connection.State
         If ((_command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -222,16 +223,16 @@ Public Class FrmBackup
             AddProgress("Executing SQL", 4)
             returnValue = _command.ExecuteNonQuery
         Catch ex As InvalidCastException
-            DisplayException(ex, "Backup SQL", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "Backup SQL", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 4, 4)
         Catch ex As SqlClient.SqlException
-            DisplayException(ex, "Backup SQL", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "Backup SQL", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 4, 4)
         Catch ex As IOException
-            DisplayException(ex, "Backup SQL", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "Backup SQL", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 4, 4)
         Catch ex As InvalidOperationException
-            DisplayException(ex, "Backup SQL", False, MyBase.Name)
+            LogUtil.DisplayException(ex, "Backup SQL", MyBase.Name)
             AddProgress("Failed : " & ex.Message, 4, 4)
         Finally
             If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then

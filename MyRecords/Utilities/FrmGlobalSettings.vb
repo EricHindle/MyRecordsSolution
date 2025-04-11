@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -56,7 +56,7 @@ Public Class FrmGlobalSettings
             cbType.SelectedIndex = cbType.FindString(oRow.pType)
             TxtGroup.Text = If(oRow.IspGroupNull, "", oRow.pGroup)
         Else
-            ShowStatus("Error: No single record", lblStatus, MyBase.Name, IsBeep:=True)
+            LogUtil.ShowStatus("Error: No single record", lblStatus, True, MyBase.Name, True)
         End If
         _table.Dispose()
     End Sub

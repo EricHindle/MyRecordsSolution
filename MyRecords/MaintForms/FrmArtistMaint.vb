@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -41,35 +41,35 @@ Public Class FrmArtistMaint
     End Sub
 
     Private Sub FrmArtistMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", MyBase.Name)
+        LogUtil.LogInfo("Closing", Name)
         My.Settings.ArtistFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
 
     Private Sub InsertNewArtist()
         If Not String.IsNullOrWhiteSpace(TxtArtist.Text) Then
-            ShowStatus("Adding new Artist", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Adding new Artist", LblStatus, Name)
             Artist = ArtistBuilder.AnArtist.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithArtistName(TxtArtist.Text) _
                                                     .Build
             Artist.ArtistId = InsertArtist(Artist)
-            ShowStatus("Added Artist", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Added Artist", LblStatus, Name)
         Else
-            ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not added.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub UpdateArtistDetails()
         If Not String.IsNullOrWhiteSpace(TxtArtist.Text) Then
-            ShowStatus("Updating Artist", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updating Artist", LblStatus, MyBase.Name)
             Dim oArtist As Artist = ArtistBuilder.AnArtist.StartingWithNothing _
                                                     .WithId(CurrentArtist.ArtistId) _
                                                     .WithArtistName(TxtArtist.Text) _
                                                     .Build
             UpdateArtist(oArtist)
-            ShowStatus("Updated Artist", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updated Artist", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not changed.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not changed.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub LoadArtistList()
@@ -107,7 +107,7 @@ Public Class FrmArtistMaint
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If IsValidArtist() Then
             If GetArtistFromName(TxtArtist.Text).IsExists Then
-                ShowStatus("Looks like the Artist already exists", LblStatus, MyBase.Name, False, ,, True,, True)
+                LogUtil.DisplayStatus("Looks like the Artist already exists", LblStatus, True)
             Else
                 InsertNewArtist()
                 If IsSaveAndExit Then
@@ -118,7 +118,7 @@ Public Class FrmArtistMaint
                 End If
             End If
         Else
-            ShowStatus("Invalid Values", LblStatus,, False)
+            LogUtil.ShowStatus("Invalid Values", LblStatus, False, Nothing, True)
         End If
     End Sub
 

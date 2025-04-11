@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -28,7 +28,7 @@ Public Class FrmRecordInput
                 SplitContainer1.SplitterDistance = My.Settings.RecSplitDist1
             End If
         Catch ex As Exception
-            DisplayException(ex, "Settings",, MyBase.Name)
+            LogUtil.DisplayException(ex, "Settings", MyBase.Name)
         End Try
     End Sub
 
@@ -101,7 +101,7 @@ Public Class FrmRecordInput
     End Sub
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         If Not IsValidRecord() Then
-            ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
+            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
         Else
             TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
             CurrentRecord = BuildRecordFromForm()
@@ -111,16 +111,16 @@ Public Class FrmRecordInput
                 LblRecordId.Text = CStr(CurrentRecord.RecordId)
                 SplitContainer2.Panel2Collapsed = False
                 BtnAdd.Enabled = False
-                ShowStatus("Record Added", LblStatus, MyBase.Name, False)
+                LogUtil.ShowStatus("Record Added", LblStatus, MyBase.Name)
             Else
                 If IsIncrementCopies(_duplicateRecord) Then
                     UpdateRecordCopies(CurrentRecord)
                     NextRecord()
-                    ShowStatus("Record Updated", LblStatus, MyBase.Name, False)
+                    LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
                 Else
                     SplitContainer2.Panel2Collapsed = True
                     BtnAdd.Enabled = True
-                    ShowStatus("Record rejected", LblStatus, MyBase.Name, False)
+                    LogUtil.ShowStatus("Record rejected", LblStatus, MyBase.Name)
                 End If
             End If
         End If
@@ -366,20 +366,20 @@ Public Class FrmRecordInput
     Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
         TrimValues
         If Not IsValidTrack() Then
-            ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
+            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
         Else
             CurrentTrack = BuildTrackFromForm()
             If Not IsTrackExists(CurrentTrack) Then
                 Dim response As Integer = InsertTrack(CurrentTrack)
                 If response = 1 Then
                     LblRecordId.Text = CStr(CurrentRecord.RecordId)
-                    ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+                    LogUtil.ShowStatus("Track Added", LblStatus, MyBase.Name)
                 Else
-                    ShowStatus("Error saving track", LblStatus, MyBase.Name, False, TraceEventType.Error, , ,, True)
+                    LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
                 End If
                 ClearTrack()
             Else
-                ShowStatus("Track already exists", LblStatus, MyBase.Name, False,,,,, True)
+                LogUtil.ShowStatus("Track already exists", LblStatus)
             End If
         End If
     End Sub

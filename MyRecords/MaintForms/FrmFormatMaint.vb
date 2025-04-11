@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -29,28 +29,28 @@ Public Class FrmFormatMaint
 
     Private Sub InsertNewFormat()
         If Not String.IsNullOrWhiteSpace(TxtFormat.Text) Then
-            ShowStatus("Adding new Format", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Adding new Format", LblStatus, MyBase.Name)
             Dim oFormat As RecordFormat = RecordFormatBuilder.ARecordFormat.StartingWithNothing _
                                                     .WithId(TxtFormatId.Text) _
                                                     .WithFormatName(TxtFormat.Text) _
                                                     .Build
             InsertFormat(oFormat)
-            ShowStatus("Added Format", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Added Format", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not added.", LblStatus, False, Nothing, IsBeep:=True)
         End If
     End Sub
     Private Sub UpdateFormatDetails()
         If Not String.IsNullOrWhiteSpace(TxtFormat.Text) Then
-            ShowStatus("Updating Format", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updating Format", LblStatus, MyBase.Name)
             Dim oFormat As RecordFormat = RecordFormatBuilder.ARecordFormat.StartingWithNothing _
                                                     .WithId(CurrentFormat.FormatId) _
                                                     .WithFormatName(TxtFormat.Text) _
                                                     .Build
             UpdateFormat(oFormat)
-            ShowStatus("Updated Format", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updated Format", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not changed.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not changed.", LblStatus, False, Nothing, IsBeep:=True)
         End If
     End Sub
     Private Sub LoadFormatList()
@@ -86,14 +86,14 @@ Public Class FrmFormatMaint
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If isValidFormat() Then
             If GetFormatFromName(TxtFormat.Text).IsExists Then
-                ShowStatus("Looks like the Format already exists", LblStatus, MyBase.Name, False,,, True,, True)
+                LogUtil.DisplayStatus("Looks like the Format already exists", LblStatus, MyBase.Name, True)
             Else
                 InsertNewFormat()
                 LoadFormatList()
                 ClearForm()
             End If
         Else
-            ShowStatus("Invalid Values", LblStatus,, False)
+            LogUtil.ShowStatus("Invalid Values", LblStatus)
         End If
     End Sub
 

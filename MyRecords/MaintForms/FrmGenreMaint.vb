@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -48,28 +48,28 @@ Public Class FrmGenreMaint
 
     Private Sub InsertNewGenre()
         If Not String.IsNullOrWhiteSpace(TxtGenre.Text) Then
-            ShowStatus("Adding new Genre", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Adding new Genre", LblStatus, MyBase.Name)
             Genre = GenreBuilder.AGenre.StartingWithNothing _
                                                     .WithId(-1) _
                                                     .WithGenreName(TxtGenre.Text) _
                                                     .Build
             Genre.GenreId = InsertGenre(Genre)
-            ShowStatus("Added Genre", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Added Genre", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not added.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not added.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub UpdateGenreDetails()
         If Not String.IsNullOrWhiteSpace(TxtGenre.Text) Then
-            ShowStatus("Updating Genre", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updating Genre", LblStatus, MyBase.Name)
             Dim oGenre As Genre = GenreBuilder.AGenre.StartingWithNothing _
                                                     .WithId(CurrentGenre.GenreId) _
                                                     .WithGenreName(TxtGenre.Text) _
                                                     .Build
             UpdateGenre(oGenre)
-            ShowStatus("Updated Genre", LblStatus, MyBase.Name)
+            LogUtil.ShowStatus("Updated Genre", LblStatus, MyBase.Name)
         Else
-            ShowStatus("No Name. Not changed.", LblStatus, , False, IsBeep:=True)
+            LogUtil.ShowStatus("No Name. Not changed.", LblStatus, False, Nothing, True)
         End If
     End Sub
     Private Sub LoadGenreList()
@@ -107,7 +107,7 @@ Public Class FrmGenreMaint
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
         If isValidGenre() Then
             If GetGenreFromName(TxtGenre.Text).IsExists Then
-                ShowStatus("Looks like the Genre already exists", LblStatus, MyBase.Name, False,,, True,, True)
+                LogUtil.DisplayStatus("Looks like the Genre already exists", LblStatus, MyBase.Name, True)
             Else
                 InsertNewGenre()
                 If IsSaveAndExit Then
@@ -118,7 +118,7 @@ Public Class FrmGenreMaint
                 End If
             End If
         Else
-            ShowStatus("Invalid Values", LblStatus,, False)
+            LogUtil.ShowStatus("Invalid Values", LblStatus)
         End If
     End Sub
 

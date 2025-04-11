@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -114,8 +114,6 @@ Public Module ModCommon
     '    End Using
 
     'End Sub
-
-
     'Public Sub OpenOptionsForm()
     '    OpenOptionsForm(-1, Nothing)
     'End Sub
@@ -137,8 +135,6 @@ Public Module ModCommon
     '    End Using
 
     'End Sub
-
-
 #End Region
 #Region "subroutines"
     Public Sub LogSettings(pSection As SettingSection, psub As String)
@@ -157,10 +153,6 @@ Public Module ModCommon
         'LogUtil.Info("Main Diary Split Dist : " & My.Settings.MainDiarySplitDist, psub)
         'LogUtil.Info("Main Split Dist : " & My.Settings.MainSplitDist, psub)
     End Sub
-
-    Public Sub ClearStatus(pStatus As ToolStripStatusLabel)
-        ShowStatus("", pStatus,, False)
-    End Sub
     Public Sub LoadFileListDgv(ByRef pDgv As DataGridView, ByRef pFilePath As String, pColName As String)
         pDgv.Rows.Clear()
         Dim fileList As IReadOnlyCollection(Of String) = My.Computer.FileSystem.GetFiles(pFilePath)
@@ -173,7 +165,6 @@ Public Module ModCommon
         pDgv.ClearSelection()
         pDgv.Refresh()
     End Sub
-
     Public Sub TextBox_DragDrop(sender As Object, e As DragEventArgs)
         If e.Data.GetDataPresent(DataFormats.StringFormat) Then
             Dim oBox As TextBox = CType(sender, TextBox)
@@ -231,63 +222,10 @@ Public Module ModCommon
         dgv.Rows(_index).Selected = True
         Return fromIx.Visible
     End Function
-    Public Function ShowStatus(pText As String,
-                               ByRef pStatus As Label,
-                               Optional pSource As String = "",
-                               Optional isLogged As Boolean = True,
-                               Optional IsBeep As Boolean = False) As MsgBoxResult
-        If pStatus IsNot Nothing AndAlso pStatus.GetType Is GetType(Label) Then
-            pStatus.Text = pText
-            pStatus.Refresh()
-        End If
-        Return ShowStatus(pText, pSource:=pSource, isLogged:=isLogged, IsBeep:=IsBeep)
-    End Function
-    Public Function ShowStatus(pText As String,
-                               ByRef pStatus As ToolStripStatusLabel,
-                               Optional pSource As String = "",
-                               Optional isLogged As Boolean = True,
-                               Optional pLevel As TraceEventType = TraceEventType.Information,
-                               Optional pEx As Exception = Nothing,
-                               Optional isMessageBox As Boolean = False,
-                               Optional pBoxStyle As MsgBoxStyle = MsgBoxStyle.Exclamation,
-                               Optional IsBeep As Boolean = False) As MsgBoxResult
-        If pStatus IsNot Nothing AndAlso pStatus.GetType Is GetType(ToolStripStatusLabel) Then
-            pStatus.Text = pText
-            pStatus.Owner.Refresh()
-        End If
-        Return ShowStatus(pText, pSource, isLogged, pLevel, pEx, isMessageBox, pBoxStyle, IsBeep)
-    End Function
-    Public Function ShowStatus(pText As String,
-                               Optional pSource As String = "",
-                               Optional isLogged As Boolean = True,
-                               Optional pLevel As TraceEventType = TraceEventType.Information,
-                               Optional pEx As Exception = Nothing,
-                               Optional isMessageBox As Boolean = False,
-                               Optional pBoxStyle As MsgBoxStyle = MsgBoxStyle.Exclamation,
-                               Optional IsBeep As Boolean = False) As MsgBoxResult
-        Dim rtnResult As MsgBoxResult = MsgBoxResult.Ok
-
-        If IsBeep Then Beep()
-        If isLogged Then
-            If pEx Is Nothing Then
-                LogUtil.AddLog(pText, pLevel, pSource)
-            Else
-                LogUtil.Exception(pText, pEx, pSource)
-            End If
-        End If
-        If isMessageBox Then
-            Dim _message As String = pText & If(pEx Is Nothing, "", vbCrLf & "Exception:  " & pEx.Message & vbCrLf & If(pEx.InnerException Is Nothing, "", pEx.InnerException.Message))
-            rtnResult = MsgBox(_message, pBoxStyle, "Status")
-        End If
-        Return rtnResult
-    End Function
-
-
     Public Function PadSequence(_seq As Integer, _maxSeq As Integer) As String
         Dim _paddedSeq As String = CStr(_seq).PadLeft(CStr(_maxSeq).Length, "0")
         Return _paddedSeq
     End Function
-
     Public Function GetFileNameFromList(dgv As DataGridView) As String
         Dim _fileName As String = ""
         If dgv IsNot Nothing Then
@@ -295,15 +233,14 @@ Public Module ModCommon
                 Try
                     _fileName = dgv.SelectedRows(0).Cells(0).Value
                 Catch ex As ArgumentException
-                    DisplayException(ex, "Arguement", , "GetFileNameFromList")
+                    LogUtil.DisplayException(ex, "Arguement", "GetFileNameFromList")
                 Catch ex As IOException
-                    DisplayException(ex, "IO", , "GetFileNameFromList")
+                    LogUtil.DisplayException(ex, "IO", "GetFileNameFromList")
                 End Try
             End If
         End If
         Return _fileName
     End Function
-
     Public Function GetFormPos(ByRef oForm As Form, ByVal sPos As String) As Boolean
         LogUtil.Info("Getting form position for " & oForm.Name, MODULE_NAME)
         Dim isOK As Boolean = True
@@ -336,15 +273,6 @@ Public Module ModCommon
         LogUtil.Debug("Generated form position: " & sPos, MODULE_NAME)
         Return sPos
     End Function
-    Public Function DisplayException(pException As Exception, pExceptionType As String, Optional isAsk As Boolean = False, Optional pSub As String = "") As MsgBoxResult
-        LogUtil.Exception(pExceptionType, pException, pSub)
-        Return MsgBox(pSub & " : " & pExceptionType & " exception" & vbCrLf _
-            & pException.Message & vbCrLf _
-            & If(pException.InnerException Is Nothing, "", pException.InnerException.Message) _
-            & If(isAsk, vbCrLf & "OK to continue?", ""),
-                   If(isAsk, MsgBoxStyle.YesNo, MsgBoxStyle.OkOnly) Or MsgBoxStyle.Exclamation,
-                      pExceptionType & " exception")
-    End Function
     Public Function GetUniqueFname(ByVal filename As String, ByVal Optional pPath As String = Nothing, Optional pPrefix As String = "", Optional pSuffix As String = "_#") As String
         If pPath Is Nothing Then pPath = Path.GetDirectoryName(filename)
         Dim newfilename As String = Path.Combine(pPath, Path.GetFileName(filename))
@@ -361,7 +289,7 @@ Public Module ModCommon
                     End If
                 Next
             Catch ex As ArgumentException
-                DisplayException(ex, "Argument", , MethodBase.GetCurrentMethod.Name)
+                LogUtil.DisplayException(ex, "Argument", MethodBase.GetCurrentMethod.Name)
             End Try
         End If
         LogUtil.Info("Generated new filename: " & newfilename, MODULE_NAME)

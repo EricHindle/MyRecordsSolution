@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -10,8 +10,6 @@ Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Reflection
 Imports HindlewareLib.Logging
-
-
 Public Module ModDataFunctions
 #Region "constants"
     Private Const MODULE_NAME As String = "DataFunctions"
@@ -192,7 +190,7 @@ Public Module ModDataFunctions
                 _list.Add(RecordBuilder.ARecord.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
     End Function
@@ -200,13 +198,13 @@ Public Module ModDataFunctions
         LogUtil.Info("Getting Record " & CStr(pId), MODULE_NAME)
         Dim _rec As New Record
         Try
-            oRecordsTa.FillbyId(oRecordsTable, pId)
+            oRecordsTa.FillById(oRecordsTable, pId)
             If oRecordsTable.Rows.Count > 0 Then
                 Dim oRow As RecordsDataSet.RecordsRow = oRecordsTable.Rows(0)
                 _rec = RecordBuilder.ARecord.StartingWith(oRow).Build
             End If
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _rec
     End Function
@@ -225,7 +223,7 @@ Public Module ModDataFunctions
                 End If
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return newId
     End Function
@@ -237,7 +235,7 @@ Public Module ModDataFunctions
                 response = oRecordsTa.UpdateRecordCopies(pRecord.Copies, pRecord.RecordId)
             End With
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -255,7 +253,7 @@ Public Module ModDataFunctions
                 response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Title, .Year, .Genre.GenreId, .Artist.ArtistId)
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -268,7 +266,7 @@ Public Module ModDataFunctions
                 _list.Add(TrackBuilder.ATrack.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
     End Function
@@ -282,14 +280,14 @@ Public Module ModDataFunctions
                                                    pLabelId,
                                                    AddPct(pRecordNumber),
                                                    pYear)
-            For Each oRow As RecordsDataSet.vRecordTracksRow In oRecordTrackssearchTable.Rows
+            For Each oRow As RecordsDataSet.vRecordTracksRow In oRecordTracksSearchTable.Rows
                 Dim _result As FullRecord = FullRecordBuilder.AFullRecord.StartingWith(oRow.RecordId, oRow.Side, oRow.Track).Build
                 If _result.IsExists Then
                     _results.Add(_result)
                 End If
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _results
     End Function
@@ -305,7 +303,7 @@ Public Module ModDataFunctions
                 _track = TrackBuilder.ATrack.StartingWith(_row).Build
             End If
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _track
     End Function
@@ -324,7 +322,7 @@ Public Module ModDataFunctions
                 oArtist = ArtistBuilder.AnArtist.StartingWith(oArtistsTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return oArtist
     End Function
@@ -337,7 +335,7 @@ Public Module ModDataFunctions
                 oArtist = ArtistBuilder.AnArtist.StartingWith(oArtistsTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return oArtist
     End Function
@@ -359,7 +357,7 @@ Public Module ModDataFunctions
                 End If
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -371,7 +369,7 @@ Public Module ModDataFunctions
                 _response = oArtistsTa.UpdateArtist(.ArtistName, pArtist.ArtistId)
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _response
     End Function
@@ -384,7 +382,7 @@ Public Module ModDataFunctions
                 _list.Add(ArtistBuilder.AnArtist.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
 
@@ -405,7 +403,7 @@ Public Module ModDataFunctions
                 olabel = RecordLabelBuilder.ARecordLabel.StartingWith(oRecordLabelsTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return olabel
     End Function
@@ -418,7 +416,7 @@ Public Module ModDataFunctions
                 olabel = RecordLabelBuilder.ARecordLabel.StartingWith(oRecordLabelsTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return olabel
     End Function
@@ -440,7 +438,7 @@ Public Module ModDataFunctions
                 End If
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -452,7 +450,7 @@ Public Module ModDataFunctions
                 _response = oRecordLabelsTa.UpdateLabel(.LabelName, pLabel.LabelId)
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _response
     End Function
@@ -465,7 +463,7 @@ Public Module ModDataFunctions
                 _list.Add(RecordLabelBuilder.ARecordLabel.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
 
@@ -486,7 +484,7 @@ Public Module ModDataFunctions
                 olabel = GenreBuilder.AGenre.StartingWith(oMusicGenreTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return olabel
     End Function
@@ -499,7 +497,7 @@ Public Module ModDataFunctions
                 olabel = GenreBuilder.AGenre.StartingWith(oMusicGenreTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return olabel
     End Function
@@ -520,7 +518,7 @@ Public Module ModDataFunctions
                 End If
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -532,7 +530,7 @@ Public Module ModDataFunctions
                 _response = oMusicGenreTa.UpdateGenre(.GenreName, pGenre.GenreId)
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _response
     End Function
@@ -545,7 +543,7 @@ Public Module ModDataFunctions
                 _list.Add(GenreBuilder.AGenre.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
 
@@ -566,7 +564,7 @@ Public Module ModDataFunctions
                 End If
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return response
     End Function
@@ -578,7 +576,7 @@ Public Module ModDataFunctions
                 _response = oRecordFormatTa.UpdateFormat(.FormatName, pFormat.FormatId)
             End With
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _response
     End Function
@@ -591,7 +589,7 @@ Public Module ModDataFunctions
                 _list.Add(RecordFormatBuilder.ARecordFormat.StartingWith(oRow).Build)
             Next
         Catch ex As Exception
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return _list
 
@@ -605,7 +603,7 @@ Public Module ModDataFunctions
                 oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return oformat
     End Function
@@ -618,7 +616,7 @@ Public Module ModDataFunctions
                 oformat = RecordFormatBuilder.ARecordFormat.StartingWith(oRecordFormatTable.Rows(0)).Build
             End If
         Catch ex As SqlException
-            DisplayException(ex, "dB",, MethodBase.GetCurrentMethod.Name)
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
         End Try
         Return oformat
     End Function

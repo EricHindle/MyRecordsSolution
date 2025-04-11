@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024 Eric Hindle
+' Copyright (c) 2024-25 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -70,7 +70,7 @@ Public Class FrmTrackInput
 
     Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
         If Not IsValidTrack() Then
-            ShowStatus("Invalid values", LblStatus, MyBase.Name, False,,,,, True)
+            LogUtil.ShowStatus("Invalid values", LblStatus, False, Nothing, True)
         Else
             CurrentTrack = BuildTrackFromForm()
             Dim response As Integer = InsertTrack(CurrentTrack)
@@ -78,12 +78,10 @@ Public Class FrmTrackInput
                 LblRecordId.Text = CStr(_currentRecord.RecordId)
                 BtnNextTrack.Enabled = True
                 BtnSaveTrack.Enabled = False
-                ShowStatus("Track Added", LblStatus, MyBase.Name, False)
+                LogUtil.ShowStatus("Track Added", LblStatus)
             Else
-                ShowStatus("Error saving track", LblStatus, MyBase.Name, False, TraceEventType.Error, , ,, True)
+                LogUtil.ShowStatus("Error saving track", LblStatus, False, Nothing, True)
             End If
-
-
         End If
     End Sub
 

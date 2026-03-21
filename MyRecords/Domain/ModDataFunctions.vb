@@ -227,6 +227,18 @@ Public Module ModDataFunctions
         End Try
         Return newId
     End Function
+    Public Function UpdateRecord(pRecord As Record) As Integer
+        LogUtil.Info("Updating record " & CInt(pRecord.RecordId), MODULE_NAME)
+        Dim response As Integer = 0
+        Try
+            With pRecord
+                response = oRecordsTa.UpdateRecord(.RecordFormat.FormatId, .Label.LabelId, .Size, .Speed, .Copies, .RecordNumber, .RecordId)
+            End With
+        Catch ex As Exception
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
     Public Function UpdateRecordCopies(pRecord As Record) As Integer
         LogUtil.Info("Inserting record copies for" & pRecord.RecordNumber, MODULE_NAME)
         Dim response As Integer = 0
@@ -250,7 +262,19 @@ Public Module ModDataFunctions
         Dim response As Integer = -1
         Try
             With pTrack
-                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Title, .Year, .Genre.GenreId, .Artist.ArtistId)
+                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Title, .Year, .Genre.GenreId, .Artist.ArtistId, .PeakChartPosition, .ChartDate)
+            End With
+        Catch ex As SqlException
+            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
+        End Try
+        Return response
+    End Function
+    Public Function UpdateTrack(pTrack As Track) As Integer
+        LogUtil.Info("Updating Track " & pTrack.RecordId & "-" & pTrack.Side & CStr(pTrack.Track), MODULE_NAME)
+        Dim response As Integer = -1
+        Try
+            With pTrack
+                response = oTracksTa.UpdateTrack(.Title, .Year, .Genre.GenreId, .Artist.ArtistId, .PeakChartPosition, .ChartDate, .RecordId, .Side, .Track)
             End With
         Catch ex As SqlException
             LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)

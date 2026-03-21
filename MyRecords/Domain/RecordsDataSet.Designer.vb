@@ -2037,6 +2037,10 @@ Partial Public Class RecordsDataSet
         
         Private columnArtistId As Global.System.Data.DataColumn
         
+        Private columnPeakChartPosition As Global.System.Data.DataColumn
+        
+        Private columnChartDate As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -2129,6 +2133,22 @@ Partial Public Class RecordsDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PeakChartPositionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPeakChartPosition
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ChartDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnChartDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2165,9 +2185,9 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer) As TracksRow
+        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Date) As TracksRow
             Dim rowTracksRow As TracksRow = CType(Me.NewRow,TracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Side, Track, Title, Year, Genre, ArtistId}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Side, Track, Title, Year, Genre, ArtistId, PeakChartPosition, ChartDate}
             rowTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTracksRow)
             Return rowTracksRow
@@ -2203,6 +2223,8 @@ Partial Public Class RecordsDataSet
             Me.columnYear = MyBase.Columns("Year")
             Me.columnGenre = MyBase.Columns("Genre")
             Me.columnArtistId = MyBase.Columns("ArtistId")
+            Me.columnPeakChartPosition = MyBase.Columns("PeakChartPosition")
+            Me.columnChartDate = MyBase.Columns("ChartDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2222,6 +2244,10 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnGenre)
             Me.columnArtistId = New Global.System.Data.DataColumn("ArtistId", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArtistId)
+            Me.columnPeakChartPosition = New Global.System.Data.DataColumn("PeakChartPosition", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPeakChartPosition)
+            Me.columnChartDate = New Global.System.Data.DataColumn("ChartDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnChartDate)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnRecordId, Me.columnSide, Me.columnTrack}, true))
             Me.columnRecordId.AllowDBNull = false
             Me.columnSide.AllowDBNull = false
@@ -2232,6 +2258,7 @@ Partial Public Class RecordsDataSet
             Me.columnYear.AllowDBNull = false
             Me.columnGenre.AllowDBNull = false
             Me.columnArtistId.AllowDBNull = false
+            Me.columnPeakChartPosition.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2401,6 +2428,10 @@ Partial Public Class RecordsDataSet
         
         Private columnRecordNo As Global.System.Data.DataColumn
         
+        Private columnPeakChartPosition As Global.System.Data.DataColumn
+        
+        Private columnChartDate As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -2565,6 +2596,22 @@ Partial Public Class RecordsDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property PeakChartPositionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPeakChartPosition
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ChartDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnChartDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2617,9 +2664,11 @@ Partial Public Class RecordsDataSet
                     ByVal GenreId As Integer,  _
                     ByVal LabelId As Integer,  _
                     ByVal Copies As Integer,  _
-                    ByVal RecordNo As String) As vRecordTracksRow
+                    ByVal RecordNo As String,  _
+                    ByVal PeakChartPosition As Integer,  _
+                    ByVal ChartDate As Date) As vRecordTracksRow
             Dim rowvRecordTracksRow As vRecordTracksRow = CType(Me.NewRow,vRecordTracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo, PeakChartPosition, ChartDate}
             rowvRecordTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvRecordTracksRow)
             Return rowvRecordTracksRow
@@ -2658,6 +2707,8 @@ Partial Public Class RecordsDataSet
             Me.columnLabelId = MyBase.Columns("LabelId")
             Me.columnCopies = MyBase.Columns("Copies")
             Me.columnRecordNo = MyBase.Columns("RecordNo")
+            Me.columnPeakChartPosition = MyBase.Columns("PeakChartPosition")
+            Me.columnChartDate = MyBase.Columns("ChartDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2695,6 +2746,10 @@ Partial Public Class RecordsDataSet
             MyBase.Columns.Add(Me.columnCopies)
             Me.columnRecordNo = New Global.System.Data.DataColumn("RecordNo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRecordNo)
+            Me.columnPeakChartPosition = New Global.System.Data.DataColumn("PeakChartPosition", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPeakChartPosition)
+            Me.columnChartDate = New Global.System.Data.DataColumn("ChartDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnChartDate)
             Me.columnRecordId.AllowDBNull = false
             Me.columnFormat.AllowDBNull = false
             Me.columnFormat.MaxLength = 3
@@ -2716,6 +2771,7 @@ Partial Public Class RecordsDataSet
             Me.columnCopies.AllowDBNull = false
             Me.columnRecordNo.AllowDBNull = false
             Me.columnRecordNo.MaxLength = 20
+            Me.columnPeakChartPosition.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3499,6 +3555,44 @@ Partial Public Class RecordsDataSet
                 Me(Me.tableTracks.ArtistIdColumn) = value
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PeakChartPosition() As Integer
+            Get
+                Return CType(Me(Me.tableTracks.PeakChartPositionColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableTracks.PeakChartPositionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ChartDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTracks.ChartDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ChartDate' in table 'Tracks' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTracks.ChartDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsChartDateNull() As Boolean
+            Return Me.IsNull(Me.tableTracks.ChartDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetChartDateNull()
+            Me(Me.tableTracks.ChartDateColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -3706,6 +3800,32 @@ Partial Public Class RecordsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property PeakChartPosition() As Integer
+            Get
+                Return CType(Me(Me.tablevRecordTracks.PeakChartPositionColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.PeakChartPositionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ChartDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablevRecordTracks.ChartDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ChartDate' in table 'vRecordTracks' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevRecordTracks.ChartDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsArtistNameNull() As Boolean
             Return Me.IsNull(Me.tablevRecordTracks.ArtistNameColumn)
         End Function
@@ -3738,6 +3858,18 @@ Partial Public Class RecordsDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetLabelIdNull()
             Me(Me.tablevRecordTracks.LabelIdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsChartDateNull() As Boolean
+            Return Me.IsNull(Me.tablevRecordTracks.ChartDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetChartDateNull()
+            Me(Me.tablevRecordTracks.ChartDateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6327,7 +6459,7 @@ Namespace RecordsDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(6) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT RecordId, Format, Label, Size, Speed, Copies, RecordNo FROM Records"
@@ -6371,12 +6503,26 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "UPDATE       Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Copies = @Copies"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (RecordId"& _ 
+            Me._commandCollection(5).CommandText = "UPDATE       Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Format = @Format, Label = @Label, Size ="& _ 
+                " @Size, Speed = @Speed, Copies = @Copies, RecordNo = @RecordNo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Re"& _ 
+                "cordId = @RecordId);  "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, Size, Speed, Copies, Rec"& _ 
+                "ordNo FROM Records WHERE (RecordId = @RecordId)"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Format", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Format", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Label", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Label", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Size", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Size", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Speed", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Speed", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordNo", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordNo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(6).Connection = Me.Connection
+            Me._commandCollection(6).CommandText = "UPDATE       Records"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Copies = @Copies"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (RecordId"& _ 
                 " = @RecordId); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Format, Label, RecordNo, Size, Speed, Copies F"& _ 
                 "ROM Records WHERE (RecordId = @RecordId)"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Copies", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Copies", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6700,8 +6846,49 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateRecordCopies(ByVal Copies As Integer, ByVal RecordId As Integer) As Integer
+        Public Overloads Overridable Function UpdateRecord(ByVal Format As String, ByVal Label As Integer, ByVal Size As Integer, ByVal Speed As String, ByVal Copies As Integer, ByVal RecordNo As String, ByVal RecordId As Integer) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            If (Format Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Format")
+            Else
+                command.Parameters(0).Value = CType(Format,String)
+            End If
+            command.Parameters(1).Value = CType(Label,Integer)
+            command.Parameters(2).Value = CType(Size,Integer)
+            If (Speed Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Speed")
+            Else
+                command.Parameters(3).Value = CType(Speed,String)
+            End If
+            command.Parameters(4).Value = CType(Copies,Integer)
+            If (RecordNo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("RecordNo")
+            Else
+                command.Parameters(5).Value = CType(RecordNo,String)
+            End If
+            command.Parameters(6).Value = CType(RecordId,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateRecordCopies(ByVal Copies As Integer, ByVal RecordId As Integer) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(6)
             command.Parameters(0).Value = CType(Copies,Integer)
             command.Parameters(1).Value = CType(RecordId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
@@ -6855,59 +7042,77 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Year", "Year")
             tableMapping.ColumnMappings.Add("Genre", "Genre")
             tableMapping.ColumnMappings.Add("ArtistId", "ArtistId")
+            tableMapping.ColumnMappings.Add("PeakChartPosition", "PeakChartPosition")
+            tableMapping.ColumnMappings.Add("ChartDate", "ChartDate")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM [Tracks] WHERE (([RecordId] = @Original_RecordId) AND ([Side] = @Orig"& _ 
                 "inal_Side) AND ([Track] = @Original_Track) AND ([Title] = @Original_Title) AND ("& _ 
                 "[Year] = @Original_Year) AND ([Genre] = @Original_Genre) AND ([ArtistId] = @Orig"& _ 
-                "inal_ArtistId))"
+                "inal_ArtistId) AND ([PeakChartPosition] = @Original_PeakChartPosition) AND ((@Is"& _ 
+                "Null_ChartDate = 1 AND [ChartDate] IS NULL) OR ([ChartDate] = @Original_ChartDat"& _ 
+                "e)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ArtistId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PeakChartPosition", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ChartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ChartDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [Tracks] ([RecordId], [Side], [Track], [Title], [Year], [Genre], [Art"& _ 
-                "istId]) VALUES (@RecordId, @Side, @Track, @Title, @Year, @Genre, @ArtistId);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SE"& _ 
-                "LECT RecordId, Side, Track, Title, Year, Genre, ArtistId FROM Tracks WHERE (Reco"& _ 
-                "rdId = @RecordId) AND (Side = @Side) AND (Track = @Track)"
+                "istId], [PeakChartPosition], [ChartDate]) VALUES (@RecordId, @Side, @Track, @Tit"& _ 
+                "le, @Year, @Genre, @ArtistId, @PeakChartPosition, @ChartDate);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId,"& _ 
+                " Side, Track, Title, Year, Genre, ArtistId, PeakChartPosition, ChartDate FROM Tr"& _ 
+                "acks WHERE (RecordId = @RecordId) AND (Side = @Side) AND (Track = @Track)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ArtistId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PeakChartPosition", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ChartDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [Tracks] SET [RecordId] = @RecordId, [Side] = @Side, [Track] = @Track, [Ti"& _ 
-                "tle] = @Title, [Year] = @Year, [Genre] = @Genre, [ArtistId] = @ArtistId WHERE (("& _ 
-                "[RecordId] = @Original_RecordId) AND ([Side] = @Original_Side) AND ([Track] = @O"& _ 
-                "riginal_Track) AND ([Title] = @Original_Title) AND ([Year] = @Original_Year) AND"& _ 
-                " ([Genre] = @Original_Genre) AND ([ArtistId] = @Original_ArtistId));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Rec"& _ 
-                "ordId, Side, Track, Title, Year, Genre, ArtistId FROM Tracks WHERE (RecordId = @"& _ 
-                "RecordId) AND (Side = @Side) AND (Track = @Track)"
+                "tle] = @Title, [Year] = @Year, [Genre] = @Genre, [ArtistId] = @ArtistId, [PeakCh"& _ 
+                "artPosition] = @PeakChartPosition, [ChartDate] = @ChartDate WHERE (([RecordId] ="& _ 
+                " @Original_RecordId) AND ([Side] = @Original_Side) AND ([Track] = @Original_Trac"& _ 
+                "k) AND ([Title] = @Original_Title) AND ([Year] = @Original_Year) AND ([Genre] = "& _ 
+                "@Original_Genre) AND ([ArtistId] = @Original_ArtistId) AND ([PeakChartPosition] "& _ 
+                "= @Original_PeakChartPosition) AND ((@IsNull_ChartDate = 1 AND [ChartDate] IS NU"& _ 
+                "LL) OR ([ChartDate] = @Original_ChartDate)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT RecordId, Side, Track, Tit"& _ 
+                "le, Year, Genre, ArtistId, PeakChartPosition, ChartDate FROM Tracks WHERE (Recor"& _ 
+                "dId = @RecordId) AND (Side = @Side) AND (Track = @Track)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ArtistId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PeakChartPosition", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ChartDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RecordId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Side", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Track", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Title", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Year", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Genre", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ArtistId", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PeakChartPosition", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ChartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ChartDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6920,16 +7125,17 @@ Namespace RecordsDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT RecordId, Side, Track, Title, Year, Genre, ArtistId FROM Tracks"
+            Me._commandCollection(0).CommandText = "SELECT RecordId, Side, Track, Title, Year, Genre, ArtistId, PeakChartPosition, Ch"& _ 
+                "artDate FROM Tracks"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        RecordId, Side, Track, Title, Year, Genre, ArtistId"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM          "& _ 
-                "  Tracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (RecordId = @RecordId) AND (Side = @Side) AND (Track = @T"& _ 
-                "rack)"
+            Me._commandCollection(1).CommandText = "SELECT ArtistId, Genre, PeakChartPosition, RecordId, Side, Title, Track, Year, Ch"& _ 
+                "artDate FROM Tracks WHERE (RecordId = @RecordId) AND (Side = @Side) AND (Track ="& _ 
+                " @Track)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -6937,20 +7143,38 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "INSERT INTO Tracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (RecordId, Side, Track, Title, Year,"& _ 
-                " Genre, ArtistId)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@RecordId,@Side,@Track,@Title,@Year,@Genre,@Ar"& _ 
-                "tistId)"
+                " Genre, ArtistId, PeakChartPosition, ChartDate)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@RecordId,@Side,"& _ 
+                "@Track,@Title,@Year,@Genre,@ArtistId,@ChartPos,@ChartDate)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ArtistId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ChartPos", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ChartDate", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
             Me._commandCollection(3).CommandText = "TRUNCATE TABLE Tracks"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "UPDATE       Tracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Title = @Title, Year = @Year, Genre = @Ge"& _ 
+                "nre, ArtistId = @ArtistId, PeakChartPosition = @PeakChartPosition, ChartDate = @"& _ 
+                "ChartDate"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (RecordId = @RecordId) AND (Side = @Side) AND (Track = @"& _ 
+                "Track)"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Year", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Year", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Genre", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Genre", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ArtistId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PeakChartPosition", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PeakChartPosition", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ChartDate", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "ChartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Side", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Side", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Track", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Track", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7029,7 +7253,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer, ByVal Original_ArtistId As Integer) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer, ByVal Original_ArtistId As Integer, ByVal Original_PeakChartPosition As Integer, ByVal Original_ChartDate As Global.System.Nullable(Of Date)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_RecordId,Integer)
             If (Original_Side Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Side")
@@ -7045,6 +7269,14 @@ Namespace RecordsDataSetTableAdapters
             Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Year,Integer)
             Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_Genre,Integer)
             Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_ArtistId,Integer)
+            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_PeakChartPosition,Integer)
+            If (Original_ChartDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_ChartDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7064,7 +7296,7 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer) As Integer
+        Public Overloads Overridable Function Insert(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Global.System.Nullable(Of Date)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(RecordId,Integer)
             If (Side Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Side")
@@ -7080,6 +7312,12 @@ Namespace RecordsDataSetTableAdapters
             Me.Adapter.InsertCommand.Parameters(4).Value = CType(Year,Integer)
             Me.Adapter.InsertCommand.Parameters(5).Value = CType(Genre,Integer)
             Me.Adapter.InsertCommand.Parameters(6).Value = CType(ArtistId,Integer)
+            Me.Adapter.InsertCommand.Parameters(7).Value = CType(PeakChartPosition,Integer)
+            If (ChartDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(ChartDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7099,7 +7337,25 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer, ByVal Original_ArtistId As Integer) As Integer
+        Public Overloads Overridable Function Update( _
+                    ByVal RecordId As Integer,  _
+                    ByVal Side As String,  _
+                    ByVal Track As Integer,  _
+                    ByVal Title As String,  _
+                    ByVal Year As Integer,  _
+                    ByVal Genre As Integer,  _
+                    ByVal ArtistId As Integer,  _
+                    ByVal PeakChartPosition As Integer,  _
+                    ByVal ChartDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_RecordId As Integer,  _
+                    ByVal Original_Side As String,  _
+                    ByVal Original_Track As Integer,  _
+                    ByVal Original_Title As String,  _
+                    ByVal Original_Year As Integer,  _
+                    ByVal Original_Genre As Integer,  _
+                    ByVal Original_ArtistId As Integer,  _
+                    ByVal Original_PeakChartPosition As Integer,  _
+                    ByVal Original_ChartDate As Global.System.Nullable(Of Date)) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(RecordId,Integer)
             If (Side Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Side")
@@ -7115,21 +7371,35 @@ Namespace RecordsDataSetTableAdapters
             Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Year,Integer)
             Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Genre,Integer)
             Me.Adapter.UpdateCommand.Parameters(6).Value = CType(ArtistId,Integer)
-            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Original_RecordId,Integer)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PeakChartPosition,Integer)
+            If (ChartDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(ChartDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_RecordId,Integer)
             If (Original_Side Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Side")
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_Side,String)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Side,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_Track,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Track,Integer)
             If (Original_Title Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Title")
             Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Title,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Title,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_Year,Integer)
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Genre,Integer)
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_ArtistId,Integer)
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Year,Integer)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Genre,Integer)
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_ArtistId,Integer)
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_PeakChartPosition,Integer)
+            If (Original_ChartDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_ChartDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7149,15 +7419,15 @@ Namespace RecordsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer, ByVal Original_ArtistId As Integer) As Integer
-            Return Me.Update(Original_RecordId, Original_Side, Original_Track, Title, Year, Genre, ArtistId, Original_RecordId, Original_Side, Original_Track, Original_Title, Original_Year, Original_Genre, Original_ArtistId)
+        Public Overloads Overridable Function Update(ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Global.System.Nullable(Of Date), ByVal Original_RecordId As Integer, ByVal Original_Side As String, ByVal Original_Track As Integer, ByVal Original_Title As String, ByVal Original_Year As Integer, ByVal Original_Genre As Integer, ByVal Original_ArtistId As Integer, ByVal Original_PeakChartPosition As Integer, ByVal Original_ChartDate As Global.System.Nullable(Of Date)) As Integer
+            Return Me.Update(Original_RecordId, Original_Side, Original_Track, Title, Year, Genre, ArtistId, PeakChartPosition, ChartDate, Original_RecordId, Original_Side, Original_Track, Original_Title, Original_Year, Original_Genre, Original_ArtistId, Original_PeakChartPosition, Original_ChartDate)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, false)>  _
-        Public Overloads Overridable Function InsertTrack(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer) As Integer
+        Public Overloads Overridable Function InsertTrack(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal ChartPos As Integer, ByVal ChartDate As Date) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
             command.Parameters(0).Value = CType(RecordId,Integer)
             If (Side Is Nothing) Then
@@ -7174,6 +7444,8 @@ Namespace RecordsDataSetTableAdapters
             command.Parameters(4).Value = CType(Year,Integer)
             command.Parameters(5).Value = CType(Genre,Integer)
             command.Parameters(6).Value = CType(ArtistId,Integer)
+            command.Parameters(7).Value = CType(ChartPos,Integer)
+            command.Parameters(8).Value = CType(ChartDate,Date)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7196,6 +7468,49 @@ Namespace RecordsDataSetTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function TruncateTracks() As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateTrack(ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Global.System.Nullable(Of Date), ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            If (Title Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Title")
+            Else
+                command.Parameters(0).Value = CType(Title,String)
+            End If
+            command.Parameters(1).Value = CType(Year,Integer)
+            command.Parameters(2).Value = CType(Genre,Integer)
+            command.Parameters(3).Value = CType(ArtistId,Integer)
+            command.Parameters(4).Value = CType(PeakChartPosition,Integer)
+            If (ChartDate.HasValue = true) Then
+                command.Parameters(5).Value = CType(ChartDate.Value,Date)
+            Else
+                command.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            command.Parameters(6).Value = CType(RecordId,Integer)
+            If (Side Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Side")
+            Else
+                command.Parameters(7).Value = CType(Side,String)
+            End If
+            command.Parameters(8).Value = CType(Track,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7356,6 +7671,8 @@ Namespace RecordsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("LabelId", "LabelId")
             tableMapping.ColumnMappings.Add("Copies", "Copies")
             tableMapping.ColumnMappings.Add("RecordNo", "RecordNo")
+            tableMapping.ColumnMappings.Add("PeakChartPosition", "PeakChartPosition")
+            tableMapping.ColumnMappings.Add("ChartDate", "ChartDate")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -7373,24 +7690,23 @@ Namespace RecordsDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreN"& _ 
-                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks"& _ 
-                ""
+                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo, PeakChartPosition"& _ 
+                ", ChartDate FROM vRecordTracks"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreN"& _ 
-                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo FROM vRecordTracks"& _ 
-                " WHERE (RecordId = @RecordId)"
+                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo, PeakChartPosition"& _ 
+                ", ChartDate FROM vRecordTracks WHERE (RecordId = @RecordId)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RecordId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "RecordId", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName,"& _ 
-                " GenreName, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM      "& _ 
-                "      vRecordTracks"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Title LIKE @Title) AND (ArtistName LIKE @Arti"& _ 
-                "st) AND (GenreId = @GenreId OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @GenreId = - 1) AND (La"& _ 
-                "belId = @LabelId OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @LabelId = - 1) AND (RecordNo LIKE"& _ 
-                " @RecNo) AND (Year LIKE @Year OR @Year = -1)"
+            Me._commandCollection(2).CommandText = "SELECT RecordId, Format, Size, Speed, Side, Track, Title, Year, LabelName, GenreN"& _ 
+                "ame, ArtistId, ArtistName, GenreId, LabelId, Copies, RecordNo, PeakChartPosition"& _ 
+                ", ChartDate FROM vRecordTracks WHERE (Title LIKE @Title) AND (ArtistName LIKE @A"& _ 
+                "rtist) AND (GenreId = @GenreId OR @GenreId = - 1) AND (LabelId = @LabelId OR @La"& _ 
+                "belId = - 1) AND (RecordNo LIKE @RecNo) AND (Year LIKE @Year OR @Year = - 1)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Title", Global.System.Data.SqlDbType.NVarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Title", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Artist", Global.System.Data.SqlDbType.NVarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "ArtistName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

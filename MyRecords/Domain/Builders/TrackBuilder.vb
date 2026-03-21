@@ -13,6 +13,9 @@ Public Class TrackBuilder
     Private _title As String
     Private _year As Integer
     Private _genre As Genre
+    Private _chartPos As Integer
+    Private _chartDate As DateTime?
+
     Public Shared Function ATrack() As TrackBuilder
         Return New TrackBuilder
     End Function
@@ -24,6 +27,8 @@ Public Class TrackBuilder
         _title = String.Empty
         _year = -1
         _genre = New Genre
+        _chartPos = -1
+        _chartDate = Nothing
         Return Me
     End Function
     Public Function StartingWith(pRow As RecordsDataSet.TracksRow) As TrackBuilder
@@ -36,8 +41,14 @@ Public Class TrackBuilder
             _title = pRow.Title
             _year = pRow.Year
             _genre = GetGenreFromId(pRow.Genre)
+            If pRow.IsChartDateNull Then
+                _chartDate = Nothing
+            Else
+                _chartDate = pRow.ChartDate
+            End If
+            _chartPos = pRow.PeakChartPosition
         End If
-        Return Me
+            Return Me
     End Function
     Public Function StartingWith(pTrack As Track) As TrackBuilder
         _recordId = pTrack.RecordId
@@ -47,6 +58,8 @@ Public Class TrackBuilder
         _title = pTrack.Title
         _year = pTrack.Year
         _genre = pTrack.Genre
+        _chartPos = pTrack.PeakChartPosition
+        _chartDate = pTrack.ChartDate
         Return Me
     End Function
     Public Function StartingWith(pTrack As RecordsDataSet.vRecordTracksRow) As TrackBuilder
@@ -57,6 +70,12 @@ Public Class TrackBuilder
         _title = pTrack.Title
         _year = pTrack.Year
         _genre = GetGenreFromId(pTrack.GenreId)
+        _chartPos = pTrack.PeakChartPosition
+        If pTrack.IsChartDateNull Then
+            _chartDate = Nothing
+        Else
+            _chartDate = pTrack.ChartDate
+        End If
         Return Me
     End Function
 
@@ -96,7 +115,15 @@ Public Class TrackBuilder
         _genre = GetGenreFromId(pGenre)
         Return Me
     End Function
+    Public Function WithChartPos(ByVal pChartPos As Integer) As TrackBuilder
+        _chartPos = pChartPos
+        Return Me
+    End Function
+    Public Function WithChartDate(ByVal pChartDate As DateTime?) As TrackBuilder
+        _chartDate = pChartDate
+        Return Me
+    End Function
     Public Function Build() As Track
-        Return New Track(_recordId, _side, _track, _artist, _title, _year, _genre)
+        Return New Track(_recordId, _side, _track, _artist, _title, _year, _genre, _chartPos, _chartDate)
     End Function
 End Class

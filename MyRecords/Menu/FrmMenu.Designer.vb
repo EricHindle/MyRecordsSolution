@@ -48,7 +48,7 @@ Partial Class FrmMenu
         Me.BtnInputRecords.Name = "BtnInputRecords"
         Me.BtnInputRecords.Size = New System.Drawing.Size(151, 49)
         Me.BtnInputRecords.TabIndex = 0
-        Me.BtnInputRecords.Text = "Input Records"
+        Me.BtnInputRecords.Text = "Maintain Records"
         Me.BtnInputRecords.UseVisualStyleBackColor = True
         '
         'BtnSearch

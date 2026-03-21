@@ -14,6 +14,24 @@ Public Class Track
     Private _genre As Genre
     Private _side As String
     Private _artist As Artist
+    Private _chartPos As Integer
+    Private _chartDate As DateTime?
+    Public Property ChartDate() As DateTime?
+        Get
+            Return _chartDate
+        End Get
+        Set(ByVal value As DateTime?)
+            _chartDate = value
+        End Set
+    End Property
+    Public Property PeakChartPosition() As Integer
+        Get
+            Return _chartPos
+        End Get
+        Set(ByVal value As Integer)
+            _chartPos = value
+        End Set
+    End Property
     Public Property Artist() As Artist
         Get
             Return _artist
@@ -80,11 +98,13 @@ Public Class Track
         _title = String.Empty
         _year = -1
         _genre = New Genre
+        _chartPos = -1
+        _chartDate = New Date(1899, 12, 31)
     End Sub
     Public Sub New()
         Initialise()
     End Sub
-    Public Sub New(pId As Integer, pSide As String, pTrack As Integer, pArtist As Artist, pTitle As String, pYear As Integer, pGenre As Genre)
+    Public Sub New(pId As Integer, pSide As String, pTrack As Integer, pArtist As Artist, pTitle As String, pYear As Integer, pGenre As Genre, pChartPos As Integer, pChartDate As DateTime?)
         _recordId = pId
         _side = pSide
         _track = pTrack
@@ -92,6 +112,8 @@ Public Class Track
         _title = pTitle
         _year = pYear
         _genre = pGenre
+        _chartPos = pChartPos
+        _chartDate = pChartDate
     End Sub
     Public Function IsExists() As Boolean
         Return _recordId > -1

@@ -99,6 +99,10 @@ Public Class FrmSearch
                     oRow.Cells(recArtist.Name).Value = .Artist.ArtistName
                     oRow.Cells(recTitle.Name).Value = .Title
                     oRow.Cells(recSide.Name).Value = .Side
+                    oRow.Cells(recChartPos.Name).Value = If(.PeakChartPosition > 0, .PeakChartPosition, "")
+                    If .ChartDate IsNot Nothing Then
+                        oRow.Cells(recDate.Name).Value = Format(.ChartDate, "dd MMM yyyy")
+                    End If
                 End With
             End If
         Next

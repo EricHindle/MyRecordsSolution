@@ -76,6 +76,10 @@ Partial Class FrmRecordInput
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.NudCopies = New System.Windows.Forms.NumericUpDown()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.DtpChartDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TxtChartPos = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.BtnSaveTrack = New System.Windows.Forms.Button()
         Me.CbArtists = New System.Windows.Forms.ComboBox()
         Me.BtnTracks = New System.Windows.Forms.Button()
@@ -95,6 +99,7 @@ Partial Class FrmRecordInput
         Me.RbAA = New System.Windows.Forms.RadioButton()
         Me.RbA = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.BtnUpdateTrack = New System.Windows.Forms.Button()
         CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,7 +201,7 @@ Partial Class FrmRecordInput
         Me.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAdd.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAdd.ForeColor = System.Drawing.Color.Black
-        Me.BtnAdd.Location = New System.Drawing.Point(22, 354)
+        Me.BtnAdd.Location = New System.Drawing.Point(22, 448)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
         Me.BtnAdd.TabIndex = 4
@@ -213,7 +218,7 @@ Partial Class FrmRecordInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(1088, 461)
+        Me.BtnClose.Location = New System.Drawing.Point(1088, 555)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 34)
         Me.BtnClose.TabIndex = 2
@@ -423,7 +428,7 @@ Partial Class FrmRecordInput
         Me.DgvTracks.ReadOnly = True
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvTracks.Size = New System.Drawing.Size(498, 147)
+        Me.DgvTracks.Size = New System.Drawing.Size(498, 182)
         Me.DgvTracks.TabIndex = 0
         '
         'trkSide
@@ -478,17 +483,17 @@ Partial Class FrmRecordInput
         Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(212, 354)
+        Me.BtnNext.Location = New System.Drawing.Point(212, 448)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(78, 78)
         Me.BtnNext.TabIndex = 1
-        Me.BtnNext.Text = "Next Record"
+        Me.BtnNext.Text = "New Record"
         Me.BtnNext.UseVisualStyleBackColor = False
         '
         'Status
         '
         Me.Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.Status.Location = New System.Drawing.Point(0, 500)
+        Me.Status.Location = New System.Drawing.Point(0, 594)
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(1173, 22)
         Me.Status.TabIndex = 3
@@ -519,8 +524,8 @@ Partial Class FrmRecordInput
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DgvTracks)
         Me.SplitContainer1.Panel2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SplitContainer1.Size = New System.Drawing.Size(502, 421)
-        Me.SplitContainer1.SplitterDistance = 266
+        Me.SplitContainer1.Size = New System.Drawing.Size(502, 515)
+        Me.SplitContainer1.SplitterDistance = 325
         Me.SplitContainer1.TabIndex = 8
         '
         'DgvRecords
@@ -536,7 +541,7 @@ Partial Class FrmRecordInput
         Me.DgvRecords.ReadOnly = True
         Me.DgvRecords.RowHeadersVisible = False
         Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvRecords.Size = New System.Drawing.Size(498, 262)
+        Me.DgvRecords.Size = New System.Drawing.Size(498, 321)
         Me.DgvRecords.TabIndex = 0
         '
         'recId
@@ -622,6 +627,11 @@ Partial Class FrmRecordInput
         '
         'SplitContainer2.Panel2
         '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.BtnUpdateTrack)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.DtpChartDate)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.Label12)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.TxtChartPos)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.Label11)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnSaveTrack)
         Me.SplitContainer2.Panel2.Controls.Add(Me.CbArtists)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnTracks)
@@ -636,7 +646,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel2.Controls.Add(Me.NudTrackNo)
         Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox3)
         Me.SplitContainer2.Panel2.Controls.Add(Me.Label9)
-        Me.SplitContainer2.Size = New System.Drawing.Size(1154, 443)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1154, 537)
         Me.SplitContainer2.SplitterDistance = 809
         Me.SplitContainer2.TabIndex = 0
         '
@@ -659,6 +669,39 @@ Partial Class FrmRecordInput
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "Copies"
         '
+        'DtpChartDate
+        '
+        Me.DtpChartDate.Location = New System.Drawing.Point(113, 395)
+        Me.DtpChartDate.Name = "DtpChartDate"
+        Me.DtpChartDate.Size = New System.Drawing.Size(171, 24)
+        Me.DtpChartDate.TabIndex = 17
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(9, 401)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(75, 17)
+        Me.Label12.TabIndex = 16
+        Me.Label12.Text = "Chart Date"
+        '
+        'TxtChartPos
+        '
+        Me.TxtChartPos.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtChartPos.Location = New System.Drawing.Point(151, 349)
+        Me.TxtChartPos.Name = "TxtChartPos"
+        Me.TxtChartPos.Size = New System.Drawing.Size(62, 27)
+        Me.TxtChartPos.TabIndex = 15
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(9, 355)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(126, 17)
+        Me.Label11.TabIndex = 14
+        Me.Label11.Text = "Peak Chart Position"
+        '
         'BtnSaveTrack
         '
         Me.BtnSaveTrack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -667,11 +710,11 @@ Partial Class FrmRecordInput
         Me.BtnSaveTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSaveTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSaveTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnSaveTrack.Location = New System.Drawing.Point(12, 354)
+        Me.BtnSaveTrack.Location = New System.Drawing.Point(12, 448)
         Me.BtnSaveTrack.Name = "BtnSaveTrack"
         Me.BtnSaveTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnSaveTrack.TabIndex = 6
-        Me.BtnSaveTrack.Text = "Save Track"
+        Me.BtnSaveTrack.Text = "Add Track"
         Me.BtnSaveTrack.UseVisualStyleBackColor = False
         '
         'CbArtists
@@ -874,11 +917,26 @@ Partial Class FrmRecordInput
         Me.Label9.TabIndex = 11
         Me.Label9.Text = "Track #"
         '
+        'BtnUpdateTrack
+        '
+        Me.BtnUpdateTrack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdateTrack.BackColor = System.Drawing.Color.White
+        Me.BtnUpdateTrack.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.BtnUpdateTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnUpdateTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnUpdateTrack.ForeColor = System.Drawing.Color.Black
+        Me.BtnUpdateTrack.Location = New System.Drawing.Point(253, 448)
+        Me.BtnUpdateTrack.Name = "BtnUpdateTrack"
+        Me.BtnUpdateTrack.Size = New System.Drawing.Size(78, 78)
+        Me.BtnUpdateTrack.TabIndex = 18
+        Me.BtnUpdateTrack.Text = "Update Track"
+        Me.BtnUpdateTrack.UseVisualStyleBackColor = False
+        '
         'FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1173, 522)
+        Me.ClientSize = New System.Drawing.Size(1173, 616)
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnClose)
@@ -990,4 +1048,9 @@ Partial Class FrmRecordInput
     Friend WithEvents recArtist As DataGridViewTextBoxColumn
     Friend WithEvents recLabelId As DataGridViewTextBoxColumn
     Friend WithEvents recArtistId As DataGridViewTextBoxColumn
+    Friend WithEvents DtpChartDate As DateTimePicker
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TxtChartPos As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents BtnUpdateTrack As Button
 End Class

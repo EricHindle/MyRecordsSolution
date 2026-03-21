@@ -205,6 +205,7 @@ Public Class FrmRecordInput
         For Each _track As Track In _tracks
             AddTrackToTable(_track)
         Next
+        DgvTracks.ClearSelection()
     End Sub
 
     Private Sub AddTrackToTable(pTrack As Track)
@@ -292,7 +293,9 @@ Public Class FrmRecordInput
             SplitContainer2.Panel2Collapsed = False
             Dim _row As DataGridViewRow = DgvRecords.SelectedRows(0)
             LoadFormFromDgv(_row)
+            isLoading = True
             LoadTracks(_row.Cells(recId.Name).Value)
+            isLoading = False
         End If
     End Sub
 
@@ -334,6 +337,7 @@ Public Class FrmRecordInput
     End Sub
 
     Private Sub ClearForm()
+        LogUtil.ClearStatus(LblStatus)
         LblRecordId.Text = -1
         CbRecordFormat.SelectedIndex = -1
         CbRecordLabel.SelectedIndex = -1
@@ -430,30 +434,41 @@ Public Class FrmRecordInput
         If CbGenre.SelectedIndex > -1 Then
             _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, RecordsDataSet.MusicGenreRow)).Build
         End If
-        Return TrackBuilder.ATrack.StartingWithNothing _
+        Dim _chartpos As Integer = -1
+        If Not String.IsNullOrWhiteSpace(TxtChartPos.Text) AndAlso IsNumeric(TxtChartPos.Text) Then
+            _chartpos = CInt(TxtChartPos.Text)
+        End If
+        Dim _chartDate As DateTime? = Nothing
+        If _chartpos > 0 Then
+            _chartDate = DtpChartDate.Value
+        End If
+        Dim _track As Track = TrackBuilder.ATrack.StartingWithNothing _
             .WithId(CurrentRecord.RecordId) _
             .WithSide(GetSideFromForm) _
             .WithTrack(NudTrackNo.Value) _
             .WithArtist(_artist) _
             .WithTitle(TxtTitle.Text) _
             .WithYear(TxtYear.Text) _
-            .WithGenre(_genre).Build
+            .WithGenre(_genre) _
+            .WithChartPos(_chartpos) _
+            .WithChartDate(_chartDate) _
+            .Build
+        Return _track
     End Function
 
     Private Function GetSideFromForm() As String
         Dim _side As String = "A"
         Select Case True
             Case RbA.Checked
-                _side = "A"
+                _side = "A "
             Case RbB.Checked
-                _side = "B"
+                _side = "B "
             Case RbAA.Checked
                 _side = "AA"
             Case Rb1.Checked
-                _side = "1"
+                _side = "1 "
             Case Rb2.Checked
-                _side = "2"
-
+                _side = "2 "
         End Select
         Return _side
     End Function
@@ -490,9 +505,78 @@ Public Class FrmRecordInput
                                                                              Rb2.CheckedChanged,
                                                                              NudCopies.ValueChanged,
                                                                              CbArtists.SelectedIndexChanged,
-                                                                             CbGenre.SelectedIndexChanged,
-                                                                             TxtYear.TextChanged
+                                                                             CbGenre.SelectedIndexChanged
         isTrackChanged = True
     End Sub
 
+    Private Sub TxtYear_TextChanged(sender As Object, e As EventArgs) Handles TxtYear.TextChanged
+        isTrackChanged = True
+        If Not String.IsNullOrWhiteSpace(TxtYear.Text) AndAlso IsNumeric(TxtYear.Text) AndAlso CInt(TxtYear.Text) > 1900 AndAlso CInt(TxtYear.Text) < Today.Year Then
+            If DtpChartDate.Value.Year <> CInt(TxtYear.Text) Then
+                DtpChartDate.Value = New Date(CInt(TxtYear.Text), 1, 1)
+            End If
+        End If
+    End Sub
+
+    Private Sub DgvTracks_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvTracks.CellDoubleClick
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
+            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
+            Dim oTrackRow As DataGridViewRow = DgvTracks.Rows(e.RowIndex)
+            Dim oRecordId As Integer = oRecordRow.Cells(recId.Name).Value
+            Dim oTrackSide As String = oTrackRow.Cells(trkSide.Name).Value
+            Dim oTrackTrack As String = oTrackRow.Cells(trkTrack.Name).Value
+        End If
+    End Sub
+
+    Private Sub DgvTracks_SelectionChanged(sender As Object, e As EventArgs) Handles DgvTracks.SelectionChanged
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 AndAlso DgvTracks.SelectedRows.Count = 1 Then
+            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
+            Dim oTrackRow As DataGridViewRow = DgvTracks.SelectedRows(0)
+            Dim oTrack As Track = GetTrackForKey(oRecordRow.Cells(recId.Name).Value, oTrackRow.Cells(trkSide.Name).Value, oTrackRow.Cells(trkTrack.Name).Value)
+            LoadTrackForm(oTrack)
+        End If
+    End Sub
+    Private Sub LoadTrackForm(pTrack As Track)
+        With pTrack
+            Select Case .Side
+                Case "A "
+                    RbA.Checked = True
+                Case "B "
+                    RbB.Checked = True
+                Case "AA"
+                    RbAA.Checked = True
+                Case "1 "
+                    Rb1.Checked = True
+                Case "2 "
+                    Rb2.Checked = True
+            End Select
+            NudTrackNo.Value = .Track
+            CbArtists.SelectedValue = .Artist.ArtistId
+            TxtTitle.Text = .Title
+            TxtYear.Text = .Year
+            CbGenre.SelectedValue = .Genre.GenreId
+            TxtChartPos.Text = .PeakChartPosition
+            If .ChartDate IsNot Nothing Then
+                DtpChartDate.Value = .ChartDate
+            End If
+        End With
+    End Sub
+
+    Private Sub BtnUpdateTrack_Click(sender As Object, e As EventArgs) Handles BtnUpdateTrack.Click
+        TrimValues()
+
+        If Not IsValidTrack() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
+        Else
+            CurrentTrack = BuildTrackFromForm()
+            Dim response As Integer = UpdateTrack(CurrentTrack)
+            If response = 1 Then
+                LogUtil.ShowStatus("Track Updated", LblStatus, MyBase.Name)
+            Else
+                LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
+            End If
+        End If
+    End Sub
 End Class
+
+

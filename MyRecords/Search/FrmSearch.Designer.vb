@@ -57,6 +57,8 @@ Partial Class FrmSearch
         Me.recArtist = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recSide = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recChartPos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recLabelId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recArtistId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
@@ -240,7 +242,7 @@ Partial Class FrmSearch
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recLabel, Me.recNumber, Me.recArtist, Me.recSide, Me.recTitle, Me.recLabelId, Me.recArtistId})
+        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recLabel, Me.recNumber, Me.recArtist, Me.recSide, Me.recTitle, Me.recChartPos, Me.recDate, Me.recLabelId, Me.recArtistId})
         Me.DgvRecords.Location = New System.Drawing.Point(385, 12)
         Me.DgvRecords.MultiSelect = False
         Me.DgvRecords.Name = "DgvRecords"
@@ -343,6 +345,21 @@ Partial Class FrmSearch
         Me.recTitle.Name = "recTitle"
         Me.recTitle.ReadOnly = True
         '
+        'recChartPos
+        '
+        Me.recChartPos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recChartPos.HeaderText = "Pos"
+        Me.recChartPos.Name = "recChartPos"
+        Me.recChartPos.ReadOnly = True
+        Me.recChartPos.Width = 50
+        '
+        'recDate
+        '
+        Me.recDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.recDate.HeaderText = "Date"
+        Me.recDate.Name = "recDate"
+        Me.recDate.ReadOnly = True
+        '
         'recLabelId
         '
         Me.recLabelId.HeaderText = "Lbl Id"
@@ -422,6 +439,8 @@ Partial Class FrmSearch
     Friend WithEvents recArtist As DataGridViewTextBoxColumn
     Friend WithEvents recSide As DataGridViewTextBoxColumn
     Friend WithEvents recTitle As DataGridViewTextBoxColumn
+    Friend WithEvents recChartPos As DataGridViewTextBoxColumn
+    Friend WithEvents recDate As DataGridViewTextBoxColumn
     Friend WithEvents recLabelId As DataGridViewTextBoxColumn
     Friend WithEvents recArtistId As DataGridViewTextBoxColumn
 End Class

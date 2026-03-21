@@ -55,7 +55,6 @@ Partial Class FrmTrackInput
         Me.MusicGenreBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.RecordsDataSet = New MyRecords.RecordsDataSet()
         Me.MusicGenreTableAdapter = New MyRecords.RecordsDataSetTableAdapters.MusicGenreTableAdapter()
-        Me.BtnNextTrack = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSaveTrack = New System.Windows.Forms.Button()
         Me.BtnAddGenre = New System.Windows.Forms.Button()
@@ -63,6 +62,10 @@ Partial Class FrmTrackInput
         Me.CbArtists = New System.Windows.Forms.ComboBox()
         Me.ArtistsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ArtistsTableAdapter = New MyRecords.RecordsDataSetTableAdapters.ArtistsTableAdapter()
+        Me.DtpChartDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TxtChartPos = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -258,7 +261,7 @@ Partial Class FrmTrackInput
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 513)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 639)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(395, 22)
         Me.StatusStrip1.TabIndex = 18
@@ -298,21 +301,6 @@ Partial Class FrmTrackInput
         '
         Me.MusicGenreTableAdapter.ClearBeforeFill = True
         '
-        'BtnNextTrack
-        '
-        Me.BtnNextTrack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnNextTrack.BackColor = System.Drawing.Color.White
-        Me.BtnNextTrack.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.BtnNextTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnNextTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnNextTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnNextTrack.Location = New System.Drawing.Point(160, 423)
-        Me.BtnNextTrack.Name = "BtnNextTrack"
-        Me.BtnNextTrack.Size = New System.Drawing.Size(78, 78)
-        Me.BtnNextTrack.TabIndex = 7
-        Me.BtnNextTrack.Text = "Next Track"
-        Me.BtnNextTrack.UseVisualStyleBackColor = False
-        '
         'BtnClose
         '
         Me.BtnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -323,7 +311,7 @@ Partial Class FrmTrackInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(304, 423)
+        Me.BtnClose.Location = New System.Drawing.Point(304, 549)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 78)
         Me.BtnClose.TabIndex = 8
@@ -338,7 +326,7 @@ Partial Class FrmTrackInput
         Me.BtnSaveTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSaveTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSaveTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnSaveTrack.Location = New System.Drawing.Point(33, 423)
+        Me.BtnSaveTrack.Location = New System.Drawing.Point(33, 549)
         Me.BtnSaveTrack.Name = "BtnSaveTrack"
         Me.BtnSaveTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnSaveTrack.TabIndex = 6
@@ -398,15 +386,51 @@ Partial Class FrmTrackInput
         '
         Me.ArtistsTableAdapter.ClearBeforeFill = True
         '
+        'DtpChartDate
+        '
+        Me.DtpChartDate.Location = New System.Drawing.Point(138, 465)
+        Me.DtpChartDate.Name = "DtpChartDate"
+        Me.DtpChartDate.Size = New System.Drawing.Size(171, 24)
+        Me.DtpChartDate.TabIndex = 25
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(29, 471)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(75, 17)
+        Me.Label12.TabIndex = 24
+        Me.Label12.Text = "Chart Date"
+        '
+        'TxtChartPos
+        '
+        Me.TxtChartPos.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtChartPos.Location = New System.Drawing.Point(176, 419)
+        Me.TxtChartPos.Name = "TxtChartPos"
+        Me.TxtChartPos.Size = New System.Drawing.Size(62, 27)
+        Me.TxtChartPos.TabIndex = 23
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(29, 425)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(126, 17)
+        Me.Label11.TabIndex = 22
+        Me.Label11.Text = "Peak Chart Position"
+        '
         'FrmTrackInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(395, 535)
+        Me.ClientSize = New System.Drawing.Size(395, 661)
+        Me.Controls.Add(Me.DtpChartDate)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.TxtChartPos)
+        Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.CbArtists)
         Me.Controls.Add(Me.BtnTracks)
         Me.Controls.Add(Me.BtnAddGenre)
-        Me.Controls.Add(Me.BtnNextTrack)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnSaveTrack)
         Me.Controls.Add(Me.CbGenre)
@@ -428,7 +452,7 @@ Partial Class FrmTrackInput
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmTrackInput"
-        Me.Text = "Input Tracks"
+        Me.Text = "Update Track"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).EndInit()
@@ -466,7 +490,6 @@ Partial Class FrmTrackInput
     Friend WithEvents RecordsDataSet As RecordsDataSet
     Friend WithEvents MusicGenreBindingSource As BindingSource
     Friend WithEvents MusicGenreTableAdapter As RecordsDataSetTableAdapters.MusicGenreTableAdapter
-    Friend WithEvents BtnNextTrack As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents BtnSaveTrack As Button
     Friend WithEvents BtnAddGenre As Button
@@ -474,4 +497,8 @@ Partial Class FrmTrackInput
     Friend WithEvents CbArtists As ComboBox
     Friend WithEvents ArtistsBindingSource As BindingSource
     Friend WithEvents ArtistsTableAdapter As RecordsDataSetTableAdapters.ArtistsTableAdapter
+    Friend WithEvents DtpChartDate As DateTimePicker
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TxtChartPos As TextBox
+    Friend WithEvents Label11 As Label
 End Class

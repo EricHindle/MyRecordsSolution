@@ -7,7 +7,6 @@
 
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
-Imports MyVinyl.RecordDataSet
 Public Class FrmSearch
     Private oRecordLabelsTable As New List(Of RecordLabel)
     Private oMusicGenreTable As New List(Of Genre)

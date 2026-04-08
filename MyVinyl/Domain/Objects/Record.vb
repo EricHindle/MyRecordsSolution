@@ -7,6 +7,7 @@
 Namespace Domain
 
     Public Class Record
+        Implements IComparable
 #Region "properties"
         Private _recordId As Integer
         Private _label As RecordLabel
@@ -95,8 +96,23 @@ Namespace Domain
             _speed = pSpeed
             _copies = pCopies
         End Sub
+
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return _recordId > -1
+        End Function
+        Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
+        Implements IComparable.CompareTo
+
+            If obj Is Nothing Then Return 1
+
+            Dim otherRecord As Record = TryCast(obj, Record)
+            If otherRecord IsNot Nothing Then
+                Return Me.RecordId.CompareTo(otherRecord.RecordId)
+            Else
+                Throw New ArgumentException("Object is not a Record")
+            End If
         End Function
 #End Region
     End Class

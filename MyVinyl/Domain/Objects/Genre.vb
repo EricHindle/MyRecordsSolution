@@ -7,6 +7,7 @@
 Namespace Domain
 
     Public Class Genre
+        Implements IComparable
 #Region "properties"
         Private _genreId As Integer
         Private _genreName As String
@@ -41,6 +42,20 @@ Namespace Domain
         End Sub
         Public Function IsExists() As Boolean
             Return _genreId > -1
+        End Function
+#End Region
+#Region "methods"
+        Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
+        Implements IComparable.CompareTo
+
+            If obj Is Nothing Then Return 1
+
+            Dim otherGenre As Genre = TryCast(obj, Genre)
+            If otherGenre IsNot Nothing Then
+                Return Me.GenreName.CompareTo(otherGenre.GenreName)
+            Else
+                Throw New ArgumentException("Object is not a Genre")
+            End If
         End Function
 #End Region
     End Class

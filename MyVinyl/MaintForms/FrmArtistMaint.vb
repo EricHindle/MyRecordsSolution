@@ -165,4 +165,18 @@ Public Class FrmArtistMaint
     Private Sub TxtArtist_DragDrop(sender As Object, e As DragEventArgs) Handles TxtArtist.DragDrop
         TextBox_DragDrop(sender, e)
     End Sub
+
+    Private Sub TxtArtist_TextChanged(sender As Object, e As EventArgs) Handles TxtArtist.TextChanged
+        If Not String.IsNullOrEmpty(TxtArtist.Text) Then
+            FindArtistInList(TxtArtist.Text.Trim)
+        End If
+    End Sub
+    Private Sub FindArtistInList(pName As String)
+        For Each oRow As DataGridViewRow In DgvArtist.Rows
+            If CStr(oRow.Cells(artName.Name).Value).StartsWith(pName) Then
+                DgvArtist.FirstDisplayedScrollingRowIndex = oRow.Index
+                Exit For
+            End If
+        Next
+    End Sub
 End Class

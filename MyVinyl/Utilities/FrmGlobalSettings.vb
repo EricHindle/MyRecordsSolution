@@ -7,6 +7,7 @@
 
 Imports System.Data.Common
 Imports HindlewareLib.Logging
+Imports MyVinyl.VinylDataSet
 
 ''' <summary>
 ''' Form to maintain Global Settings values
@@ -19,7 +20,7 @@ Public Class FrmGlobalSettings
     '  Private ReadOnly oTa As New RecordsDataSetTableAdapters.settingsTableAdapter
 #End Region
 #Region "Form"
-    Private ReadOnly oTable As New RecordDataSet.settingsDataTable
+    Private ReadOnly oTable As New settingsDataTable
     Private Sub Form_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
         My.Settings.GlobalSettingsPos = SetFormPos(Me)
@@ -48,10 +49,10 @@ Public Class FrmGlobalSettings
         TxtGroup.Text = ""
     End Sub
     Private Sub FillForm(ByVal _name As String)
-        Dim _table As New RecordDataSet.settingsDataTable
+        Dim _table As New settingsDataTable
         'oTa.FillByName(_table, _name)
         If _table.Rows.Count > 0 Then
-            Dim oRow As RecordDataSet.settingsRow = _table.Rows(0)
+            Dim oRow As settingsRow = _table.Rows(0)
             txtValue.Text = oRow.pValue
             cbType.SelectedIndex = cbType.FindString(oRow.pType)
             TxtGroup.Text = If(oRow.IspGroupNull, "", oRow.pGroup)

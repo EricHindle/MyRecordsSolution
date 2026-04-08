@@ -10,3 +10,7 @@ End Class
 
 Partial Public Class RecordDataSet
 End Class
+
+
+Partial Public Class VinylDataSet
+End Class

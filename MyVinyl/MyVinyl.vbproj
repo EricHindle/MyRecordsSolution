@@ -97,8 +97,8 @@
     <Compile Include="Domain\Objects\Record.vb" />
     <Compile Include="Domain\Objects\FullRecord.vb" />
     <Compile Include="Domain\Objects\Track.vb" />
-    <Compile Include="Domain\RecordDataSet.vb">
-      <DependentUpon>RecordDataSet.xsd</DependentUpon>
+    <Compile Include="Domain\VinylDataSet.vb">
+      <DependentUpon>VinylDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MaintForms\FrmArtistMaint.Designer.vb">
       <DependentUpon>FrmArtistMaint.vb</DependentUpon>
@@ -160,10 +160,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Domain\RecordDataSet.Designer.vb">
+    <Compile Include="Domain\VinylDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RecordDataSet.xsd</DependentUpon>
+      <DependentUpon>VinylDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Search\FrmSearch.Designer.vb">
       <DependentUpon>FrmSearch.vb</DependentUpon>
@@ -254,16 +254,16 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="Domain\RecordDataSet.xsc">
-      <DependentUpon>RecordDataSet.xsd</DependentUpon>
+    <None Include="Domain\VinylDataSet.xsc">
+      <DependentUpon>VinylDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Domain\RecordDataSet.xsd">
+    <None Include="Domain\VinylDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RecordDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>VinylDataSet.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Domain\RecordDataSet.xss">
-      <DependentUpon>RecordDataSet.xsd</DependentUpon>
+    <None Include="Domain\VinylDataSet.xss">
+      <DependentUpon>VinylDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

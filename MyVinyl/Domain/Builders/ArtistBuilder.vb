@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 '
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
     Public Class ArtistBuilder
         Private _artistId As Integer
@@ -17,7 +19,7 @@ Namespace Domain
             _artistName = String.Empty
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.ArtistsRow) As ArtistBuilder
+        Public Function StartingWith(pRow As ArtistsRow) As ArtistBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _artistId = pRow.ArtistId

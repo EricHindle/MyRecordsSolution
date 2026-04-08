@@ -22,25 +22,15 @@ Partial Class FrmRecordInput
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmRecordInput))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LblRecordId = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CbRecordFormat = New System.Windows.Forms.ComboBox()
-        Me.RecordFormatBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RecordsDataSet = New MyVinyl.RecordDataSet()
-        Me.ArtistsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MusicGenreBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        'Me.RecordFormatTableAdapter = New MyVinyl.RecordsDataSetTableAdapters.RecordFormatTableAdapter()
-        'Me.ArtistsTableAdapter = New MyVinyl.RecordsDataSetTableAdapters.ArtistsTableAdapter()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CbRecordLabel = New System.Windows.Forms.ComboBox()
-        Me.RecordLabelsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        'Me.RecordLabelsTableAdapter = New MyVinyl.RecordsDataSetTableAdapters.RecordLabelsTableAdapter()
-        'Me.MusicGenreTableAdapter = New MyVinyl.RecordsDataSetTableAdapters.MusicGenreTableAdapter()
         Me.BtnAddFormat = New System.Windows.Forms.Button()
         Me.BtnAddLabel = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -76,6 +66,7 @@ Partial Class FrmRecordInput
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.NudCopies = New System.Windows.Forms.NumericUpDown()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.BtnDateClear = New System.Windows.Forms.Button()
         Me.BtnUpdateTrack = New System.Windows.Forms.Button()
         Me.DtpChartDate = New System.Windows.Forms.DateTimePicker()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -100,12 +91,6 @@ Partial Class FrmRecordInput
         Me.RbAA = New System.Windows.Forms.RadioButton()
         Me.RbA = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.BtnDateClear = New System.Windows.Forms.Button()
-        CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MusicGenreBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RecordLabelsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvTracks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,8 +141,7 @@ Partial Class FrmRecordInput
         '
         'CbRecordFormat
         '
-        Me.CbRecordFormat.DataSource = Me.RecordFormatBindingSource
-        Me.CbRecordFormat.DisplayMember = "FormatName"
+        Me.CbRecordFormat.DisplayMember = "FormatId"
         Me.CbRecordFormat.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbRecordFormat.FormattingEnabled = True
         Me.CbRecordFormat.Location = New System.Drawing.Point(24, 66)
@@ -165,34 +149,6 @@ Partial Class FrmRecordInput
         Me.CbRecordFormat.Size = New System.Drawing.Size(196, 27)
         Me.CbRecordFormat.TabIndex = 0
         Me.CbRecordFormat.ValueMember = "FormatId"
-        '
-        'RecordFormatBindingSource
-        '
-        Me.RecordFormatBindingSource.DataMember = "RecordFormat"
-        Me.RecordFormatBindingSource.DataSource = Me.RecordsDataSet
-        '
-        'RecordsDataSet
-        '
-        Me.RecordsDataSet.DataSetName = "RecordsDataSet"
-        Me.RecordsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ArtistsBindingSource
-        '
-        Me.ArtistsBindingSource.DataMember = "Artists"
-        Me.ArtistsBindingSource.DataSource = Me.RecordsDataSet
-        '
-        'MusicGenreBindingSource
-        '
-        Me.MusicGenreBindingSource.DataMember = "MusicGenre"
-        Me.MusicGenreBindingSource.DataSource = Me.RecordsDataSet
-        '
-        'RecordFormatTableAdapter
-        '
-        '      Me.RecordFormatTableAdapter.ClearBeforeFill = True
-        '
-        'ArtistsTableAdapter
-        '
-        '     Me.ArtistsTableAdapter.ClearBeforeFill = True
         '
         'BtnAdd
         '
@@ -202,7 +158,7 @@ Partial Class FrmRecordInput
         Me.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAdd.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAdd.ForeColor = System.Drawing.Color.Black
-        Me.BtnAdd.Location = New System.Drawing.Point(22, 448)
+        Me.BtnAdd.Location = New System.Drawing.Point(212, 448)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
         Me.BtnAdd.TabIndex = 4
@@ -219,7 +175,7 @@ Partial Class FrmRecordInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(1088, 555)
+        Me.BtnClose.Location = New System.Drawing.Point(1067, 557)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 34)
         Me.BtnClose.TabIndex = 2
@@ -238,8 +194,7 @@ Partial Class FrmRecordInput
         '
         'CbRecordLabel
         '
-        Me.CbRecordLabel.DataSource = Me.RecordLabelsBindingSource
-        Me.CbRecordLabel.DisplayMember = "LabelName"
+        Me.CbRecordLabel.DisplayMember = "LabelId"
         Me.CbRecordLabel.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbRecordLabel.FormattingEnabled = True
         Me.CbRecordLabel.Location = New System.Drawing.Point(22, 122)
@@ -247,19 +202,6 @@ Partial Class FrmRecordInput
         Me.CbRecordLabel.Size = New System.Drawing.Size(198, 27)
         Me.CbRecordLabel.TabIndex = 1
         Me.CbRecordLabel.ValueMember = "LabelId"
-        '
-        'RecordLabelsBindingSource
-        '
-        Me.RecordLabelsBindingSource.DataMember = "RecordLabels"
-        Me.RecordLabelsBindingSource.DataSource = Me.RecordsDataSet
-        '
-        'RecordLabelsTableAdapter
-        '
-        '     Me.RecordLabelsTableAdapter.ClearBeforeFill = True
-        '
-        'MusicGenreTableAdapter
-        '
-        '      Me.MusicGenreTableAdapter.ClearBeforeFill = True
         '
         'BtnAddFormat
         '
@@ -484,7 +426,7 @@ Partial Class FrmRecordInput
         Me.BtnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNext.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNext.ForeColor = System.Drawing.Color.Black
-        Me.BtnNext.Location = New System.Drawing.Point(212, 448)
+        Me.BtnNext.Location = New System.Drawing.Point(22, 448)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(78, 78)
         Me.BtnNext.TabIndex = 1
@@ -671,6 +613,15 @@ Partial Class FrmRecordInput
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "Copies"
         '
+        'BtnDateClear
+        '
+        Me.BtnDateClear.Location = New System.Drawing.Point(298, 395)
+        Me.BtnDateClear.Name = "BtnDateClear"
+        Me.BtnDateClear.Size = New System.Drawing.Size(20, 23)
+        Me.BtnDateClear.TabIndex = 10
+        Me.BtnDateClear.Text = "X"
+        Me.BtnDateClear.UseVisualStyleBackColor = True
+        '
         'BtnUpdateTrack
         '
         Me.BtnUpdateTrack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -679,7 +630,7 @@ Partial Class FrmRecordInput
         Me.BtnUpdateTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdateTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnUpdateTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnUpdateTrack.Location = New System.Drawing.Point(253, 448)
+        Me.BtnUpdateTrack.Location = New System.Drawing.Point(240, 450)
         Me.BtnUpdateTrack.Name = "BtnUpdateTrack"
         Me.BtnUpdateTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnUpdateTrack.TabIndex = 12
@@ -738,8 +689,7 @@ Partial Class FrmRecordInput
         '
         Me.CbArtists.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CbArtists.DataSource = Me.ArtistsBindingSource
-        Me.CbArtists.DisplayMember = "ArtistName"
+        Me.CbArtists.DisplayMember = "ArtistId"
         Me.CbArtists.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbArtists.FormattingEnabled = True
         Me.CbArtists.Location = New System.Drawing.Point(12, 140)
@@ -782,8 +732,7 @@ Partial Class FrmRecordInput
         '
         Me.CbGenre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CbGenre.DataSource = Me.MusicGenreBindingSource
-        Me.CbGenre.DisplayMember = "GenreName"
+        Me.CbGenre.DisplayMember = "GenreId"
         Me.CbGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbGenre.FormattingEnabled = True
         Me.CbGenre.Location = New System.Drawing.Point(12, 309)
@@ -934,15 +883,6 @@ Partial Class FrmRecordInput
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Track #"
         '
-        'BtnDateClear
-        '
-        Me.BtnDateClear.Location = New System.Drawing.Point(298, 395)
-        Me.BtnDateClear.Name = "BtnDateClear"
-        Me.BtnDateClear.Size = New System.Drawing.Size(20, 23)
-        Me.BtnDateClear.TabIndex = 10
-        Me.BtnDateClear.Text = "X"
-        Me.BtnDateClear.UseVisualStyleBackColor = True
-        '
         'FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -956,11 +896,6 @@ Partial Class FrmRecordInput
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmRecordInput"
         Me.Text = "Input Records"
-        CType(Me.RecordFormatBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RecordsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ArtistsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MusicGenreBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RecordLabelsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -992,18 +927,11 @@ Partial Class FrmRecordInput
     Friend WithEvents LblRecordId As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents CbRecordFormat As ComboBox
-    Friend WithEvents RecordsDataSet As RecordDataSet
-    Friend WithEvents RecordFormatBindingSource As BindingSource
-    '  Friend WithEvents RecordFormatTableAdapter As RecordsDataSetTableAdapters.RecordFormatTableAdapter
-    Friend WithEvents ArtistsBindingSource As BindingSource
-    '    Friend WithEvents ArtistsTableAdapter As RecordsDataSetTableAdapters.ArtistsTableAdapter
-    Friend WithEvents MusicGenreBindingSource As BindingSource
     '   Friend WithEvents MusicGenreTableAdapter As RecordsDataSetTableAdapters.MusicGenreTableAdapter
     Friend WithEvents BtnAdd As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents CbRecordLabel As ComboBox
-    Friend WithEvents RecordLabelsBindingSource As BindingSource
     '  Friend WithEvents RecordLabelsTableAdapter As RecordsDataSetTableAdapters.RecordLabelsTableAdapter
     Friend WithEvents BtnAddFormat As Button
     Friend WithEvents BtnAddLabel As Button

@@ -4,6 +4,9 @@
 '
 ' Author Eric Hindle
 '
+
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
 
     Public Class TrackBuilder
@@ -32,7 +35,7 @@ Namespace Domain
             _chartDate = Nothing
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.TracksRow) As TrackBuilder
+        Public Function StartingWith(pRow As TracksRow) As TrackBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _recordId = pRow.RecordId
@@ -63,7 +66,7 @@ Namespace Domain
             _chartDate = pTrack.ChartDate
             Return Me
         End Function
-        'Public Function StartingWith(pTrack As RecordDataSet.vRecordTracksRow) As TrackBuilder
+        'Public Function StartingWith(pTrack As vRecordTracksRow) As TrackBuilder
         '    _recordId = pTrack.RecordId
         '    _side = pTrack.Side
         '    _track = pTrack.Track

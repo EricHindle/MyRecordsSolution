@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+Imports MyVinyl.VinylDataSet
 
 Namespace Domain
 
@@ -18,7 +19,7 @@ Namespace Domain
             _genreName = String.Empty
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.MusicGenreRow) As GenreBuilder
+        Public Function StartingWith(pRow As MusicGenreRow) As GenreBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _genreId = pRow.GenreId

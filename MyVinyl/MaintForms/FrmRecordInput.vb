@@ -8,7 +8,6 @@
 Imports System.Text.RegularExpressions
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
-Imports MyVinyl.RecordDataSet
 Public Class FrmRecordInput
     Private CurrentRecord As New Record
     Private CurrentTrack As New Track
@@ -114,24 +113,26 @@ Public Class FrmRecordInput
         Else
             TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
             CurrentRecord = BuildRecordFromForm()
-            '        Dim _duplicateRecord As RecordDataSet.vRecordTracksRow = GetDuplicateRecord()
-            'If _duplicateRecord Is Nothing Then
-            '    CurrentRecord.RecordId = InsertRecord(CurrentRecord)
-            '    LblRecordId.Text = CStr(CurrentRecord.RecordId)
-            '    SplitContainer2.Panel2Collapsed = False
-            '    BtnAdd.Enabled = False
-            '    LogUtil.ShowStatus("Record Added", LblStatus, MyBase.Name)
-            'Else
-            '    If IsIncrementCopies(_duplicateRecord) Then
-            '        UpdateRecordCopies(CurrentRecord)
-            '        NextRecord()
-            '        LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
-            '    Else
-            '        SplitContainer2.Panel2Collapsed = True
-            '        BtnAdd.Enabled = True
-            '        LogUtil.ShowStatus("Record rejected", LblStatus, MyBase.Name)
-            '    End If
-            'End If
+            Dim _duplicateRecord As Record = GetDuplicateRecord()
+            If _duplicateRecord Is Nothing Then
+                CurrentRecord.RecordId = InsertRecord(CurrentRecord)
+                LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                SplitContainer2.Panel2Collapsed = False
+                BtnAdd.Enabled = False
+                LogUtil.ShowStatus("Record Added", LblStatus, MyBase.Name)
+            Else
+                If IsIncrementCopies(_duplicateRecord) Then
+                    UpdateRecordCopies(CurrentRecord)
+                    NextRecord()
+                    LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
+                Else
+                    SplitContainer2.Panel2Collapsed = True
+                    BtnAdd.Enabled = True
+                    LogUtil.ShowStatus("Record rejected", LblStatus, MyBase.Name)
+                End If
+            End If
+            LoadRecords()
+            FindRecordInList(CurrentRecord.RecordId)
         End If
     End Sub
     Private Function IsValidRecord() As Boolean
@@ -147,31 +148,31 @@ Public Class FrmRecordInput
         End If
         Return isOK
     End Function
-    'Private Function GetDuplicateRecord() As RecordDataSet.vRecordTracksRow
-    '    Dim _duplicate As RecordDataSet.vRecordTracksRow = Nothing
-    '    Dim recordList As System.Data.EnumerableRowCollection(Of RecordDataSet.vRecordTracksRow) = FindExistingRecordByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
-    '    If recordList.Count > 0 Then
-    '        _duplicate = TryCast(recordList(0), RecordDataSet.vRecordTracksRow)
-    '        DgvRecords.ClearSelection()
-    '        For Each oRow As DataGridViewRow In DgvRecords.Rows
-    '            If oRow.Cells(recLabelId.Name).Value = _duplicate.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_duplicate.RecordNo) Then
-    '                oRow.Selected = True
-    '                DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
-    '                Exit For
-    '            End If
-    '        Next
-    '    End If
-    '    Return _duplicate
-    'End Function
-    'Private Function IsIncrementCopies(_duplicate As RecordDataSet.vRecordTracksRow) As Boolean
-    '    Dim isAddCopy As Boolean = False
-    '    If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
-    '        '          LblRecordId.Text = _duplicate.RecordId
-    '        NudCopies.Value = _duplicate.Copies + 1
-    '        isAddCopy = True
-    '    End If
-    '    Return isAddCopy
-    'End Function
+    Private Function GetDuplicateRecord() As Record
+        Dim _duplicate As Record = Nothing
+        Dim recordList As List(Of Record) = GetRecordsByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
+        If recordList.Count > 0 Then
+            _duplicate = recordList(0)
+            DgvRecords.ClearSelection()
+            For Each oRow As DataGridViewRow In DgvRecords.Rows
+                If oRow.Cells(recLabelId.Name).Value = _duplicate.Label.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_duplicate.RecordNumber) Then
+                    oRow.Selected = True
+                    DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
+                    Exit For
+                End If
+            Next
+        End If
+        Return _duplicate
+    End Function
+    Private Function IsIncrementCopies(_duplicate As Record) As Boolean
+        Dim isAddCopy As Boolean = False
+        If MsgBox("Looks like this record is already on file" & vbCrLf & "Accept and add a copy?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Match Found") = MsgBoxResult.Yes Then
+            LblRecordId.Text = _duplicate.RecordId
+            NudCopies.Value = _duplicate.Copies + 1
+            isAddCopy = True
+        End If
+        Return isAddCopy
+    End Function
     Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
         Using _format As New FrmFormatMaint
             _format.ShowDialog()
@@ -359,11 +360,11 @@ Public Class FrmRecordInput
         ClearTrackForm()
     End Sub
 
-    'Private Function FindExistingRecordByLabelAndNumber(pRecordNo As String, pLabelId As Integer) As System.Data.EnumerableRowCollection(Of RecordDataSet.vRecordTracksRow)
-    '    Dim oRecordListTable As New RecordDataSet.vRecordTracksDataTable
-    '    Dim oRecordListTa As New RecordDataSetTableAdapters.vRecordTracksTableAdapter
+    'Private Function FindExistingRecordByLabelAndNumber(pRecordNo As String, pLabelId As Integer) As System.Data.EnumerableRowCollection(Of VinylDataSet.vRecordTracksRow)
+    '    Dim oRecordListTable As New VinylDataSet.vRecordTracksDataTable
+    '    Dim oRecordListTa As New VinylDataSetTableAdapters.vRecordTracksTableAdapter
     '    oRecordListTa.Fill(oRecordListTable)
-    '    Dim recordList As System.Data.EnumerableRowCollection(Of RecordDataSet.vRecordTracksRow)
+    '    Dim recordList As System.Data.EnumerableRowCollection(Of VinylDataSet.vRecordTracksRow)
     '    Dim _recNo As String = RecNoChars(pRecordNo)
     '    recordList = From record In oRecordListTable
     '                 Where record.LabelId = pLabelId And RecNoChars(record.RecordNo) = RecNoChars(pRecordNo)
@@ -385,8 +386,8 @@ Public Class FrmRecordInput
         Else
             CurrentTrack = BuildTrackFromForm()
             If Not IsTrackExists(CurrentTrack) Then
-                Dim response As Integer = InsertTrack(CurrentTrack)
-                If response = 1 Then
+                Dim isInserted As Boolean = InsertTrack(CurrentTrack)
+                If isInserted Then
                     LblRecordId.Text = CStr(CurrentRecord.RecordId)
                     LogUtil.ShowStatus("Track Added", LblStatus, MyBase.Name)
                 Else
@@ -397,6 +398,9 @@ Public Class FrmRecordInput
                 LogUtil.ShowStatus("Track already exists", LblStatus)
             End If
         End If
+        isLoading = True
+        LoadTracks(CurrentRecord.RecordId)
+        isLoading = False
     End Sub
 
     Private Sub TrimValues()
@@ -416,6 +420,7 @@ Public Class FrmRecordInput
         RbB.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
+        TxtChartPos.Text = String.Empty
         isTrackChanged = False
     End Sub
 
@@ -439,11 +444,11 @@ Public Class FrmRecordInput
     Private Function BuildTrackFromForm() As Track
         Dim _artist As New Artist
         If CbArtists.SelectedIndex > -1 Then
-            _artist = ArtistBuilder.AnArtist.StartingWith(CType(CbArtists.SelectedItem.row, RecordDataSet.ArtistsRow)).Build
+            _artist = GetArtistFromId(CbArtists.SelectedValue)
         End If
         Dim _genre As New Genre
         If CbGenre.SelectedIndex > -1 Then
-            _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, RecordDataSet.MusicGenreRow)).Build
+            _genre = GetGenreFromId(CbGenre.SelectedValue)
         End If
         Dim _chartpos As Integer = -1
         If Not String.IsNullOrWhiteSpace(TxtChartPos.Text) AndAlso IsNumeric(TxtChartPos.Text) Then
@@ -583,12 +588,13 @@ Public Class FrmRecordInput
             LogUtil.ShowStatus("Invalid values", LblStatus, True, MyBase.Name, True)
         Else
             CurrentTrack = BuildTrackFromForm()
-            Dim response As Integer = UpdateTrack(CurrentTrack)
-            If response = 1 Then
+            Dim isUpdated As Boolean = UpdateTrack(CurrentTrack)
+            If isUpdated Then
                 LogUtil.ShowStatus("Track Updated", LblStatus, MyBase.Name)
             Else
                 LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
             End If
+            LoadTracks(CurrentTrack.RecordId)
         End If
     End Sub
 

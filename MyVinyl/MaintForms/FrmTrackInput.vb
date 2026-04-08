@@ -73,8 +73,8 @@ Public Class FrmTrackInput
             LogUtil.ShowStatus("Invalid values", LblStatus, False, Nothing, True)
         Else
             CurrentTrack = BuildTrackFromForm()
-            Dim response As Integer = InsertTrack(CurrentTrack)
-            If response = 1 Then
+            Dim isInserted As Boolean = InsertTrack(CurrentTrack)
+            If isInserted Then
                 LblRecordId.Text = CStr(_currentRecord.RecordId)
                 BtnSaveTrack.Enabled = False
                 LogUtil.ShowStatus("Track Added", LblStatus)
@@ -87,11 +87,11 @@ Public Class FrmTrackInput
     Private Function BuildTrackFromForm() As Track
         Dim _artist As New Artist
         If CbArtists.SelectedIndex > -1 Then
-            _artist = ArtistBuilder.AnArtist.StartingWith(CType(CbArtists.SelectedItem.row, RecordDataSet.ArtistsRow)).Build
+            _artist = ArtistBuilder.AnArtist.StartingWith(CType(CbArtists.SelectedItem.row, VinylDataSet.ArtistsRow)).Build
         End If
         Dim _genre As New Genre
         If CbGenre.SelectedIndex > -1 Then
-            _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, RecordDataSet.MusicGenreRow)).Build
+            _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, VinylDataSet.MusicGenreRow)).Build
         End If
         Return TrackBuilder.ATrack.StartingWithNothing _
             .WithId(_currentRecord.RecordId) _

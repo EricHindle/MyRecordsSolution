@@ -164,4 +164,17 @@ Public Class FrmLabelMaint
     Private Sub TxtLabel_DragEnter(sender As Object, e As DragEventArgs) Handles TxtLabel.DragEnter
         TextBox_DragEnter(sender, e)
     End Sub
+    Private Sub TxtLabel_TextChanged(sender As Object, e As EventArgs) Handles TxtLabel.TextChanged
+        If Not String.IsNullOrEmpty(TxtLabel.Text) Then
+            FindLabelInList(TxtLabel.Text.Trim)
+        End If
+    End Sub
+    Private Sub FindLabelInList(pName As String)
+        For Each oRow As DataGridViewRow In DgvLabel.Rows
+            If CStr(oRow.Cells(labname.Name).Value).ToLower.StartsWith(pName.ToLower) Then
+                DgvLabel.FirstDisplayedScrollingRowIndex = oRow.Index
+                Exit For
+            End If
+        Next
+    End Sub
 End Class

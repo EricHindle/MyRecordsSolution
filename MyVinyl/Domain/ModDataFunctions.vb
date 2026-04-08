@@ -10,7 +10,7 @@ Imports System.IO
 Imports System.Reflection
 Imports System.Security.Cryptography
 Imports HindlewareLib.Logging
-Imports MyVinyl.RecordDataSet
+Imports MyVinyl.VinylDataSet
 
 Namespace Domain
     Public Module ModDataFunctions
@@ -48,7 +48,7 @@ Namespace Domain
         Private ReadOnly oMusicGenreTable As New MusicGenreDataTable
         Private ReadOnly oTracksTable As New TracksDataTable
         Private ReadOnly oArtistsTable As New ArtistsDataTable
-        Private ReadOnly oRecordTracksView As New vRecordTracksDataTable
+        '       Private ReadOnly oRecordTracksView As New vRecordTracksDataTable
         Public tableList As New List(Of String)
 #End Region
 #Region "common"
@@ -256,6 +256,7 @@ Namespace Domain
                 For Each oRow As RecordsRow In oRecordsTable.Rows
                     oList.Add(RecordBuilder.ARecord.StartingWith(oRow).Build)
                 Next
+                oList.Sort()
             Catch ex As Exception
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
             End Try
@@ -291,21 +292,35 @@ Namespace Domain
             End Try
             Return oRecord
         End Function
+        Public Function GetRecordsByLabelAndNumber(pRecordNo As String, pLabelId As Integer) As List(Of Record)
+            LogUtil.Debug("Getting Record " & pRecordNo, MethodBase.GetCurrentMethod.Name)
+            Dim oRecords As New List(Of Record)
+            Try
+                Dim oRecordRows = From Record In oRecordsTable.AsEnumerable()
+                                  Select Record
+                                  Where Record.RecordNo = pRecordNo And Record.Label = pLabelId
+                For Each _recordRow As RecordsRow In oRecordRows
+                    oRecords.Add(RecordBuilder.ARecord.StartingWith(oRecordRows.First).Build)
+                Next
+            Catch ex As SqlException
+                LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
+            End Try
+            Return oRecords
+        End Function
         Public Function InsertRecord(pRecord As Record) As Integer
             LogUtil.Info("Inserting Record " & CStr(pRecord.RecordNumber), MethodBase.GetCurrentMethod.Name)
-            Dim response As Integer = -1
             Try
                 With pRecord
                     Dim oRecordRow As RecordsRow = oRecordsTable.NewRow
+                    pRecord.RecordId = oRecordRow.RecordId
                     oRecordRow = SetRecordRowValues(pRecord, oRecordRow)
-                    response = oRecordRow.RecordId
                     oRecordsTable.Rows.Add(oRecordRow)
                     WriteXmlFromTable(oRecordsTable)
                 End With
             Catch ex As SqlException
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
             End Try
-            Return response
+            Return pRecord.RecordId
         End Function
         Public Function UpdateRecord(pRecord As Record) As Integer
             LogUtil.Info("Updating Record", MethodBase.GetCurrentMethod.Name)
@@ -326,6 +341,26 @@ Namespace Domain
             End If
             Return isUpdated
         End Function
+        Public Function UpdateRecordCopies(pRecord As Record) As Integer
+            LogUtil.Info("Updating Record Copies", MethodBase.GetCurrentMethod.Name)
+            Dim isUpdated As Boolean = False
+            If pRecord IsNot Nothing Then
+                Try
+                    Dim oRecordRow As RecordsRow = GetRecordRowFromId(pRecord.RecordId)
+                    If oRecordRow IsNot Nothing Then
+                        oRecordRow.Copies = pRecord.Copies
+                        WriteXmlFromTable(oRecordsTable)
+                        isUpdated = True
+                    End If
+                Catch ex As Exception
+                    LogUtil.DisplayException(ex, RECORD_TABLE, MethodBase.GetCurrentMethod.Name)
+                End Try
+            Else
+                LogUtil.Problem("Trying to change null Record", MethodBase.GetCurrentMethod.Name)
+            End If
+            Return isUpdated
+        End Function
+
         Private Function SetRecordRowValues(pRecord As Record, pRecordRow As RecordsRow) As RecordsRow
             With pRecord
                 pRecordRow.RecordId = .RecordId
@@ -340,37 +375,61 @@ Namespace Domain
         End Function
 #End Region
 #Region "Track"
-        Public Function GetTracksTable() As RecordDataSet.TracksDataTable
+        Public Function GetTracksTable() As VinylDataSet.TracksDataTable
             LogUtil.Info("Getting tracks table", MethodBase.GetCurrentMethod.Name)
             Return oTracksTable
         End Function
-        '    '  <--ToDo -->
         Public Function InsertTrack(pTrack As Track) As Integer
-            '        LogUtil.Info("Inserting Track " & pTrack.RecordId & "-" & CStr(pTrack.Track), MethodBase.GetCurrentMethod.Name)
-            '        Dim response As Integer = -1
-            '        Try
-            '            With pTrack
-            '                response = oTracksTa.InsertTrack(.RecordId, .Side, .Track, .Title, .Year, .Genre.GenreId, .Artist.ArtistId, .PeakChartPosition, .ChartDate)
-            '            End With
-            '        Catch ex As SqlException
-            '            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-            '        End Try
-            '        Return response
+            LogUtil.Info("Inserting Track", MethodBase.GetCurrentMethod.Name)
+            Dim isInserted As Boolean = False
+            Try
+                With pTrack
+                    Dim oTrackRow As TracksRow = oTracksTable.NewRow
+                    oTrackRow = SetTrackRowValues(pTrack, oTrackRow)
+                    oTracksTable.Rows.Add(oTrackRow)
+                    WriteXmlFromTable(oTracksTable)
+                    isInserted = True
+                End With
+            Catch ex As SqlException
+                LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
+            End Try
+            Return isInserted
         End Function
-        '    '  <--ToDo -->
+        Private Function SetTrackRowValues(pTrack As Track, pTrackRow As TracksRow) As TracksRow
+            With pTrack
+                pTrackRow.RecordId = .RecordId
+                pTrackRow.Side = .Side
+                pTrackRow.Track = .Track
+                pTrackRow.Title = .Title
+                pTrackRow.Year = .Year
+                pTrackRow.Genre = .Genre.GenreId
+                pTrackRow.ArtistId = .Artist.ArtistId
+                pTrackRow.PeakChartPosition = .PeakChartPosition
+                If .ChartDate IsNot Nothing Then
+                    pTrackRow.ChartDate = .ChartDate
+                End If
+            End With
+            Return pTrackRow
+        End Function
         Public Function UpdateTrack(pTrack As Track) As Integer
-            '        LogUtil.Info("Updating Track " & pTrack.RecordId & "-" & pTrack.Side & CStr(pTrack.Track), MethodBase.GetCurrentMethod.Name)
-            '        Dim response As Integer = -1
-            '        Try
-            '            With pTrack
-            '                response = oTracksTa.UpdateTrack(.Title, .Year, .Genre.GenreId, .Artist.ArtistId, .PeakChartPosition, .ChartDate, .RecordId, .Side, .Track)
-            '            End With
-            '        Catch ex As SqlException
-            '            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-            '        End Try
-            '        Return response
+            LogUtil.Info("Updating Track", MethodBase.GetCurrentMethod.Name)
+            Dim isUpdated As Boolean = False
+            If pTrack IsNot Nothing Then
+                Try
+                    Dim oTrackRow As TracksRow = GetTrackRowForKey(pTrack.RecordId, pTrack.Side, pTrack.Track)
+                    If oTrackRow IsNot Nothing Then
+                        SetTrackRowValues(pTrack, oTrackRow)
+                        WriteXmlFromTable(oTracksTable)
+                        isUpdated = True
+                    End If
+                Catch ex As Exception
+                    LogUtil.DisplayException(ex, TRACKS_TABLE, MethodBase.GetCurrentMethod.Name)
+                End Try
+            Else
+                LogUtil.Problem("Trying to change null Track", MethodBase.GetCurrentMethod.Name)
+            End If
+            Return isUpdated
         End Function
-        '    '  <--ToDo -->
         Public Function GetTracksForRecord(pId As Integer) As List(Of Track)
             LogUtil.Debug("Getting Tracks for " & pId, MethodBase.GetCurrentMethod.Name)
             Dim _results As New List(Of Track)
@@ -389,7 +448,6 @@ Namespace Domain
             End Try
             Return _results
         End Function
-        '    '  <--ToDo -->
         Public Function GetTracksForSearch(pArtistId As Integer, pLabelId As Integer, pRecordNumber As String, pTitle As String, pYear As Integer, pGenreId As Integer) As List(Of FullRecord)
             Dim _list As New List(Of FullRecord)
             For Each oRow As RecordsRow In oRecordsTable.Rows
@@ -414,17 +472,26 @@ Namespace Domain
             Return _list
 
         End Function
-
         Public Function GetTrackForKey(pRecordId As Integer, pSide As String, pTrackNo As Integer) As Track
             Dim _track As New Track
             Try
-
+                Dim _trackRow As TracksRow = GetTrackRowForKey(pRecordId, pSide, pTrackNo)
+                If _trackRow IsNot Nothing Then
+                    _track = TrackBuilder.ATrack.StartingWith(_trackRow).Build
+                End If
+            Catch ex As Exception
+                LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
+            End Try
+            Return _track
+        End Function
+        Public Function GetTrackRowForKey(pRecordId As Integer, pSide As String, pTrackNo As Integer) As TracksRow
+            Dim _track As TracksRow = Nothing
+            Try
                 Dim oTrackRows = From Track In oTracksTable.AsEnumerable()
                                  Select Track
                                  Where Track.RecordId = pRecordId And Track.Side = pSide And Track.Track = pTrackNo
-
                 If oTrackRows.Count > 0 Then
-                    _track = TrackBuilder.ATrack.StartingWith(oTrackRows.First).Build
+                    _track = oTrackRows.First
                 End If
             Catch ex As Exception
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
@@ -433,11 +500,10 @@ Namespace Domain
         End Function
 #End Region
 #Region "Artist"
-        Public Function GetArtistsTable() As RecordDataSet.ArtistsDataTable
+        Public Function GetArtistsTable() As VinylDataSet.ArtistsDataTable
             LogUtil.Info("Getting artists table", MethodBase.GetCurrentMethod.Name)
             Return oArtistsTable
         End Function
-        '    '  <--ToDo -->
         Public Function GetArtistFromId(pId As Integer) As Artist
             LogUtil.Debug("Getting Artist " & pId, MethodBase.GetCurrentMethod.Name)
             Dim oArtist As New Artist
@@ -469,7 +535,6 @@ Namespace Domain
             End Try
             Return oArtist
         End Function
-
         Public Function InsertArtist(pArtist As Artist) As Integer
             LogUtil.Info("Inserting Artist " & CStr(pArtist.ArtistName), MethodBase.GetCurrentMethod.Name)
             Dim response As Integer = -1
@@ -518,6 +583,7 @@ Namespace Domain
                 For Each oRow As ArtistsRow In oArtistsTable.Rows
                     oList.Add(ArtistBuilder.AnArtist.StartingWith(oRow).Build)
                 Next
+                oList.Sort()
             Catch ex As Exception
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
             End Try
@@ -539,11 +605,10 @@ Namespace Domain
         End Function
 #End Region
 #Region "Label"
-        Public Function GetRecordLabelsTable() As RecordDataSet.RecordLabelsDataTable
+        Public Function GetRecordLabelsTable() As VinylDataSet.RecordLabelsDataTable
             LogUtil.Info("Getting record format table", MethodBase.GetCurrentMethod.Name)
             Return oRecordLabelsTable
         End Function
-        '    '  <--ToDo -->
         Public Function GetLabelbyId(pId As Integer) As RecordLabel
             LogUtil.Debug("Getting Label " & pId, MethodBase.GetCurrentMethod.Name)
             Dim oLabel As New RecordLabel
@@ -559,7 +624,6 @@ Namespace Domain
             End Try
             Return oLabel
         End Function
-        '    '  <--ToDo -->
         Public Function InsertLabel(pLabel As RecordLabel) As Integer
             LogUtil.Info("Inserting Record Label " & CStr(pLabel.LabelName), MethodBase.GetCurrentMethod.Name)
             Dim response As Integer = -1
@@ -622,6 +686,7 @@ Namespace Domain
                 For Each oRow As RecordLabelsRow In oRecordLabelsTable.Rows
                     oList.Add(RecordLabelBuilder.ARecordLabel.StartingWith(oRow).Build)
                 Next
+                oList.Sort()
             Catch ex As Exception
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
             End Try
@@ -664,7 +729,6 @@ Namespace Domain
             End Try
             Return oGenre
         End Function
-
         Public Function GetGenreFromName(pName As String) As Genre
             LogUtil.Debug("Getting Genre " & pName, MethodBase.GetCurrentMethod.Name)
             Dim oGenre As New Genre
@@ -681,7 +745,6 @@ Namespace Domain
             End Try
             Return oGenre
         End Function
-
         Public Function InsertGenre(pGenre As Genre) As Integer
             LogUtil.Info("Inserting Genre " & CStr(pGenre.GenreId), MethodBase.GetCurrentMethod.Name)
             Dim response As Integer = -1
@@ -698,7 +761,6 @@ Namespace Domain
             End Try
             Return response
         End Function
-
         Public Function UpdateGenre(pGenre As Genre) As Boolean
             LogUtil.Info("Updating Genre " & pGenre.GenreName, MethodBase.GetCurrentMethod.Name)
             Dim isUpdated As Boolean = False
@@ -725,6 +787,7 @@ Namespace Domain
                 For Each oRow As MusicGenreRow In oMusicGenreTable.Rows
                     oList.Add(GenreBuilder.AGenre.StartingWith(oRow).Build)
                 Next
+                oList.Sort()
             Catch ex As Exception
                 LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
             End Try
@@ -756,47 +819,6 @@ Namespace Domain
             LogUtil.Info("Getting record format table", MethodBase.GetCurrentMethod.Name)
             Return oRecordFormatTable
         End Function
-        '    '  <--ToDo -->
-        'Public Function InsertFormat(pFormat As RecordFormat) As Integer
-        '    '        LogUtil.Info("Inserting Format " & pFormat.FormatId, MethodBase.GetCurrentMethod.Name)
-        '    '        Dim response As Integer = -1
-        '    '        Try
-        '    '            With pFormat
-        '    '                If String.IsNullOrEmpty(GetFormatbyId(pFormat.FormatId).FormatId) Then
-        '    '                    response = oRecordFormatTa.InsertFormat(.FormatId, .FormatName)
-        '    '                End If
-        '    '            End With
-        '    '        Catch ex As SqlException
-        '    '            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-        '    '        End Try
-        '    '        Return response
-        'End Function
-        ''    '  <--ToDo -->
-        'Public Function UpdateFormat(pFormat As RecordFormat) As Integer
-        '    '        LogUtil.Info("Updating format " & pFormat.FormatName, MethodBase.GetCurrentMethod.Name)
-        '    '        Dim _response As Integer = -1
-        '    '        Try
-        '    '            With pFormat
-        '    '                _response = oRecordFormatTa.UpdateFormat(.FormatName, pFormat.FormatId)
-        '    '            End With
-        '    '        Catch ex As SqlException
-        '    '            LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-        '    '        End Try
-        '    '        Return _response
-        'End Function
-        'Public Function GetAllFormats() As List(Of RecordFormat)
-        '    LogUtil.Info("Getting Formats", MethodBase.GetCurrentMethod.Name)
-        '    Dim oList As New List(Of RecordFormat)
-        '    Try
-        '        For Each oRow As RecordFormatRow In oRecordFormatTable.Rows
-        '            oList.Add(RecordFormatBuilder.ARecordFormat.StartingWith(oRow).Build)
-        '        Next
-        '    Catch ex As Exception
-        '        LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-        '    End Try
-        '    Return oList
-        'End Function
-
         Public Function GetFormatFromId(pId As String) As RecordFormat
             LogUtil.Debug("Getting Format " & pId, MethodBase.GetCurrentMethod.Name)
             Dim oFormat As New RecordFormat
@@ -896,62 +918,6 @@ Namespace Domain
             End Try
             Return oFormat
         End Function
-#End Region
-#Region "View"
-        'Public Sub FillViewByArtistId(pArtistId As Integer)
-        '    oRecordTracksView.Rows.Clear()
-        '    Try
-        '        Dim oTrackRows = From Track In oTracksTable.AsEnumerable()
-        '                         Select Track
-        '                         Where Track.ArtistId = pArtistId Or pArtistId = -1
-        '        For Each orow As TracksRow In oTrackRows
-        '            Dim _track As Track = TrackBuilder.ATrack.StartingWith(orow).Build
-        '            If _track.IsExists Then
-        '                Dim oViewRow As vRecordTracksRow = oRecordTracksView.NewRow
-        '                oViewRow = SetViewRowValues(_track, oViewRow)
-        '                oRecordTracksView.Rows.Add(oViewRow)
-        '            End If
-        '        Next
-        '    Catch ex As Exception
-        '        LogUtil.DisplayException(ex, "dB", MethodBase.GetCurrentMethod.Name)
-        '    End Try
-
-        'End Sub
-        Private Function SetViewRowValues(pTrack As Track, pViewRow As vRecordTracksRow) As vRecordTracksRow
-            Dim pRecord As Record = GetRecordFromId(pTrack.RecordId)
-            Return SetViewRowValues(pRecord, pTrack, pViewRow)
-        End Function
-
-        Private Function SetViewRowValues(pRecord As Record, pTrack As Track, pViewRow As vRecordTracksRow) As vRecordTracksRow
-            With pTrack
-                pViewRow.ArtistId = .Artist.ArtistId
-                pViewRow.ArtistName = .Artist.ArtistName
-                If .ChartDate Is Nothing Then
-                    pViewRow.ChartDate = Nothing
-                Else
-                    pViewRow.ChartDate = .ChartDate
-                End If
-                pViewRow.GenreId = .Genre.GenreId
-                pViewRow.GenreName = .Genre.GenreName
-                pViewRow.PeakChartPosition = .PeakChartPosition
-                pViewRow.RecordId = .RecordId
-                pViewRow.Side = .Side
-                pViewRow.Title = .Title
-                pViewRow.Track = .Track
-                pViewRow.Year = .Year
-            End With
-            With pRecord
-                pViewRow.Copies = .Copies
-                pViewRow.Format = .RecordFormat.FormatId
-                pViewRow.LabelId = .Label.LabelId
-                pViewRow.LabelName = .Label.LabelName
-                pViewRow.RecordNo = .RecordNumber
-                pViewRow.Size = .Size
-                pViewRow.Speed = .Speed
-            End With
-            Return pViewRow
-        End Function
-
 #End Region
 #Region "settings"
         Public Function GetSettingsTable() As settingsDataTable

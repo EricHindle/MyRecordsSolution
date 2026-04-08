@@ -4,6 +4,9 @@
 '
 ' Author Eric Hindle
 '
+
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
 
     Public Class RecordBuilder
@@ -27,7 +30,7 @@ Namespace Domain
             _copies = 0
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.RecordsRow) As RecordBuilder
+        Public Function StartingWith(pRow As RecordsRow) As RecordBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _recordId = pRow.RecordId
@@ -40,7 +43,7 @@ Namespace Domain
             End If
             Return Me
         End Function
-        'Public Function StartingWith(pRow As RecordDataSet.vRecordTracksRow) As RecordBuilder
+        'Public Function StartingWith(pRow As vRecordTracksRow) As RecordBuilder
         '    StartingWithNothing()
         '    If pRow IsNot Nothing Then
         '        _recordId = pRow.RecordId

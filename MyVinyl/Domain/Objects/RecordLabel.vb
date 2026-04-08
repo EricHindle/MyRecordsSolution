@@ -7,6 +7,7 @@
 Namespace Domain
 
     Public Class RecordLabel
+        Implements IComparable
 #Region "properties"
         Private _labelId As Integer
         Private _labelName As String
@@ -41,6 +42,20 @@ Namespace Domain
         End Sub
         Public Function IsExists() As Boolean
             Return _labelId > -1
+        End Function
+#End Region
+#Region "methods"
+        Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
+        Implements IComparable.CompareTo
+
+            If obj Is Nothing Then Return 1
+
+            Dim otherLabel As RecordLabel = TryCast(obj, RecordLabel)
+            If otherLabel IsNot Nothing Then
+                Return Me.LabelName.CompareTo(otherLabel.LabelName)
+            Else
+                Throw New ArgumentException("Object is not a Record Label")
+            End If
         End Function
 #End Region
     End Class

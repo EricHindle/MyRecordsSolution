@@ -4,6 +4,9 @@
 '
 ' Author Eric Hindle
 '
+
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
 
     Public Class RecordFormatBuilder
@@ -17,7 +20,7 @@ Namespace Domain
             _formatName = String.Empty
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.RecordFormatRow) As RecordFormatBuilder
+        Public Function StartingWith(pRow As RecordFormatRow) As RecordFormatBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _formatId = pRow.FormatId

@@ -46,12 +46,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_13C1781ADAA08C2DC01186B07FAA3A94"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4346BD291A3A407C9414F7FE6DE24FC7"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -59,6 +53,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B240D13E1C6B23C851887CF49C110572"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_13C1781ADAA08C2DC01186B07FAA3A94"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -118,6 +118,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -203,7 +211,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HindlewareLib, Version=1.9.5.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HindlewareLib, Version=1.14.0.0, Culture=neutral, PublicKeyToken=95a3f610fb3dfb55, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B240D13E1C6B23C851887CF49C110572"
@@ -297,24 +305,24 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MyVinylInstaller"
-        "ProductCode" = "8:{DC7A2ECA-5F4A-4475-B0BD-CC9811F57889}"
-        "PackageCode" = "8:{6C859209-8D9F-4B62-A89C-128789714A48}"
+        "ProductCode" = "8:{21201F50-2381-424A-A669-79B6D77B0C61}"
+        "PackageCode" = "8:{815A0DA9-40F5-49CB-A9E7-9EF14C67669B}"
         "UpgradeCode" = "8:{E8F4EB2A-10B5-466E-ACB1-B23F3702F6B8}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:ekky1955@gmail.com"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:2.0.1"
+        "Manufacturer" = "8:hindleware"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:MyVinylInstaller"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:ekky1955@gmail.com"
+        "ARPCONTACT" = "8:Eric Hindle"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
+        "ARPURLINFOABOUT" = "8:https://hindleware.co.uk"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"

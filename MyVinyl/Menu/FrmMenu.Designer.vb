@@ -27,7 +27,7 @@ Partial Class FrmMenu
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.Version = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LblAppName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.BtnOptions = New System.Windows.Forms.Button()
         Me.BtnBackup = New System.Windows.Forms.Button()
@@ -88,19 +88,19 @@ Partial Class FrmMenu
         Me.Version.Text = "Version {0}.{1}.{2}.{3}"
         Me.Version.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
-        'Label1
+        'LblAppName
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.White
-        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.Label1.Location = New System.Drawing.Point(124, 51)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Padding = New System.Windows.Forms.Padding(10)
-        Me.Label1.Size = New System.Drawing.Size(147, 49)
-        Me.Label1.TabIndex = 26
-        Me.Label1.Text = "My Records"
+        Me.LblAppName.AutoSize = True
+        Me.LblAppName.BackColor = System.Drawing.Color.White
+        Me.LblAppName.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LblAppName.Font = New System.Drawing.Font("Tahoma", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblAppName.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.LblAppName.Location = New System.Drawing.Point(172, 44)
+        Me.LblAppName.Name = "LblAppName"
+        Me.LblAppName.Padding = New System.Windows.Forms.Padding(10)
+        Me.LblAppName.Size = New System.Drawing.Size(115, 49)
+        Me.LblAppName.TabIndex = 26
+        Me.LblAppName.Text = "My Vinyl"
         '
         'PictureBox1
         '
@@ -216,7 +216,7 @@ Partial Class FrmMenu
         Me.Controls.Add(Me.BtnFormats)
         Me.Controls.Add(Me.BtnRestore)
         Me.Controls.Add(Me.BtnBackup)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LblAppName)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Version)
         Me.Controls.Add(Me.BtnClose)
@@ -238,7 +238,7 @@ Partial Class FrmMenu
     Friend WithEvents BtnSearch As Button
     Friend WithEvents BtnClose As Button
     Friend WithEvents Version As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents LblAppName As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents BtnOptions As Button
     Friend WithEvents BtnBackup As Button

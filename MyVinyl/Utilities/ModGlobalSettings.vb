@@ -6,7 +6,6 @@
 '
 
 Imports HindlewareLib.Logging
-Imports MyVinyl.Domain
 
 Public Module ModGlobalSettings
 #Region "constants"

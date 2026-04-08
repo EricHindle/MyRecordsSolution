@@ -4,6 +4,8 @@
 '
 ' Author Eric Hindle
 '
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
 
     Public Class GlobalSettingBuilder
@@ -25,7 +27,7 @@ Namespace Domain
             _group = ""
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.settingsRow) As GlobalSettingBuilder
+        Public Function StartingWith(pRow As settingsRow) As GlobalSettingBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _name = pRow.pKey

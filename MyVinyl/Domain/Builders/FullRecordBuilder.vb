@@ -4,6 +4,7 @@
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class FullRecordBuilder

@@ -7,6 +7,7 @@
 Namespace Domain
 
     Public Class RecordFormat
+        Implements IComparable
 #Region "properties"
         Private _formatId As String
         Private _formatName As String
@@ -43,6 +44,20 @@ Namespace Domain
             Return Not String.IsNullOrEmpty(_formatId)
         End Function
 
+#End Region
+#Region "methods"
+        Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
+        Implements IComparable.CompareTo
+
+            If obj Is Nothing Then Return 1
+
+            Dim otherRecordFormat As RecordFormat = TryCast(obj, RecordFormat)
+            If otherRecordFormat IsNot Nothing Then
+                Return Me.FormatName.CompareTo(otherRecordFormat.FormatName)
+            Else
+                Throw New ArgumentException("Object is not a Record Format")
+            End If
+        End Function
 #End Region
     End Class
 End Namespace

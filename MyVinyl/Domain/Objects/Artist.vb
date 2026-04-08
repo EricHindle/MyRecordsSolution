@@ -7,6 +7,7 @@
 Namespace Domain
 
     Public Class Artist
+        Implements IComparable
 #Region "properties"
         Private _artistId As Integer
         Private _artistName As String
@@ -41,6 +42,20 @@ Namespace Domain
         End Sub
         Public Function IsExists() As Boolean
             Return _artistId > -1
+        End Function
+#End Region
+#Region "methods"
+        Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
+        Implements IComparable.CompareTo
+
+            If obj Is Nothing Then Return 1
+
+            Dim otherArtist As Artist = TryCast(obj, Artist)
+            If otherArtist IsNot Nothing Then
+                Return Me.ArtistName.CompareTo(otherArtist.ArtistName)
+            Else
+                Throw New ArgumentException("Object is not a Artist")
+            End If
         End Function
 #End Region
     End Class

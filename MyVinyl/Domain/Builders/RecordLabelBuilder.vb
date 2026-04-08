@@ -4,6 +4,9 @@
 '
 ' Author Eric Hindle
 '
+
+Imports MyVinyl.VinylDataSet
+
 Namespace Domain
 
     Public Class RecordLabelBuilder
@@ -18,7 +21,7 @@ Namespace Domain
             _labelName = String.Empty
             Return Me
         End Function
-        Public Function StartingWith(pRow As RecordDataSet.RecordLabelsRow) As RecordLabelBuilder
+        Public Function StartingWith(pRow As RecordLabelsRow) As RecordLabelBuilder
             StartingWithNothing()
             If pRow IsNot Nothing Then
                 _labelId = pRow.LabelId

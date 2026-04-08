@@ -53,7 +53,7 @@ Partial Class FrmTrackInput
         Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.CbGenre = New System.Windows.Forms.ComboBox()
         Me.MusicGenreBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RecordsDataSet = New MyVinyl.RecordDataSet()
+        Me.RecordsDataSet = New MyVinyl.VinylDataSet()
         '  Me.MusicGenreTableAdapter = New MyVinyl.RecordsDataSetTableAdapters.MusicGenreTableAdapter()
         Me.BtnClose = New System.Windows.Forms.Button()
         Me.BtnSaveTrack = New System.Windows.Forms.Button()
@@ -487,7 +487,7 @@ Partial Class FrmTrackInput
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents LblStatus As ToolStripStatusLabel
     Friend WithEvents CbGenre As ComboBox
-    Friend WithEvents RecordsDataSet As RecordDataSet
+    Friend WithEvents RecordsDataSet As VinylDataSet
     Friend WithEvents MusicGenreBindingSource As BindingSource
     ' Friend WithEvents MusicGenreTableAdapter As RecordsDataSetTableAdapters.MusicGenreTableAdapter
     Friend WithEvents BtnClose As Button

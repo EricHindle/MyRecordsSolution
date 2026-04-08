@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RecordDataSet" targetNamespace="http://tempuri.org/RecordDataSet.xsd" xmlns:mstns="http://tempuri.org/RecordDataSet.xsd" xmlns="http://tempuri.org/RecordDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="RecordsConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="RecordsConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MyVinyl.My.MySettings.GlobalReference.Default.RecordsConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RecordDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="RecordDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RecordDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Artists" msprop:Generator_RowEvHandlerName="ArtistsRowChangeEventHandler" msprop:Generator_RowDeletedName="ArtistsRowDeleted" msprop:Generator_RowDeletingName="ArtistsRowDeleting" msprop:Generator_RowEvArgName="ArtistsRowChangeEvent" msprop:Generator_TablePropName="Artists" msprop:Generator_RowChangedName="ArtistsRowChanged" msprop:Generator_UserTableName="Artists" msprop:Generator_RowChangingName="ArtistsRowChanging" msprop:Generator_RowClassName="ArtistsRow" msprop:Generator_TableClassName="ArtistsDataTable" msprop:Generator_TableVarName="tableArtists">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ArtistId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="ArtistIdColumn" msprop:Generator_ColumnPropNameInRow="ArtistId" msprop:Generator_UserColumnName="ArtistId" msprop:Generator_ColumnVarNameInTable="columnArtistId" type="xs:int" />
+              <xs:element name="ArtistName" msprop:Generator_ColumnPropNameInTable="ArtistNameColumn" msprop:Generator_ColumnPropNameInRow="ArtistName" msprop:Generator_UserColumnName="ArtistName" msprop:Generator_ColumnVarNameInTable="columnArtistName" default="''" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MusicGenre" msprop:Generator_RowEvHandlerName="MusicGenreRowChangeEventHandler" msprop:Generator_RowDeletedName="MusicGenreRowDeleted" msprop:Generator_RowDeletingName="MusicGenreRowDeleting" msprop:Generator_RowEvArgName="MusicGenreRowChangeEvent" msprop:Generator_TablePropName="MusicGenre" msprop:Generator_RowChangedName="MusicGenreRowChanged" msprop:Generator_UserTableName="MusicGenre" msprop:Generator_RowChangingName="MusicGenreRowChanging" msprop:Generator_RowClassName="MusicGenreRow" msprop:Generator_TableClassName="MusicGenreDataTable" msprop:Generator_TableVarName="tableMusicGenre">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GenreId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="GenreIdColumn" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="GenreId" msprop:Generator_UserColumnName="GenreId" msprop:Generator_ColumnVarNameInTable="columnGenreId" type="xs:int" />
+              <xs:element name="GenreName" msprop:Generator_ColumnPropNameInTable="GenreNameColumn" msprop:Generator_ColumnPropNameInRow="GenreName" msprop:Generator_UserColumnName="GenreName" msprop:Generator_ColumnVarNameInTable="columnGenreName" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RecordFormat" msprop:Generator_RowEvHandlerName="RecordFormatRowChangeEventHandler" msprop:Generator_RowDeletedName="RecordFormatRowDeleted" msprop:Generator_RowDeletingName="RecordFormatRowDeleting" msprop:Generator_RowEvArgName="RecordFormatRowChangeEvent" msprop:Generator_TablePropName="RecordFormat" msprop:Generator_RowChangedName="RecordFormatRowChanged" msprop:Generator_UserTableName="RecordFormat" msprop:Generator_RowChangingName="RecordFormatRowChanging" msprop:Generator_RowClassName="RecordFormatRow" msprop:Generator_TableClassName="RecordFormatDataTable" msprop:Generator_TableVarName="tableRecordFormat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FormatId" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="FormatIdColumn" msprop:Generator_ColumnPropNameInRow="FormatId" msprop:Generator_UserColumnName="FormatId" msprop:Generator_ColumnVarNameInTable="columnFormatId">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FormatName" msprop:Generator_ColumnPropNameInTable="FormatNameColumn" msprop:Generator_ColumnPropNameInRow="FormatName" msprop:Generator_UserColumnName="FormatName" msprop:Generator_ColumnVarNameInTable="columnFormatName" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RecordLabels" msprop:Generator_RowEvHandlerName="RecordLabelsRowChangeEventHandler" msprop:Generator_RowDeletedName="RecordLabelsRowDeleted" msprop:Generator_RowDeletingName="RecordLabelsRowDeleting" msprop:Generator_RowEvArgName="RecordLabelsRowChangeEvent" msprop:Generator_TablePropName="RecordLabels" msprop:Generator_RowChangedName="RecordLabelsRowChanged" msprop:Generator_UserTableName="RecordLabels" msprop:Generator_RowChangingName="RecordLabelsRowChanging" msprop:Generator_RowClassName="RecordLabelsRow" msprop:Generator_TableClassName="RecordLabelsDataTable" msprop:Generator_TableVarName="tableRecordLabels">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LabelId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="LabelIdColumn" msprop:Generator_ColumnPropNameInRow="LabelId" msprop:Generator_UserColumnName="LabelId" msprop:Generator_ColumnVarNameInTable="columnLabelId" type="xs:int" />
+              <xs:element name="LabelName" msprop:Generator_ColumnPropNameInTable="LabelNameColumn" msprop:Generator_ColumnPropNameInRow="LabelName" msprop:Generator_UserColumnName="LabelName" msprop:Generator_ColumnVarNameInTable="columnLabelName" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Records" msprop:Generator_RowEvHandlerName="RecordsRowChangeEventHandler" msprop:Generator_RowDeletedName="RecordsRowDeleted" msprop:Generator_RowDeletingName="RecordsRowDeleting" msprop:Generator_RowEvArgName="RecordsRowChangeEvent" msprop:Generator_TablePropName="Records" msprop:Generator_RowChangedName="RecordsRowChanged" msprop:Generator_UserTableName="Records" msprop:Generator_RowChangingName="RecordsRowChanging" msprop:Generator_RowClassName="RecordsRow" msprop:Generator_TableClassName="RecordsDataTable" msprop:Generator_TableVarName="tableRecords">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecordId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="RecordIdColumn" msprop:Generator_ColumnPropNameInRow="RecordId" msprop:Generator_UserColumnName="RecordId" msprop:Generator_ColumnVarNameInTable="columnRecordId" type="xs:int" />
+              <xs:element name="Format" msprop:Generator_UserColumnName="Format" msprop:Generator_ColumnPropNameInTable="FormatColumn" msprop:Generator_ColumnPropNameInRow="Format" msprop:Generator_ColumnVarNameInTable="columnFormat" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Label" msprop:Generator_ColumnPropNameInTable="LabelColumn" msprop:Generator_ColumnPropNameInRow="Label" msprop:Generator_UserColumnName="Label" msprop:Generator_ColumnVarNameInTable="columnLabel" type="xs:int" default="-1" />
+              <xs:element name="Size" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_UserColumnName="Size" msprop:Generator_ColumnVarNameInTable="columnSize" type="xs:int" default="-1" />
+              <xs:element name="Speed" msprop:Generator_ColumnPropNameInTable="SpeedColumn" msprop:Generator_ColumnPropNameInRow="Speed" msprop:Generator_UserColumnName="Speed" msprop:Generator_ColumnVarNameInTable="columnSpeed" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Copies" msprop:Generator_ColumnPropNameInTable="CopiesColumn" msprop:Generator_ColumnPropNameInRow="Copies" msprop:Generator_UserColumnName="Copies" msprop:Generator_ColumnVarNameInTable="columnCopies" type="xs:int" default="-1" />
+              <xs:element name="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_UserColumnName="RecordNo" msprop:Generator_ColumnVarNameInTable="columnRecordNo" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="settings" msprop:Generator_RowEvHandlerName="settingsRowChangeEventHandler" msprop:Generator_RowDeletedName="settingsRowDeleted" msprop:Generator_RowDeletingName="settingsRowDeleting" msprop:Generator_RowEvArgName="settingsRowChangeEvent" msprop:Generator_TablePropName="settings" msprop:Generator_RowChangedName="settingsRowChanged" msprop:Generator_UserTableName="settings" msprop:Generator_RowChangingName="settingsRowChanging" msprop:Generator_RowClassName="settingsRow" msprop:Generator_TableClassName="settingsDataTable" msprop:Generator_TableVarName="tablesettings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pKey" msprop:Generator_ColumnPropNameInTable="pKeyColumn" msprop:Generator_ColumnPropNameInRow="pKey" msprop:Generator_UserColumnName="pKey" msprop:Generator_ColumnVarNameInTable="columnpKey">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pValue" msprop:Generator_ColumnPropNameInTable="pValueColumn" msprop:Generator_ColumnPropNameInRow="pValue" msprop:Generator_UserColumnName="pValue" msprop:Generator_ColumnVarNameInTable="columnpValue">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pType" msprop:Generator_ColumnPropNameInTable="pTypeColumn" msprop:Generator_ColumnPropNameInRow="pType" msprop:Generator_UserColumnName="pType" msprop:Generator_ColumnVarNameInTable="columnpType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pGroup" msprop:Generator_ColumnPropNameInTable="pGroupColumn" msprop:Generator_ColumnPropNameInRow="pGroup" msprop:Generator_UserColumnName="pGroup" msprop:Generator_ColumnVarNameInTable="columnpGroup" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Tracks" msprop:Generator_RowEvHandlerName="TracksRowChangeEventHandler" msprop:Generator_RowDeletedName="TracksRowDeleted" msprop:Generator_RowDeletingName="TracksRowDeleting" msprop:Generator_RowEvArgName="TracksRowChangeEvent" msprop:Generator_TablePropName="Tracks" msprop:Generator_RowChangedName="TracksRowChanged" msprop:Generator_UserTableName="Tracks" msprop:Generator_RowChangingName="TracksRowChanging" msprop:Generator_RowClassName="TracksRow" msprop:Generator_TableClassName="TracksDataTable" msprop:Generator_TableVarName="tableTracks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecordId" msprop:Generator_ColumnPropNameInTable="RecordIdColumn" msprop:Generator_ColumnPropNameInRow="RecordId" msprop:Generator_UserColumnName="RecordId" msprop:Generator_ColumnVarNameInTable="columnRecordId" type="xs:int" />
+              <xs:element name="Side" msprop:Generator_ColumnPropNameInTable="SideColumn" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="Side" msprop:Generator_UserColumnName="Side" msprop:Generator_ColumnVarNameInTable="columnSide">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Track" msprop:Generator_ColumnPropNameInTable="TrackColumn" msprop:Generator_ColumnPropNameInRow="Track" msprop:Generator_UserColumnName="Track" msprop:Generator_ColumnVarNameInTable="columnTrack" type="xs:int" />
+              <xs:element name="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_UserColumnName="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" default="''">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_UserColumnName="Year" msprop:Generator_ColumnVarNameInTable="columnYear" type="xs:int" />
+              <xs:element name="Genre" msprop:Generator_ColumnPropNameInTable="GenreColumn" msprop:Generator_ColumnPropNameInRow="Genre" msprop:Generator_UserColumnName="Genre" msprop:Generator_ColumnVarNameInTable="columnGenre" type="xs:int" />
+              <xs:element name="ArtistId" msprop:Generator_ColumnPropNameInTable="ArtistIdColumn" msprop:Generator_ColumnPropNameInRow="ArtistId" msprop:Generator_UserColumnName="ArtistId" msprop:Generator_ColumnVarNameInTable="columnArtistId" type="xs:int" />
+              <xs:element name="PeakChartPosition" msprop:Generator_ColumnPropNameInTable="PeakChartPositionColumn" msprop:Generator_ColumnPropNameInRow="PeakChartPosition" msprop:Generator_UserColumnName="PeakChartPosition" msprop:Generator_ColumnVarNameInTable="columnPeakChartPosition" type="xs:int" default="-1" />
+              <xs:element name="ChartDate" msprop:Generator_ColumnPropNameInTable="ChartDateColumn" msprop:Generator_ColumnPropNameInRow="ChartDate" msprop:Generator_UserColumnName="ChartDate" msprop:Generator_ColumnVarNameInTable="columnChartDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vRecordTracks" msprop:Generator_RowEvHandlerName="vRecordTracksRowChangeEventHandler" msprop:Generator_RowDeletedName="vRecordTracksRowDeleted" msprop:Generator_RowDeletingName="vRecordTracksRowDeleting" msprop:Generator_RowEvArgName="vRecordTracksRowChangeEvent" msprop:Generator_TablePropName="vRecordTracks" msprop:Generator_RowChangedName="vRecordTracksRowChanged" msprop:Generator_RowChangingName="vRecordTracksRowChanging" msprop:Generator_TableClassName="vRecordTracksDataTable" msprop:Generator_RowClassName="vRecordTracksRow" msprop:Generator_TableVarName="tablevRecordTracks" msprop:Generator_UserTableName="vRecordTracks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RecordId" msprop:Generator_ColumnPropNameInRow="RecordId" msprop:Generator_ColumnPropNameInTable="RecordIdColumn" msprop:Generator_ColumnVarNameInTable="columnRecordId" msprop:Generator_UserColumnName="RecordId" type="xs:int" />
+              <xs:element name="Format" msprop:Generator_ColumnPropNameInRow="Format" msprop:Generator_ColumnPropNameInTable="FormatColumn" msprop:Generator_ColumnVarNameInTable="columnFormat" msprop:Generator_UserColumnName="Format">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Side" msprop:Generator_ColumnPropNameInRow="Side" msprop:Generator_ColumnPropNameInTable="SideColumn" msprop:Generator_ColumnVarNameInTable="columnSide" msprop:Generator_UserColumnName="Side">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Speed" msprop:Generator_ColumnPropNameInRow="Speed" msprop:Generator_ColumnPropNameInTable="SpeedColumn" msprop:Generator_ColumnVarNameInTable="columnSpeed" msprop:Generator_UserColumnName="Speed">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Size" msprop:Generator_ColumnPropNameInRow="Size" msprop:Generator_ColumnPropNameInTable="SizeColumn" msprop:Generator_ColumnVarNameInTable="columnSize" msprop:Generator_UserColumnName="Size" type="xs:int" />
+              <xs:element name="Track" msprop:Generator_ColumnPropNameInRow="Track" msprop:Generator_ColumnPropNameInTable="TrackColumn" msprop:Generator_ColumnVarNameInTable="columnTrack" msprop:Generator_UserColumnName="Track" type="xs:int" />
+              <xs:element name="Title" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_UserColumnName="Title">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Year" msprop:Generator_ColumnPropNameInRow="Year" msprop:Generator_ColumnPropNameInTable="YearColumn" msprop:Generator_ColumnVarNameInTable="columnYear" msprop:Generator_UserColumnName="Year" type="xs:int" />
+              <xs:element name="LabelId" msprop:Generator_ColumnPropNameInRow="LabelId" msprop:Generator_ColumnPropNameInTable="LabelIdColumn" msprop:Generator_ColumnVarNameInTable="columnLabelId" msprop:Generator_UserColumnName="LabelId" type="xs:int" />
+              <xs:element name="LabelName" msprop:Generator_ColumnPropNameInRow="LabelName" msprop:Generator_ColumnPropNameInTable="LabelNameColumn" msprop:Generator_ColumnVarNameInTable="columnLabelName" msprop:Generator_UserColumnName="LabelName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GenreId" msprop:Generator_ColumnPropNameInRow="GenreId" msprop:Generator_ColumnPropNameInTable="GenreIdColumn" msprop:Generator_ColumnVarNameInTable="columnGenreId" msprop:Generator_UserColumnName="GenreId" type="xs:int" />
+              <xs:element name="GenreName" msprop:Generator_ColumnPropNameInRow="GenreName" msprop:Generator_ColumnPropNameInTable="GenreNameColumn" msprop:Generator_ColumnVarNameInTable="columnGenreName" msprop:Generator_UserColumnName="GenreName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ArtistId" msprop:Generator_ColumnPropNameInRow="ArtistId" msprop:Generator_ColumnPropNameInTable="ArtistIdColumn" msprop:Generator_ColumnVarNameInTable="columnArtistId" msprop:Generator_UserColumnName="ArtistId" type="xs:int" />
+              <xs:element name="ArtistName" msprop:Generator_ColumnPropNameInRow="ArtistName" msprop:Generator_ColumnPropNameInTable="ArtistNameColumn" msprop:Generator_ColumnVarNameInTable="columnArtistName" msprop:Generator_UserColumnName="ArtistName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Copies" msprop:Generator_ColumnPropNameInRow="Copies" msprop:Generator_ColumnPropNameInTable="CopiesColumn" msprop:Generator_ColumnVarNameInTable="columnCopies" msprop:Generator_UserColumnName="Copies" type="xs:int" />
+              <xs:element name="RecordNo" msprop:Generator_ColumnPropNameInRow="RecordNo" msprop:Generator_ColumnPropNameInTable="RecordNoColumn" msprop:Generator_ColumnVarNameInTable="columnRecordNo" msprop:Generator_UserColumnName="RecordNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PeakChartPosition" msprop:Generator_ColumnPropNameInRow="PeakChartPosition" msprop:Generator_ColumnPropNameInTable="PeakChartPositionColumn" msprop:Generator_ColumnVarNameInTable="columnPeakChartPosition" msprop:Generator_UserColumnName="PeakChartPosition" type="xs:int" />
+              <xs:element name="ChartDate" msprop:Generator_ColumnPropNameInRow="ChartDate" msprop:Generator_ColumnPropNameInTable="ChartDateColumn" msprop:Generator_ColumnVarNameInTable="columnChartDate" msprop:Generator_UserColumnName="ChartDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ArtistsKey1">
+      <xs:selector xpath=".//mstns:Artists" />
+      <xs:field xpath="mstns:ArtistId" />
+    </xs:unique>
+    <xs:unique name="Music_x0020_GenreKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MusicGenre" />
+      <xs:field xpath="mstns:GenreId" />
+    </xs:unique>
+    <xs:unique name="RecordFormatKey1">
+      <xs:selector xpath=".//mstns:RecordFormat" />
+      <xs:field xpath="mstns:FormatId" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:RecordLabels" />
+      <xs:field xpath="mstns:LabelId" />
+    </xs:unique>
+    <xs:unique name="Records_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:Records" />
+      <xs:field xpath="mstns:RecordId" />
+    </xs:unique>
+    <xs:unique name="settingsKey1">
+      <xs:selector xpath=".//mstns:settings" />
+      <xs:field xpath="mstns:pKey" />
+    </xs:unique>
+    <xs:unique name="TracksKey1">
+      <xs:selector xpath=".//mstns:Tracks" />
+      <xs:field xpath="mstns:RecordId" />
+      <xs:field xpath="mstns:Side" />
+      <xs:field xpath="mstns:Track" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

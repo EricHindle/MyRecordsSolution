@@ -1,0 +1,165 @@
+﻿' Hindleware
+' Copyright (c) 2024-25 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+
+Imports HindlewareLib.Logging
+Imports MyVinyl.Domain
+
+Public Class FrmTrackInput
+    Private _currentRecord As Record
+    Public Property Record() As Record
+        Get
+            Return _currentRecord
+        End Get
+        Set(ByVal value As Record)
+            _currentRecord = value
+        End Set
+    End Property
+
+    Private CurrentTrack As New Track
+
+    Private Sub FrmTrackInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LogUtil.Info("Add Tracks", MyBase.Name)
+        GetFormPos(Me, My.Settings.TrackInputFormPos)
+        If _currentRecord.RecordId < 0 Then
+            MsgBox("No selected Record", MsgBoxStyle.Exclamation, "Error")
+            Close()
+        End If
+        InitialiseForm()
+    End Sub
+    Private Sub InitialiseForm()
+        LblRecordId.Text = -1
+        LoadGenreList()
+        LoadArtistList()
+        LblRecordId.Text = _currentRecord.RecordId
+        LblRecordNo.Text = _currentRecord.RecordNumber
+        ClearTrackForm()
+    End Sub
+
+    Private Sub ClearTrackForm()
+        RbA.Checked = True
+        NudTrackNo.Value = 1
+        TxtTitle.Text = String.Empty
+        TxtYear.Text = String.Empty
+        CbGenre.SelectedIndex = -1
+        CbArtists.SelectedIndex = -1
+    End Sub
+
+    Private Sub LoadArtistList()
+        'Me.ArtistsTableAdapter.Fill(Me.RecordsDataSet.Artists)
+        CbArtists.SelectedIndex = -1
+    End Sub
+
+    Private Sub LoadGenreList()
+        'Me.MusicGenreTableAdapter.Fill(Me.RecordsDataSet.MusicGenre)
+        CbGenre.SelectedIndex = -1
+    End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Close()
+    End Sub
+
+    Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        LogUtil.Info("Closing", MyBase.Name)
+        My.Settings.TrackInputFormPos = SetFormPos(Me)
+        My.Settings.Save()
+    End Sub
+
+    Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
+        If Not IsValidTrack() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, False, Nothing, True)
+        Else
+            CurrentTrack = BuildTrackFromForm()
+            Dim response As Integer = InsertTrack(CurrentTrack)
+            If response = 1 Then
+                LblRecordId.Text = CStr(_currentRecord.RecordId)
+                BtnSaveTrack.Enabled = False
+                LogUtil.ShowStatus("Track Added", LblStatus)
+            Else
+                LogUtil.ShowStatus("Error saving track", LblStatus, False, Nothing, True)
+            End If
+        End If
+    End Sub
+
+    Private Function BuildTrackFromForm() As Track
+        Dim _artist As New Artist
+        If CbArtists.SelectedIndex > -1 Then
+            _artist = ArtistBuilder.AnArtist.StartingWith(CType(CbArtists.SelectedItem.row, RecordDataSet.ArtistsRow)).Build
+        End If
+        Dim _genre As New Genre
+        If CbGenre.SelectedIndex > -1 Then
+            _genre = GenreBuilder.AGenre.StartingWith(CType(CbGenre.SelectedItem.row, RecordDataSet.MusicGenreRow)).Build
+        End If
+        Return TrackBuilder.ATrack.StartingWithNothing _
+            .WithId(_currentRecord.RecordId) _
+            .WithSide(GetSideFromForm) _
+            .WithTrack(NudTrackNo.Value) _
+            .WithArtist(_artist) _
+            .WithTitle(TxtTitle.Text) _
+            .WithYear(TxtYear.Text) _
+            .WithGenre(_genre).Build
+    End Function
+
+    Private Function GetSideFromForm() As String
+        Dim _side As String = "A"
+        Select Case True
+            Case RbA.Checked
+                _side = "A"
+            Case RbB.Checked
+                _side = "B"
+            Case RbAA.Checked
+                _side = "AA"
+            Case Rb1.Checked
+                _side = "1"
+            Case Rb2.Checked
+                _side = "2"
+
+        End Select
+        Return _side
+    End Function
+
+    Private Function IsValidTrack() As Boolean
+        Dim isOK As Boolean = True
+        'If String.IsNullOrWhiteSpace(TxtArtist.Text) Then
+        '    isOK = False
+        'End If
+        If String.IsNullOrWhiteSpace(TxtTitle.Text) Then
+            isOK = False
+        End If
+        If CbGenre.SelectedIndex < 0 Then
+            isOK = False
+        End If
+        If CbArtists.SelectedIndex < 0 Then
+            isOK = False
+        End If
+        Return isOK
+    End Function
+
+    Private Sub BtnNextTrack_Click(sender As Object, e As EventArgs)
+        ClearTrack()
+    End Sub
+
+    Private Sub ClearTrack()
+        RbB.Checked = True
+        NudTrackNo.Value = 1
+        TxtTitle.Text = String.Empty
+        BtnSaveTrack.Enabled = True
+    End Sub
+
+    Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
+        Using _artist As New FrmArtistMaint
+            _artist.ShowDialog()
+        End Using
+        LoadArtistList()
+    End Sub
+
+    Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click
+        Using _genre As New FrmGenreMaint
+            _genre.ShowDialog()
+        End Using
+        LoadGenreList()
+    End Sub
+End Class

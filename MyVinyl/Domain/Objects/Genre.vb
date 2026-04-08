@@ -1,0 +1,47 @@
+﻿' Hindleware
+' Copyright (c) 2024-25 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+Namespace Domain
+
+    Public Class Genre
+#Region "properties"
+        Private _genreId As Integer
+        Private _genreName As String
+        Public Property GenreName() As String
+            Get
+                Return _genreName
+            End Get
+            Set(ByVal value As String)
+                _genreName = value
+            End Set
+        End Property
+        Public Property GenreId() As Integer
+            Get
+                Return _genreId
+            End Get
+            Set(ByVal value As Integer)
+                _genreId = value
+            End Set
+        End Property
+#End Region
+#Region "constructors"
+        Private Sub Initialise()
+            _genreId = -1
+            _genreName = String.Empty
+        End Sub
+        Public Sub New()
+            Initialise()
+        End Sub
+        Public Sub New(pId As Integer, Pname As String)
+            _genreId = pId
+            _genreName = Pname
+        End Sub
+        Public Function IsExists() As Boolean
+            Return _genreId > -1
+        End Function
+#End Region
+    End Class
+End Namespace

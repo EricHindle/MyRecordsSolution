@@ -1,0 +1,48 @@
+﻿' Hindleware
+' Copyright (c) 2024-25 Eric Hindle
+' All rights reserved.
+'
+' Author Eric Hindle
+'
+Namespace Domain
+
+    Public Class RecordFormat
+#Region "properties"
+        Private _formatId As String
+        Private _formatName As String
+        Public Property FormatName() As String
+            Get
+                Return _formatName
+            End Get
+            Set(ByVal value As String)
+                _formatName = value
+            End Set
+        End Property
+        Public Property FormatId() As String
+            Get
+                Return _formatId
+            End Get
+            Set(ByVal value As String)
+                _formatId = value
+            End Set
+        End Property
+#End Region
+#Region "constructors"
+        Private Sub Initialise()
+            _formatId = String.Empty
+            _formatName = String.Empty
+        End Sub
+        Public Sub New()
+            Initialise()
+        End Sub
+        Public Sub New(pId As String, Pname As String)
+            _formatId = pId
+            _formatName = Pname
+        End Sub
+        Public Function IsExists() As Boolean
+            Return Not String.IsNullOrEmpty(_formatId)
+        End Function
+
+#End Region
+    End Class
+End Namespace

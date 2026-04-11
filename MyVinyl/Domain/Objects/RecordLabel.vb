@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class RecordLabel
@@ -40,16 +41,14 @@ Namespace Domain
             _labelId = pId
             _labelName = Pname
         End Sub
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return _labelId > -1
         End Function
-#End Region
-#Region "methods"
         Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
         Implements IComparable.CompareTo
-
             If obj Is Nothing Then Return 1
-
             Dim otherLabel As RecordLabel = TryCast(obj, RecordLabel)
             If otherLabel IsNot Nothing Then
                 Return Me.LabelName.CompareTo(otherLabel.LabelName)

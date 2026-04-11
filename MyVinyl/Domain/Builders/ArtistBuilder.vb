@@ -1,19 +1,22 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Imports MyVinyl.VinylDataSet
 
 Namespace Domain
     Public Class ArtistBuilder
+#Region "properties"
         Private _artistId As Integer
         Private _artistName As String
+#End Region
+#Region "methods"
         Public Shared Function AnArtist() As ArtistBuilder
             Return New ArtistBuilder
         End Function
-
         Public Function StartingWithNothing() As ArtistBuilder
             _artistId = -1
             _artistName = String.Empty
@@ -43,6 +46,6 @@ Namespace Domain
         Public Function Build() As Artist
             Return New Artist(_artistId, _artistName)
         End Function
-
+#End Region
     End Class
 End Namespace

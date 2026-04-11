@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -9,8 +9,11 @@ Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
 
 Public Class FrmGenreMaint
+#Region "constants"
     Private CurrentGenre As Genre
     Private isLoading As Boolean
+#End Region
+#Region "properties"
     Private _isSaveAndExit As Boolean
     Private _genre As New Genre
     Public Property Genre() As Genre
@@ -29,22 +32,59 @@ Public Class FrmGenreMaint
             _isSaveAndExit = value
         End Set
     End Property
+
+#End Region
+#Region "form control handlers"
     Private Sub FrmGenreMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Genre maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.GenreFormPos)
         LoadGenreList()
     End Sub
-
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         _genre = New Genre
         Close()
     End Sub
-
     Private Sub FrmGenreMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
         My.Settings.GenreFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
+        If isValidGenre() Then
+            If GetGenreFromName(TxtGenre.Text).IsExists Then
+                LogUtil.DisplayStatus("Looks like the Genre already exists", LblStatus, MyBase.Name, True)
+            Else
+                InsertNewGenre(GenreBuilder.AGenre.StartingWithNothing.WithGenreName(TxtGenre.Text).Build)
+                If IsSaveAndExit Then
+                    Close()
+                Else
+                    LoadGenreList()
+                    ClearForm()
+                End If
+            End If
+        Else
+            LogUtil.ShowStatus("Invalid Values", LblStatus)
+        End If
+    End Sub
+    Private Sub DgvGenre_SelectionChanged(sender As Object, e As EventArgs) Handles DgvGenre.SelectionChanged
+        If Not isLoading Then
+            If DgvGenre.SelectedRows.Count = 1 Then
+                LoadGenreForm(DgvGenre.SelectedRows(0))
+            End If
+        End If
+    End Sub
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
+        If DgvGenre.SelectedRows.Count = 1 Then
+            UpdateGenreDetails()
+            LoadGenreList()
+            ClearForm()
+        End If
+    End Sub
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        ClearForm()
+    End Sub
+#End Region
+#Region "subroutines"
     Private Sub InsertNewGenre(pGenre As Genre)
         If pGenre IsNot Nothing AndAlso Not String.IsNullOrWhiteSpace(pGenre.GenreName) Then
             If InsertGenre(pGenre) > 0 Then
@@ -90,7 +130,6 @@ Public Class FrmGenreMaint
             TxtGenre.Text = .GenreName
         End With
     End Sub
-
     Private Sub LoadGenreForm(pRow As DataGridViewRow)
         With pRow
             LblGenreId.Text = .Cells(genId.Name).Value
@@ -100,25 +139,6 @@ Public Class FrmGenreMaint
 
         End With
     End Sub
-
-    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
-        If isValidGenre() Then
-            If GetGenreFromName(TxtGenre.Text).IsExists Then
-                LogUtil.DisplayStatus("Looks like the Genre already exists", LblStatus, MyBase.Name, True)
-            Else
-                InsertNewGenre(GenreBuilder.AGenre.StartingWithNothing.WithGenreName(TxtGenre.Text).Build)
-                If IsSaveAndExit Then
-                    Close()
-                Else
-                    LoadGenreList()
-                    ClearForm()
-                End If
-            End If
-        Else
-            LogUtil.ShowStatus("Invalid Values", LblStatus)
-        End If
-    End Sub
-
     Private Function isValidGenre() As Boolean
         Dim isValid As Boolean = True
         If String.IsNullOrEmpty(TxtGenre.Text) Then
@@ -126,19 +146,6 @@ Public Class FrmGenreMaint
         End If
         Return isValid
     End Function
-
-    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        If DgvGenre.SelectedRows.Count = 1 Then
-            UpdateGenreDetails()
-            LoadGenreList()
-            ClearForm()
-        End If
-    End Sub
-
-    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
-        ClearForm()
-    End Sub
-
     Private Sub ClearForm()
         LblGenreId.Text = "-1"
         TxtGenre.Text = String.Empty
@@ -146,13 +153,5 @@ Public Class FrmGenreMaint
         DgvGenre.ClearSelection()
         BtnUpdate.Enabled = False
     End Sub
-
-    Private Sub DgvGenre_SelectionChanged(sender As Object, e As EventArgs) Handles DgvGenre.SelectionChanged
-        If Not isLoading Then
-            If DgvGenre.SelectedRows.Count = 1 Then
-                LoadGenreForm(DgvGenre.SelectedRows(0))
-            End If
-        End If
-    End Sub
-
+#End Region
 End Class

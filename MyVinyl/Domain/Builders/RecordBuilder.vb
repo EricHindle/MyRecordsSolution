@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -43,19 +43,6 @@ Namespace Domain
             End If
             Return Me
         End Function
-        'Public Function StartingWith(pRow As vRecordTracksRow) As RecordBuilder
-        '    StartingWithNothing()
-        '    If pRow IsNot Nothing Then
-        '        _recordId = pRow.RecordId
-        '        _label = GetLabelbyId(pRow.LabelId)
-        '        _format = GetFormatbyId(pRow.Format)
-        '        _recordNumber = pRow.RecordNo
-        '        _size = pRow.Size
-        '        _speed = pRow.Speed
-        '        _copies = pRow.Copies
-        '    End If
-        '    Return Me
-        'End Function
         Public Function StartingWith(pRecord As Record) As RecordBuilder
             StartingWithNothing()
             If pRecord IsNot Nothing Then

@@ -58,7 +58,7 @@ Partial Class FrmBackup
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(459, 494)
+        Me.GroupBox1.Size = New System.Drawing.Size(284, 292)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Data"
@@ -70,15 +70,15 @@ Partial Class FrmBackup
         Me.TvDatatables.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TvDatatables.Location = New System.Drawing.Point(3, 21)
         Me.TvDatatables.Name = "TvDatatables"
-        Me.TvDatatables.Size = New System.Drawing.Size(453, 470)
+        Me.TvDatatables.Size = New System.Drawing.Size(278, 268)
         Me.TvDatatables.TabIndex = 0
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus, Me.PbCopyProgress})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 599)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 397)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(985, 24)
+        Me.StatusStrip1.Size = New System.Drawing.Size(858, 24)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -102,7 +102,7 @@ Partial Class FrmBackup
         Me.BtnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnCancel.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnCancel.ForeColor = System.Drawing.Color.Black
-        Me.BtnCancel.Location = New System.Drawing.Point(884, 540)
+        Me.BtnCancel.Location = New System.Drawing.Point(757, 338)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(87, 41)
         Me.BtnCancel.TabIndex = 4
@@ -115,7 +115,7 @@ Partial Class FrmBackup
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(14, 543)
+        Me.Label1.Location = New System.Drawing.Point(14, 341)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(105, 14)
         Me.Label1.TabIndex = 5
@@ -125,9 +125,9 @@ Partial Class FrmBackup
         '
         Me.TxtBackupPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtBackupPath.Location = New System.Drawing.Point(125, 537)
+        Me.TxtBackupPath.Location = New System.Drawing.Point(125, 335)
         Me.TxtBackupPath.Name = "TxtBackupPath"
-        Me.TxtBackupPath.Size = New System.Drawing.Size(185, 25)
+        Me.TxtBackupPath.Size = New System.Drawing.Size(206, 25)
         Me.TxtBackupPath.TabIndex = 6
         '
         'BtnBackup
@@ -135,7 +135,7 @@ Partial Class FrmBackup
         Me.BtnBackup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBackup.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBackup.ForeColor = System.Drawing.Color.Black
-        Me.BtnBackup.Location = New System.Drawing.Point(791, 540)
+        Me.BtnBackup.Location = New System.Drawing.Point(664, 338)
         Me.BtnBackup.Name = "BtnBackup"
         Me.BtnBackup.Size = New System.Drawing.Size(87, 41)
         Me.BtnBackup.TabIndex = 7
@@ -151,7 +151,7 @@ Partial Class FrmBackup
         Me.rtbProgress.ForeColor = System.Drawing.Color.White
         Me.rtbProgress.Location = New System.Drawing.Point(3, 21)
         Me.rtbProgress.Name = "rtbProgress"
-        Me.rtbProgress.Size = New System.Drawing.Size(484, 470)
+        Me.rtbProgress.Size = New System.Drawing.Size(532, 268)
         Me.rtbProgress.TabIndex = 8
         Me.rtbProgress.Text = ""
         '
@@ -173,7 +173,7 @@ Partial Class FrmBackup
         Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox4.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(490, 494)
+        Me.GroupBox4.Size = New System.Drawing.Size(538, 292)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Progress"
@@ -194,8 +194,8 @@ Partial Class FrmBackup
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox4)
-        Me.SplitContainer1.Size = New System.Drawing.Size(961, 498)
-        Me.SplitContainer1.SplitterDistance = 463
+        Me.SplitContainer1.Size = New System.Drawing.Size(834, 296)
+        Me.SplitContainer1.SplitterDistance = 288
         Me.SplitContainer1.TabIndex = 10
         '
         'BtnSavePath
@@ -203,7 +203,7 @@ Partial Class FrmBackup
         Me.BtnSavePath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.BtnSavePath.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSavePath.ForeColor = System.Drawing.Color.Black
-        Me.BtnSavePath.Location = New System.Drawing.Point(223, 566)
+        Me.BtnSavePath.Location = New System.Drawing.Point(223, 364)
         Me.BtnSavePath.Name = "BtnSavePath"
         Me.BtnSavePath.Size = New System.Drawing.Size(87, 25)
         Me.BtnSavePath.TabIndex = 11
@@ -212,10 +212,10 @@ Partial Class FrmBackup
         '
         'BtnSelectPath
         '
-        Me.BtnSelectPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnSelectPath.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.BtnSelectPath.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSelectPath.ForeColor = System.Drawing.Color.Black
-        Me.BtnSelectPath.Location = New System.Drawing.Point(125, 566)
+        Me.BtnSelectPath.Location = New System.Drawing.Point(125, 364)
         Me.BtnSelectPath.Name = "BtnSelectPath"
         Me.BtnSelectPath.Size = New System.Drawing.Size(87, 25)
         Me.BtnSelectPath.TabIndex = 12
@@ -228,7 +228,7 @@ Partial Class FrmBackup
         Me.chkAddDate.AutoSize = True
         Me.chkAddDate.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkAddDate.ForeColor = System.Drawing.Color.Black
-        Me.chkAddDate.Location = New System.Drawing.Point(316, 542)
+        Me.chkAddDate.Location = New System.Drawing.Point(337, 340)
         Me.chkAddDate.Name = "chkAddDate"
         Me.chkAddDate.Size = New System.Drawing.Size(77, 18)
         Me.chkAddDate.TabIndex = 13
@@ -240,7 +240,7 @@ Partial Class FrmBackup
         Me.BtnSelectAll.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnSelectAll.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSelectAll.ForeColor = System.Drawing.Color.Black
-        Me.BtnSelectAll.Location = New System.Drawing.Point(698, 536)
+        Me.BtnSelectAll.Location = New System.Drawing.Point(571, 334)
         Me.BtnSelectAll.Name = "BtnSelectAll"
         Me.BtnSelectAll.Size = New System.Drawing.Size(87, 48)
         Me.BtnSelectAll.TabIndex = 14
@@ -251,7 +251,7 @@ Partial Class FrmBackup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(985, 623)
+        Me.ClientSize = New System.Drawing.Size(858, 421)
         Me.Controls.Add(Me.BtnSelectAll)
         Me.Controls.Add(Me.chkAddDate)
         Me.Controls.Add(Me.BtnSelectPath)

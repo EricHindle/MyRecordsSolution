@@ -1,18 +1,20 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
 
-Imports System.Text.RegularExpressions
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
 Public Class FrmRecordInput
+#Region "variables"
     Private CurrentRecord As New Record
     Private CurrentTrack As New Track
     Private isTrackChanged As Boolean
     Private isLoading As Boolean
+#End Region
+#Region "form control handlers"
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Add Records", MyBase.Name)
         If GetFormPos(Me, My.Settings.RecordInputFormPos) Then
@@ -21,6 +23,198 @@ Public Class FrmRecordInput
         SplitContainer2.Panel2Collapsed = True
         InitialiseForm()
     End Sub
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Close()
+    End Sub
+    Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        LogUtil.Info("Closing", MyBase.Name)
+        My.Settings.RecordInputFormPos = SetFormPos(Me)
+        SaveSplitterDistances()
+        My.Settings.Save()
+    End Sub
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        If Not IsValidRecord() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
+        Else
+            TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
+            CurrentRecord = BuildRecordFromForm()
+            Dim _duplicateRecord As Record = GetDuplicateRecord()
+            If _duplicateRecord Is Nothing Then
+                CurrentRecord.RecordId = InsertRecord(CurrentRecord)
+                LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                SplitContainer2.Panel2Collapsed = False
+                BtnAdd.Visible = False
+                BtnUpdate.Visible = True
+                LogUtil.ShowStatus("Record Added", LblStatus, MyBase.Name)
+            Else
+                If IsIncrementCopies(_duplicateRecord) Then
+                    UpdateRecordCopies(CurrentRecord)
+                    NextRecord()
+                    LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
+                Else
+                    SplitContainer2.Panel2Collapsed = True
+                    BtnAdd.Visible = True
+                    BtnUpdate.Visible = False
+                    LogUtil.ShowStatus("Record rejected", LblStatus, MyBase.Name)
+                End If
+            End If
+            LoadRecords()
+            FindRecordInList(CurrentRecord.RecordId)
+        End If
+    End Sub
+    Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
+        Using _format As New FrmFormatMaint
+            _format.ShowDialog()
+        End Using
+        LoadFormatList()
+    End Sub
+    Private Sub BtnAddLabel_Click(sender As Object, e As EventArgs) Handles BtnAddLabel.Click
+        Using _label As New FrmLabelMaint
+            _label.IsSaveAndExit = True
+            _label.ShowDialog()
+            LoadLabelList()
+            CbRecordLabel.SelectedValue = _label.RecordLabel.LabelId
+        End Using
+    End Sub
+    Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
+        If Not isTrackChanged OrElse MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
+            NextRecord()
+        End If
+    End Sub
+    Private Sub DgvRecords_SelectionChanged(sender As Object, e As EventArgs) Handles DgvRecords.SelectionChanged
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
+            ClearForm()
+            SplitContainer2.Panel2Collapsed = False
+            Dim _row As DataGridViewRow = DgvRecords.SelectedRows(0)
+            LoadFormFromDgv(_row)
+            isLoading = True
+            LoadTracks(_row.Cells(recId.Name).Value)
+            isLoading = False
+        End If
+    End Sub
+    Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
+        TrimValues()
+        If Not IsValidTrack() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, False, MyBase.Name, Nothing, True)
+        Else
+            CurrentTrack = BuildTrackFromForm()
+            If Not IsTrackExists(CurrentTrack) Then
+                If InsertTrack(CurrentTrack) Then
+                    LblRecordId.Text = CStr(CurrentRecord.RecordId)
+                    If DgvRecords.SelectedRows.Count = 1 AndAlso String.IsNullOrEmpty(DgvRecords.SelectedRows(0).Cells(recArtist.Name).Value) Then
+                        DgvRecords.SelectedRows(0).Cells(recArtist.Name).Value = CurrentTrack.Artist.ArtistName
+                        DgvRecords.SelectedRows(0).Cells(recArtistId.Name).Value = CurrentTrack.Artist.ArtistId
+                    End If
+                    LogUtil.ShowStatus("Track Added", LblStatus, MyBase.Name)
+                Else
+                    LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
+                End If
+                ClearTrack()
+            Else
+                LogUtil.ShowStatus("Track already exists", LblStatus)
+            End If
+        End If
+        isLoading = True
+        LoadTracks(CurrentRecord.RecordId)
+        isLoading = False
+    End Sub
+    Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
+        Using _artist As New FrmArtistMaint
+            _artist.IsSaveAndExit = True
+            _artist.ShowDialog()
+            LoadArtistList()
+            CbArtists.SelectedValue = _artist.Artist.ArtistId
+        End Using
+    End Sub
+    Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click
+        Using _genre As New FrmGenreMaint
+            _genre.IsSaveAndExit = True
+            _genre.ShowDialog()
+            LoadGenreList()
+            CbGenre.SelectedValue = _genre.Genre.GenreId
+        End Using
+    End Sub
+    Private Sub TxtTitle_DragEnter(sender As Object, e As DragEventArgs) Handles TxtTitle.DragEnter
+        TextBox_DragEnter(sender, e)
+    End Sub
+    Private Sub TxtTitle_DragDrop(sender As Object, e As DragEventArgs) Handles TxtTitle.DragDrop
+        TextBox_DragDrop(sender, e)
+    End Sub
+    Private Sub RbA_CheckedChanged(sender As Object, e As EventArgs) Handles RbA.CheckedChanged,
+                                                                             RbAA.CheckedChanged,
+                                                                             RbB.CheckedChanged,
+                                                                             Rb1.CheckedChanged,
+                                                                             Rb2.CheckedChanged,
+                                                                             NudCopies.ValueChanged,
+                                                                             CbArtists.SelectedIndexChanged,
+                                                                             CbGenre.SelectedIndexChanged
+        isTrackChanged = True
+    End Sub
+    Private Sub TxtYear_TextChanged(sender As Object, e As EventArgs) Handles TxtYear.TextChanged
+        isTrackChanged = True
+        If Not String.IsNullOrWhiteSpace(TxtYear.Text) AndAlso IsNumeric(TxtYear.Text) AndAlso CInt(TxtYear.Text) > 1900 AndAlso CInt(TxtYear.Text) < Today.Year Then
+            If String.IsNullOrEmpty(TxtChartPos.Text) Then
+                If DtpChartDate.Value.Year <> CInt(TxtYear.Text) Then
+                    DtpChartDate.Value = New Date(CInt(TxtYear.Text), 1, 1)
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub DgvTracks_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvTracks.CellDoubleClick
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
+            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
+            Dim oTrackRow As DataGridViewRow = DgvTracks.Rows(e.RowIndex)
+            Dim oRecordId As Integer = oRecordRow.Cells(recId.Name).Value
+            Dim oTrackSide As String = oTrackRow.Cells(trkSide.Name).Value
+            Dim oTrackTrack As String = oTrackRow.Cells(trkTrack.Name).Value
+        End If
+    End Sub
+    Private Sub DgvTracks_SelectionChanged(sender As Object, e As EventArgs) Handles DgvTracks.SelectionChanged
+        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 AndAlso DgvTracks.SelectedRows.Count = 1 Then
+            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
+            Dim oTrackRow As DataGridViewRow = DgvTracks.SelectedRows(0)
+            Dim oTrack As Track = GetTrackForKey(oRecordRow.Cells(recId.Name).Value, oTrackRow.Cells(trkSide.Name).Value, oTrackRow.Cells(trkTrack.Name).Value)
+            LoadTrackForm(oTrack)
+        End If
+    End Sub
+    Private Sub BtnUpdateTrack_Click(sender As Object, e As EventArgs) Handles BtnUpdateTrack.Click
+        TrimValues()
+        If Not IsValidTrack() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, True, MyBase.Name, True)
+        Else
+            CurrentTrack = BuildTrackFromForm()
+            If UpdateTrack(CurrentTrack) Then
+                LogUtil.ShowStatus("Track Updated", LblStatus, MyBase.Name)
+            Else
+                LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
+            End If
+            isLoading = True
+            LoadTracks(CurrentTrack.RecordId)
+            isLoading = False
+            ClearTrack()
+        End If
+    End Sub
+    Private Sub BtnDateClear_Click(sender As Object, e As EventArgs) Handles BtnDateClear.Click
+        DtpChartDate.Value = DtpChartDate.MinDate
+    End Sub
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
+        If Not IsValidRecord() Then
+            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
+        Else
+            CurrentRecord = BuildRecordFromForm()
+            CurrentRecord.RecordId = CInt(LblRecordId.Text)
+            If UpdateRecord(CurrentRecord) Then
+                LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
+                LoadRecords()
+                FindRecordInList(CurrentRecord.RecordId)
+            Else
+                LogUtil.ShowStatus("Record not Updated", LblStatus, MyBase.Name)
+            End If
+        End If
+    End Sub
+
+#End Region
+#Region "subroutines"
 
     Private Sub LoadSplitterDistances()
         Try
@@ -31,7 +225,6 @@ Public Class FrmRecordInput
             LogUtil.DisplayException(ex, "Settings", MyBase.Name)
         End Try
     End Sub
-
     Private Sub InitialiseForm()
         LoadFormatList()
         LoadLabelList()
@@ -40,8 +233,9 @@ Public Class FrmRecordInput
         ClearForm()
         DgvTracks.Rows.Clear()
         LoadRecords()
+        BtnAdd.Visible = True
+        BtnUpdate.Visible = False
     End Sub
-
     Private Sub LoadRecords()
         isLoading = True
         DgvRecords.Rows.Clear()
@@ -52,7 +246,6 @@ Public Class FrmRecordInput
         DgvRecords.ClearSelection()
         isLoading = False
     End Sub
-
     Private Sub AddRecordToTable(pRecord As Record)
         Dim _row As DataGridViewRow = DgvRecords.Rows(DgvRecords.Rows.Add())
         _row.Cells(recId.Name).Value = pRecord.RecordId
@@ -66,7 +259,6 @@ Public Class FrmRecordInput
             _row.Cells(recArtistId.Name).Value = _tracks(0).Artist.ArtistId
         End If
     End Sub
-
     Private Sub LoadFormatList()
         CbRecordFormat.DataSource = GetAllFormats()
         CbRecordFormat.ValueMember = "FormatId"
@@ -79,61 +271,22 @@ Public Class FrmRecordInput
         CbRecordLabel.DisplayMember = "LabelName"
         CbRecordLabel.SelectedIndex = -1
     End Sub
-
     Private Sub LoadArtistList()
         CbArtists.DataSource = GetAllArtists()
         CbArtists.ValueMember = "ArtistId"
         CbArtists.DisplayMember = "ArtistName"
         CbArtists.SelectedIndex = -1
     End Sub
-
     Private Sub LoadGenreList()
         CbGenre.DataSource = GetAllGenres()
         CbGenre.ValueMember = "GenreId"
         CbGenre.DisplayMember = "GenreName"
         CbGenre.SelectedIndex = -1
     End Sub
+#End Region
 
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
-        Close()
-    End Sub
-
-    Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", MyBase.Name)
-        My.Settings.RecordInputFormPos = SetFormPos(Me)
-        SaveSplitterDistances()
-        My.Settings.Save()
-    End Sub
     Private Sub SaveSplitterDistances()
         My.Settings.RecSplitDist1 = SplitContainer1.SplitterDistance
-    End Sub
-    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        If Not IsValidRecord() Then
-            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
-        Else
-            TxtRecNumber.Text = TxtRecNumber.Text.ToUpper
-            CurrentRecord = BuildRecordFromForm()
-            Dim _duplicateRecord As Record = GetDuplicateRecord()
-            If _duplicateRecord Is Nothing Then
-                CurrentRecord.RecordId = InsertRecord(CurrentRecord)
-                LblRecordId.Text = CStr(CurrentRecord.RecordId)
-                SplitContainer2.Panel2Collapsed = False
-                BtnAdd.Enabled = False
-                LogUtil.ShowStatus("Record Added", LblStatus, MyBase.Name)
-            Else
-                If IsIncrementCopies(_duplicateRecord) Then
-                    UpdateRecordCopies(CurrentRecord)
-                    NextRecord()
-                    LogUtil.ShowStatus("Record Updated", LblStatus, MyBase.Name)
-                Else
-                    SplitContainer2.Panel2Collapsed = True
-                    BtnAdd.Enabled = True
-                    LogUtil.ShowStatus("Record rejected", LblStatus, MyBase.Name)
-                End If
-            End If
-            LoadRecords()
-            FindRecordInList(CurrentRecord.RecordId)
-        End If
     End Sub
     Private Function IsValidRecord() As Boolean
         Dim isOK As Boolean = True
@@ -149,20 +302,24 @@ Public Class FrmRecordInput
         Return isOK
     End Function
     Private Function GetDuplicateRecord() As Record
-        Dim _duplicate As Record = Nothing
-        Dim recordList As List(Of Record) = GetRecordsByLabelAndNumber(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
-        If recordList.Count > 0 Then
-            _duplicate = recordList(0)
+        Dim oFirstDup As Record = Nothing
+        Dim oRecordList As List(Of Record) = GetPossibleMatchingRecords(TxtRecNumber.Text, CbRecordLabel.SelectedValue)
+        If oRecordList.Count > 0 Then
             DgvRecords.ClearSelection()
-            For Each oRow As DataGridViewRow In DgvRecords.Rows
-                If oRow.Cells(recLabelId.Name).Value = _duplicate.Label.LabelId AndAlso RecNoChars(oRow.Cells(recNumber.Name).Value) = RecNoChars(_duplicate.RecordNumber) Then
-                    oRow.Selected = True
-                    DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
-                    Exit For
-                End If
+            For Each _duplicate As Record In oRecordList
+                For Each oRow As DataGridViewRow In DgvRecords.Rows
+                    If oRow.Cells(recId.Name).Value = _duplicate.RecordId Then
+                        oRow.Selected = True
+                        DgvRecords.FirstDisplayedScrollingRowIndex = Math.Max(0, oRow.Index - 3)
+                        If oFirstDup Is Nothing Then
+                            oFirstDup = _duplicate
+                        End If
+                        Exit For
+                    End If
+                Next
             Next
         End If
-        Return _duplicate
+        Return oFirstDup
     End Function
     Private Function IsIncrementCopies(_duplicate As Record) As Boolean
         Dim isAddCopy As Boolean = False
@@ -173,22 +330,6 @@ Public Class FrmRecordInput
         End If
         Return isAddCopy
     End Function
-    Private Sub BtnAddFormat_Click(sender As Object, e As EventArgs) Handles BtnAddFormat.Click
-        Using _format As New FrmFormatMaint
-            _format.ShowDialog()
-        End Using
-        LoadFormatList()
-    End Sub
-
-    Private Sub BtnAddLabel_Click(sender As Object, e As EventArgs) Handles BtnAddLabel.Click
-        Using _label As New FrmLabelMaint
-            _label.IsSaveAndExit = True
-            _label.ShowDialog()
-            LoadLabelList()
-            CbRecordLabel.SelectedValue = _label.RecordLabel.LabelId
-        End Using
-    End Sub
-
     Private Sub BtnAddTracks_Click(sender As Object, e As EventArgs)
         Using _trackInput As New FrmTrackInput
             LogUtil.Info("Opening Track Input", MyBase.Name)
@@ -198,7 +339,6 @@ Public Class FrmRecordInput
         LoadRecords()
         FindRecordInList(CurrentRecord.RecordId)
     End Sub
-
     Private Sub FindRecordInList(recordId As Integer)
         For Each oRow As DataGridViewRow In DgvRecords.Rows
             If oRow.Cells(recId.Name).Value = recordId Then
@@ -208,7 +348,6 @@ Public Class FrmRecordInput
             End If
         Next
     End Sub
-
     Private Sub LoadTracks(pRecordId)
         DgvTracks.Rows.Clear()
         Dim _tracks As List(Of Track) = GetTracksForRecord(pRecordId)
@@ -217,7 +356,6 @@ Public Class FrmRecordInput
         Next
         DgvTracks.ClearSelection()
     End Sub
-
     Private Sub AddTrackToTable(pTrack As Track)
         Dim _row As DataGridViewRow = DgvTracks.Rows(DgvTracks.Rows.Add())
         _row.Cells(trkSide.Name).Value = pTrack.Side
@@ -226,12 +364,6 @@ Public Class FrmRecordInput
         _row.Cells(trkTitle.Name).Value = pTrack.Title
         _row.Cells(trkYear.Name).Value = pTrack.Year
         _row.Cells(trkGenre.Name).Value = pTrack.Genre.GenreName
-    End Sub
-
-    Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
-        If Not isTrackChanged OrElse MsgBox("OK to lose changes?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Track not saved") = MsgBoxResult.Yes Then
-            NextRecord()
-        End If
     End Sub
     Private Sub NextRecord()
         DgvTracks.Rows.Clear()
@@ -245,10 +377,10 @@ Public Class FrmRecordInput
         NudCopies.Value = 1
         Rb45.Checked = True
         Rb7.Checked = True
-        BtnAdd.Enabled = True
+        BtnAdd.Visible = True
+        BtnUpdate.Visible = False
         SplitContainer2.Panel2Collapsed = True
     End Sub
-
     Private Sub ClearTrackForm()
         RbA.Checked = True
         NudTrackNo.Value = 1
@@ -299,18 +431,6 @@ Public Class FrmRecordInput
         End Select
         Return _speed
     End Function
-    Private Sub DgvRecords_SelectionChanged(sender As Object, e As EventArgs) Handles DgvRecords.SelectionChanged
-        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
-            ClearForm()
-            SplitContainer2.Panel2Collapsed = False
-            Dim _row As DataGridViewRow = DgvRecords.SelectedRows(0)
-            LoadFormFromDgv(_row)
-            isLoading = True
-            LoadTracks(_row.Cells(recId.Name).Value)
-            isLoading = False
-        End If
-    End Sub
-
     Private Sub LoadFormFromDgv(pRow As DataGridViewRow)
         CurrentRecord = GetRecordFromId(pRow.Cells(recId.Name).Value)
         LblRecordId.Text = CurrentRecord.RecordId
@@ -320,10 +440,10 @@ Public Class FrmRecordInput
         NudCopies.Value = CurrentRecord.Copies
         CheckSize(CurrentRecord.Size)
         CheckSpeed(CurrentRecord.Speed)
-        BtnAdd.Enabled = False
+        BtnAdd.Visible = False
+        BtnUpdate.Visible = True
         isTrackChanged = False
     End Sub
-
     Private Sub CheckSpeed(speed As String)
         Select Case speed
             Case "45"
@@ -336,7 +456,6 @@ Public Class FrmRecordInput
                 RbNoSpeed.Checked = True
         End Select
     End Sub
-
     Private Sub CheckSize(size As Integer)
         Select Case size
             Case 7
@@ -347,7 +466,6 @@ Public Class FrmRecordInput
                 RbNoSize.Checked = True
         End Select
     End Sub
-
     Private Sub ClearForm()
         LogUtil.ClearStatus(LblStatus)
         LblRecordId.Text = -1
@@ -360,54 +478,10 @@ Public Class FrmRecordInput
         ClearTrackForm()
     End Sub
 
-    'Private Function FindExistingRecordByLabelAndNumber(pRecordNo As String, pLabelId As Integer) As System.Data.EnumerableRowCollection(Of VinylDataSet.vRecordTracksRow)
-    '    Dim oRecordListTable As New VinylDataSet.vRecordTracksDataTable
-    '    Dim oRecordListTa As New VinylDataSetTableAdapters.vRecordTracksTableAdapter
-    '    oRecordListTa.Fill(oRecordListTable)
-    '    Dim recordList As System.Data.EnumerableRowCollection(Of VinylDataSet.vRecordTracksRow)
-    '    Dim _recNo As String = RecNoChars(pRecordNo)
-    '    recordList = From record In oRecordListTable
-    '                 Where record.LabelId = pLabelId And RecNoChars(record.RecordNo) = RecNoChars(pRecordNo)
-    '    Return recordList
-    'End Function
-    Private Function RecNoChars(pRecNo As String) As String
-        Dim rtnVal As String = String.Empty
-        For Each _char As Char In pRecNo.ToUpper
-            If Regex.IsMatch(CStr(_char), "[A-Z0-9]") Then
-                rtnVal &= _char
-            End If
-        Next
-        Return rtnVal
-    End Function
-    Private Sub BtnSaveTrack_Click(sender As Object, e As EventArgs) Handles BtnSaveTrack.Click
-        TrimValues
-        If Not IsValidTrack() Then
-            LogUtil.ShowStatus("Invalid values", LblStatus, MyBase.Name, False, Nothing, True)
-        Else
-            CurrentTrack = BuildTrackFromForm()
-            If Not IsTrackExists(CurrentTrack) Then
-                Dim isInserted As Boolean = InsertTrack(CurrentTrack)
-                If isInserted Then
-                    LblRecordId.Text = CStr(CurrentRecord.RecordId)
-                    LogUtil.ShowStatus("Track Added", LblStatus, MyBase.Name)
-                Else
-                    LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
-                End If
-                ClearTrack()
-            Else
-                LogUtil.ShowStatus("Track already exists", LblStatus)
-            End If
-        End If
-        isLoading = True
-        LoadTracks(CurrentRecord.RecordId)
-        isLoading = False
-    End Sub
-
     Private Sub TrimValues()
         TxtTitle.Text = TxtTitle.Text.Replace(vbTab, "").Trim
         TxtYear.Text = TxtYear.Text.Replace(vbTab, "").Trim
     End Sub
-
     Private Function IsTrackExists(pTrack As Track) As Boolean
         Dim _track As Track
         With pTrack
@@ -415,31 +489,12 @@ Public Class FrmRecordInput
         End With
         Return _track.IsExists
     End Function
-
     Private Sub ClearTrack()
         RbB.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
         TxtChartPos.Text = String.Empty
         isTrackChanged = False
-    End Sub
-
-    Private Sub BtnTracks_Click(sender As Object, e As EventArgs) Handles BtnTracks.Click
-        Using _artist As New FrmArtistMaint
-            _artist.IsSaveAndExit = True
-            _artist.ShowDialog()
-            LoadArtistList()
-            CbArtists.SelectedValue = _artist.Artist.ArtistId
-        End Using
-    End Sub
-
-    Private Sub BtnAddGenre_Click(sender As Object, e As EventArgs) Handles BtnAddGenre.Click
-        Using _genre As New FrmGenreMaint
-            _genre.IsSaveAndExit = True
-            _genre.ShowDialog()
-            LoadGenreList()
-            CbGenre.SelectedValue = _genre.Genre.GenreId
-        End Using
     End Sub
     Private Function BuildTrackFromForm() As Track
         Dim _artist As New Artist
@@ -489,7 +544,6 @@ Public Class FrmRecordInput
         End Select
         Return _side
     End Function
-
     Private Function IsValidTrack() As Boolean
         Dim isOK As Boolean = True
         If String.IsNullOrWhiteSpace(TxtTitle.Text) Then
@@ -506,55 +560,6 @@ Public Class FrmRecordInput
         End If
         Return isOK
     End Function
-
-    Private Sub TxtTitle_DragEnter(sender As Object, e As DragEventArgs) Handles TxtTitle.DragEnter
-        TextBox_DragEnter(sender, e)
-    End Sub
-
-    Private Sub TxtTitle_DragDrop(sender As Object, e As DragEventArgs) Handles TxtTitle.DragDrop
-        TextBox_DragDrop(sender, e)
-    End Sub
-
-    Private Sub RbA_CheckedChanged(sender As Object, e As EventArgs) Handles RbA.CheckedChanged,
-                                                                             RbAA.CheckedChanged,
-                                                                             RbB.CheckedChanged,
-                                                                             Rb1.CheckedChanged,
-                                                                             Rb2.CheckedChanged,
-                                                                             NudCopies.ValueChanged,
-                                                                             CbArtists.SelectedIndexChanged,
-                                                                             CbGenre.SelectedIndexChanged
-        isTrackChanged = True
-    End Sub
-
-    Private Sub TxtYear_TextChanged(sender As Object, e As EventArgs) Handles TxtYear.TextChanged
-        isTrackChanged = True
-        If Not String.IsNullOrWhiteSpace(TxtYear.Text) AndAlso IsNumeric(TxtYear.Text) AndAlso CInt(TxtYear.Text) > 1900 AndAlso CInt(TxtYear.Text) < Today.Year Then
-            If String.IsNullOrEmpty(TxtChartPos.Text) Then
-                If DtpChartDate.Value.Year <> CInt(TxtYear.Text) Then
-                    DtpChartDate.Value = New Date(CInt(TxtYear.Text), 1, 1)
-                End If
-            End If
-        End If
-    End Sub
-
-    Private Sub DgvTracks_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvTracks.CellDoubleClick
-        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 Then
-            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
-            Dim oTrackRow As DataGridViewRow = DgvTracks.Rows(e.RowIndex)
-            Dim oRecordId As Integer = oRecordRow.Cells(recId.Name).Value
-            Dim oTrackSide As String = oTrackRow.Cells(trkSide.Name).Value
-            Dim oTrackTrack As String = oTrackRow.Cells(trkTrack.Name).Value
-        End If
-    End Sub
-
-    Private Sub DgvTracks_SelectionChanged(sender As Object, e As EventArgs) Handles DgvTracks.SelectionChanged
-        If Not isLoading AndAlso DgvRecords.SelectedRows.Count = 1 AndAlso DgvTracks.SelectedRows.Count = 1 Then
-            Dim oRecordRow As DataGridViewRow = DgvRecords.SelectedRows(0)
-            Dim oTrackRow As DataGridViewRow = DgvTracks.SelectedRows(0)
-            Dim oTrack As Track = GetTrackForKey(oRecordRow.Cells(recId.Name).Value, oTrackRow.Cells(trkSide.Name).Value, oTrackRow.Cells(trkTrack.Name).Value)
-            LoadTrackForm(oTrack)
-        End If
-    End Sub
     Private Sub LoadTrackForm(pTrack As Track)
         With pTrack
             Select Case .Side
@@ -580,27 +585,5 @@ Public Class FrmRecordInput
             End If
         End With
     End Sub
-
-    Private Sub BtnUpdateTrack_Click(sender As Object, e As EventArgs) Handles BtnUpdateTrack.Click
-        TrimValues()
-
-        If Not IsValidTrack() Then
-            LogUtil.ShowStatus("Invalid values", LblStatus, True, MyBase.Name, True)
-        Else
-            CurrentTrack = BuildTrackFromForm()
-            Dim isUpdated As Boolean = UpdateTrack(CurrentTrack)
-            If isUpdated Then
-                LogUtil.ShowStatus("Track Updated", LblStatus, MyBase.Name)
-            Else
-                LogUtil.ShowStatus("Error saving track", LblStatus, True, MyBase.Name, TraceEventType.Error, True)
-            End If
-            LoadTracks(CurrentTrack.RecordId)
-        End If
-    End Sub
-
-    Private Sub BtnDateClear_Click(sender As Object, e As EventArgs) Handles BtnDateClear.Click
-        DtpChartDate.Value = DtpChartDate.MinDate
-    End Sub
-
 End Class
 

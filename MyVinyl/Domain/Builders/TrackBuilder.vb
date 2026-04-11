@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -66,22 +66,6 @@ Namespace Domain
             _chartDate = pTrack.ChartDate
             Return Me
         End Function
-        'Public Function StartingWith(pTrack As vRecordTracksRow) As TrackBuilder
-        '    _recordId = pTrack.RecordId
-        '    _side = pTrack.Side
-        '    _track = pTrack.Track
-        '    _artist = GetArtistFromId(pTrack.ArtistId)
-        '    _title = pTrack.Title
-        '    _year = pTrack.Year
-        '    _genre = GetGenreFromId(pTrack.GenreId)
-        '    _chartPos = pTrack.PeakChartPosition
-        '    If pTrack.IsChartDateNull Then
-        '        _chartDate = Nothing
-        '    Else
-        '        _chartDate = pTrack.ChartDate
-        '    End If
-        '    Return Me
-        'End Function
 
         Public Function WithId(ByVal pRecordId As Integer) As TrackBuilder
             _recordId = pRecordId

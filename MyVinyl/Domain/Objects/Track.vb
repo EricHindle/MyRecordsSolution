@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class Track
@@ -116,6 +117,8 @@ Namespace Domain
             _chartPos = pChartPos
             _chartDate = pChartDate
         End Sub
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return _recordId > -1
         End Function

@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -9,10 +9,15 @@ Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
 
 Public Class FrmLabelMaint
+#Region "variables"
+
     Private CurrentLabel As RecordLabel
     Private isLoading As Boolean
     Private _isSaveAndExit As Boolean
     Private _label As New RecordLabel
+#End Region
+#Region "properties"
+
     Public Property RecordLabel() As RecordLabel
         Get
             Return _label
@@ -29,22 +34,69 @@ Public Class FrmLabelMaint
             _isSaveAndExit = value
         End Set
     End Property
+#End Region
+#Region "form control handlers"
     Private Sub FrmLabelMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Label maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.LabelFormPos)
         LoadLabelList()
     End Sub
-
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         If IsSaveAndExit Then _label = New RecordLabel
         Close()
     End Sub
-
     Private Sub FrmLabelMaint_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
         My.Settings.LabelFormPos = SetFormPos(Me)
         My.Settings.Save()
     End Sub
+    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
+        If IsValidLabel() Then
+            If GetLabelFromName(TxtLabel.Text).IsExists Then
+                LogUtil.DisplayStatus("Looks like the Label already exists", LblStatus, MyBase.Name, True)
+            Else
+                InsertNewLabel()
+                If IsSaveAndExit Then
+                    Close()
+                Else
+                    LoadLabelList()
+                    ClearForm()
+                End If
+            End If
+        Else
+            LogUtil.ShowStatus("Invalid Values", LblStatus)
+        End If
+    End Sub
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
+        If DgvLabel.SelectedRows.Count = 1 Then
+            UpdateLabelDetails()
+            LoadLabelList()
+            ClearForm()
+        End If
+    End Sub
+    Private Sub DgvLabel_SelectionChanged(sender As Object, e As EventArgs) Handles DgvLabel.SelectionChanged
+        If Not isLoading Then
+            If DgvLabel.SelectedRows.Count = 1 Then
+                LoadLabelForm(DgvLabel.SelectedRows(0))
+            End If
+        End If
+    End Sub
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        ClearForm()
+    End Sub
+    Private Sub TxtLabel_DragDrop(sender As Object, e As DragEventArgs) Handles TxtLabel.DragDrop
+        TextBox_DragDrop(sender, e)
+    End Sub
+    Private Sub TxtLabel_DragEnter(sender As Object, e As DragEventArgs) Handles TxtLabel.DragEnter
+        TextBox_DragEnter(sender, e)
+    End Sub
+    Private Sub TxtLabel_TextChanged(sender As Object, e As EventArgs) Handles TxtLabel.TextChanged
+        If Not String.IsNullOrEmpty(TxtLabel.Text) Then
+            FindLabelInList(TxtLabel.Text.Trim)
+        End If
+    End Sub
+#End Region
+#Region "subroutines"
     Private Sub InsertNewLabel()
         If Not String.IsNullOrWhiteSpace(TxtLabel.Text) Then
             LogUtil.ShowStatus("Adding new Label", LblStatus, MyBase.Name)
@@ -92,7 +144,6 @@ Public Class FrmLabelMaint
             TxtLabel.Text = .LabelName
         End With
     End Sub
-
     Private Sub LoadLabelForm(pRow As DataGridViewRow)
         With pRow
             LblLabelId.Text = .Cells(LabId.Name).Value
@@ -102,25 +153,6 @@ Public Class FrmLabelMaint
 
         End With
     End Sub
-
-    Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles BtnNew.Click
-        If IsValidLabel() Then
-            If GetLabelFromName(TxtLabel.Text).IsExists Then
-                LogUtil.DisplayStatus("Looks like the Label already exists", LblStatus, MyBase.Name, True)
-            Else
-                InsertNewLabel()
-                If IsSaveAndExit Then
-                    Close()
-                Else
-                    LoadLabelList()
-                    ClearForm()
-                End If
-            End If
-        Else
-            LogUtil.ShowStatus("Invalid Values", LblStatus)
-        End If
-    End Sub
-
     Private Function IsValidLabel() As Boolean
         Dim isValid As Boolean = True
         If String.IsNullOrEmpty(TxtLabel.Text) Then
@@ -128,46 +160,12 @@ Public Class FrmLabelMaint
         End If
         Return isValid
     End Function
-
-    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        If DgvLabel.SelectedRows.Count = 1 Then
-            UpdateLabelDetails()
-            LoadLabelList()
-            ClearForm()
-        End If
-    End Sub
-
-    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
-        ClearForm()
-    End Sub
-
     Private Sub ClearForm()
         LblLabelId.Text = "-1"
         TxtLabel.Text = String.Empty
         CurrentLabel = New RecordLabel
         DgvLabel.ClearSelection()
         BtnUpdate.Enabled = False
-    End Sub
-
-    Private Sub DgvLabel_SelectionChanged(sender As Object, e As EventArgs) Handles DgvLabel.SelectionChanged
-        If Not isLoading Then
-            If DgvLabel.SelectedRows.Count = 1 Then
-                LoadLabelForm(DgvLabel.SelectedRows(0))
-            End If
-        End If
-    End Sub
-
-    Private Sub TxtLabel_DragDrop(sender As Object, e As DragEventArgs) Handles TxtLabel.DragDrop
-        TextBox_DragDrop(sender, e)
-    End Sub
-
-    Private Sub TxtLabel_DragEnter(sender As Object, e As DragEventArgs) Handles TxtLabel.DragEnter
-        TextBox_DragEnter(sender, e)
-    End Sub
-    Private Sub TxtLabel_TextChanged(sender As Object, e As EventArgs) Handles TxtLabel.TextChanged
-        If Not String.IsNullOrEmpty(TxtLabel.Text) Then
-            FindLabelInList(TxtLabel.Text.Trim)
-        End If
     End Sub
     Private Sub FindLabelInList(pName As String)
         For Each oRow As DataGridViewRow In DgvLabel.Rows
@@ -177,4 +175,5 @@ Public Class FrmLabelMaint
             End If
         Next
     End Sub
+#End Region
 End Class

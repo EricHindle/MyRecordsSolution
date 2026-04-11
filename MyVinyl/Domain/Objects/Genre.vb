@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class Genre
@@ -40,11 +41,11 @@ Namespace Domain
             _genreId = pId
             _genreName = Pname
         End Sub
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return _genreId > -1
         End Function
-#End Region
-#Region "methods"
         Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
         Implements IComparable.CompareTo
 

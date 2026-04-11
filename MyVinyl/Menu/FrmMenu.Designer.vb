@@ -47,7 +47,7 @@ Partial Class FrmMenu
         Me.BtnInputRecords.Location = New System.Drawing.Point(15, 246)
         Me.BtnInputRecords.Name = "BtnInputRecords"
         Me.BtnInputRecords.Size = New System.Drawing.Size(151, 49)
-        Me.BtnInputRecords.TabIndex = 0
+        Me.BtnInputRecords.TabIndex = 1
         Me.BtnInputRecords.Text = "Maintain Records"
         Me.BtnInputRecords.UseVisualStyleBackColor = True
         '
@@ -58,7 +58,7 @@ Partial Class FrmMenu
         Me.BtnSearch.Location = New System.Drawing.Point(15, 175)
         Me.BtnSearch.Name = "BtnSearch"
         Me.BtnSearch.Size = New System.Drawing.Size(325, 52)
-        Me.BtnSearch.TabIndex = 2
+        Me.BtnSearch.TabIndex = 0
         Me.BtnSearch.Text = "Search"
         Me.BtnSearch.UseVisualStyleBackColor = True
         '
@@ -70,7 +70,7 @@ Partial Class FrmMenu
         Me.BtnClose.Location = New System.Drawing.Point(189, 523)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(151, 49)
-        Me.BtnClose.TabIndex = 9
+        Me.BtnClose.TabIndex = 10
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = True
         '
@@ -121,7 +121,7 @@ Partial Class FrmMenu
         Me.BtnOptions.Location = New System.Drawing.Point(15, 413)
         Me.BtnOptions.Name = "BtnOptions"
         Me.BtnOptions.Size = New System.Drawing.Size(151, 49)
-        Me.BtnOptions.TabIndex = 1
+        Me.BtnOptions.TabIndex = 6
         Me.BtnOptions.Text = "Options"
         Me.BtnOptions.UseVisualStyleBackColor = True
         '
@@ -132,7 +132,7 @@ Partial Class FrmMenu
         Me.BtnBackup.Location = New System.Drawing.Point(15, 468)
         Me.BtnBackup.Name = "BtnBackup"
         Me.BtnBackup.Size = New System.Drawing.Size(151, 49)
-        Me.BtnBackup.TabIndex = 27
+        Me.BtnBackup.TabIndex = 8
         Me.BtnBackup.Text = "Backup"
         Me.BtnBackup.UseVisualStyleBackColor = True
         '
@@ -143,7 +143,7 @@ Partial Class FrmMenu
         Me.BtnRestore.Location = New System.Drawing.Point(189, 468)
         Me.BtnRestore.Name = "BtnRestore"
         Me.BtnRestore.Size = New System.Drawing.Size(151, 49)
-        Me.BtnRestore.TabIndex = 28
+        Me.BtnRestore.TabIndex = 9
         Me.BtnRestore.Text = "Restore"
         Me.BtnRestore.UseVisualStyleBackColor = True
         '
@@ -151,10 +151,10 @@ Partial Class FrmMenu
         '
         Me.BtnFormats.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnFormats.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnFormats.Location = New System.Drawing.Point(15, 301)
+        Me.BtnFormats.Location = New System.Drawing.Point(189, 356)
         Me.BtnFormats.Name = "BtnFormats"
         Me.BtnFormats.Size = New System.Drawing.Size(151, 49)
-        Me.BtnFormats.TabIndex = 29
+        Me.BtnFormats.TabIndex = 5
         Me.BtnFormats.Text = "Record Formats"
         Me.BtnFormats.UseVisualStyleBackColor = True
         '
@@ -165,7 +165,7 @@ Partial Class FrmMenu
         Me.BtnLabels.Location = New System.Drawing.Point(189, 301)
         Me.BtnLabels.Name = "BtnLabels"
         Me.BtnLabels.Size = New System.Drawing.Size(151, 49)
-        Me.BtnLabels.TabIndex = 30
+        Me.BtnLabels.TabIndex = 3
         Me.BtnLabels.Text = "Record Labels"
         Me.BtnLabels.UseVisualStyleBackColor = True
         '
@@ -173,10 +173,10 @@ Partial Class FrmMenu
         '
         Me.BtnArtists.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnArtists.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnArtists.Location = New System.Drawing.Point(189, 246)
+        Me.BtnArtists.Location = New System.Drawing.Point(15, 301)
         Me.BtnArtists.Name = "BtnArtists"
         Me.BtnArtists.Size = New System.Drawing.Size(151, 49)
-        Me.BtnArtists.TabIndex = 31
+        Me.BtnArtists.TabIndex = 2
         Me.BtnArtists.Text = "Artists"
         Me.BtnArtists.UseVisualStyleBackColor = True
         '
@@ -187,7 +187,7 @@ Partial Class FrmMenu
         Me.BtnGenres.Location = New System.Drawing.Point(15, 356)
         Me.BtnGenres.Name = "BtnGenres"
         Me.BtnGenres.Size = New System.Drawing.Size(151, 49)
-        Me.BtnGenres.TabIndex = 32
+        Me.BtnGenres.TabIndex = 4
         Me.BtnGenres.Text = "Music Genres"
         Me.BtnGenres.UseVisualStyleBackColor = True
         '
@@ -198,7 +198,7 @@ Partial Class FrmMenu
         Me.BtnViewLog.Location = New System.Drawing.Point(189, 413)
         Me.BtnViewLog.Name = "BtnViewLog"
         Me.BtnViewLog.Size = New System.Drawing.Size(151, 49)
-        Me.BtnViewLog.TabIndex = 33
+        Me.BtnViewLog.TabIndex = 7
         Me.BtnViewLog.Text = "View Log"
         Me.BtnViewLog.UseVisualStyleBackColor = True
         '

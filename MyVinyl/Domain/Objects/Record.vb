@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class Record
@@ -64,7 +65,6 @@ Namespace Domain
                 _label = value
             End Set
         End Property
-
         Public Property RecordId() As Integer
             Get
                 Return _recordId
@@ -96,7 +96,6 @@ Namespace Domain
             _speed = pSpeed
             _copies = pCopies
         End Sub
-
 #End Region
 #Region "methods"
         Public Function IsExists() As Boolean
@@ -104,9 +103,7 @@ Namespace Domain
         End Function
         Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
         Implements IComparable.CompareTo
-
             If obj Is Nothing Then Return 1
-
             Dim otherRecord As Record = TryCast(obj, Record)
             If otherRecord IsNot Nothing Then
                 Return Me.RecordId.CompareTo(otherRecord.RecordId)

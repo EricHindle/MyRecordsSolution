@@ -1,12 +1,14 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class FullRecord
+#Region "properties"
         Private _record As Record
         Private _tracks As List(Of Track)
         Public Property Tracks() As List(Of Track)
@@ -25,6 +27,8 @@ Namespace Domain
                 _record = value
             End Set
         End Property
+#End Region
+#Region "constructors"
         Private Sub Initialise()
             _record = New Record
             _tracks = New List(Of Track)
@@ -36,6 +40,8 @@ Namespace Domain
             _record = pRecord
             _tracks = pTracks
         End Sub
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return _record.RecordId > -1
         End Function
@@ -45,5 +51,6 @@ Namespace Domain
         Public Sub AddTracks(pTracks As List(Of Track))
             _tracks.AddRange(pTracks)
         End Sub
+#End Region
     End Class
 End Namespace

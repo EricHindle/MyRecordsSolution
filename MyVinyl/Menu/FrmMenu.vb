@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -18,7 +18,7 @@ Public Class FrmMenu
         Close()
     End Sub
     Private Sub FrmMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        LogUtil.Info("Closing", MyBase.Name)
+        LogUtil.Info("Closing My Vinyl", MyBase.Name)
     End Sub
     Private Sub BtnOptions_Click(sender As Object, e As EventArgs)
         'Hide()
@@ -31,7 +31,6 @@ Public Class FrmMenu
     Private Sub BtnInputRecords_Click(sender As Object, e As EventArgs) Handles BtnInputRecords.Click
         Hide()
         Using _recordInput As New FrmRecordInput
-            LogUtil.Info("Opening Record Input", MyBase.Name)
             _recordInput.ShowDialog()
         End Using
         Show()
@@ -39,7 +38,6 @@ Public Class FrmMenu
     Private Sub BtnBackup_Click(sender As Object, e As EventArgs) Handles BtnBackup.Click
         Hide()
         Using _backup As New FrmBackup
-            LogUtil.Info("Opening Backup", MyBase.Name)
             _backup.ShowDialog()
         End Using
         Show()
@@ -47,7 +45,6 @@ Public Class FrmMenu
     Private Sub BtnRestore_Click(sender As Object, e As EventArgs) Handles BtnRestore.Click
         Hide()
         Using _restore As New FrmRestore
-            LogUtil.Info("Opening Restore", MyBase.Name)
             _restore.ShowDialog()
         End Using
         Show()

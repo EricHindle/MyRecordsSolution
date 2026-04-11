@@ -1,5 +1,5 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
@@ -34,5 +34,5 @@ Imports System.Runtime.InteropServices
 '      Revision
 '
 
-<Assembly: AssemblyVersion("2.0.1.*")>
-<Assembly: AssemblyFileVersion("2.0.1.0")>
+<Assembly: AssemblyVersion("2.0.5.*")>
+<Assembly: AssemblyFileVersion("2.0.5.0")>

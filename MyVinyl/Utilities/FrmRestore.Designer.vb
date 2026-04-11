@@ -53,7 +53,7 @@ Partial Class FrmRestore
         Me.BtnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSelectAll.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSelectAll.ForeColor = System.Drawing.Color.Black
-        Me.BtnSelectAll.Location = New System.Drawing.Point(555, 409)
+        Me.BtnSelectAll.Location = New System.Drawing.Point(506, 409)
         Me.BtnSelectAll.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnSelectAll.Name = "BtnSelectAll"
         Me.BtnSelectAll.Size = New System.Drawing.Size(108, 45)
@@ -69,7 +69,7 @@ Partial Class FrmRestore
         Me.BtnSelectPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSelectPath.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSelectPath.ForeColor = System.Drawing.Color.Black
-        Me.BtnSelectPath.Location = New System.Drawing.Point(451, 417)
+        Me.BtnSelectPath.Location = New System.Drawing.Point(384, 417)
         Me.BtnSelectPath.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnSelectPath.Name = "BtnSelectPath"
         Me.BtnSelectPath.Size = New System.Drawing.Size(96, 29)
@@ -85,7 +85,7 @@ Partial Class FrmRestore
         Me.BtnRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnRestore.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnRestore.ForeColor = System.Drawing.Color.Black
-        Me.BtnRestore.Location = New System.Drawing.Point(699, 409)
+        Me.BtnRestore.Location = New System.Drawing.Point(632, 409)
         Me.BtnRestore.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnRestore.Name = "BtnRestore"
         Me.BtnRestore.Size = New System.Drawing.Size(108, 45)
@@ -100,7 +100,7 @@ Partial Class FrmRestore
         Me.TxtRestorePath.Location = New System.Drawing.Point(159, 419)
         Me.TxtRestorePath.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtRestorePath.Name = "TxtRestorePath"
-        Me.TxtRestorePath.Size = New System.Drawing.Size(286, 25)
+        Me.TxtRestorePath.Size = New System.Drawing.Size(219, 25)
         Me.TxtRestorePath.TabIndex = 17
         '
         'Label1
@@ -122,7 +122,7 @@ Partial Class FrmRestore
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.Font = New System.Drawing.Font("Tahoma", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.Black
-        Me.btnCancel.Location = New System.Drawing.Point(892, 409)
+        Me.btnCancel.Location = New System.Drawing.Point(825, 409)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(54, 44)
@@ -136,7 +136,7 @@ Partial Class FrmRestore
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 465)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(963, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(896, 22)
         Me.StatusStrip1.TabIndex = 23
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -165,8 +165,8 @@ Partial Class FrmRestore
         'SplitContainer3.Panel2
         '
         Me.SplitContainer3.Panel2.Controls.Add(Me.GroupBox4)
-        Me.SplitContainer3.Size = New System.Drawing.Size(939, 381)
-        Me.SplitContainer3.SplitterDistance = 318
+        Me.SplitContainer3.Size = New System.Drawing.Size(872, 381)
+        Me.SplitContainer3.SplitterDistance = 295
         Me.SplitContainer3.TabIndex = 0
         '
         'GroupBox3
@@ -176,7 +176,7 @@ Partial Class FrmRestore
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
         Me.GroupBox3.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(314, 377)
+        Me.GroupBox3.Size = New System.Drawing.Size(291, 377)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Tables"
@@ -189,7 +189,7 @@ Partial Class FrmRestore
         Me.TvDatatables.ForeColor = System.Drawing.Color.Black
         Me.TvDatatables.Location = New System.Drawing.Point(3, 21)
         Me.TvDatatables.Name = "TvDatatables"
-        Me.TvDatatables.Size = New System.Drawing.Size(308, 353)
+        Me.TvDatatables.Size = New System.Drawing.Size(285, 353)
         Me.TvDatatables.TabIndex = 2
         '
         'GroupBox4
@@ -199,7 +199,7 @@ Partial Class FrmRestore
         Me.GroupBox4.ForeColor = System.Drawing.Color.Black
         Me.GroupBox4.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(613, 377)
+        Me.GroupBox4.Size = New System.Drawing.Size(569, 377)
         Me.GroupBox4.TabIndex = 9
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Progress"
@@ -212,7 +212,7 @@ Partial Class FrmRestore
         Me.rtbProgress.ForeColor = System.Drawing.Color.White
         Me.rtbProgress.Location = New System.Drawing.Point(3, 21)
         Me.rtbProgress.Name = "rtbProgress"
-        Me.rtbProgress.Size = New System.Drawing.Size(607, 353)
+        Me.rtbProgress.Size = New System.Drawing.Size(563, 353)
         Me.rtbProgress.TabIndex = 8
         Me.rtbProgress.Text = ""
         '
@@ -221,7 +221,7 @@ Partial Class FrmRestore
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(963, 487)
+        Me.ClientSize = New System.Drawing.Size(896, 487)
         Me.Controls.Add(Me.SplitContainer3)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.BtnSelectAll)

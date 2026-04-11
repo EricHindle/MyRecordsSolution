@@ -1,9 +1,10 @@
 ﻿' Hindleware
-' Copyright (c) 2024-25 Eric Hindle
+' Copyright (c) 2024-26 Eric Hindle
 ' All rights reserved.
 '
 ' Author Eric Hindle
 '
+
 Namespace Domain
 
     Public Class RecordFormat
@@ -40,17 +41,14 @@ Namespace Domain
             _formatId = pId
             _formatName = Pname
         End Sub
+#End Region
+#Region "methods"
         Public Function IsExists() As Boolean
             Return Not String.IsNullOrEmpty(_formatId)
         End Function
-
-#End Region
-#Region "methods"
         Public Overloads Function CompareTo(ByVal obj As Object) As Integer _
         Implements IComparable.CompareTo
-
             If obj Is Nothing Then Return 1
-
             Dim otherRecordFormat As RecordFormat = TryCast(obj, RecordFormat)
             If otherRecordFormat IsNot Nothing Then
                 Return Me.FormatName.CompareTo(otherRecordFormat.FormatName)

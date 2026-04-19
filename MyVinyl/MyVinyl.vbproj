@@ -200,6 +200,7 @@
   <ItemGroup>
     <EmbeddedResource Include="MaintForms\FrmArtistMaint.resx">
       <DependentUpon>FrmArtistMaint.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MaintForms\FrmFormatMaint.resx">
       <DependentUpon>FrmFormatMaint.vb</DependentUpon>
@@ -268,8 +269,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\disc_100.png" />
+    <None Include="Images\left24.png" />
+    <None Include="Images\pause.png" />
+    <None Include="Images\play.png" />
+    <None Include="Images\stop.png" />
     <Content Include="MyVinyl.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

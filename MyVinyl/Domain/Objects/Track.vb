@@ -18,6 +18,15 @@ Namespace Domain
         Private _artist As Artist
         Private _chartPos As Integer
         Private _chartDate As DateTime?
+        Private _songFile As String
+        Public Property SongFile() As String
+            Get
+                Return _songFile
+            End Get
+            Set(ByVal value As String)
+                _songFile = value
+            End Set
+        End Property
         Public Property ChartDate() As DateTime?
             Get
                 Return _chartDate
@@ -102,11 +111,12 @@ Namespace Domain
             _genre = New Genre
             _chartPos = -1
             _chartDate = New Date(1899, 12, 31)
+            _songFile = String.Empty
         End Sub
         Public Sub New()
             Initialise()
         End Sub
-        Public Sub New(pId As Integer, pSide As String, pTrack As Integer, pArtist As Artist, pTitle As String, pYear As Integer, pGenre As Genre, pChartPos As Integer, pChartDate As DateTime?)
+        Public Sub New(pId As Integer, pSide As String, pTrack As Integer, pArtist As Artist, pTitle As String, pYear As Integer, pGenre As Genre, pChartPos As Integer, pChartDate As DateTime?, pSongFile As String)
             _recordId = pId
             _side = pSide
             _track = pTrack
@@ -116,6 +126,7 @@ Namespace Domain
             _genre = pGenre
             _chartPos = pChartPos
             _chartDate = pChartDate
+            _songFile = pSongFile
         End Sub
 #End Region
 #Region "methods"

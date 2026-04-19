@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="RecordFormat" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="RecordFormat">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FormatId" msdata:AutoIncrementSeed="1">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="3" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="FormatName" default="''">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="RecordFormatKey1">
+        <xs:selector xpath=".//RecordFormat" />
+        <xs:field xpath="FormatId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <RecordFormat>
+    <FormatId>CD</FormatId>
+    <FormatName>CD</FormatName>
+  </RecordFormat>
+  <RecordFormat>
+    <FormatId>EP</FormatId>
+    <FormatName>Extended Play</FormatName>
+  </RecordFormat>
+  <RecordFormat>
+    <FormatId>LP</FormatId>
+    <FormatName>Long Player</FormatName>
+  </RecordFormat>
+  <RecordFormat>
+    <FormatId>S</FormatId>
+    <FormatName>Single</FormatName>
+  </RecordFormat>
+  <RecordFormat>
+    <FormatId>SCV</FormatId>
+    <FormatName>Single Coloured Vinyl</FormatName>
+  </RecordFormat>
+  <RecordFormat>
+    <FormatId>ACV</FormatId>
+    <FormatName>Album Coloured Vinyl</FormatName>
+  </RecordFormat>
+</NewDataSet>

@@ -2292,6 +2292,8 @@ Partial Public Class VinylDataSet
         
         Private columnChartDate As Global.System.Data.DataColumn
         
+        Private columnSongFile As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -2400,6 +2402,14 @@ Partial Public Class VinylDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property SongFileColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSongFile
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2436,9 +2446,9 @@ Partial Public Class VinylDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Date) As TracksRow
+        Public Overloads Function AddTracksRow(ByVal RecordId As Integer, ByVal Side As String, ByVal Track As Integer, ByVal Title As String, ByVal Year As Integer, ByVal Genre As Integer, ByVal ArtistId As Integer, ByVal PeakChartPosition As Integer, ByVal ChartDate As Date, ByVal SongFile As String) As TracksRow
             Dim rowTracksRow As TracksRow = CType(Me.NewRow,TracksRow)
-            Dim columnValuesArray() As Object = New Object() {RecordId, Side, Track, Title, Year, Genre, ArtistId, PeakChartPosition, ChartDate}
+            Dim columnValuesArray() As Object = New Object() {RecordId, Side, Track, Title, Year, Genre, ArtistId, PeakChartPosition, ChartDate, SongFile}
             rowTracksRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTracksRow)
             Return rowTracksRow
@@ -2470,6 +2480,7 @@ Partial Public Class VinylDataSet
             Me.columnArtistId = MyBase.Columns("ArtistId")
             Me.columnPeakChartPosition = MyBase.Columns("PeakChartPosition")
             Me.columnChartDate = MyBase.Columns("ChartDate")
+            Me.columnSongFile = MyBase.Columns("SongFile")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2493,6 +2504,8 @@ Partial Public Class VinylDataSet
             MyBase.Columns.Add(Me.columnPeakChartPosition)
             Me.columnChartDate = New Global.System.Data.DataColumn("ChartDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnChartDate)
+            Me.columnSongFile = New Global.System.Data.DataColumn("SongFile", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSongFile)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("TracksKey1", New Global.System.Data.DataColumn() {Me.columnRecordId, Me.columnSide, Me.columnTrack}, false))
             Me.columnRecordId.AllowDBNull = false
             Me.columnSide.AllowDBNull = false
@@ -2506,6 +2519,7 @@ Partial Public Class VinylDataSet
             Me.columnArtistId.AllowDBNull = false
             Me.columnPeakChartPosition.AllowDBNull = false
             Me.columnPeakChartPosition.DefaultValue = CType(-1,Integer)
+            Me.columnSongFile.MaxLength = 250
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3608,6 +3622,21 @@ Partial Public Class VinylDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property SongFile() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTracks.SongFileColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SongFile' in table 'Tracks' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTracks.SongFileColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsChartDateNull() As Boolean
             Return Me.IsNull(Me.tableTracks.ChartDateColumn)
         End Function
@@ -3616,6 +3645,18 @@ Partial Public Class VinylDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetChartDateNull()
             Me(Me.tableTracks.ChartDateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsSongFileNull() As Boolean
+            Return Me.IsNull(Me.tableTracks.SongFileColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetSongFileNull()
+            Me(Me.tableTracks.SongFileColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

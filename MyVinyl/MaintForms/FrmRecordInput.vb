@@ -5,14 +5,22 @@
 ' Author Eric Hindle
 '
 
+Imports System.IO
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
+Imports WMPLib
 Public Class FrmRecordInput
+#Region "constants"
+    Public Const FILE_FILTER As String = "MP3 (*.mp3)|*.mp3|WAV (*.wav)|*.wav|all files (*.*)|*.*"
+#End Region
 #Region "variables"
     Private CurrentRecord As New Record
     Private CurrentTrack As New Track
     Private isTrackChanged As Boolean
     Private isLoading As Boolean
+    Private oPlayer As New WindowsMediaPlayer
+    Private isPlaying As Boolean
+    Private isPaused As Boolean
 #End Region
 #Region "form control handlers"
     Private Sub FrmRecordInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -28,6 +36,7 @@ Public Class FrmRecordInput
     End Sub
     Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
+        StopAudio()
         My.Settings.RecordInputFormPos = SetFormPos(Me)
         SaveSplitterDistances()
         My.Settings.Save()
@@ -149,6 +158,12 @@ Public Class FrmRecordInput
                                                                              CbArtists.SelectedIndexChanged,
                                                                              CbGenre.SelectedIndexChanged
         isTrackChanged = True
+    End Sub
+    Private Sub TxtSongFile_TextChanged(sender As Object, e As EventArgs) Handles TxtSongFile.TextChanged
+        isTrackChanged = True
+        BtnPlay.Visible = IsValidSongFileName(TxtSongFile.Text)
+        BtnStop.Visible = IsValidSongFileName(TxtSongFile.Text)
+        StopAudio()
     End Sub
     Private Sub TxtYear_TextChanged(sender As Object, e As EventArgs) Handles TxtYear.TextChanged
         isTrackChanged = True
@@ -382,6 +397,7 @@ Public Class FrmRecordInput
         SplitContainer2.Panel2Collapsed = True
     End Sub
     Private Sub ClearTrackForm()
+        StopAudio()
         RbA.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
@@ -390,6 +406,9 @@ Public Class FrmRecordInput
         CbArtists.SelectedIndex = -1
         TxtChartPos.Text = String.Empty
         DtpChartDate.Value = DtpChartDate.MinDate
+        TxtSongFile.Text = String.Empty
+        BtnPlay.Visible = False
+        BtnStop.Visible = False
         isTrackChanged = False
     End Sub
     Private Function BuildRecordFromForm() As Record
@@ -481,6 +500,7 @@ Public Class FrmRecordInput
     Private Sub TrimValues()
         TxtTitle.Text = TxtTitle.Text.Replace(vbTab, "").Trim
         TxtYear.Text = TxtYear.Text.Replace(vbTab, "").Trim
+        TxtSongFile.Text = TxtSongFile.Text.Replace(vbTab, "").Trim
     End Sub
     Private Function IsTrackExists(pTrack As Track) As Boolean
         Dim _track As Track
@@ -494,6 +514,9 @@ Public Class FrmRecordInput
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
         TxtChartPos.Text = String.Empty
+        TxtSongFile.Text = String.Empty
+        BtnPlay.Visible = False
+        BtnStop.Visible = False
         isTrackChanged = False
     End Sub
     Private Function BuildTrackFromForm() As Track
@@ -525,6 +548,7 @@ Public Class FrmRecordInput
             .WithGenre(_genre) _
             .WithChartPos(_chartpos) _
             .WithChartDate(_chartDate) _
+            .WithSongFile(TxtSongFile.Text) _
             .Build
         Return _track
     End Function
@@ -532,15 +556,15 @@ Public Class FrmRecordInput
         Dim _side As String = "A"
         Select Case True
             Case RbA.Checked
-                _side = "A "
+                _side = "A"
             Case RbB.Checked
-                _side = "B "
+                _side = "B"
             Case RbAA.Checked
                 _side = "AA"
             Case Rb1.Checked
-                _side = "1 "
+                _side = "1"
             Case Rb2.Checked
-                _side = "2 "
+                _side = "2"
         End Select
         Return _side
     End Function
@@ -561,17 +585,19 @@ Public Class FrmRecordInput
         Return isOK
     End Function
     Private Sub LoadTrackForm(pTrack As Track)
+        StopAudio()
         With pTrack
-            Select Case .Side
-                Case "A "
+            Dim _side As String = .Side.Trim
+            Select Case _side
+                Case "A"
                     RbA.Checked = True
-                Case "B "
+                Case "B"
                     RbB.Checked = True
                 Case "AA"
                     RbAA.Checked = True
-                Case "1 "
+                Case "1"
                     Rb1.Checked = True
-                Case "2 "
+                Case "2"
                     Rb2.Checked = True
             End Select
             NudTrackNo.Value = .Track
@@ -583,7 +609,90 @@ Public Class FrmRecordInput
             If .ChartDate IsNot Nothing Then
                 DtpChartDate.Value = .ChartDate
             End If
+            TxtSongFile.Text = If(.SongFile, String.Empty)
+            BtnPlay.Visible = Not String.IsNullOrEmpty(TxtSongFile.Text)
+            BtnStop.Visible = Not String.IsNullOrEmpty(TxtSongFile.Text)
         End With
     End Sub
+
+    Private Sub BtnFindSong_Click(sender As Object, e As EventArgs) Handles BtnFindSong.Click
+        Dim _filename As String = GetFileName()
+        If Not String.IsNullOrEmpty(_filename) Then
+            TxtSongFile.Text = Path.GetFullPath(_filename)
+        End If
+    End Sub
+    Public Function GetFileName() As String
+        Dim sFilename As String = ""
+        Using fbd As New OpenFileDialog
+            fbd.Filter = FILE_FILTER
+            fbd.FilterIndex = 0S
+            fbd.RestoreDirectory = False
+            fbd.CheckFileExists = True
+            If fbd.ShowDialog() = DialogResult.OK Then
+                sFilename = fbd.FileName
+            End If
+        End Using
+        Return sFilename
+    End Function
+
+    Private Sub BtnPlay_Click(sender As Object, e As EventArgs) Handles BtnPlay.Click
+        If isPlaying Then
+            PauseAudio()
+        Else
+            Try
+                If isPaused Then
+                    oPlayer.controls.play()
+                Else
+                    Dim SongLocation = TxtSongFile.Text
+                    oPlayer.URL = SongLocation
+                    oPlayer.controls.play()
+                End If
+                PlayAudio()
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+    Private Sub StopAudio()
+        oPlayer.controls.stop()
+        isPlaying = False
+        isPaused = False
+        BtnPlay.Image = My.Resources.play
+        BtnStop.Enabled = False
+        ProgressBar1.Visible = False
+    End Sub
+    Private Sub PauseAudio()
+        oPlayer.controls.pause()
+        isPlaying = False
+        isPaused = True
+        BtnPlay.Image = My.Resources.play
+        ProgressBar1.Style = ProgressBarStyle.Continuous
+        ProgressBar1.Value = 0
+    End Sub
+    Private Sub PlayAudio()
+        ProgressBar1.Style = ProgressBarStyle.Marquee
+        ProgressBar1.MarqueeAnimationSpeed = 20
+        ProgressBar1.Visible = True
+        BtnPlay.Image = My.Resources.pause
+        BtnStop.Enabled = True
+        isPlaying = True
+        isPaused = False
+
+    End Sub
+
+    Private Sub BtnStop_Click(sender As Object, e As EventArgs) Handles BtnStop.Click
+        StopAudio()
+    End Sub
+    Private Function IsValidSongFileName(pFilename As String)
+        Dim isValid As Boolean = False
+        If Not String.IsNullOrEmpty(pFilename) Then
+            If pFilename.EndsWith(".wav") Or pFilename.EndsWith(".mp3") Then
+                If My.Computer.FileSystem.FileExists(pFilename) Then
+                    isValid = True
+                End If
+            End If
+        End If
+        Return isValid
+    End Function
 End Class
 

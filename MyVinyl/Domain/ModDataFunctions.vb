@@ -6,6 +6,7 @@
 '
 
 Imports System.Data.SqlClient
+Imports System.Environment
 Imports System.IO
 Imports System.Reflection
 Imports System.Text.RegularExpressions
@@ -53,7 +54,8 @@ Namespace Domain
         Public Sub InitialiseData()
             LogUtil.Info("Initialising data", MethodBase.GetCurrentMethod.Name)
             FillTableListFromTableEnum()
-            oDataFolderName = My.Settings.DataFilePath
+            oDataFolderName = "D:\MyVinyl\Data"
+            LogUtil.Info("Data path is " & My.Settings.DataFilePath, MethodBase.GetCurrentMethod.Name)
             Try
                 LoadDataTables()
             Catch ex As ApplicationException
@@ -489,6 +491,7 @@ Namespace Domain
                 pTrackRow.Genre = .Genre.GenreId
                 pTrackRow.ArtistId = .Artist.ArtistId
                 pTrackRow.PeakChartPosition = .PeakChartPosition
+                pTrackRow.SongFile = .SongFile
                 If .ChartDate IsNot Nothing Then
                     pTrackRow.ChartDate = .ChartDate
                 End If

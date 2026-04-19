@@ -1,0 +1,393 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="RecordLabels" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="RecordLabels">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="LabelId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="LabelName" default="''">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1">
+        <xs:selector xpath=".//RecordLabels" />
+        <xs:field xpath="LabelId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <RecordLabels>
+    <LabelId>37</LabelId>
+    <LabelName>Apple Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>8</LabelId>
+    <LabelName>Atlantic</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>35</LabelId>
+    <LabelName>Bell</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>66</LabelId>
+    <LabelName>Beserkley</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>62</LabelId>
+    <LabelName>Big T</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>24</LabelId>
+    <LabelName>Blue Horizon</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>11</LabelId>
+    <LabelName>Brunswick</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>4</LabelId>
+    <LabelName>Buddah Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>3</LabelId>
+    <LabelName>Capitol</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>25</LabelId>
+    <LabelName>CBS</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>42</LabelId>
+    <LabelName>Charisma</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>38</LabelId>
+    <LabelName>Chrysalis</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>13</LabelId>
+    <LabelName>Columbia</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>45</LabelId>
+    <LabelName>Dawn</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>18</LabelId>
+    <LabelName>Decca</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>5</LabelId>
+    <LabelName>Deram</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>47</LabelId>
+    <LabelName>Direction</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>55</LabelId>
+    <LabelName>DJM Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>28</LabelId>
+    <LabelName>Elektra</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>57</LabelId>
+    <LabelName>Embassy</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>50</LabelId>
+    <LabelName>Epic</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>58</LabelId>
+    <LabelName>Flair Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>17</LabelId>
+    <LabelName>Fontana</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>65</LabelId>
+    <LabelName>Fresh Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>10</LabelId>
+    <LabelName>His Master's Voice</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>48</LabelId>
+    <LabelName>Immediate</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>53</LabelId>
+    <LabelName>Island</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>31</LabelId>
+    <LabelName>Laurie Records Inc.</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>30</LabelId>
+    <LabelName>Liberty</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>51</LabelId>
+    <LabelName>London</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>20</LabelId>
+    <LabelName>London American Recordings</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>46</LabelId>
+    <LabelName>London Monument</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>34</LabelId>
+    <LabelName>Major Minor</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>40</LabelId>
+    <LabelName>MCA Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>41</LabelId>
+    <LabelName>Mercury</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>9</LabelId>
+    <LabelName>MGM</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>33</LabelId>
+    <LabelName>Motown</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>56</LabelId>
+    <LabelName>Old Gold</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>54</LabelId>
+    <LabelName>Page One</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>14</LabelId>
+    <LabelName>Parlophone</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>16</LabelId>
+    <LabelName>Philips</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>39</LabelId>
+    <LabelName>Piccadilly</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>26</LabelId>
+    <LabelName>Polydor</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>63</LabelId>
+    <LabelName>President</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>67</LabelId>
+    <LabelName>Probe</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>1</LabelId>
+    <LabelName>Pye</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>12</LabelId>
+    <LabelName>Pye International</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>43</LabelId>
+    <LabelName>Pye Nixa</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>59</LabelId>
+    <LabelName>R&amp;B Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>64</LabelId>
+    <LabelName>RAK</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>7</LabelId>
+    <LabelName>RCA</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>23</LabelId>
+    <LabelName>RCA Victor</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>44</LabelId>
+    <LabelName>Regal Zonophone</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>6</LabelId>
+    <LabelName>reprise:</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>36</LabelId>
+    <LabelName>Smash Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>15</LabelId>
+    <LabelName>Stateside</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>27</LabelId>
+    <LabelName>Stax</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>32</LabelId>
+    <LabelName>Tamla Motown</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>21</LabelId>
+    <LabelName>Threshold</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>22</LabelId>
+    <LabelName>Top Rank International</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>2</LabelId>
+    <LabelName>Track Record</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>61</LabelId>
+    <LabelName>Trojan Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>52</LabelId>
+    <LabelName>UK Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>29</LabelId>
+    <LabelName>United Artists Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>49</LabelId>
+    <LabelName>Vertigo</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>19</LabelId>
+    <LabelName>Warner Bros.</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>60</LabelId>
+    <LabelName>Warner Bros. Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>130</LabelId>
+    <LabelName>Planet</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>131</LabelId>
+    <LabelName>EMI</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>132</LabelId>
+    <LabelName>A&amp;M Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>133</LabelId>
+    <LabelName>Real Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>134</LabelId>
+    <LabelName>WEA</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>135</LabelId>
+    <LabelName>Lifesong</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>136</LabelId>
+    <LabelName>Stiff Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>137</LabelId>
+    <LabelName>Portrait</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>138</LabelId>
+    <LabelName>Rocket Record Company</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>139</LabelId>
+    <LabelName>Jet Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>140</LabelId>
+    <LabelName>Monument</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>141</LabelId>
+    <LabelName>Antic</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>142</LabelId>
+    <LabelName>Mowest</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>143</LabelId>
+    <LabelName>Music For Pleasure</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>144</LabelId>
+    <LabelName>Harvest</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>145</LabelId>
+    <LabelName>Woman's Own</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>146</LabelId>
+    <LabelName>BBC Records And Tapes</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>147</LabelId>
+    <LabelName>MAM</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>148</LabelId>
+    <LabelName>Techniques</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>149</LabelId>
+    <LabelName>UNI Records</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>150</LabelId>
+    <LabelName>Mooncrest</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>151</LabelId>
+    <LabelName>Paramount</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>152</LabelId>
+    <LabelName>GTO</LabelName>
+  </RecordLabels>
+  <RecordLabels>
+    <LabelId>153</LabelId>
+    <LabelName>Geffen Records</LabelName>
+  </RecordLabels>
+</NewDataSet>

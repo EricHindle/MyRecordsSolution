@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0D373DCE07EA4819A54C82676212C6A7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_13C1781ADAA08C2DC01186B07FAA3A94"
         "OwnerKey" = "8:_4346BD291A3A407C9414F7FE6DE24FC7"
         "MsmSig" = "8:_UNDEFINED"
@@ -23,6 +29,12 @@
         {
         "MsmKey" = "8:_13C1781ADAA08C2DC01186B07FAA3A94"
         "OwnerKey" = "8:_B240D13E1C6B23C851887CF49C110572"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C295AED866341F98682B06E805E174C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,8 +51,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_85277004F3E94DD9B15A949F91F22244"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A18337F10D5141B98F614FD201EBCA81"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A8809B79CB5B49E4A9F8952E12EE0A41"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B240D13E1C6B23C851887CF49C110572"
         "OwnerKey" = "8:_4346BD291A3A407C9414F7FE6DE24FC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE7A4CB08AF84AEE853421850B7F5CC7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE9C6FC250FD48F9B7CE53E103A1E6B2"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -156,6 +198,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D373DCE07EA4819A54C82676212C6A7"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\Tracks.hrx"
+            "TargetName" = "8:Tracks.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_13C1781ADAA08C2DC01186B07FAA3A94"
             {
             "AssemblyRegister" = "3:1"
@@ -187,12 +249,92 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C295AED866341F98682B06E805E174C"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\settings.hrx"
+            "TargetName" = "8:settings.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_29D1CE25372A4C92BB1FDA5806729918"
             {
             "SourcePath" = "8:..\\MyVinyl\\Images\\MyVinyl.ico"
             "TargetName" = "8:MyVinyl.ico"
             "Tag" = "8:"
             "Folder" = "8:_1AD3663872844FE6B6E54E2A8AA63931"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85277004F3E94DD9B15A949F91F22244"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\MusicGenre.hrx"
+            "TargetName" = "8:MusicGenre.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A18337F10D5141B98F614FD201EBCA81"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\Records.hrx"
+            "TargetName" = "8:Records.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A8809B79CB5B49E4A9F8952E12EE0A41"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\RecordLabels.hrx"
+            "TargetName" = "8:RecordLabels.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -238,6 +380,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE7A4CB08AF84AEE853421850B7F5CC7"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\Artists.hrx"
+            "TargetName" = "8:Artists.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE9C6FC250FD48F9B7CE53E103A1E6B2"
+            {
+            "SourcePath" = "8:..\\MyVinylData\\RecordFormat.hrx"
+            "TargetName" = "8:RecordFormat.hrx"
+            "Tag" = "8:"
+            "Folder" = "8:_D75C709D571545F78641E5405CF3D892"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -246,7 +428,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_1AD3663872844FE6B6E54E2A8AA63931"
             {
-            "DefaultLocation" = "8:D:\\netWYrks\\MyVinyl"
+            "DefaultLocation" = "8:[ProgramFiles64Folder]\\[Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -265,6 +447,29 @@
             "Property" = "8:DesktopFolder"
                 "Folders"
                 {
+                }
+            }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_39E5EEB6161B41B4B4F29D82F138AE8E"
+            {
+            "DefaultLocation" = "8:[CommonAppDataFolder]\\[Manufacturer]\\MyVinyl"
+            "Name" = "8:MyVinyl"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:NEWPROPERTY1"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D75C709D571545F78641E5405CF3D892"
+                    {
+                    "Name" = "8:Data"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_5DADF672DFB54F299CB86F4B8F6933D5"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_B76D5D7BB2F34CA0925A5FFDEE7F8A08"
@@ -305,19 +510,19 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MyVinyl"
-        "ProductCode" = "8:{48DE9419-F256-441A-95EE-24E024FD0A6B}"
-        "PackageCode" = "8:{1EC45332-3666-4A54-9D68-4EA53BCCE694}"
+        "ProductCode" = "8:{493C32F7-A0FB-4D9A-95F8-50A609173DD9}"
+        "PackageCode" = "8:{048C6A41-0098-4683-A26A-C9129DED5441}"
         "UpgradeCode" = "8:{E8F4EB2A-10B5-466E-ACB1-B23F3702F6B8}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.0.5"
+        "ProductVersion" = "8:2.1.0"
         "Manufacturer" = "8:hindleware"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:MyVinylMady Mesplé"
+        "Title" = "8:MyVinyl"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Eric Hindle"
         "Keywords" = "8:"
@@ -327,7 +532,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"

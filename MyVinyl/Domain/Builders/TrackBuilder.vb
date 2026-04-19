@@ -19,6 +19,7 @@ Namespace Domain
         Private _genre As Genre
         Private _chartPos As Integer
         Private _chartDate As DateTime?
+        Private _songfile As String
 
         Public Shared Function ATrack() As TrackBuilder
             Return New TrackBuilder
@@ -33,6 +34,7 @@ Namespace Domain
             _genre = New Genre
             _chartPos = -1
             _chartDate = Nothing
+            _songfile = String.Empty
             Return Me
         End Function
         Public Function StartingWith(pRow As TracksRow) As TrackBuilder
@@ -51,6 +53,7 @@ Namespace Domain
                     _chartDate = pRow.ChartDate
                 End If
                 _chartPos = pRow.PeakChartPosition
+                _songfile = If(pRow.IsSongFileNull, "", pRow.SongFile)
             End If
             Return Me
         End Function
@@ -64,6 +67,7 @@ Namespace Domain
             _genre = pTrack.Genre
             _chartPos = pTrack.PeakChartPosition
             _chartDate = pTrack.ChartDate
+            _songfile = pTrack.SongFile
             Return Me
         End Function
 
@@ -111,8 +115,12 @@ Namespace Domain
             _chartDate = pChartDate
             Return Me
         End Function
+        Public Function WithSongFile(ByVal pSongFile As String) As TrackBuilder
+            _songfile = pSongFile
+            Return Me
+        End Function
         Public Function Build() As Track
-            Return New Track(_recordId, _side, _track, _artist, _title, _year, _genre, _chartPos, _chartDate)
+            Return New Track(_recordId, _side, _track, _artist, _title, _year, _genre, _chartPos, _chartDate, _songfile)
         End Function
     End Class
 End Namespace

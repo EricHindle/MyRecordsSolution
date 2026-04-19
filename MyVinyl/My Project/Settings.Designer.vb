@@ -164,7 +164,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:/MyVinyl/Logs")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\ProgramData\hindleware/MyVinyl/Logs")>  _
         Public Property LogFolder() As String
             Get
                 Return CType(Me("LogFolder"),String)
@@ -296,7 +296,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:/MyVinyl/Data")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("D:\MyVinyl\Data")>  _
         Public Property DataFilePath() As String
             Get
                 Return CType(Me("DataFilePath"),String)

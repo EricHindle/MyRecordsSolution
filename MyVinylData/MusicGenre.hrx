@@ -1,0 +1,153 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="MusicGenre" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="MusicGenre">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="GenreId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="GenreName" default="''">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="50" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Music_x0020_GenreKey1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//MusicGenre" />
+        <xs:field xpath="GenreId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <MusicGenre>
+    <GenreId>1</GenreId>
+    <GenreName>Alternative</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>25</GenreId>
+    <GenreName>Ballad</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>2</GenreId>
+    <GenreName>Blues</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>3</GenreId>
+    <GenreName>Classical</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>22</GenreId>
+    <GenreName>Comedy / Novelty</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>4</GenreId>
+    <GenreName>Country</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>5</GenreId>
+    <GenreName>Dance</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>6</GenreId>
+    <GenreName>Electronic</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>7</GenreId>
+    <GenreName>Folk</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>28</GenreId>
+    <GenreName>Folk Rock</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>29</GenreId>
+    <GenreName>Funk / Soul</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>32</GenreId>
+    <GenreName>Garage</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>26</GenreId>
+    <GenreName>Instrumental</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>8</GenreId>
+    <GenreName>Jazz</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>9</GenreId>
+    <GenreName>Misc</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>21</GenreId>
+    <GenreName>Movie, TV Theme</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>10</GenreId>
+    <GenreName>Musical</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>11</GenreId>
+    <GenreName>Opera</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>12</GenreId>
+    <GenreName>Pop</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>17</GenreId>
+    <GenreName>Pop Rock</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>19</GenreId>
+    <GenreName>Psychedelic Rock</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>27</GenreId>
+    <GenreName>R&amp;B</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>13</GenreId>
+    <GenreName>Reggae</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>14</GenreId>
+    <GenreName>Rock</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>16</GenreId>
+    <GenreName>Rock and Roll</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>30</GenreId>
+    <GenreName>Rockabilly</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>31</GenreId>
+    <GenreName>Skiffle</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>15</GenreId>
+    <GenreName>Soul</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>52</GenreId>
+    <GenreName>New Genre</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>53</GenreId>
+    <GenreName>Disco</GenreName>
+  </MusicGenre>
+  <MusicGenre>
+    <GenreId>54</GenreId>
+    <GenreName>New Wave</GenreName>
+  </MusicGenre>
+</NewDataSet>

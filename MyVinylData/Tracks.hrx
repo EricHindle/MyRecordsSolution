@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Tracks" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Tracks">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RecordId" type="xs:int" />
+                <xs:element name="Side">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="2" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Track" type="xs:int" />
+                <xs:element name="Title" default="''">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="250" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Year" type="xs:int" />
+                <xs:element name="Genre" type="xs:int" />
+                <xs:element name="ArtistId" type="xs:int" />
+                <xs:element name="PeakChartPosition" type="xs:int" default="-1" />
+                <xs:element name="ChartDate" type="xs:dateTime" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="TracksKey1">
+        <xs:selector xpath=".//Tracks" />
+        <xs:field xpath="RecordId" />
+        <xs:field xpath="Side" />
+        <xs:field xpath="Track" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+</NewDataSet>

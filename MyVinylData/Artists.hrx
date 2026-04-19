@@ -1,0 +1,1393 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Artists" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Artists">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ArtistId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="ArtistName" default="''" minOccurs="0">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="150" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="ArtistsKey1">
+        <xs:selector xpath=".//Artists" />
+        <xs:field xpath="ArtistId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Artists>
+    <ArtistId>40</ArtistId>
+    <ArtistName>Acker Bilk</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>29</ArtistId>
+    <ArtistName>Adam Faith</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>183</ArtistId>
+    <ArtistName>Al Caiola And His Orchestra</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>41</ArtistId>
+    <ArtistName>Alan Price Set</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>9</ArtistId>
+    <ArtistName>Amen Corner</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>42</ArtistId>
+    <ArtistName>Andy Williams</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>45</ArtistId>
+    <ArtistName>Aretha Franklin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>169</ArtistId>
+    <ArtistName>Arrival</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>46</ArtistId>
+    <ArtistName>Ashton, Gardner And Dyke</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>47</ArtistId>
+    <ArtistName>Barry McGuire</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>50</ArtistId>
+    <ArtistName>Bill Haley and His Comets</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>179</ArtistId>
+    <ArtistName>Billie Davis</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>51</ArtistId>
+    <ArtistName>Billy Fury</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>52</ArtistId>
+    <ArtistName>Billy J Kramer with The Dakotas</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>54</ArtistId>
+    <ArtistName>Bob Dylan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>55</ArtistId>
+    <ArtistName>Bobbie Gentry</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>53</ArtistId>
+    <ArtistName>Bobby Bloom</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>242</ArtistId>
+    <ArtistName>Bobby Darin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>59</ArtistId>
+    <ArtistName>Bobby Goldsboro</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>244</ArtistId>
+    <ArtistName>Bobby Vee</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>56</ArtistId>
+    <ArtistName>Booker T and the MGs</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>57</ArtistId>
+    <ArtistName>Bread</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>1</ArtistId>
+    <ArtistName>Brenda Lee</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>58</ArtistId>
+    <ArtistName>Brian Hyland</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>213</ArtistId>
+    <ArtistName>Brian Poole And The Tremeloes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>181</ArtistId>
+    <ArtistName>Carol Deene</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>62</ArtistId>
+    <ArtistName>Cat Stevens</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>63</ArtistId>
+    <ArtistName>Charlie Drake</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>216</ArtistId>
+    <ArtistName>Chicago</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>175</ArtistId>
+    <ArtistName>Chris Andrews</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>65</ArtistId>
+    <ArtistName>Chris Montez</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>236</ArtistId>
+    <ArtistName>Chubby Checker</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>235</ArtistId>
+    <ArtistName>Chuck Berry</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>66</ArtistId>
+    <ArtistName>Cilla Black</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>37</ArtistId>
+    <ArtistName>Cliff Richard</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>27</ArtistId>
+    <ArtistName>Cliff Richard and The Shadows</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>68</ArtistId>
+    <ArtistName>Clodagh Rodgers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>4</ArtistId>
+    <ArtistName>Connie Francis</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>28</ArtistId>
+    <ArtistName>Conway Twitty</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>32</ArtistId>
+    <ArtistName>Craig Douglas</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>67</ArtistId>
+    <ArtistName>Creedence Clearwater Revival</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>69</ArtistId>
+    <ArtistName>Crispian St. Peters</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>185</ArtistId>
+    <ArtistName>Daniel Boone</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>195</ArtistId>
+    <ArtistName>Danny Peppermint and The Jumping Jacks</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>70</ArtistId>
+    <ArtistName>Dave Berry</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>19</ArtistId>
+    <ArtistName>Dave Dee, Dozy, Beaky, Mick And Tich</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>71</ArtistId>
+    <ArtistName>David Bowie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>72</ArtistId>
+    <ArtistName>Dean Martin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>184</ArtistId>
+    <ArtistName>Deep Feeling</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>73</ArtistId>
+    <ArtistName>Derek And The Dominoes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>75</ArtistId>
+    <ArtistName>Diana Ross</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>74</ArtistId>
+    <ArtistName>Diana Ross &amp; The Supremes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>76</ArtistId>
+    <ArtistName>Diana Ross &amp; The Supremes &amp; The Temptations</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>21</ArtistId>
+    <ArtistName>Don Charles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>78</ArtistId>
+    <ArtistName>Don Partridge</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>77</ArtistId>
+    <ArtistName>Donovan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>79</ArtistId>
+    <ArtistName>Dr Hook &amp; The Medicine Show</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>24</ArtistId>
+    <ArtistName>Duane Eddy</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>11</ArtistId>
+    <ArtistName>Duane Eddy &amp; The Rebelettes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>17</ArtistId>
+    <ArtistName>Dusty Springfield</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>168</ArtistId>
+    <ArtistName>East Of Eden</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>81</ArtistId>
+    <ArtistName>Eddie Cochran</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>173</ArtistId>
+    <ArtistName>Eden Kane</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>82</ArtistId>
+    <ArtistName>Edison Lighthouse</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>182</ArtistId>
+    <ArtistName>Emily Ford And The Checkmates</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>83</ArtistId>
+    <ArtistName>Esther &amp; Abi Ofarim</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>25</ArtistId>
+    <ArtistName>Fats Domino</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>34</ArtistId>
+    <ArtistName>Fleetwood Mac</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>90</ArtistId>
+    <ArtistName>Four Seasons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>91</ArtistId>
+    <ArtistName>Frank Ifield</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>130</ArtistId>
+    <ArtistName>Frank Sinatra</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>89</ArtistId>
+    <ArtistName>Frankie Valli</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>92</ArtistId>
+    <ArtistName>Freddie &amp; The Dreamers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>16</ArtistId>
+    <ArtistName>Gene Pitney</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>93</ArtistId>
+    <ArtistName>George Harrison</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>85</ArtistId>
+    <ArtistName>Georgie Fame &amp; Alan Price</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>18</ArtistId>
+    <ArtistName>Georgie Fame and the Blue Flames</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>94</ArtistId>
+    <ArtistName>Gerry And The PaceMakers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>203</ArtistId>
+    <ArtistName>Greyhound</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>202</ArtistId>
+    <ArtistName>Guy Mitchell</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>193</ArtistId>
+    <ArtistName>Hank Locklin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>22</ArtistId>
+    <ArtistName>Harper's Bizarre</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>23</ArtistId>
+    <ArtistName>Helen Shapiro</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>14</ArtistId>
+    <ArtistName>Herman's Hermits</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>96</ArtistId>
+    <ArtistName>Hot Butter</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>221</ArtistId>
+    <ArtistName>Humble Pie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>97</ArtistId>
+    <ArtistName>Hurricane Smith</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>98</ArtistId>
+    <ArtistName>Ike And Tina Turner</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>197</ArtistId>
+    <ArtistName>Imagination</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>194</ArtistId>
+    <ArtistName>Jackie Trent</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>100</ArtistId>
+    <ArtistName>James Brown</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>210</ArtistId>
+    <ArtistName>James Darren</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>26</ArtistId>
+    <ArtistName>Jane Morgan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>238</ArtistId>
+    <ArtistName>Jerry Lee Lewis</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>211</ArtistId>
+    <ArtistName>Jet Harris &amp; Tony Meehan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>101</ArtistId>
+    <ArtistName>Jethro Tull</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>239</ArtistId>
+    <ArtistName>Jimmy Justice</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>102</ArtistId>
+    <ArtistName>Jimmy Ruffin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>231</ArtistId>
+    <ArtistName>Joan Baez</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>103</ArtistId>
+    <ArtistName>Joe Brown</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>104</ArtistId>
+    <ArtistName>John Lennon</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>7</ArtistId>
+    <ArtistName>John Leyton</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>105</ArtistId>
+    <ArtistName>John Rowles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>243</ArtistId>
+    <ArtistName>Johnny And The Hurricanes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>106</ArtistId>
+    <ArtistName>Johnny Cash</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>107</ArtistId>
+    <ArtistName>Johnny Kidd and The Pirates</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>108</ArtistId>
+    <ArtistName>Johnny Preston</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>109</ArtistId>
+    <ArtistName>Johnny Tillotson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>226</ArtistId>
+    <ArtistName>Jonathan Richman</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>223</ArtistId>
+    <ArtistName>Jr. Walker &amp; The All Stars</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>35</ArtistId>
+    <ArtistName>Kathy Kirby</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>111</ArtistId>
+    <ArtistName>Keith West</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>12</ArtistId>
+    <ArtistName>Kenny Rogers And The First Edition</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>13</ArtistId>
+    <ArtistName>Labi Siffre</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>113</ArtistId>
+    <ArtistName>Leapy Lee</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>224</ArtistId>
+    <ArtistName>Levi Dexter &amp; The Ripchords</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>114</ArtistId>
+    <ArtistName>Lieutenant Pigeon</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>115</ArtistId>
+    <ArtistName>Lindisfarne</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>116</ArtistId>
+    <ArtistName>Lobo</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>217</ArtistId>
+    <ArtistName>Long John Baldry</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>39</ArtistId>
+    <ArtistName>Lonnie Donegan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>10</ArtistId>
+    <ArtistName>Lou Christie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>205</ArtistId>
+    <ArtistName>Louise Cordet</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>117</ArtistId>
+    <ArtistName>Lulu</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>119</ArtistId>
+    <ArtistName>Manfred Mann</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>192</ArtistId>
+    <ArtistName>Marbles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>112</ArtistId>
+    <ArtistName>Mark Wirtz Orchestra</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>199</ArtistId>
+    <ArtistName>Marv Johnson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>121</ArtistId>
+    <ArtistName>Marvin Gaye</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>122</ArtistId>
+    <ArtistName>Marvin Gaye And Tammi Terrell</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>123</ArtistId>
+    <ArtistName>Mary Hopkin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>124</ArtistId>
+    <ArtistName>Melanie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>190</ArtistId>
+    <ArtistName>Mike Redway</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>126</ArtistId>
+    <ArtistName>Millie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>127</ArtistId>
+    <ArtistName>Mungo Jerry</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>128</ArtistId>
+    <ArtistName>Nancy Sinatra</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>129</ArtistId>
+    <ArtistName>Nancy Sinatra and Frank Sinatra</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>132</ArtistId>
+    <ArtistName>Neil Sedaka</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>133</ArtistId>
+    <ArtistName>Nina Simone</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>230</ArtistId>
+    <ArtistName>Olivia Newton John</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>134</ArtistId>
+    <ArtistName>Paul Anka</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>198</ArtistId>
+    <ArtistName>Paul Evans</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>218</ArtistId>
+    <ArtistName>Paul Jones</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>38</ArtistId>
+    <ArtistName>Paul Mauriat</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>135</ArtistId>
+    <ArtistName>Peter And Gordon</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>136</ArtistId>
+    <ArtistName>Peter Sarstedt</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>137</ArtistId>
+    <ArtistName>Petula Clark</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>31</ArtistId>
+    <ArtistName>PickettyWitch</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>138</ArtistId>
+    <ArtistName>Procol Harum</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>140</ArtistId>
+    <ArtistName>R. Dean Taylor</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>139</ArtistId>
+    <ArtistName>Ray Charles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>241</ArtistId>
+    <ArtistName>Ricky Nelson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>143</ArtistId>
+    <ArtistName>Roy Orbison</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>144</ArtistId>
+    <ArtistName>Rufus Thomas</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>214</ArtistId>
+    <ArtistName>Sacha Distel</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>145</ArtistId>
+    <ArtistName>Sam &amp; Dave</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>146</ArtistId>
+    <ArtistName>Sandie Shaw</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>171</ArtistId>
+    <ArtistName>Sandy Nelson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>147</ArtistId>
+    <ArtistName>Scott McKenzie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>234</ArtistId>
+    <ArtistName>Showaddywaddy</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>188</ArtistId>
+    <ArtistName>Simon Dupree &amp; The Big Sound</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>150</ArtistId>
+    <ArtistName>Sly &amp; The Family Stone</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>151</ArtistId>
+    <ArtistName>Small Faces</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>152</ArtistId>
+    <ArtistName>Solomon King</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>8</ArtistId>
+    <ArtistName>Sonny &amp; Cher</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>174</ArtistId>
+    <ArtistName>Sounds Orchestral</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>153</ArtistId>
+    <ArtistName>Status Quo</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>233</ArtistId>
+    <ArtistName>Stevie Wonder</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>220</ArtistId>
+    <ArtistName>Suzi Quatro</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>155</ArtistId>
+    <ArtistName>Tammy Wynette</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>158</ArtistId>
+    <ArtistName>Terry Dactyl And The Dinosaurs</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>43</ArtistId>
+    <ArtistName>The Animals</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>44</ArtistId>
+    <ArtistName>The Applejacks</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>33</ArtistId>
+    <ArtistName>The Archies</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>48</ArtistId>
+    <ArtistName>The Beach Boys</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>2</ArtistId>
+    <ArtistName>The Beatles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>49</ArtistId>
+    <ArtistName>The Bee Gees</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>60</ArtistId>
+    <ArtistName>The Bonzo Dog Doo-Dah Band</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>172</ArtistId>
+    <ArtistName>The Brook Brothers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>61</ArtistId>
+    <ArtistName>The Byrds</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>200</ArtistId>
+    <ArtistName>The Cascades</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>64</ArtistId>
+    <ArtistName>The Chiffons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>177</ArtistId>
+    <ArtistName>The Cuff Links</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>219</ArtistId>
+    <ArtistName>The Dave Clark Five</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>80</ArtistId>
+    <ArtistName>The Dubliners</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>228</ArtistId>
+    <ArtistName>The Easybeats</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>209</ArtistId>
+    <ArtistName>The Equals</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>84</ArtistId>
+    <ArtistName>The Everly Brothers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>86</ArtistId>
+    <ArtistName>The Flower Pot Men</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>87</ArtistId>
+    <ArtistName>The Fortunes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>191</ArtistId>
+    <ArtistName>The Foundations</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>88</ArtistId>
+    <ArtistName>The Four Pennies</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>208</ArtistId>
+    <ArtistName>The Four Preps</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>232</ArtistId>
+    <ArtistName>The Four Tops</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>95</ArtistId>
+    <ArtistName>The Goons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>15</ArtistId>
+    <ArtistName>The Hollies</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>240</ArtistId>
+    <ArtistName>The Ivy League</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>99</ArtistId>
+    <ArtistName>The Jackson 5</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>204</ArtistId>
+    <ArtistName>The Johnstons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>110</ArtistId>
+    <ArtistName>The Kingston Trio</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>6</ArtistId>
+    <ArtistName>The Kinks</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>207</ArtistId>
+    <ArtistName>The Love Affair</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>229</ArtistId>
+    <ArtistName>The Lovin' Spoonful</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>118</ArtistId>
+    <ArtistName>The Mama's And The Papa's</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>120</ArtistId>
+    <ArtistName>The Marmalade</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>125</ArtistId>
+    <ArtistName>The Merseybeats</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>227</ArtistId>
+    <ArtistName>The Modern Lovers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>3</ArtistId>
+    <ArtistName>The Monkees</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>30</ArtistId>
+    <ArtistName>The Moody Blues</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>5</ArtistId>
+    <ArtistName>The Move</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>196</ArtistId>
+    <ArtistName>The Muldoon Brothers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>131</ArtistId>
+    <ArtistName>The Nashville Teens</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>201</ArtistId>
+    <ArtistName>The Ramrods</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>141</ArtistId>
+    <ArtistName>The Rolling Stones</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>142</ArtistId>
+    <ArtistName>The Royal Guardsmen</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>215</ArtistId>
+    <ArtistName>The Scaffold</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>148</ArtistId>
+    <ArtistName>The Searchers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>149</ArtistId>
+    <ArtistName>The Seekers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>36</ArtistId>
+    <ArtistName>The Shadows</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>212</ArtistId>
+    <ArtistName>The Springfields</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>154</ArtistId>
+    <ArtistName>The Supremes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>156</ArtistId>
+    <ArtistName>The Teddy Bears</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>157</ArtistId>
+    <ArtistName>The Temptations</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>162</ArtistId>
+    <ArtistName>The Tornados</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>163</ArtistId>
+    <ArtistName>The Toys</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>165</ArtistId>
+    <ArtistName>The Tremeloes</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>166</ArtistId>
+    <ArtistName>The Troggs</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>222</ArtistId>
+    <ArtistName>The Turtles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>189</ArtistId>
+    <ArtistName>The Typhoons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>187</ArtistId>
+    <ArtistName>The Vernons Girls</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>167</ArtistId>
+    <ArtistName>The Who</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>180</ArtistId>
+    <ArtistName>The Young Idea</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>159</ArtistId>
+    <ArtistName>Them</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>206</ArtistId>
+    <ArtistName>Titanic</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>160</ArtistId>
+    <ArtistName>Tommy Roe</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>176</ArtistId>
+    <ArtistName>Tommy Steele</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>225</ArtistId>
+    <ArtistName>Tommy Tucker</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>161</ArtistId>
+    <ArtistName>Tony Bennett</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>164</ArtistId>
+    <ArtistName>Traffic</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>178</ArtistId>
+    <ArtistName>Vanity Fare</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>170</ArtistId>
+    <ArtistName>Vikki Carr</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>186</ArtistId>
+    <ArtistName>Warm Sounds</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>237</ArtistId>
+    <ArtistName>Wayne Fontana And The Mindbenders</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>20</ArtistId>
+    <ArtistName>White Plains</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>469</ArtistId>
+    <ArtistName>The Pointer Sisters</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>470</ArtistId>
+    <ArtistName>Kate Bush</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>471</ArtistId>
+    <ArtistName>Elkie Brooks</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>472</ArtistId>
+    <ArtistName>Hazel O'Connor</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>473</ArtistId>
+    <ArtistName>Pretenders</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>474</ArtistId>
+    <ArtistName>Gloria Estefan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>475</ArtistId>
+    <ArtistName>P.H.D.</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>476</ArtistId>
+    <ArtistName>Barbra &amp; Neil</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>477</ArtistId>
+    <ArtistName>Alan Lindgren</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>478</ArtistId>
+    <ArtistName>Pat Benatar</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>479</ArtistId>
+    <ArtistName>Blondie</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>480</ArtistId>
+    <ArtistName>Thin Lizzy</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>481</ArtistId>
+    <ArtistName>Roxy Music</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>482</ArtistId>
+    <ArtistName>Art Garfunkel</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>483</ArtistId>
+    <ArtistName>Unknown</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>484</ArtistId>
+    <ArtistName>Sheena Easton</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>485</ArtistId>
+    <ArtistName>Dean Friedman</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>486</ArtistId>
+    <ArtistName>Lene Lovich</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>487</ArtistId>
+    <ArtistName>Vangelis</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>488</ArtistId>
+    <ArtistName>Cyndi Lauper</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>489</ArtistId>
+    <ArtistName>Bangles</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>490</ArtistId>
+    <ArtistName>Abba</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>491</ArtistId>
+    <ArtistName>Ultravox</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>492</ArtistId>
+    <ArtistName>Styx</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>493</ArtistId>
+    <ArtistName>Elton John &amp; Kiki Dee</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>494</ArtistId>
+    <ArtistName>Julie Covington</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>495</ArtistId>
+    <ArtistName>Gerry Rafferty</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>496</ArtistId>
+    <ArtistName>Carly Simon</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>497</ArtistId>
+    <ArtistName>Lynsey De Paul</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>498</ArtistId>
+    <ArtistName>Focus</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>499</ArtistId>
+    <ArtistName>Barbra Streisand</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>500</ArtistId>
+    <ArtistName>Blue Oyster Cult</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>501</ArtistId>
+    <ArtistName>Reunion</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>502</ArtistId>
+    <ArtistName>Billy Swan</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>503</ArtistId>
+    <ArtistName>Sarah Vaughan &amp; Billy Eckstine</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>504</ArtistId>
+    <ArtistName>Dr Feelgood</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>505</ArtistId>
+    <ArtistName>Janis Ian</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>506</ArtistId>
+    <ArtistName>Ralph McTell</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>507</ArtistId>
+    <ArtistName>Judy Collins</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>508</ArtistId>
+    <ArtistName>Serge Gainsbourg &amp; Jane Birkin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>509</ArtistId>
+    <ArtistName>Jane Birkin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>510</ArtistId>
+    <ArtistName>Elton John</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>511</ArtistId>
+    <ArtistName>Frankie Valli &amp; The Four Seasons</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>512</ArtistId>
+    <ArtistName>Captain &amp; Tennille</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>513</ArtistId>
+    <ArtistName>The Detroit Spinners</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>514</ArtistId>
+    <ArtistName>The Doors</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>515</ArtistId>
+    <ArtistName>Bad Company</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>516</ArtistId>
+    <ArtistName>Jasper Carrott</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>517</ArtistId>
+    <ArtistName>Nicolas Kynaston</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>518</ArtistId>
+    <ArtistName>Emmylou Harris</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>519</ArtistId>
+    <ArtistName>Marshall, Hain</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>520</ArtistId>
+    <ArtistName>The Tony Osborne Sound</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>521</ArtistId>
+    <ArtistName>The Cars</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>522</ArtistId>
+    <ArtistName>Barbara Dickson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>523</ArtistId>
+    <ArtistName>Mady Mesplé</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>524</ArtistId>
+    <ArtistName>Heart</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>525</ArtistId>
+    <ArtistName>Paul McCartney</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>526</ArtistId>
+    <ArtistName>Jennifer Rush</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>527</ArtistId>
+    <ArtistName>Tears For Fears</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>528</ArtistId>
+    <ArtistName>Alice Cooper</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>529</ArtistId>
+    <ArtistName>Jim Diamond</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>530</ArtistId>
+    <ArtistName>Foreigner</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>531</ArtistId>
+    <ArtistName>BBC Radiophonic Workshop</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>532</ArtistId>
+    <ArtistName>Boston</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>533</ArtistId>
+    <ArtistName>Nilsson</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>534</ArtistId>
+    <ArtistName>Lou Reed</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>535</ArtistId>
+    <ArtistName>Hawkwind</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>536</ArtistId>
+    <ArtistName>Dave And Ansil Collins</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>537</ArtistId>
+    <ArtistName>Don McLean</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>538</ArtistId>
+    <ArtistName>Wings</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>539</ArtistId>
+    <ArtistName>Gary Glitter</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>540</ArtistId>
+    <ArtistName>The Congregation</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>541</ArtistId>
+    <ArtistName>Neil Diamond</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>542</ArtistId>
+    <ArtistName>Hugo Montenegro</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>543</ArtistId>
+    <ArtistName>Waldo De Los Rios</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>544</ArtistId>
+    <ArtistName>The New Seekers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>545</ArtistId>
+    <ArtistName>Strawbs</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>546</ArtistId>
+    <ArtistName>Nazareth</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>547</ArtistId>
+    <ArtistName>B. Bumble And The Stingers</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>548</ArtistId>
+    <ArtistName>Danyel Gerard</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>549</ArtistId>
+    <ArtistName>St. Cecelia</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>550</ArtistId>
+    <ArtistName>Lee Marvin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>551</ArtistId>
+    <ArtistName>Clint Eastwood</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>552</ArtistId>
+    <ArtistName>Anne Murray</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>553</ArtistId>
+    <ArtistName>Cozy Powell</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>554</ArtistId>
+    <ArtistName>Hot Chocolate</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>555</ArtistId>
+    <ArtistName>Queen</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>556</ArtistId>
+    <ArtistName>Sparks</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>557</ArtistId>
+    <ArtistName>Cockney Rebel</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>558</ArtistId>
+    <ArtistName>Polly Brown</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>559</ArtistId>
+    <ArtistName>Jim Stafford</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>560</ArtistId>
+    <ArtistName>Black Sabbath</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>561</ArtistId>
+    <ArtistName>Dave Stewart with Barbara Gaskin</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>562</ArtistId>
+    <ArtistName>Madonna</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>563</ArtistId>
+    <ArtistName>Sammy Hagar</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>564</ArtistId>
+    <ArtistName>John &amp; Yoko</ArtistName>
+  </Artists>
+  <Artists>
+    <ArtistId>565</ArtistId>
+    <ArtistName>Yoko Ono And The Plastic Ono Band</ArtistName>
+  </Artists>
+</NewDataSet>

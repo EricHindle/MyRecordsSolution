@@ -63,10 +63,16 @@ Partial Class FrmRecordInput
         Me.recLabelId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recArtistId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnNext = New System.Windows.Forms.Button()
         Me.NudCopies = New System.Windows.Forms.NumericUpDown()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.BtnUpdate = New System.Windows.Forms.Button()
+        Me.BtnStop = New System.Windows.Forms.Button()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.BtnPlay = New System.Windows.Forms.Button()
+        Me.BtnFindSong = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TxtSongFile = New System.Windows.Forms.TextBox()
         Me.BtnDateClear = New System.Windows.Forms.Button()
         Me.BtnUpdateTrack = New System.Windows.Forms.Button()
         Me.DtpChartDate = New System.Windows.Forms.DateTimePicker()
@@ -159,7 +165,7 @@ Partial Class FrmRecordInput
         Me.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnAdd.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAdd.ForeColor = System.Drawing.Color.Black
-        Me.BtnAdd.Location = New System.Drawing.Point(212, 448)
+        Me.BtnAdd.Location = New System.Drawing.Point(212, 474)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(78, 78)
         Me.BtnAdd.TabIndex = 7
@@ -176,7 +182,7 @@ Partial Class FrmRecordInput
         Me.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnClose.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnClose.ForeColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BtnClose.Location = New System.Drawing.Point(1067, 557)
+        Me.BtnClose.Location = New System.Drawing.Point(1067, 583)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(78, 34)
         Me.BtnClose.TabIndex = 1
@@ -372,7 +378,7 @@ Partial Class FrmRecordInput
         Me.DgvTracks.ReadOnly = True
         Me.DgvTracks.RowHeadersVisible = False
         Me.DgvTracks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvTracks.Size = New System.Drawing.Size(498, 182)
+        Me.DgvTracks.Size = New System.Drawing.Size(487, 192)
         Me.DgvTracks.TabIndex = 0
         '
         'trkSide
@@ -422,7 +428,7 @@ Partial Class FrmRecordInput
         'Status
         '
         Me.Status.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.Status.Location = New System.Drawing.Point(0, 594)
+        Me.Status.Location = New System.Drawing.Point(0, 620)
         Me.Status.Name = "Status"
         Me.Status.Size = New System.Drawing.Size(1173, 22)
         Me.Status.TabIndex = 2
@@ -453,8 +459,8 @@ Partial Class FrmRecordInput
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DgvTracks)
         Me.SplitContainer1.Panel2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SplitContainer1.Size = New System.Drawing.Size(502, 515)
-        Me.SplitContainer1.SplitterDistance = 325
+        Me.SplitContainer1.Size = New System.Drawing.Size(491, 541)
+        Me.SplitContainer1.SplitterDistance = 341
         Me.SplitContainer1.TabIndex = 8
         '
         'DgvRecords
@@ -469,7 +475,7 @@ Partial Class FrmRecordInput
         Me.DgvRecords.ReadOnly = True
         Me.DgvRecords.RowHeadersVisible = False
         Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvRecords.Size = New System.Drawing.Size(498, 321)
+        Me.DgvRecords.Size = New System.Drawing.Size(487, 337)
         Me.DgvRecords.TabIndex = 0
         '
         'recId
@@ -556,6 +562,12 @@ Partial Class FrmRecordInput
         '
         'SplitContainer2.Panel2
         '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.BtnStop)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.ProgressBar1)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.BtnPlay)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.BtnFindSong)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.Label13)
+        Me.SplitContainer2.Panel2.Controls.Add(Me.TxtSongFile)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnDateClear)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnUpdateTrack)
         Me.SplitContainer2.Panel2.Controls.Add(Me.DtpChartDate)
@@ -576,24 +588,9 @@ Partial Class FrmRecordInput
         Me.SplitContainer2.Panel2.Controls.Add(Me.NudTrackNo)
         Me.SplitContainer2.Panel2.Controls.Add(Me.GroupBox3)
         Me.SplitContainer2.Panel2.Controls.Add(Me.Label9)
-        Me.SplitContainer2.Size = New System.Drawing.Size(1154, 537)
-        Me.SplitContainer2.SplitterDistance = 809
+        Me.SplitContainer2.Size = New System.Drawing.Size(1154, 563)
+        Me.SplitContainer2.SplitterDistance = 798
         Me.SplitContainer2.TabIndex = 0
-        '
-        'BtnUpdate
-        '
-        Me.BtnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.BtnUpdate.BackColor = System.Drawing.Color.White
-        Me.BtnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnUpdate.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnUpdate.ForeColor = System.Drawing.Color.Black
-        Me.BtnUpdate.Location = New System.Drawing.Point(212, 448)
-        Me.BtnUpdate.Name = "BtnUpdate"
-        Me.BtnUpdate.Size = New System.Drawing.Size(78, 78)
-        Me.BtnUpdate.TabIndex = 15
-        Me.BtnUpdate.Text = "Update Record"
-        Me.BtnUpdate.UseVisualStyleBackColor = False
         '
         'BtnNext
         '
@@ -625,9 +622,85 @@ Partial Class FrmRecordInput
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "Copies"
         '
+        'BtnUpdate
+        '
+        Me.BtnUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BtnUpdate.BackColor = System.Drawing.Color.White
+        Me.BtnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnUpdate.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnUpdate.ForeColor = System.Drawing.Color.Black
+        Me.BtnUpdate.Location = New System.Drawing.Point(212, 474)
+        Me.BtnUpdate.Name = "BtnUpdate"
+        Me.BtnUpdate.Size = New System.Drawing.Size(78, 78)
+        Me.BtnUpdate.TabIndex = 15
+        Me.BtnUpdate.Text = "Update Record"
+        Me.BtnUpdate.UseVisualStyleBackColor = False
+        '
+        'BtnStop
+        '
+        Me.BtnStop.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnStop.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnStop.Image = Global.MyVinyl.My.Resources.Resources._stop
+        Me.BtnStop.Location = New System.Drawing.Point(280, 389)
+        Me.BtnStop.Name = "BtnStop"
+        Me.BtnStop.Size = New System.Drawing.Size(26, 26)
+        Me.BtnStop.TabIndex = 25
+        Me.BtnStop.UseVisualStyleBackColor = True
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ProgressBar1.Location = New System.Drawing.Point(118, 451)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(100, 23)
+        Me.ProgressBar1.TabIndex = 24
+        '
+        'BtnPlay
+        '
+        Me.BtnPlay.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnPlay.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnPlay.Image = Global.MyVinyl.My.Resources.Resources.play
+        Me.BtnPlay.Location = New System.Drawing.Point(232, 389)
+        Me.BtnPlay.Name = "BtnPlay"
+        Me.BtnPlay.Size = New System.Drawing.Size(26, 26)
+        Me.BtnPlay.TabIndex = 23
+        Me.BtnPlay.UseVisualStyleBackColor = True
+        '
+        'BtnFindSong
+        '
+        Me.BtnFindSong.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnFindSong.Image = Global.MyVinyl.My.Resources.Resources.left24
+        Me.BtnFindSong.Location = New System.Drawing.Point(316, 419)
+        Me.BtnFindSong.Name = "BtnFindSong"
+        Me.BtnFindSong.Size = New System.Drawing.Size(26, 26)
+        Me.BtnFindSong.TabIndex = 22
+        Me.BtnFindSong.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(9, 398)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(62, 17)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "Song File"
+        '
+        'TxtSongFile
+        '
+        Me.TxtSongFile.AllowDrop = True
+        Me.TxtSongFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtSongFile.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSongFile.Location = New System.Drawing.Point(11, 418)
+        Me.TxtSongFile.Name = "TxtSongFile"
+        Me.TxtSongFile.Size = New System.Drawing.Size(299, 27)
+        Me.TxtSongFile.TabIndex = 20
+        '
         'BtnDateClear
         '
-        Me.BtnDateClear.Location = New System.Drawing.Point(298, 395)
+        Me.BtnDateClear.Location = New System.Drawing.Point(297, 342)
         Me.BtnDateClear.Name = "BtnDateClear"
         Me.BtnDateClear.Size = New System.Drawing.Size(20, 23)
         Me.BtnDateClear.TabIndex = 19
@@ -642,7 +715,7 @@ Partial Class FrmRecordInput
         Me.BtnUpdateTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdateTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnUpdateTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnUpdateTrack.Location = New System.Drawing.Point(240, 448)
+        Me.BtnUpdateTrack.Location = New System.Drawing.Point(240, 474)
         Me.BtnUpdateTrack.Name = "BtnUpdateTrack"
         Me.BtnUpdateTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnUpdateTrack.TabIndex = 11
@@ -651,7 +724,7 @@ Partial Class FrmRecordInput
         '
         'DtpChartDate
         '
-        Me.DtpChartDate.Location = New System.Drawing.Point(121, 394)
+        Me.DtpChartDate.Location = New System.Drawing.Point(120, 341)
         Me.DtpChartDate.Name = "DtpChartDate"
         Me.DtpChartDate.Size = New System.Drawing.Size(171, 24)
         Me.DtpChartDate.TabIndex = 9
@@ -659,7 +732,7 @@ Partial Class FrmRecordInput
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(9, 401)
+        Me.Label12.Location = New System.Drawing.Point(8, 348)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(108, 17)
         Me.Label12.TabIndex = 18
@@ -668,7 +741,7 @@ Partial Class FrmRecordInput
         'TxtChartPos
         '
         Me.TxtChartPos.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtChartPos.Location = New System.Drawing.Point(151, 349)
+        Me.TxtChartPos.Location = New System.Drawing.Point(150, 296)
         Me.TxtChartPos.Name = "TxtChartPos"
         Me.TxtChartPos.Size = New System.Drawing.Size(62, 27)
         Me.TxtChartPos.TabIndex = 8
@@ -676,7 +749,7 @@ Partial Class FrmRecordInput
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(9, 355)
+        Me.Label11.Location = New System.Drawing.Point(8, 302)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(126, 17)
         Me.Label11.TabIndex = 17
@@ -690,7 +763,7 @@ Partial Class FrmRecordInput
         Me.BtnSaveTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnSaveTrack.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnSaveTrack.ForeColor = System.Drawing.Color.Black
-        Me.BtnSaveTrack.Location = New System.Drawing.Point(12, 448)
+        Me.BtnSaveTrack.Location = New System.Drawing.Point(12, 474)
         Me.BtnSaveTrack.Name = "BtnSaveTrack"
         Me.BtnSaveTrack.Size = New System.Drawing.Size(78, 78)
         Me.BtnSaveTrack.TabIndex = 10
@@ -706,7 +779,7 @@ Partial Class FrmRecordInput
         Me.CbArtists.FormattingEnabled = True
         Me.CbArtists.Location = New System.Drawing.Point(12, 140)
         Me.CbArtists.Name = "CbArtists"
-        Me.CbArtists.Size = New System.Drawing.Size(235, 27)
+        Me.CbArtists.Size = New System.Drawing.Size(246, 27)
         Me.CbArtists.TabIndex = 2
         Me.CbArtists.ValueMember = "ArtistId"
         '
@@ -718,7 +791,7 @@ Partial Class FrmRecordInput
         Me.BtnTracks.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.BtnTracks.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnTracks.ForeColor = System.Drawing.Color.Black
-        Me.BtnTracks.Location = New System.Drawing.Point(253, 137)
+        Me.BtnTracks.Location = New System.Drawing.Point(264, 137)
         Me.BtnTracks.Name = "BtnTracks"
         Me.BtnTracks.Size = New System.Drawing.Size(65, 32)
         Me.BtnTracks.TabIndex = 3
@@ -733,7 +806,7 @@ Partial Class FrmRecordInput
         Me.BtnAddGenre.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.BtnAddGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnAddGenre.ForeColor = System.Drawing.Color.Black
-        Me.BtnAddGenre.Location = New System.Drawing.Point(202, 306)
+        Me.BtnAddGenre.Location = New System.Drawing.Point(280, 246)
         Me.BtnAddGenre.Name = "BtnAddGenre"
         Me.BtnAddGenre.Size = New System.Drawing.Size(65, 32)
         Me.BtnAddGenre.TabIndex = 7
@@ -747,16 +820,16 @@ Partial Class FrmRecordInput
         Me.CbGenre.DisplayMember = "GenreId"
         Me.CbGenre.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbGenre.FormattingEnabled = True
-        Me.CbGenre.Location = New System.Drawing.Point(12, 309)
+        Me.CbGenre.Location = New System.Drawing.Point(93, 250)
         Me.CbGenre.Name = "CbGenre"
-        Me.CbGenre.Size = New System.Drawing.Size(184, 27)
+        Me.CbGenre.Size = New System.Drawing.Size(181, 27)
         Me.CbGenre.TabIndex = 6
         Me.CbGenre.ValueMember = "GenreId"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 285)
+        Me.Label7.Location = New System.Drawing.Point(90, 230)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(44, 17)
         Me.Label7.TabIndex = 16
@@ -787,7 +860,7 @@ Partial Class FrmRecordInput
         Me.TxtTitle.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTitle.Location = New System.Drawing.Point(12, 190)
         Me.TxtTitle.Name = "TxtTitle"
-        Me.TxtTitle.Size = New System.Drawing.Size(301, 27)
+        Me.TxtTitle.Size = New System.Drawing.Size(312, 27)
         Me.TxtTitle.TabIndex = 4
         '
         'Label5
@@ -899,7 +972,7 @@ Partial Class FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1173, 616)
+        Me.ClientSize = New System.Drawing.Size(1173, 642)
         Me.Controls.Add(Me.SplitContainer2)
         Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.BtnClose)
@@ -1006,4 +1079,10 @@ Partial Class FrmRecordInput
     Friend WithEvents BtnDateClear As Button
     Friend WithEvents BtnNext As Button
     Friend WithEvents BtnUpdate As Button
+    Friend WithEvents BtnFindSong As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TxtSongFile As TextBox
+    Friend WithEvents BtnPlay As Button
+    Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents BtnStop As Button
 End Class

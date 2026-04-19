@@ -30,7 +30,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="LogFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:/MyVinyl/Logs</Value>
+      <Value Profile="(Default)">C:\ProgramData\hindleware/MyVinyl/Logs</Value>
     </Setting>
     <Setting Name="RecordInputFormPos" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -63,7 +63,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DataFilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:/MyVinyl/Data</Value>
+      <Value Profile="(Default)">D:\MyVinyl\Data</Value>
     </Setting>
   </Settings>
 </SettingsFile>

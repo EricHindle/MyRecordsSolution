@@ -43,8 +43,12 @@ Partial Class FrmArtistMaint
         Me.BtnNew = New System.Windows.Forms.Button()
         Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnClose = New System.Windows.Forms.Button()
+        Me.PicImage = New System.Windows.Forms.PictureBox()
+        Me.TxtImageFile = New System.Windows.Forms.TextBox()
+        Me.LblImageMissing = New System.Windows.Forms.Label()
         CType(Me.DgvArtist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.PicImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtArtist
@@ -199,11 +203,47 @@ Partial Class FrmArtistMaint
         Me.BtnClose.Text = "Close"
         Me.BtnClose.UseVisualStyleBackColor = False
         '
+        'PicImage
+        '
+        Me.PicImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PicImage.Location = New System.Drawing.Point(234, 134)
+        Me.PicImage.Name = "PicImage"
+        Me.PicImage.Size = New System.Drawing.Size(60, 60)
+        Me.PicImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicImage.TabIndex = 96
+        Me.PicImage.TabStop = False
+        '
+        'TxtImageFile
+        '
+        Me.TxtImageFile.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtImageFile.Location = New System.Drawing.Point(234, 201)
+        Me.TxtImageFile.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtImageFile.Name = "TxtImageFile"
+        Me.TxtImageFile.Size = New System.Drawing.Size(248, 27)
+        Me.TxtImageFile.TabIndex = 104
+        '
+        'LblImageMissing
+        '
+        Me.LblImageMissing.AutoSize = True
+        Me.LblImageMissing.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LblImageMissing.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblImageMissing.ForeColor = System.Drawing.Color.White
+        Me.LblImageMissing.Location = New System.Drawing.Point(331, 153)
+        Me.LblImageMissing.Margin = New System.Windows.Forms.Padding(0)
+        Me.LblImageMissing.Name = "LblImageMissing"
+        Me.LblImageMissing.Padding = New System.Windows.Forms.Padding(2)
+        Me.LblImageMissing.Size = New System.Drawing.Size(135, 21)
+        Me.LblImageMissing.TabIndex = 105
+        Me.LblImageMissing.Text = "Image file missing"
+        '
         'FrmArtistMaint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(494, 349)
+        Me.Controls.Add(Me.LblImageMissing)
+        Me.Controls.Add(Me.TxtImageFile)
+        Me.Controls.Add(Me.PicImage)
         Me.Controls.Add(Me.TxtArtist)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -214,12 +254,14 @@ Partial Class FrmArtistMaint
         Me.Controls.Add(Me.BtnNew)
         Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.BtnClose)
+        Me.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmArtistMaint"
         Me.Text = "Artists"
         CType(Me.DgvArtist, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.PicImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -238,4 +280,7 @@ Partial Class FrmArtistMaint
     Friend WithEvents BtnClose As Button
     Friend WithEvents artId As DataGridViewTextBoxColumn
     Friend WithEvents artName As DataGridViewTextBoxColumn
+    Friend WithEvents PicImage As PictureBox
+    Friend WithEvents TxtImageFile As TextBox
+    Friend WithEvents LblImageMissing As Label
 End Class

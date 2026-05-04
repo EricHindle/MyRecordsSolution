@@ -5,11 +5,15 @@
 ' Author Eric Hindle
 '
 
+Imports System.IO
+Imports HindlewareLib.Imaging.ImageUtil
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
 
 Public Class FrmArtistMaint
-    Private CurrentArtist As Artist
+    Private oCurrentArtist As Artist
+    Private oCurrentImage As String
+    Private oNewImage As String
     Private isLoading As Boolean
     Private _isSaveAndExit As Boolean
     Private _artist As New Artist
@@ -33,6 +37,7 @@ Public Class FrmArtistMaint
     Private Sub FrmArtistMaint_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LogUtil.Info("Artist maintenance", MyBase.Name)
         GetFormPos(Me, My.Settings.ArtistFormPos)
+        LblImageMissing.Visible = False
         LoadArtistList()
     End Sub
 
@@ -55,6 +60,9 @@ Public Class FrmArtistMaint
                                                     .WithArtistName(TxtArtist.Text) _
                                                     .Build
             Artist.ArtistId = InsertArtist(Artist)
+            If Not String.IsNullOrEmpty(oNewImage) Then
+                TryCopyFile(oNewImage, oCurrentImage, True)
+            End If
             LogUtil.ShowStatus("Added Artist", LblStatus, Name)
         Else
             LogUtil.ShowStatus("No Name. Not added.", LblStatus, False, Nothing, True)
@@ -64,10 +72,17 @@ Public Class FrmArtistMaint
         If Not String.IsNullOrWhiteSpace(TxtArtist.Text) Then
             LogUtil.ShowStatus("Updating Artist", LblStatus, MyBase.Name)
             Dim oArtist As Artist = ArtistBuilder.AnArtist.StartingWithNothing _
-                                                    .WithId(CurrentArtist.ArtistId) _
+                                                    .WithId(oCurrentArtist.ArtistId) _
                                                     .WithArtistName(TxtArtist.Text) _
+                                                    .WithArtistImage(TxtImageFile.Text) _
                                                     .Build
             UpdateArtist(oArtist)
+            If Not String.IsNullOrEmpty(oNewImage) Then
+                If String.IsNullOrEmpty(oCurrentImage) Then
+                    oCurrentImage = Path.Combine(My.Settings.ImagePath, Path.GetFileName(oNewImage))
+                End If
+                TryCopyFile(oNewImage, oCurrentImage, True)
+            End If
             LogUtil.ShowStatus("Updated Artist", LblStatus, MyBase.Name)
         Else
             LogUtil.ShowStatus("No Name. Not changed.", LblStatus, False, Nothing, True)
@@ -98,8 +113,20 @@ Public Class FrmArtistMaint
     Private Sub LoadArtistForm(pRow As DataGridViewRow)
         With pRow
             LblArtistId.Text = .Cells(artId.Name).Value
-            TxtArtist.Text = .Cells(artName.Name).Value
-            CurrentArtist = ArtistBuilder.AnArtist.StartingWithNothing.WithId(LblArtistId.Text).WithArtistName(TxtArtist.Text).Build
+            oCurrentArtist = GetArtistFromId(.Cells(artId.Name).Value)
+            If Not String.IsNullOrEmpty(oCurrentArtist.ArtistImage) Then
+                oCurrentImage = Path.Combine(My.Settings.ImagePath, oCurrentArtist.ArtistImage)
+            Else
+                oCurrentImage = String.Empty
+            End If
+            oNewImage = String.Empty
+            TxtArtist.Text = oCurrentArtist.ArtistName
+            TxtImageFile.Text = oCurrentArtist.ArtistImage
+            If Not String.IsNullOrEmpty(TxtImageFile.Text) Then
+                LoadArtistImage(TxtImageFile.Text)
+            Else
+                PicImage.Image = Nothing
+            End If
             BtnUpdate.Enabled = True
         End With
     End Sub
@@ -110,6 +137,7 @@ Public Class FrmArtistMaint
                 LogUtil.DisplayStatus("Looks like the Artist already exists", LblStatus, True)
             Else
                 InsertNewArtist()
+
                 If IsSaveAndExit Then
                     Close()
                 Else
@@ -145,7 +173,11 @@ Public Class FrmArtistMaint
     Private Sub ClearForm()
         LblArtistId.Text = "-1"
         TxtArtist.Text = String.Empty
-        CurrentArtist = New Artist
+        TxtImageFile.Text = String.Empty
+        oCurrentArtist = New Artist
+        oCurrentImage = String.Empty
+        oNewImage = String.Empty
+        PicImage.Image = Nothing
         DgvArtist.ClearSelection()
         BtnUpdate.Enabled = False
     End Sub
@@ -173,10 +205,52 @@ Public Class FrmArtistMaint
     End Sub
     Private Sub FindArtistInList(pName As String)
         For Each oRow As DataGridViewRow In DgvArtist.Rows
-            If CStr(oRow.Cells(artName.Name).Value).StartsWith(pName) Then
+            If CStr(oRow.Cells(artName.Name).Value).ToLower.StartsWith(pName.ToLower) Then
                 DgvArtist.FirstDisplayedScrollingRowIndex = oRow.Index
                 Exit For
             End If
         Next
     End Sub
+
+    Private Sub PicImage_Click(sender As Object, e As EventArgs) Handles PicImage.Click
+        Dim _newImageFile As String = GetImageFileName(OpenOrSave.Open, ImageType.ALL, TxtImageFile.Text)
+        If Not String.IsNullOrWhiteSpace(_newImageFile) Then
+            Try
+                TxtImageFile.Text = Path.GetFileName(_newImageFile)
+                LoadArtistImage(_newImageFile)
+                PicImage.Refresh()
+                Dim oArtistImageFile As String = Path.Combine(My.Settings.ImagePath, TxtImageFile.Text)
+                If _newImageFile <> oArtistImageFile Then
+                    If My.Computer.FileSystem.FileExists(oArtistImageFile) Then
+                        If MsgBox("Replace image?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "New Image") = MsgBoxResult.Yes Then
+                            oNewImage = _newImageFile
+                        End If
+                    Else
+                        If MsgBox("Use new image?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "New Image") = MsgBoxResult.Yes Then
+                            oNewImage = _newImageFile
+                        Else
+                            TxtImageFile.Text = String.Empty
+                            oNewImage = String.Empty
+                        End If
+                    End If
+                End If
+            Catch ex As Exception
+                LogUtil.Info("Error obtaining new image", MyBase.Name)
+            End Try
+        End If
+    End Sub
+    Private Sub LoadArtistImage(pFilename As String)
+        Dim fullFilename As String = Path.Combine(My.Settings.ImagePath, pFilename)
+        LogUtil.ShowStatus("Finding Image " & fullFilename, LblStatus, MyBase.Name)
+        If My.Computer.FileSystem.FileExists(fullFilename) Then
+            PicImage.Image = System.Drawing.Image.FromFile(fullFilename)
+            LblImageMissing.Visible = False
+        Else
+            LogUtil.ShowStatus("File " & fullFilename & " does not exist", LblStatus, True, MyBase.Name, IsBeep:=True)
+            PicImage.Image = Nothing
+            LblImageMissing.Visible = True
+        End If
+    End Sub
+
+
 End Class

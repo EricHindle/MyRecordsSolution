@@ -532,6 +532,8 @@ Partial Public Class VinylDataSet
         
         Private columnArtistName As Global.System.Data.DataColumn
         
+        Private columnArtistImageFile As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -584,6 +586,14 @@ Partial Public Class VinylDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property ArtistImageFileColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnArtistImageFile
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -620,9 +630,9 @@ Partial Public Class VinylDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddArtistsRow(ByVal ArtistName As String) As ArtistsRow
+        Public Overloads Function AddArtistsRow(ByVal ArtistName As String, ByVal ArtistImageFile As String) As ArtistsRow
             Dim rowArtistsRow As ArtistsRow = CType(Me.NewRow,ArtistsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, ArtistName}
+            Dim columnValuesArray() As Object = New Object() {Nothing, ArtistName, ArtistImageFile}
             rowArtistsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowArtistsRow)
             Return rowArtistsRow
@@ -647,6 +657,7 @@ Partial Public Class VinylDataSet
         Friend Sub InitVars()
             Me.columnArtistId = MyBase.Columns("ArtistId")
             Me.columnArtistName = MyBase.Columns("ArtistName")
+            Me.columnArtistImageFile = MyBase.Columns("ArtistImageFile")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -656,6 +667,8 @@ Partial Public Class VinylDataSet
             MyBase.Columns.Add(Me.columnArtistId)
             Me.columnArtistName = New Global.System.Data.DataColumn("ArtistName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArtistName)
+            Me.columnArtistImageFile = New Global.System.Data.DataColumn("ArtistImageFile", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnArtistImageFile)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("ArtistsKey1", New Global.System.Data.DataColumn() {Me.columnArtistId}, false))
             Me.columnArtistId.AutoIncrement = true
             Me.columnArtistId.AutoIncrementSeed = 1
@@ -663,6 +676,7 @@ Partial Public Class VinylDataSet
             Me.columnArtistId.Unique = true
             Me.columnArtistName.DefaultValue = CType("''",String)
             Me.columnArtistName.MaxLength = 150
+            Me.columnArtistImageFile.MaxLength = 250
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3208,6 +3222,21 @@ Partial Public Class VinylDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property ArtistImageFile() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableArtists.ArtistImageFileColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ArtistImageFile' in table 'Artists' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableArtists.ArtistImageFileColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsArtistNameNull() As Boolean
             Return Me.IsNull(Me.tableArtists.ArtistNameColumn)
         End Function
@@ -3216,6 +3245,18 @@ Partial Public Class VinylDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetArtistNameNull()
             Me(Me.tableArtists.ArtistNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsArtistImageFileNull() As Boolean
+            Return Me.IsNull(Me.tableArtists.ArtistImageFileColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetArtistImageFileNull()
+            Me(Me.tableArtists.ArtistImageFileColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

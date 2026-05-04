@@ -25,6 +25,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="ArtistImageFile" msprop:Generator_ColumnPropNameInRow="ArtistImageFile" msprop:Generator_ColumnPropNameInTable="ArtistImageFileColumn" msprop:Generator_ColumnVarNameInTable="columnArtistImageFile" msprop:Generator_UserColumnName="ArtistImageFile" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -159,7 +166,7 @@
               <xs:element name="ArtistId" msprop:Generator_ColumnPropNameInTable="ArtistIdColumn" msprop:Generator_ColumnPropNameInRow="ArtistId" msprop:Generator_UserColumnName="ArtistId" msprop:Generator_ColumnVarNameInTable="columnArtistId" type="xs:int" />
               <xs:element name="PeakChartPosition" msprop:Generator_ColumnPropNameInTable="PeakChartPositionColumn" msprop:Generator_ColumnPropNameInRow="PeakChartPosition" msprop:Generator_UserColumnName="PeakChartPosition" msprop:Generator_ColumnVarNameInTable="columnPeakChartPosition" type="xs:int" default="-1" />
               <xs:element name="ChartDate" msprop:Generator_ColumnPropNameInTable="ChartDateColumn" msprop:Generator_ColumnPropNameInRow="ChartDate" msprop:Generator_UserColumnName="ChartDate" msprop:Generator_ColumnVarNameInTable="columnChartDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="SongFile" msprop:Generator_ColumnPropNameInRow="SongFile" msprop:Generator_ColumnPropNameInTable="SongFileColumn" msprop:Generator_ColumnVarNameInTable="columnSongFile" msprop:Generator_UserColumnName="SongFile" minOccurs="0">
+              <xs:element name="SongFile" msprop:Generator_UserColumnName="SongFile" msprop:Generator_ColumnPropNameInTable="SongFileColumn" msprop:Generator_ColumnPropNameInRow="SongFile" msprop:Generator_ColumnVarNameInTable="columnSongFile" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />

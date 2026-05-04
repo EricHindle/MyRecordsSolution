@@ -12,6 +12,15 @@ Namespace Domain
 #Region "properties"
         Private _artistId As Integer
         Private _artistName As String
+        Private _artistImage As String
+        Public Property ArtistImage() As String
+            Get
+                Return _artistImage
+            End Get
+            Set(ByVal value As String)
+                _artistImage = value
+            End Set
+        End Property
         Public Property ArtistName() As String
             Get
                 Return _artistName
@@ -33,13 +42,15 @@ Namespace Domain
         Private Sub Initialise()
             _artistId = -1
             _artistName = String.Empty
+            _artistImage = String.Empty
         End Sub
         Public Sub New()
             Initialise()
         End Sub
-        Public Sub New(pId As Integer, pName As String)
+        Public Sub New(pId As Integer, pName As String, pImage As String)
             _artistId = pId
             _artistName = pName
+            _artistImage = pImage
         End Sub
 #End Region
 #Region "methods"

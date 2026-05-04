@@ -94,5 +94,27 @@ Public Module ModCommon
         LogUtil.Debug("Generated form position: " & sPos, MethodBase.GetCurrentMethod.Name)
         Return sPos
     End Function
+    Public Function TryCopyFile(pFullname As String, pDestination As String, pOverwrite As Boolean) As Boolean
+        Return TryCopyFile(pFullname, pDestination, pOverwrite, False, False)
+    End Function
+    Public Function TryCopyFile(pFullname As String, pDestination As String, pOverwrite As Boolean, pIsDisplayException As Boolean) As Boolean
+        Return TryCopyFile(pFullname, pDestination, pOverwrite, pIsDisplayException, False)
+    End Function
+    Public Function TryCopyFile(pFullname As String, pDestination As String, pOverwrite As Boolean, pIsDisplayException As Boolean, pIsThrowException As Boolean) As Boolean
+        Dim isCopied As Boolean
+        Try
+            My.Computer.FileSystem.CopyFile(pFullname, pDestination, pOverwrite)
+            isCopied = True
+        Catch ex As Exception When (TypeOf ex Is ArgumentException _
+                    OrElse TypeOf ex Is IOException _
+                    OrElse TypeOf ex Is NotSupportedException _
+                    OrElse TypeOf ex Is UnauthorizedAccessException _
+                    OrElse TypeOf ex Is Security.SecurityException)
+            isCopied = False
+            If pIsDisplayException Then LogUtil.DisplayException(ex, "Copying file", MethodBase.GetCurrentMethod.Name)
+            If pIsThrowException Then Throw New ApplicationException("Copy file failed for " & pFullname, ex)
+        End Try
+        Return isCopied
+    End Function
 #End Region
 End Module

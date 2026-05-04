@@ -511,7 +511,6 @@ Namespace Domain
                 Dim oArtistRows = From Artist In oArtistsTable.AsEnumerable()
                                   Select Artist
                                   Where Artist.ArtistId = pId
-
                 If oArtistRows.Count > 0 Then
                     oArtist = ArtistBuilder.AnArtist.StartingWith(oArtistRows.First).Build
                 End If
@@ -600,6 +599,7 @@ Namespace Domain
         Private Function SetArtistRowValues(pArtist As Artist, pArtistRow As ArtistsRow) As ArtistsRow
             With pArtist
                 pArtistRow.ArtistName = .ArtistName
+                pArtistRow.ArtistImageFile = .ArtistImage
             End With
             Return pArtistRow
         End Function

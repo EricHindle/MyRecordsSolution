@@ -417,7 +417,7 @@ Namespace Domain
                         Dim oFullRecord As FullRecord = FullRecordBuilder.AFullRecord.StartingWith(oRow.RecordId).Build
                         For Each _track In oFullRecord.Tracks
                             If pArtistId = -1 OrElse _track.Artist.ArtistId = pArtistId Then
-                                If String.IsNullOrEmpty(pTitle) OrElse _track.Title = pTitle Then
+                                If String.IsNullOrEmpty(pTitle) OrElse _track.Title.ToLower.StartsWith(pTitle.ToLower) Then
                                     If pYear = -1 OrElse _track.Year = pYear Then
                                         If pGenreId = -1 OrElse _track.Genre.GenreId = pGenreId Then
                                             Dim _fullTrack As FullRecord = FullRecordBuilder.AFullRecord.StartingWith(_track.RecordId, _track.Side, _track.Track).Build

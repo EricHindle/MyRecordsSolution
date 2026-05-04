@@ -79,7 +79,7 @@ Public Class FrmArtistMaint
             UpdateArtist(oArtist)
             If Not String.IsNullOrEmpty(oNewImage) Then
                 If String.IsNullOrEmpty(oCurrentImage) Then
-                    oCurrentImage = Path.Combine(My.Settings.ImagePath, Path.GetFileName(oNewImage))
+                    oCurrentImage = Path.Combine(My.Settings.ImagePath, TxtImageFile.Text)
                 End If
                 TryCopyFile(oNewImage, oCurrentImage, True)
             End If
@@ -216,7 +216,11 @@ Public Class FrmArtistMaint
         Dim _newImageFile As String = GetImageFileName(OpenOrSave.Open, ImageType.ALL, TxtImageFile.Text)
         If Not String.IsNullOrWhiteSpace(_newImageFile) Then
             Try
-                TxtImageFile.Text = Path.GetFileName(_newImageFile)
+                If String.IsNullOrEmpty(oCurrentImage) Then
+                    TxtImageFile.Text = TxtArtist.Text.Replace(" ", "_") & Path.GetExtension(_newImageFile)
+                Else
+                    TxtImageFile.Text = Path.GetFileName(oCurrentImage)
+                End If
                 LoadArtistImage(_newImageFile)
                 PicImage.Refresh()
                 Dim oArtistImageFile As String = Path.Combine(My.Settings.ImagePath, TxtImageFile.Text)
@@ -252,5 +256,19 @@ Public Class FrmArtistMaint
         End If
     End Sub
 
-
+    Private Sub TxtImageFile_TextChanged(sender As Object, e As EventArgs) Handles TxtImageFile.TextChanged
+        If Not String.IsNullOrWhiteSpace(TxtImageFile.Text) Then
+            Dim _newImageFile As String = Path.Combine(My.Settings.ImagePath, TxtImageFile.Text)
+            Try
+                TxtImageFile.Text = Path.GetFileName(_newImageFile)
+                LoadArtistImage(_newImageFile)
+                PicImage.Refresh()
+            Catch ex As Exception
+                LogUtil.Info("Error obtaining new image", MyBase.Name)
+            End Try
+        Else
+            TxtImageFile.Text = String.Empty
+            PicImage.Image = Nothing
+        End If
+    End Sub
 End Class

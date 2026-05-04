@@ -98,6 +98,7 @@ Partial Class FrmRecordInput
         Me.RbAA = New System.Windows.Forms.RadioButton()
         Me.RbA = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.PicImage = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DgvTracks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +115,7 @@ Partial Class FrmRecordInput
         CType(Me.NudCopies, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.PicImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -562,6 +564,7 @@ Partial Class FrmRecordInput
         '
         'SplitContainer2.Panel2
         '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.PicImage)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnStop)
         Me.SplitContainer2.Panel2.Controls.Add(Me.ProgressBar1)
         Me.SplitContainer2.Panel2.Controls.Add(Me.BtnPlay)
@@ -968,6 +971,17 @@ Partial Class FrmRecordInput
         Me.Label9.TabIndex = 12
         Me.Label9.Text = "Track #"
         '
+        'PicImage
+        '
+        Me.PicImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PicImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PicImage.Location = New System.Drawing.Point(269, 50)
+        Me.PicImage.Name = "PicImage"
+        Me.PicImage.Size = New System.Drawing.Size(60, 60)
+        Me.PicImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicImage.TabIndex = 97
+        Me.PicImage.TabStop = False
+        '
         'FrmRecordInput
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -1003,6 +1017,7 @@ Partial Class FrmRecordInput
         CType(Me.NudTrackNo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.PicImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1085,4 +1100,5 @@ Partial Class FrmRecordInput
     Friend WithEvents BtnPlay As Button
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents BtnStop As Button
+    Friend WithEvents PicImage As PictureBox
 End Class

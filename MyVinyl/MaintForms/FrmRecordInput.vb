@@ -155,10 +155,17 @@ Public Class FrmRecordInput
                                                                              Rb1.CheckedChanged,
                                                                              Rb2.CheckedChanged,
                                                                              NudCopies.ValueChanged,
-                                                                             CbArtists.SelectedIndexChanged,
                                                                              CbGenre.SelectedIndexChanged
         isTrackChanged = True
     End Sub
+    Private Sub CbArtists_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbArtists.SelectedIndexChanged
+        isTrackChanged = True
+        Dim oArtist As Artist = GetArtistFromId(CbArtists.SelectedValue)
+        If oArtist IsNot Nothing AndAlso Not String.IsNullOrEmpty(oArtist.ArtistImage) Then
+            PicImage.ImageLocation = Path.Combine(My.Settings.ImagePath, oArtist.ArtistImage)
+        End If
+    End Sub
+
     Private Sub TxtSongFile_TextChanged(sender As Object, e As EventArgs) Handles TxtSongFile.TextChanged
         isTrackChanged = True
         BtnPlay.Visible = IsValidSongFileName(TxtSongFile.Text)
@@ -404,6 +411,8 @@ Public Class FrmRecordInput
         TxtYear.Text = String.Empty
         CbGenre.SelectedIndex = -1
         CbArtists.SelectedIndex = -1
+        PicImage.ImageLocation = Nothing
+        PicImage.Image = Nothing
         TxtChartPos.Text = String.Empty
         DtpChartDate.Value = DtpChartDate.MinDate
         TxtSongFile.Text = String.Empty
@@ -694,5 +703,6 @@ Public Class FrmRecordInput
         End If
         Return isValid
     End Function
+
 End Class
 

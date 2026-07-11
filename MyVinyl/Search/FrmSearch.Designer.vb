@@ -46,11 +46,6 @@ Partial Class FrmSearch
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.DgvRecords = New System.Windows.Forms.DataGridView()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TxtId = New System.Windows.Forms.TextBox()
-        Me.BtnClear = New System.Windows.Forms.Button()
         Me.recId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,6 +56,13 @@ Partial Class FrmSearch
         Me.recDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recLabelId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.recArtistId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.recTrack = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.LblStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TxtId = New System.Windows.Forms.TextBox()
+        Me.BtnClear = New System.Windows.Forms.Button()
+        Me.recSortPos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DgvRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
@@ -242,7 +244,7 @@ Partial Class FrmSearch
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recLabel, Me.recNumber, Me.recArtist, Me.recSide, Me.recTitle, Me.recChartPos, Me.recDate, Me.recLabelId, Me.recArtistId})
+        Me.DgvRecords.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.recId, Me.recLabel, Me.recNumber, Me.recArtist, Me.recSide, Me.recTitle, Me.recChartPos, Me.recDate, Me.recLabelId, Me.recArtistId, Me.recTrack, Me.recSortPos})
         Me.DgvRecords.Location = New System.Drawing.Point(385, 12)
         Me.DgvRecords.MultiSelect = False
         Me.DgvRecords.Name = "DgvRecords"
@@ -251,53 +253,6 @@ Partial Class FrmSearch
         Me.DgvRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvRecords.Size = New System.Drawing.Size(812, 454)
         Me.DgvRecords.TabIndex = 9
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 512)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1211, 22)
-        Me.StatusStrip1.TabIndex = 8
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'LblStatus
-        '
-        Me.LblStatus.Name = "LblStatus"
-        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
-        Me.LblStatus.Size = New System.Drawing.Size(6, 17)
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(13, 13)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(18, 16)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "Id"
-        '
-        'TxtId
-        '
-        Me.TxtId.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtId.Location = New System.Drawing.Point(12, 33)
-        Me.TxtId.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtId.Name = "TxtId"
-        Me.TxtId.Size = New System.Drawing.Size(87, 23)
-        Me.TxtId.TabIndex = 0
-        '
-        'BtnClear
-        '
-        Me.BtnClear.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnClear.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.BtnClear.Location = New System.Drawing.Point(295, 28)
-        Me.BtnClear.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtnClear.Name = "BtnClear"
-        Me.BtnClear.Size = New System.Drawing.Size(67, 32)
-        Me.BtnClear.TabIndex = 18
-        Me.BtnClear.Text = "Clear"
-        Me.BtnClear.UseVisualStyleBackColor = True
         '
         'recId
         '
@@ -374,6 +329,67 @@ Partial Class FrmSearch
         Me.recArtistId.ReadOnly = True
         Me.recArtistId.Visible = False
         '
+        'recTrack
+        '
+        Me.recTrack.HeaderText = "Track"
+        Me.recTrack.Name = "recTrack"
+        Me.recTrack.ReadOnly = True
+        Me.recTrack.Visible = False
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LblStatus})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 512)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1211, 22)
+        Me.StatusStrip1.TabIndex = 8
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'LblStatus
+        '
+        Me.LblStatus.Name = "LblStatus"
+        Me.LblStatus.Padding = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.LblStatus.Size = New System.Drawing.Size(6, 17)
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(13, 13)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(18, 16)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "Id"
+        '
+        'TxtId
+        '
+        Me.TxtId.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtId.Location = New System.Drawing.Point(12, 33)
+        Me.TxtId.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtId.Name = "TxtId"
+        Me.TxtId.Size = New System.Drawing.Size(87, 23)
+        Me.TxtId.TabIndex = 0
+        '
+        'BtnClear
+        '
+        Me.BtnClear.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnClear.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.BtnClear.Location = New System.Drawing.Point(295, 28)
+        Me.BtnClear.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnClear.Name = "BtnClear"
+        Me.BtnClear.Size = New System.Drawing.Size(67, 32)
+        Me.BtnClear.TabIndex = 18
+        Me.BtnClear.Text = "Clear"
+        Me.BtnClear.UseVisualStyleBackColor = True
+        '
+        'recSortPos
+        '
+        Me.recSortPos.HeaderText = ""
+        Me.recSortPos.Name = "recSortPos"
+        Me.recSortPos.ReadOnly = True
+        Me.recSortPos.Visible = False
+        '
         'FrmSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -443,4 +459,6 @@ Partial Class FrmSearch
     Friend WithEvents recDate As DataGridViewTextBoxColumn
     Friend WithEvents recLabelId As DataGridViewTextBoxColumn
     Friend WithEvents recArtistId As DataGridViewTextBoxColumn
+    Friend WithEvents recTrack As DataGridViewTextBoxColumn
+    Friend WithEvents recSortPos As DataGridViewTextBoxColumn
 End Class

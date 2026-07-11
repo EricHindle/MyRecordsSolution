@@ -329,6 +329,18 @@ Namespace My
                 Me("ImagePath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DetailsFormPos() As String
+            Get
+                Return CType(Me("DetailsFormPos"),String)
+            End Get
+            Set
+                Me("DetailsFormPos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -353,7 +353,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:HindlewareLib, Version=1.14.0.0, Culture=neutral, PublicKeyToken=95a3f610fb3dfb55, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:HindlewareLib, Version=1.15.5.0, Culture=neutral, PublicKeyToken=95a3f610fb3dfb55, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B240D13E1C6B23C851887CF49C110572"
@@ -510,15 +510,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MyVinyl"
-        "ProductCode" = "8:{89F48518-EF7C-4C32-8588-FC6E386B2259}"
-        "PackageCode" = "8:{B09ED66A-C569-4CF4-AEDD-8A8EA9BE118A}"
+        "ProductCode" = "8:{E550C7B2-13F5-4644-A2DE-B9604279AF1A}"
+        "PackageCode" = "8:{B48EA905-2D59-4BE4-B74E-F47439F365AC}"
         "UpgradeCode" = "8:{E8F4EB2A-10B5-466E-ACB1-B23F3702F6B8}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.2.1"
+        "ProductVersion" = "8:2.2.2"
         "Manufacturer" = "8:hindleware"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -71,5 +71,8 @@
     <Setting Name="ImagePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\MyVinyl\Images</Value>
     </Setting>
+    <Setting Name="DetailsFormPos" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

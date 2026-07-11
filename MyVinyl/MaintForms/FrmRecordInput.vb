@@ -36,7 +36,7 @@ Public Class FrmRecordInput
     End Sub
     Private Sub FrmRecordInput_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         LogUtil.Info("Closing", MyBase.Name)
-        StopAudio()
+        StopAudio(ProgressBar1, BtnPlay, BtnStop)
         My.Settings.RecordInputFormPos = SetFormPos(Me)
         SaveSplitterDistances()
         My.Settings.Save()
@@ -131,7 +131,9 @@ Public Class FrmRecordInput
         Using _artist As New FrmArtistMaint
             _artist.IsSaveAndExit = True
             _artist.ShowDialog()
+            isLoading = True
             LoadArtistList()
+            isLoading = False
             CbArtists.SelectedValue = _artist.Artist.ArtistId
         End Using
     End Sub
@@ -159,10 +161,12 @@ Public Class FrmRecordInput
         isTrackChanged = True
     End Sub
     Private Sub CbArtists_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbArtists.SelectedIndexChanged
-        isTrackChanged = True
+        If Not isLoading Then
+            isTrackChanged = True
         Dim oArtist As Artist = GetArtistFromId(CbArtists.SelectedValue)
-        If oArtist IsNot Nothing AndAlso Not String.IsNullOrEmpty(oArtist.ArtistImage) Then
-            PicImage.ImageLocation = Path.Combine(My.Settings.ImagePath, oArtist.ArtistImage)
+            If oArtist IsNot Nothing AndAlso Not String.IsNullOrEmpty(oArtist.ArtistImage) Then
+                PicImage.ImageLocation = Path.Combine(My.Settings.ImagePath, oArtist.ArtistImage)
+            End If
         End If
     End Sub
 
@@ -170,7 +174,7 @@ Public Class FrmRecordInput
         isTrackChanged = True
         BtnPlay.Visible = IsValidSongFileName(TxtSongFile.Text)
         BtnStop.Visible = IsValidSongFileName(TxtSongFile.Text)
-        StopAudio()
+        StopAudio(ProgressBar1, BtnPlay, BtnStop)
     End Sub
     Private Sub TxtYear_TextChanged(sender As Object, e As EventArgs) Handles TxtYear.TextChanged
         isTrackChanged = True
@@ -248,6 +252,7 @@ Public Class FrmRecordInput
         End Try
     End Sub
     Private Sub InitialiseForm()
+        isLoading = True
         LoadFormatList()
         LoadLabelList()
         LoadGenreList()
@@ -257,6 +262,7 @@ Public Class FrmRecordInput
         LoadRecords()
         BtnAdd.Visible = True
         BtnUpdate.Visible = False
+        isLoading = False
     End Sub
     Private Sub LoadRecords()
         isLoading = True
@@ -404,7 +410,7 @@ Public Class FrmRecordInput
         SplitContainer2.Panel2Collapsed = True
     End Sub
     Private Sub ClearTrackForm()
-        StopAudio()
+        StopAudio(ProgressBar1, BtnPlay, BtnStop)
         RbA.Checked = True
         NudTrackNo.Value = 1
         TxtTitle.Text = String.Empty
@@ -594,7 +600,7 @@ Public Class FrmRecordInput
         Return isOK
     End Function
     Private Sub LoadTrackForm(pTrack As Track)
-        StopAudio()
+        StopAudio(ProgressBar1, BtnPlay, BtnStop)
         With pTrack
             Dim _side As String = .Side.Trim
             Select Case _side
@@ -645,64 +651,13 @@ Public Class FrmRecordInput
     End Function
 
     Private Sub BtnPlay_Click(sender As Object, e As EventArgs) Handles BtnPlay.Click
-        If isPlaying Then
-            PauseAudio()
-        Else
-            Try
-                If isPaused Then
-                    oPlayer.controls.play()
-                Else
-                    Dim SongLocation = TxtSongFile.Text
-                    oPlayer.URL = SongLocation
-                    oPlayer.controls.play()
-                End If
-                PlayAudio()
-            Catch ex As Exception
-
-            End Try
+        If IsValidSongFileName(TxtSongFile.Text) Then
+            PlaySong(TxtSongFile.Text, ProgressBar1, BtnPlay, BtnStop)
         End If
     End Sub
-    Private Sub StopAudio()
-        oPlayer.controls.stop()
-        isPlaying = False
-        isPaused = False
-        BtnPlay.Image = My.Resources.play
-        BtnStop.Enabled = False
-        ProgressBar1.Visible = False
-    End Sub
-    Private Sub PauseAudio()
-        oPlayer.controls.pause()
-        isPlaying = False
-        isPaused = True
-        BtnPlay.Image = My.Resources.play
-        ProgressBar1.Style = ProgressBarStyle.Continuous
-        ProgressBar1.Value = 0
-    End Sub
-    Private Sub PlayAudio()
-        ProgressBar1.Style = ProgressBarStyle.Marquee
-        ProgressBar1.MarqueeAnimationSpeed = 20
-        ProgressBar1.Visible = True
-        BtnPlay.Image = My.Resources.pause
-        BtnStop.Enabled = True
-        isPlaying = True
-        isPaused = False
-
-    End Sub
-
     Private Sub BtnStop_Click(sender As Object, e As EventArgs) Handles BtnStop.Click
-        StopAudio()
+        StopAudio(ProgressBar1, BtnPlay, BtnStop)
     End Sub
-    Private Function IsValidSongFileName(pFilename As String)
-        Dim isValid As Boolean = False
-        If Not String.IsNullOrEmpty(pFilename) Then
-            If pFilename.EndsWith(".wav") Or pFilename.EndsWith(".mp3") Then
-                If My.Computer.FileSystem.FileExists(pFilename) Then
-                    isValid = True
-                End If
-            End If
-        End If
-        Return isValid
-    End Function
 
 End Class
 

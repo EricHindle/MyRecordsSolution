@@ -5,17 +5,30 @@
 ' Author Eric Hindle
 '
 
+Imports System.ComponentModel
 Imports HindlewareLib.Logging
 Imports MyVinyl.Domain
 Public Class FrmSearch
     Private oRecordLabelsTable As New List(Of RecordLabel)
     Private oMusicGenreTable As New List(Of Genre)
     Private oArtistsTable As New List(Of Artist)
+    Private iPosCol As Integer
+    Private iSortPosCol As Integer
+
     Private Sub InitialiseForm()
+        For Each col As DataGridViewColumn In DgvRecords.Columns()
+            If col.Name = recChartPos.Name Then
+                iPosCol = col.Index
+            End If
+            If col.Name = recSortPos.Name Then
+                iSortPosCol = col.Index
+            End If
+        Next
         LoadLabelList()
         LoadGenreList()
         LoadArtistList()
         InitialiseDataSources()
+        DgvRecords.Columns(iPosCol).SortMode = DataGridViewColumnSortMode.Programmatic
     End Sub
 
     Private Sub InitialiseDataSources()
@@ -87,6 +100,7 @@ Public Class FrmSearch
             With _fullrecord.Record
                 oRow.Cells(recId.Name).Value = .RecordId
                 oRow.Cells(recLabel.Name).Value = .Label.LabelName
+                oRow.Cells(recLabelId.Name).Value = .Label.LabelId
                 oRow.Cells(recNumber.Name).Value = .RecordNumber
             End With
             If _fullrecord.Tracks.Count > 0 Then
@@ -95,13 +109,15 @@ Public Class FrmSearch
                     oRow.Cells(recTitle.Name).Value = .Title
                     oRow.Cells(recSide.Name).Value = .Side
                     oRow.Cells(recChartPos.Name).Value = If(.PeakChartPosition > 0, .PeakChartPosition, "")
+                    oRow.Cells(recSortPos.Name).Value = If(.PeakChartPosition > 0, .PeakChartPosition, 99)
                     If .ChartDate IsNot Nothing Then
                         oRow.Cells(recDate.Name).Value = Format(.ChartDate, "dd MMM yyyy")
                     End If
+                    oRow.Cells(recTrack.Name).Value = .Track
+                    oRow.Cells(recArtistId.Name).Value = .Artist.ArtistId
                 End With
             End If
         Next
-
     End Sub
 
     Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
@@ -115,5 +131,47 @@ Public Class FrmSearch
         CbRecordLabel.SelectedIndex = -1
         TxtYear.Text = String.Empty
         CbGenre.SelectedIndex = -1
+    End Sub
+
+    Private Sub DgvRecords_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DgvRecords.CellDoubleClick
+        If DgvRecords.SelectedRows.Count = 1 Then
+            Dim oRow As DataGridViewRow = DgvRecords.SelectedRows(0)
+            If oRow.Index >= 0 AndAlso oRow.Index < DgvRecords.Rows.Count Then
+                DisplayDetailsForm(oRow)
+            End If
+        End If
+    End Sub
+
+    Private Sub DisplayDetailsForm(oRow As DataGridViewRow)
+        Using oDetailsForm As New FrmResult
+            oDetailsForm.RecordId = oRow.Cells(recId.Name).Value
+
+            oDetailsForm.Track = oRow.Cells(recTrack.Name).Value
+            oDetailsForm.Side = oRow.Cells(recSide.Name).Value
+            oDetailsForm.ShowDialog()
+        End Using
+    End Sub
+    Private Sub DgvRecords_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DgvRecords.ColumnHeaderMouseClick
+        If e.ColumnIndex = iPosCol Then
+            Dim newColumn As DataGridViewColumn = DgvRecords.Columns(iSortPosCol)
+            Dim oldColumn As DataGridViewColumn = DgvRecords.SortedColumn
+            Dim direction As ListSortDirection
+            If oldColumn IsNot Nothing Then
+                If oldColumn Is newColumn AndAlso DgvRecords.SortOrder = SortOrder.Ascending Then
+                    direction = ListSortDirection.Descending
+                Else
+                    direction = ListSortDirection.Ascending
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None
+                End If
+            Else
+                direction = ListSortDirection.Ascending
+            End If
+            DgvRecords.Sort(newColumn, direction)
+            If direction = ListSortDirection.Ascending Then
+                DgvRecords.Columns(e.ColumnIndex).HeaderCell.SortGlyphDirection = SortOrder.Ascending
+            Else
+                DgvRecords.Columns(e.ColumnIndex).HeaderCell.SortGlyphDirection = SortOrder.Descending
+            End If
+        End If
     End Sub
 End Class
